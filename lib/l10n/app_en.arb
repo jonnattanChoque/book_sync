@@ -1,0 +1,8 @@
+{
+  "@@locale": "en",
+  "welcomeTitle": "Good afternoon,",
+  "welcomeMessage": "Stories reader",
+  "userName": "Story Reader",
+  "dailyQuotePlaceholder": "\"Reading is a dream that you hold in your hands.\"",
+  "addBook": "Add book"
+}
