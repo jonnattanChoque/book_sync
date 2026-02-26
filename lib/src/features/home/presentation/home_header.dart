@@ -1,0 +1,130 @@
+// ignore_for_file: camel_case_types
+
+import 'package:book_sync/core/theme/cozy_colors.dart';
+import 'package:book_sync/core/utils/date_formatter.dart';
+import 'package:book_sync/l10n/app_localizations.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+class HomeHeader extends StatelessWidget {
+  const HomeHeader({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverPadding(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
+      sliver: SliverToBoxAdapter(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _homeTitle(),
+            const _calendarStamp(),
+            const SizedBox(width: 12),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _homeTitle extends StatelessWidget {
+  const _homeTitle();
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          AppLocalizations.of(context)!.welcomeTitle,
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
+        const SizedBox(height: 4),
+        Text(
+          AppLocalizations.of(context)!.welcomeMessage,
+          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _calendarStamp extends StatefulWidget {
+  const _calendarStamp();
+
+  @override
+  State<_calendarStamp> createState() => _CalendarStampState();
+}
+
+class _CalendarStampState extends State<_calendarStamp> {
+  bool _isPressed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final cozy = CozyColors.of(context);
+    final today = DateTime.now();
+    final dateString = DateFormatter.getHomeDate(today);
+
+    return GestureDetector(
+      onTapDown: (_) => setState(() => _isPressed = true),
+      onTapUp: (_) => setState(() => _isPressed = false),
+      onTapCancel: () => setState(() => _isPressed = false),
+      onTap: () {
+        print('Abrir Calendario');
+      },
+      child: AnimatedScale(
+        scale: _isPressed ? 0.92 : 1.0,
+        duration: const Duration(milliseconds: 100),
+        child: AnimatedRotation(
+          turns: _isPressed ? 0 : -0.015,
+          duration: const Duration(milliseconds: 150),
+          child: Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: _isPressed 
+                  ? cozy.inkColor!.withValues(alpha: 0.05) 
+                  : Colors.transparent,
+              border: Border.all(
+                color: _isPressed 
+                    ? cozy.inkColor!.withValues(alpha: 0.6) 
+                    : cozy.inkColor!.withValues(alpha: 0.3),
+                width: 2,
+              ),
+              borderRadius: BorderRadius.circular(8),
+              boxShadow: _isPressed ? [] : [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.05),
+                  blurRadius: 4,
+                  offset: const Offset(2, 2),
+                )
+              ],
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.calendar_today_outlined,
+                  color: cozy.inkColor,
+                  size: 20,
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  dateString,
+                  style: GoogleFonts.specialElite(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    color: cozy.inkColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

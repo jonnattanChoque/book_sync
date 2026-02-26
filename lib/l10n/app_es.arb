@@ -1,0 +1,8 @@
+{
+  "@@locale": "es",
+  "welcomeTitle": "Buenas tardes,",
+  "welcomeMessage": "Lector de historias",
+  "userName": "Lector de Historias",
+  "dailyQuotePlaceholder": "\"La lectura es un sueño que tienes en tus manos.\"",
+  "addBook": "Agregar libro"
+}
