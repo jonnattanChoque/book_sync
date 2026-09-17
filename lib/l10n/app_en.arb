@@ -1,8 +1,195 @@
 {
   "@@locale": "en",
   "welcomeTitle": "Good afternoon,",
+  "@welcomeTitle": {
+    "description": "Greeting title on the main dashboard"
+  },
   "welcomeMessage": "Stories reader",
+  "@welcomeMessage": {
+    "description": "Subtitle greeting on the main dashboard"
+  },
   "userName": "Story Reader",
-  "dailyQuotePlaceholder": "\"Reading is a dream that you hold in your hands.\"",
-  "addBook": "Add book"
+  "@userName": {
+    "description": "Default user display name"
+  },
+  "addBook": "Add book",
+  "@addBook": {
+    "description": "General action or button text to add a book"
+  },
+  "currentlyReading": "Currently reading",
+  "@currentlyReading": {
+    "description": "Section header for the book currently being read"
+  },
+  "progressLabel": "{percentage}% completed",
+  "@progressLabel": {
+    "description": "Reading progress percentage",
+    "placeholders": {
+      "percentage": {
+        "type": "int",
+        "example": "45"
+      }
+    }
+  },
+  "createBookTitle": "Add a book to your nightstand",
+  "@createBookTitle": {
+    "description": "Modal/Screen header for adding a book"
+  },
+  "noBooksTitle": "Your nightstand is empty",
+  "@noBooksTitle": {
+    "description": "Title shown when the library is empty"
+  },
+  "noBooksSubtitle": "What story will we start today?",
+  "@noBooksSubtitle": {
+    "description": "Motivational message for an empty library"
+  },
+  "addBySearch": "Add by search",
+  "@addBySearch": {
+    "description": "Option to add a book by online search"
+  },
+  "addByScan": "Add by scan (ISBN)",
+  "@addByScan": {
+    "description": "Option to add a book by scanning its ISBN barcode"
+  },
+  "addByManual": "Add manually",
+  "@addByManual": {
+    "description": "Option to add a book manually"
+  },
+  "libraryTitle": "My Library",
+  "@libraryTitle": {
+    "description": "Header for the main library section"
+  },
+  "libraryCount": "{count} Books",
+  "@libraryCount": {
+    "description": "Total book count indicator",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "12"
+      }
+    }
+  },
+  "noBooksRegistered": "No books registered",
+  "@noBooksRegistered": {
+    "description": "Text when no books are registered in a list"
+  },
+  "tabLibraryOne": "Reading",
+  "@tabLibraryOne": {
+    "description": "Tab for books currently being read"
+  },
+  "tabLibraryTwo": "To Read",
+  "@tabLibraryTwo": {
+    "description": "Tab for books queued to read"
+  },
+  "tabLibraryThree": "Read",
+  "@tabLibraryThree": {
+    "description": "Tab for finished books"
+  },
+  "tabLibraryFour": "Forgotten",
+  "@tabLibraryFour": {
+    "description": "Tab for dropped or paused books"
+  },
+  "emptyReading": "No books are currently being read",
+  "@emptyReading": {
+    "description": "Empty state for the Reading tab"
+  },
+  "emptyToRead": "No books to read",
+  "@emptyToRead": {
+    "description": "Empty state for the To Read tab"
+  },
+  "emptyFinished": "No books finished yet",
+  "@emptyFinished": {
+    "description": "Empty state for the Finished tab"
+  },
+  "emptyDropped": "No books forgotten yet",
+  "@emptyDropped": {
+    "description": "Empty state for the Forgotten tab"
+  },
+  "searchTitle": "Search Book",
+  "@searchTitle": {
+    "description": "AppBar title on the online search screen"
+  },
+  "searchButton": "Search",
+  "@searchButton": {
+    "description": "Text for the search action button"
+  },
+  "searchPlaceholder": "Title or author...",
+  "@searchPlaceholder": {
+    "description": "Placeholder hint inside the search text field"
+  },
+  "searchInitialHint": "Type to search books online",
+  "@searchInitialHint": {
+    "description": "Initial hint displayed before searching"
+  },
+  "addManualBook": "Add book manually",
+  "@addManualBook": {
+    "description": "Title for manual entry flow"
+  },
+  "noSearchResults": "No search results found",
+  "@noSearchResults": {
+    "description": "Message displayed when a search returns no items"
+  },
+  "addBookTitle": "Add book",
+  "@addBookTitle": {
+    "description": "AppBar title on the book detail confirmation screen"
+  },
+  "sectionInfo": "Information",
+  "@sectionInfo": {
+    "description": "Section header for general book information"
+  },
+  "sectionSelected": "Select Reading Status",
+  "@sectionSelected": {
+    "description": "Section header for selecting the book's reading status"
+  },
+  "sectionDescription": "Description",
+  "@sectionDescription": {
+    "description": "Section header for the book description or synopsis"
+  },
+  "sectionPublisher": "Publisher",
+  "@sectionPublisher": {
+    "description": "Section header for publishing details"
+  },
+  "sectionOther": "Others",
+  "@sectionOther": {
+    "description": "Section header for additional metadata like categories or ratings"
+  },
+  "fieldTitle": "Title",
+  "@fieldTitle": {
+    "description": "Label for title field"
+  },
+  "fieldAuthors": "Author(s)",
+  "@fieldAuthors": {
+    "description": "Label for authors field"
+  },
+  "fieldIsbn": "ISBN",
+  "@fieldIsbn": {
+    "description": "Label for ISBN code field"
+  },
+  "fieldLanguage": "Language",
+  "@fieldLanguage": {
+    "description": "Label for language field"
+  },
+  "fieldPages": "Pages",
+  "@fieldPages": {
+    "description": "Label for page count field"
+  },
+  "fieldPublisher": "Publisher",
+  "@fieldPublisher": {
+    "description": "Label for publisher field"
+  },
+  "fieldPublishedDate": "Publication date",
+  "@fieldPublishedDate": {
+    "description": "Label for publication date field"
+  },
+  "fieldCategories": "Categories",
+  "@fieldCategories": {
+    "description": "Label for book categories or genres"
+  },
+  "fieldRating": "Rating",
+  "@fieldRating": {
+    "description": "Label for rating or score"
+  },
+  "btnSaveToLibrary": "Save to library",
+  "@btnSaveToLibrary": {
+    "description": "Primary action button to save the book into the database"
+  }
 }

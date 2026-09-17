@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class CozyColors extends ThemeExtension<CozyColors> {
   final Color? bookmarkColor;
   final Color? inkColor;
+  final Color? textColor;
 
-  CozyColors({required this.bookmarkColor, required this.inkColor});
+  CozyColors({required this.bookmarkColor, required this.inkColor, this.textColor});
   
   static CozyColors of(BuildContext context) {
     return Theme.of(context).extension<CozyColors>()!;

@@ -10,7 +10,16 @@ class Book {
   late String author;
   String? coverPath;
   int? totalPages;
+  int currentPage = 0;
   double progress = 0.0;
+
+  // Nuevos campos para coincidir con BookDetailScreen / BookSearchDto
+  String? isbn;
+  String? language;
+  String? description;
+  String? publisher;
+  String? publishedDate;
+  List<String>? categories;
 
   @enumerated
   BookStatus status = BookStatus.toRead;
@@ -18,12 +27,19 @@ class Book {
   final sessions = IsarLinks<ReadingSession>();
 
   Book({
-    required this.title,
-    required this.author,
+    this.title = '',
+    this.author = '',
     this.progress = 0.0,
     this.status = BookStatus.toRead,
     this.coverPath,
     this.totalPages,
+    this.currentPage = 0,
+    this.isbn,
+    this.language,
+    this.description,
+    this.publisher,
+    this.publishedDate,
+    this.categories,
   });
 
   Book.empty(); 

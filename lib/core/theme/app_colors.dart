@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   // LIGHT MODE COLORS
-  static const beigePaper = Color(0xFFF4F1EA);
+  static const beigePaper = Color.fromARGB(255, 243, 241, 239);
   static const inkCharcoal = Color(0xFF2C2C2C);
   static const latteMain = Color(0xFFD4B996);
   static const prussianBlue = Color(0xFF1B3B5A);
@@ -12,5 +12,5 @@ class AppColors {
   // DARK MODE COLORS
   static const Color deepCharcoal = Color(0xFF1B1B1B); 
   static const Color sandHueso = Color.fromARGB(255, 192, 164, 113);
-  static const Color prussianBlueDark = Color(0xFF2E3D44);
+  static const Color prussianBlueDark = Color.fromARGB(255, 92, 189, 235);
 }

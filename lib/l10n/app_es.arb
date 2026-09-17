@@ -1,8 +1,195 @@
 {
   "@@locale": "es",
   "welcomeTitle": "Buenas tardes,",
+  "@welcomeTitle": {
+    "description": "Saludo inicial en la pantalla principal"
+  },
   "welcomeMessage": "Lector de historias",
+  "@welcomeMessage": {
+    "description": "Subtítulo de bienvenida en la pantalla principal"
+  },
   "userName": "Lector de Historias",
-  "dailyQuotePlaceholder": "\"La lectura es un sueño que tienes en tus manos.\"",
-  "addBook": "Agregar libro"
+  "@userName": {
+    "description": "Nombre por defecto del usuario"
+  },
+  "addBook": "Agregar libro",
+  "@addBook": {
+    "description": "Texto del botón o acción general para agregar un libro"
+  },
+  "currentlyReading": "Leyendo ahora",
+  "@currentlyReading": {
+    "description": "Encabezado de la sección del libro en lectura actual"
+  },
+  "progressLabel": "{percentage}% completado",
+  "@progressLabel": {
+    "description": "Porcentaje de avance en la lectura de un libro",
+    "placeholders": {
+      "percentage": {
+        "type": "int",
+        "example": "45"
+      }
+    }
+  },
+  "createBookTitle": "Agrega un libro a tu mesa de noche",
+  "@createBookTitle": {
+    "description": "Título en la vista o diálogo modal de adición de libros"
+  },
+  "noBooksTitle": "Tu mesa de noche está vacía",
+  "@noBooksTitle": {
+    "description": "Título del estado vacío de la biblioteca principal"
+  },
+  "noBooksSubtitle": "¿Qué historia empezaremos hoy?",
+  "@noBooksSubtitle": {
+    "description": "Mensaje motivacional cuando no hay libros registrados"
+  },
+  "addBySearch": "Agregar por búsqueda",
+  "@addBySearch": {
+    "description": "Opción para agregar libro mediante búsqueda en la API"
+  },
+  "addByScan": "Agregar por código (ISBN)",
+  "@addByScan": {
+    "description": "Opción para agregar libro escaneando código de barras"
+  },
+  "addByManual": "Agregar manualmente",
+  "@addByManual": {
+    "description": "Opción para agregar libro con formulario manual"
+  },
+  "libraryTitle": "Mi Biblioteca",
+  "@libraryTitle": {
+    "description": "Título principal de la sección de biblioteca"
+  },
+  "noBooksRegistered": "No hay libros registrados",
+  "@noBooksRegistered": {
+    "description": "Texto indicativo para listas de biblioteca sin elementos"
+  },
+  "libraryCount": "{count} Libros",
+  "@libraryCount": {
+    "description": "Contador del total de libros guardados",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "12"
+      }
+    }
+  },
+  "tabLibraryOne": "Leyendo",
+  "@tabLibraryOne": {
+    "description": "Pestaña de libros en proceso de lectura"
+  },
+  "tabLibraryTwo": "Por leer",
+  "@tabLibraryTwo": {
+    "description": "Pestaña de libros pendientes de lectura"
+  },
+  "tabLibraryThree": "Leídos",
+  "@tabLibraryThree": {
+    "description": "Pestaña de libros terminados"
+  },
+  "tabLibraryFour": "Olvidados",
+  "@tabLibraryFour": {
+    "description": "Pestaña de libros abandonados o pausados"
+  },
+  "emptyReading": "No hay libros en lectura",
+  "@emptyReading": {
+    "description": "Estado vacío de la pestaña leyendo"
+  },
+  "emptyToRead": "No hay libros por leer",
+  "@emptyToRead": {
+    "description": "Estado vacío de la pestaña por leer"
+  },
+  "emptyFinished": "No hay libros leídos aún",
+  "@emptyFinished": {
+    "description": "Estado vacío de la pestaña leídos"
+  },
+  "emptyDropped": "No hay libros olvidados aún",
+  "@emptyDropped": {
+    "description": "Estado vacío de la pestaña olvidados"
+  },
+  "searchTitle": "Buscar Libro",
+  "@searchTitle": {
+    "description": "Título del AppBar en la pantalla de búsqueda online"
+  },
+  "searchButton": "Buscar",
+  "@searchButton": {
+    "description": "Texto del botón de la barra de búsqueda"
+  },
+  "searchPlaceholder": "Título o autor...",
+  "@searchPlaceholder": {
+    "description": "Hint text dentro del campo de texto de búsqueda"
+  },
+  "searchInitialHint": "Escribe para buscar libros en la red",
+  "@searchInitialHint": {
+    "description": "Mensaje informativo en el centro de la pantalla antes de buscar"
+  },
+  "addManualBook": "Agregar libro manualmente",
+  "@addManualBook": {
+    "description": "Título para el flujo de adición manual"
+  },
+  "noSearchResults": "No se encontraron resultados",
+  "@noSearchResults": {
+    "description": "Mensaje de búsqueda sin coincidencias"
+  },
+  "addBookTitle": "Agregar libro",
+  "@addBookTitle": {
+    "description": "Título del AppBar en el detalle del libro para agregar"
+  },
+  "sectionInfo": "Información",
+  "@sectionInfo": {
+    "description": "Encabezado de la sección de datos generales"
+  },
+  "sectionSelected": "Seleccione el estado de lectura",
+  "@sectionSelected": {
+    "description": "Encabezado de la sección para seleccionar el estado de lectura del libro"
+  },
+  "sectionDescription": "Descripción",
+  "@sectionDescription": {
+    "description": "Encabezado de la sección de sinopsis o resumen"
+  },
+  "sectionPublisher": "Editorial",
+  "@sectionPublisher": {
+    "description": "Encabezado de la sección de datos de publicación"
+  },
+  "sectionOther": "Otros",
+  "@sectionOther": {
+    "description": "Encabezado para información complementaria como categorías o tags"
+  },
+  "fieldTitle": "Título",
+  "@fieldTitle": {
+    "description": "Etiqueta para el campo de título"
+  },
+  "fieldAuthors": "Autor(es)",
+  "@fieldAuthors": {
+    "description": "Etiqueta para el campo de autores"
+  },
+  "fieldIsbn": "ISBN",
+  "@fieldIsbn": {
+    "description": "Etiqueta para el código ISBN"
+  },
+  "fieldLanguage": "Idioma",
+  "@fieldLanguage": {
+    "description": "Etiqueta para el idioma del libro"
+  },
+  "fieldPages": "Páginas",
+  "@fieldPages": {
+    "description": "Etiqueta para la cantidad de páginas"
+  },
+  "fieldPublisher": "Editorial",
+  "@fieldPublisher": {
+    "description": "Etiqueta para el nombre de la editorial"
+  },
+  "fieldPublishedDate": "Fecha de publicación",
+  "@fieldPublishedDate": {
+    "description": "Etiqueta para la fecha de lanzamiento"
+  },
+  "fieldCategories": "Categorías",
+  "@fieldCategories": {
+    "description": "Etiqueta para géneros o categorías"
+  },
+  "fieldRating": "Valoración",
+  "@fieldRating": {
+    "description": "Etiqueta para la calificación o puntaje del libro"
+  },
+  "btnSaveToLibrary": "Guardar en la biblioteca",
+  "@btnSaveToLibrary": {
+    "description": "Texto del botón principal para guardar la entidad en la base de datos"
+  }
 }

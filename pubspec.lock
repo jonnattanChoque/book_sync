@@ -573,6 +573,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
+  paperfold:
+    dependency: "direct main"
+    description:
+      name: paperfold
+      sha256: "1c54fbb49b83e7a298ca2f24a70f34e76f0356e9f63824b4712c2b7a6141ab5e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.4"
   path:
     dependency: transitive
     description:

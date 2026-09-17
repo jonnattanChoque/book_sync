@@ -34,7 +34,7 @@ class DailyQuoteBookmark extends ConsumerWidget {
       duration: const Duration(milliseconds: 1000),
       curve: Curves.easeOutBack,
       right: rightPosition - 5,
-      top: 100,
+      top: 130,
       child: GestureDetector(
         onTap: () => ref.read(bookmarkProvider.notifier).toggle(),
         child: ClipPath(

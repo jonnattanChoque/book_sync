@@ -98,35 +98,275 @@ abstract class AppLocalizations {
     Locale('es'),
   ];
 
-  /// No description provided for @welcomeTitle.
+  /// Greeting title on the main dashboard
   ///
   /// In en, this message translates to:
   /// **'Good afternoon,'**
   String get welcomeTitle;
 
-  /// No description provided for @welcomeMessage.
+  /// Subtitle greeting on the main dashboard
   ///
   /// In en, this message translates to:
   /// **'Stories reader'**
   String get welcomeMessage;
 
-  /// No description provided for @userName.
+  /// Default user display name
   ///
   /// In en, this message translates to:
   /// **'Story Reader'**
   String get userName;
 
-  /// No description provided for @dailyQuotePlaceholder.
-  ///
-  /// In en, this message translates to:
-  /// **'\"Reading is a dream that you hold in your hands.\"'**
-  String get dailyQuotePlaceholder;
-
-  /// No description provided for @addBook.
+  /// General action or button text to add a book
   ///
   /// In en, this message translates to:
   /// **'Add book'**
   String get addBook;
+
+  /// Section header for the book currently being read
+  ///
+  /// In en, this message translates to:
+  /// **'Currently reading'**
+  String get currentlyReading;
+
+  /// Reading progress percentage
+  ///
+  /// In en, this message translates to:
+  /// **'{percentage}% completed'**
+  String progressLabel(int percentage);
+
+  /// Modal/Screen header for adding a book
+  ///
+  /// In en, this message translates to:
+  /// **'Add a book to your nightstand'**
+  String get createBookTitle;
+
+  /// Title shown when the library is empty
+  ///
+  /// In en, this message translates to:
+  /// **'Your nightstand is empty'**
+  String get noBooksTitle;
+
+  /// Motivational message for an empty library
+  ///
+  /// In en, this message translates to:
+  /// **'What story will we start today?'**
+  String get noBooksSubtitle;
+
+  /// Option to add a book by online search
+  ///
+  /// In en, this message translates to:
+  /// **'Add by search'**
+  String get addBySearch;
+
+  /// Option to add a book by scanning its ISBN barcode
+  ///
+  /// In en, this message translates to:
+  /// **'Add by scan (ISBN)'**
+  String get addByScan;
+
+  /// Option to add a book manually
+  ///
+  /// In en, this message translates to:
+  /// **'Add manually'**
+  String get addByManual;
+
+  /// Header for the main library section
+  ///
+  /// In en, this message translates to:
+  /// **'My Library'**
+  String get libraryTitle;
+
+  /// Total book count indicator
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Books'**
+  String libraryCount(int count);
+
+  /// Text when no books are registered in a list
+  ///
+  /// In en, this message translates to:
+  /// **'No books registered'**
+  String get noBooksRegistered;
+
+  /// Tab for books currently being read
+  ///
+  /// In en, this message translates to:
+  /// **'Reading'**
+  String get tabLibraryOne;
+
+  /// Tab for books queued to read
+  ///
+  /// In en, this message translates to:
+  /// **'To Read'**
+  String get tabLibraryTwo;
+
+  /// Tab for finished books
+  ///
+  /// In en, this message translates to:
+  /// **'Read'**
+  String get tabLibraryThree;
+
+  /// Tab for dropped or paused books
+  ///
+  /// In en, this message translates to:
+  /// **'Forgotten'**
+  String get tabLibraryFour;
+
+  /// Empty state for the Reading tab
+  ///
+  /// In en, this message translates to:
+  /// **'No books are currently being read'**
+  String get emptyReading;
+
+  /// Empty state for the To Read tab
+  ///
+  /// In en, this message translates to:
+  /// **'No books to read'**
+  String get emptyToRead;
+
+  /// Empty state for the Finished tab
+  ///
+  /// In en, this message translates to:
+  /// **'No books finished yet'**
+  String get emptyFinished;
+
+  /// Empty state for the Forgotten tab
+  ///
+  /// In en, this message translates to:
+  /// **'No books forgotten yet'**
+  String get emptyDropped;
+
+  /// AppBar title on the online search screen
+  ///
+  /// In en, this message translates to:
+  /// **'Search Book'**
+  String get searchTitle;
+
+  /// Text for the search action button
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get searchButton;
+
+  /// Placeholder hint inside the search text field
+  ///
+  /// In en, this message translates to:
+  /// **'Title or author...'**
+  String get searchPlaceholder;
+
+  /// Initial hint displayed before searching
+  ///
+  /// In en, this message translates to:
+  /// **'Type to search books online'**
+  String get searchInitialHint;
+
+  /// Title for manual entry flow
+  ///
+  /// In en, this message translates to:
+  /// **'Add book manually'**
+  String get addManualBook;
+
+  /// Message displayed when a search returns no items
+  ///
+  /// In en, this message translates to:
+  /// **'No search results found'**
+  String get noSearchResults;
+
+  /// AppBar title on the book detail confirmation screen
+  ///
+  /// In en, this message translates to:
+  /// **'Add book'**
+  String get addBookTitle;
+
+  /// Section header for general book information
+  ///
+  /// In en, this message translates to:
+  /// **'Information'**
+  String get sectionInfo;
+
+  /// Section header for selecting the book's reading status
+  ///
+  /// In en, this message translates to:
+  /// **'Select Reading Status'**
+  String get sectionSelected;
+
+  /// Section header for the book description or synopsis
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get sectionDescription;
+
+  /// Section header for publishing details
+  ///
+  /// In en, this message translates to:
+  /// **'Publisher'**
+  String get sectionPublisher;
+
+  /// Section header for additional metadata like categories or ratings
+  ///
+  /// In en, this message translates to:
+  /// **'Others'**
+  String get sectionOther;
+
+  /// Label for title field
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get fieldTitle;
+
+  /// Label for authors field
+  ///
+  /// In en, this message translates to:
+  /// **'Author(s)'**
+  String get fieldAuthors;
+
+  /// Label for ISBN code field
+  ///
+  /// In en, this message translates to:
+  /// **'ISBN'**
+  String get fieldIsbn;
+
+  /// Label for language field
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get fieldLanguage;
+
+  /// Label for page count field
+  ///
+  /// In en, this message translates to:
+  /// **'Pages'**
+  String get fieldPages;
+
+  /// Label for publisher field
+  ///
+  /// In en, this message translates to:
+  /// **'Publisher'**
+  String get fieldPublisher;
+
+  /// Label for publication date field
+  ///
+  /// In en, this message translates to:
+  /// **'Publication date'**
+  String get fieldPublishedDate;
+
+  /// Label for book categories or genres
+  ///
+  /// In en, this message translates to:
+  /// **'Categories'**
+  String get fieldCategories;
+
+  /// Label for rating or score
+  ///
+  /// In en, this message translates to:
+  /// **'Rating'**
+  String get fieldRating;
+
+  /// Primary action button to save the book into the database
+  ///
+  /// In en, this message translates to:
+  /// **'Save to library'**
+  String get btnSaveToLibrary;
 }
 
 class _AppLocalizationsDelegate

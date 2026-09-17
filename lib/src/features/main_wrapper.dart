@@ -17,11 +17,7 @@ class MainWrapper extends StatelessWidget {
             child: child,
           ),
           
-          const Positioned(
-            right: -10,
-            top: 100,
-            child: DailyQuoteBookmark(), 
-          ),
+          DailyQuoteBookmark(), 
         ],
       ),
     );

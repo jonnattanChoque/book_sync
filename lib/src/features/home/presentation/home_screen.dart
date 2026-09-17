@@ -1,7 +1,9 @@
 // ignore: depend_on_referenced_packages
+import 'package:book_sync/src/features/library/presentation/widgets/home_library_card.dart';
+import 'package:book_sync/src/features/reading_slider/presentation/widgets/reading_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:book_sync/core/widgets/background_paper_texture.dart';
-import 'package:book_sync/src/features/home/presentation/home_header.dart';
+import 'package:book_sync/src/features/home/presentation/widgets/home_header.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -16,7 +18,18 @@ class HomeScreen extends ConsumerWidget {
           
           CustomScrollView(
             slivers: [
-              const HomeHeader(),
+              const SliverToBoxAdapter(
+                child: HomeHeader(),
+              ),
+              const SliverToBoxAdapter(
+                child: ReadingSlider(),
+              ),
+              const SliverToBoxAdapter(
+                child: SizedBox(height: 16),
+              ),
+              const SliverToBoxAdapter(
+                child: HomeLibraryCard(),
+              ),
             ],
           ),
         ],

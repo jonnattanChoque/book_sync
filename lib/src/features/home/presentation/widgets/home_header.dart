@@ -11,18 +11,15 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverPadding(
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
-      sliver: SliverToBoxAdapter(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _homeTitle(),
-            const _calendarStamp(),
-            const SizedBox(width: 12),
-          ],
-        ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const _homeTitle(),
+          const _calendarStamp(),
+        ],
       ),
     );
   }
@@ -33,7 +30,6 @@ class _homeTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -45,6 +41,7 @@ class _homeTitle extends StatelessWidget {
         Text(
           AppLocalizations.of(context)!.welcomeMessage,
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+            fontSize: 26,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -74,7 +71,7 @@ class _CalendarStampState extends State<_calendarStamp> {
       onTapUp: (_) => setState(() => _isPressed = false),
       onTapCancel: () => setState(() => _isPressed = false),
       onTap: () {
-        print('Abrir Calendario');
+        // TODO: ('Abrir Calendario');
       },
       child: AnimatedScale(
         scale: _isPressed ? 0.92 : 1.0,

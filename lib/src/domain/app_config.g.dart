@@ -17,8 +17,18 @@ const AppConfigSchema = CollectionSchema(
   name: r'AppConfig',
   id: -7085420701237142207,
   properties: {
-    r'lastBookmarkAnimDate': PropertySchema(
+    r'dailyQuoteAuthor': PropertySchema(
       id: 0,
+      name: r'dailyQuoteAuthor',
+      type: IsarType.string,
+    ),
+    r'dailyQuoteText': PropertySchema(
+      id: 1,
+      name: r'dailyQuoteText',
+      type: IsarType.string,
+    ),
+    r'lastBookmarkAnimDate': PropertySchema(
+      id: 2,
       name: r'lastBookmarkAnimDate',
       type: IsarType.string,
     )
@@ -44,6 +54,18 @@ int _appConfigEstimateSize(
 ) {
   var bytesCount = offsets.last;
   {
+    final value = object.dailyQuoteAuthor;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.dailyQuoteText;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
     final value = object.lastBookmarkAnimDate;
     if (value != null) {
       bytesCount += 3 + value.length * 3;
@@ -58,7 +80,9 @@ void _appConfigSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeString(offsets[0], object.lastBookmarkAnimDate);
+  writer.writeString(offsets[0], object.dailyQuoteAuthor);
+  writer.writeString(offsets[1], object.dailyQuoteText);
+  writer.writeString(offsets[2], object.lastBookmarkAnimDate);
 }
 
 AppConfig _appConfigDeserialize(
@@ -68,8 +92,10 @@ AppConfig _appConfigDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = AppConfig();
+  object.dailyQuoteAuthor = reader.readStringOrNull(offsets[0]);
+  object.dailyQuoteText = reader.readStringOrNull(offsets[1]);
   object.id = id;
-  object.lastBookmarkAnimDate = reader.readStringOrNull(offsets[0]);
+  object.lastBookmarkAnimDate = reader.readStringOrNull(offsets[2]);
   return object;
 }
 
@@ -81,6 +107,10 @@ P _appConfigDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
+      return (reader.readStringOrNull(offset)) as P;
+    case 1:
+      return (reader.readStringOrNull(offset)) as P;
+    case 2:
       return (reader.readStringOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -178,6 +208,314 @@ extension AppConfigQueryWhere
 
 extension AppConfigQueryFilter
     on QueryBuilder<AppConfig, AppConfig, QFilterCondition> {
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      dailyQuoteAuthorIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'dailyQuoteAuthor',
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      dailyQuoteAuthorIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'dailyQuoteAuthor',
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      dailyQuoteAuthorEqualTo(
+    String? value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'dailyQuoteAuthor',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      dailyQuoteAuthorGreaterThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'dailyQuoteAuthor',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      dailyQuoteAuthorLessThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'dailyQuoteAuthor',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      dailyQuoteAuthorBetween(
+    String? lower,
+    String? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'dailyQuoteAuthor',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      dailyQuoteAuthorStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'dailyQuoteAuthor',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      dailyQuoteAuthorEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'dailyQuoteAuthor',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      dailyQuoteAuthorContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'dailyQuoteAuthor',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      dailyQuoteAuthorMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'dailyQuoteAuthor',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      dailyQuoteAuthorIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'dailyQuoteAuthor',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      dailyQuoteAuthorIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'dailyQuoteAuthor',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      dailyQuoteTextIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'dailyQuoteText',
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      dailyQuoteTextIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'dailyQuoteText',
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      dailyQuoteTextEqualTo(
+    String? value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'dailyQuoteText',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      dailyQuoteTextGreaterThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'dailyQuoteText',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      dailyQuoteTextLessThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'dailyQuoteText',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      dailyQuoteTextBetween(
+    String? lower,
+    String? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'dailyQuoteText',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      dailyQuoteTextStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'dailyQuoteText',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      dailyQuoteTextEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'dailyQuoteText',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      dailyQuoteTextContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'dailyQuoteText',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      dailyQuoteTextMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'dailyQuoteText',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      dailyQuoteTextIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'dailyQuoteText',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      dailyQuoteTextIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'dailyQuoteText',
+        value: '',
+      ));
+    });
+  }
+
   QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition> idEqualTo(
       Id value) {
     return QueryBuilder.apply(this, (query) {
@@ -393,6 +731,31 @@ extension AppConfigQueryLinks
     on QueryBuilder<AppConfig, AppConfig, QFilterCondition> {}
 
 extension AppConfigQuerySortBy on QueryBuilder<AppConfig, AppConfig, QSortBy> {
+  QueryBuilder<AppConfig, AppConfig, QAfterSortBy> sortByDailyQuoteAuthor() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dailyQuoteAuthor', Sort.asc);
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterSortBy>
+      sortByDailyQuoteAuthorDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dailyQuoteAuthor', Sort.desc);
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterSortBy> sortByDailyQuoteText() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dailyQuoteText', Sort.asc);
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterSortBy> sortByDailyQuoteTextDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dailyQuoteText', Sort.desc);
+    });
+  }
+
   QueryBuilder<AppConfig, AppConfig, QAfterSortBy>
       sortByLastBookmarkAnimDate() {
     return QueryBuilder.apply(this, (query) {
@@ -410,6 +773,31 @@ extension AppConfigQuerySortBy on QueryBuilder<AppConfig, AppConfig, QSortBy> {
 
 extension AppConfigQuerySortThenBy
     on QueryBuilder<AppConfig, AppConfig, QSortThenBy> {
+  QueryBuilder<AppConfig, AppConfig, QAfterSortBy> thenByDailyQuoteAuthor() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dailyQuoteAuthor', Sort.asc);
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterSortBy>
+      thenByDailyQuoteAuthorDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dailyQuoteAuthor', Sort.desc);
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterSortBy> thenByDailyQuoteText() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dailyQuoteText', Sort.asc);
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterSortBy> thenByDailyQuoteTextDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dailyQuoteText', Sort.desc);
+    });
+  }
+
   QueryBuilder<AppConfig, AppConfig, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
@@ -439,6 +827,22 @@ extension AppConfigQuerySortThenBy
 
 extension AppConfigQueryWhereDistinct
     on QueryBuilder<AppConfig, AppConfig, QDistinct> {
+  QueryBuilder<AppConfig, AppConfig, QDistinct> distinctByDailyQuoteAuthor(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'dailyQuoteAuthor',
+          caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QDistinct> distinctByDailyQuoteText(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'dailyQuoteText',
+          caseSensitive: caseSensitive);
+    });
+  }
+
   QueryBuilder<AppConfig, AppConfig, QDistinct> distinctByLastBookmarkAnimDate(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -453,6 +857,19 @@ extension AppConfigQueryProperty
   QueryBuilder<AppConfig, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
+    });
+  }
+
+  QueryBuilder<AppConfig, String?, QQueryOperations>
+      dailyQuoteAuthorProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'dailyQuoteAuthor');
+    });
+  }
+
+  QueryBuilder<AppConfig, String?, QQueryOperations> dailyQuoteTextProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'dailyQuoteText');
     });
   }
 

@@ -17,6 +17,7 @@ final lightTheme = ThemeData(
     CozyColors(
       bookmarkColor: AppColors.prussianBlue,
       inkColor: AppColors.inkCharcoal,
+      textColor: AppColors.deepCharcoal
     ),
   ],
 );
@@ -34,6 +35,7 @@ final darkTheme = ThemeData(
     CozyColors(
       bookmarkColor: AppColors.prussianBlueDark,
       inkColor: AppColors.sandHueso,
+      textColor: AppColors.beigePaper
     ),
   ],
 );
