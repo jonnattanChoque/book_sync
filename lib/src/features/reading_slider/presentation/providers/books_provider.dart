@@ -23,3 +23,12 @@ final allBooksProvider = StreamProvider<List<Book>>((ref) {
 
 // Proveedor para comunicar el libro recién guardado hacia el carrusel del Home
 final selectedBookIdProvider = StateProvider<Id?>((ref) => null);
+
+final checkDuplicateIsbnProvider = Provider((ref) {
+  final repository = ref.watch(bookRepositoryProvider);
+
+  return (String? isbn) async {
+    if (isbn == null || isbn.trim().isEmpty) return null;
+    return await repository.findBookByIsbn(isbn);
+  };
+});

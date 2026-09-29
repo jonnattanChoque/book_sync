@@ -7,21 +7,21 @@ import 'package:book_sync/src/features/reading_slider/presentation/providers/boo
 import 'package:book_sync/src/features/search/domain/book_search_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
-class BookDetailScreen extends ConsumerStatefulWidget {
-  /// Si es `null`, se asume flujo de creación manual desde cero.
+class BookSearchDetailScreen extends ConsumerStatefulWidget {
   final BookSearchDto? book;
 
-  const BookDetailScreen({
+  const BookSearchDetailScreen({
     super.key,
     this.book,
   });
 
   @override
-  ConsumerState<BookDetailScreen> createState() => _BookDetailScreenState();
+  ConsumerState<BookSearchDetailScreen> createState() => _BookSearchDetailScreenState();
 }
 
-class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
+class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen> {
   final _formKey = GlobalKey<FormState>();
 
   // Controladores para los campos editables
@@ -62,6 +62,8 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
     _categoriesController = TextEditingController(
       text: book?.categories.isNotEmpty == true ? book!.categories.join(', ') : '',
     );
+
+    _checkDuplicateIsbn();
   }
 
   @override
@@ -78,10 +80,9 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
     super.dispose();
   }
 
-  // En _BookDetailScreenState
-
   Future<void> _saveBook() async {
     if (!(_formKey.currentState?.validate() ?? false)) return;
+    _checkDuplicateIsbn();
 
     final repository = ref.read(bookRepositoryProvider);
 
@@ -90,6 +91,7 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
       author: _authorsController.text.trim(),
       status: _selectedStatus,
       coverPath: _coverUrl,
+      startedAt: _selectedStatus == BookStatus.reading ? DateTime.now() : null,
       totalPages: int.tryParse(_pagesController.text.trim()),
       isbn: _isbnController.text.trim().isEmpty ? null : _isbnController.text.trim(),
       language: _languageController.text.trim().isEmpty ? null : _languageController.text.trim(),
@@ -103,11 +105,44 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
           .toList(),
     );
 
-    // Notificamos el libro seleccionado para mover el carrusel en el Home
     ref.read(selectedBookIdProvider.notifier).state = newBookId;
 
     if (mounted) {
       Navigator.of(context).popUntil((route) => route.isFirst);
+    }
+  }
+
+  Future<void> _checkDuplicateIsbn() async {
+    final isbn = _isbnController.text.trim();
+
+    final checkDuplicateIsbn = ref.read(checkDuplicateIsbnProvider);
+    final existingBook = await checkDuplicateIsbn(isbn);
+
+    if (!mounted) return;
+    if (existingBook != null) {
+      final l10n = AppLocalizations.of(context);
+
+      if (l10n != null) {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text(l10n.duplicateBookTitle),
+              content: Text(l10n.duplicateBookMessage),
+              actions: [
+                TextButton(
+                  onPressed: () => {
+                    Navigator.of(context).pop(),
+                    context.pushReplacement('/')
+                  },
+                  child: Text(l10n.accept),
+                ),
+              ],
+            );
+          },
+        );
+      }
+      return;
     }
   }
 
@@ -160,10 +195,7 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
       ),
       title: Text(
         isManual ? l10n.addManualBook : l10n.addBookTitle,
-        style: theme.textTheme.titleLarge?.copyWith(
-          color: colorScheme.onSurface,
-          fontWeight: FontWeight.bold,
-        ),
+        style: theme.textTheme.titleLarge,
       ),
     );
   }
@@ -180,33 +212,7 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           // 1. Portada del libro centrada
-          Center(
-            child: Container(
-              width: 140,
-              height: 210,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.15),
-                    blurRadius: 12,
-                    offset: const Offset(0, 6),
-                  ),
-                ],
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: _coverUrl != null && _coverUrl!.isNotEmpty
-                    ? Image.network(
-                        _coverUrl!,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) =>
-                            _buildPlaceholderCover(context),
-                      )
-                    : _buildPlaceholderCover(context),
-              ),
-            ),
-          ),
+          _buildCover(context, _titleController.text),
           const SizedBox(height: 24),
 
           // 2. Sección Información Principal
@@ -351,17 +357,83 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
     );
   }
 
+  Center _buildCover(BuildContext context, String title) {
+    return Center(
+      child: Stack(
+        children: [
+          Container(
+            width: 140,
+            height: 210,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.15),
+                  blurRadius: 12,
+                  offset: const Offset(0, 6),
+                ),
+              ],
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: _coverUrl != null && _coverUrl!.isNotEmpty
+                ? Image.network(
+                    _coverUrl!,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) =>
+                        _buildPlaceholderCover(context),
+                  )
+                : _buildPlaceholderCover(context),
+            ),
+          ),
+          Positioned(
+            right: 6,
+            bottom: 6,
+            child: Material(
+              color: Theme.of(context).primaryColor,
+              shape: const CircleBorder(),
+              elevation: 4,
+              child: InkWell(
+                customBorder: const CircleBorder(),
+                onTap: () async {
+                  final String? newCoverUrl = await context.push<String>(
+                    '/search_image',
+                    extra: title,
+                  );
+
+                  if (newCoverUrl != null && newCoverUrl.isNotEmpty) {
+                    setState(() {
+                      _coverUrl = newCoverUrl;
+                    });
+                  }
+                },
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(
+                    Icons.edit,
+                    size: 18,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildStatusSelector(AppLocalizations l10n) {
     return SegmentedButton<BookStatus>(
       segments: [
         ButtonSegment(
           value: BookStatus.toRead,
-          label: Text(l10n.tabLibraryTwo),
+          label: Text(l10n.tabLibraryToRead),
           icon: Icon(Icons.bookmark_border),
         ),
         ButtonSegment(
           value: BookStatus.reading,
-          label: Text(l10n.tabLibraryOne),
+          label: Text(l10n.tabLibraryReading),
           icon: Icon(Icons.book),
         ),
       ],
@@ -393,7 +465,6 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
     );
   }
 
-  // Fila editable con campo de texto integrado en el estilo visual
   Widget _buildEditableRow(
     BuildContext context, {
     required String label,

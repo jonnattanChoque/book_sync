@@ -15,8 +15,8 @@ class CreateBookBottomsheet extends StatelessWidget {
       height: 300,
       child: Center(
         child: Column(
-          mainAxisAlignment: .center,
-          mainAxisSize: .min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Expanded(
               child: Text(
@@ -35,6 +35,7 @@ class CreateBookBottomsheet extends StatelessWidget {
             HandDrawnButton(
               onPressed: () {
                 Navigator.of(context).pop();
+                context.push('/scanner');
               },
               icon: Icons.document_scanner,
               text: AppLocalizations.of(context)!.addByScan,
@@ -42,6 +43,7 @@ class CreateBookBottomsheet extends StatelessWidget {
             HandDrawnButton(
               onPressed: () {
                 Navigator.of(context).pop();
+                context.push('/search_detail');
               },
               icon: Icons.keyboard,
               text: AppLocalizations.of(context)!.addByManual,

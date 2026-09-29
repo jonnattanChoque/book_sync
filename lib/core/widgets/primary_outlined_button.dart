@@ -1,15 +1,16 @@
+import 'package:book_sync/core/widgets/book_loader.dart';
 import 'package:flutter/material.dart';
 
 class PrimaryOutlinedButton extends StatelessWidget {
   final String label;
-  final IconData icon;
+  final IconData? icon;
   final VoidCallback onPressed;
   final bool isLoading;
 
   const PrimaryOutlinedButton({
     super.key,
     required this.label,
-    required this.icon,
+    this.icon,
     required this.onPressed,
     this.isLoading = false,
   });
@@ -38,10 +39,7 @@ class PrimaryOutlinedButton extends StatelessWidget {
             ? SizedBox(
                 width: 20,
                 height: 20,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  color: colorScheme.onSurface,
-                ),
+                child: BookLoader(),
               )
             : Icon(
                 icon,

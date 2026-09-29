@@ -3,11 +3,13 @@ import 'package:book_sync/core/router/app_router.dart';
 import 'package:book_sync/core/theme/app_theme.dart';
 import 'package:book_sync/l10n/app_localizations.dart';
 import 'package:book_sync/src/domain/book.dart';
+import 'package:book_sync/src/domain/note.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:book_sync/src/domain/app_config.dart';
+import 'package:toastification/toastification.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +19,7 @@ void main() async {
     [
       AppConfigSchema,
       BookSchema,
+      NoteSchema,
       ReadingSessionSchema
     ],
     directory: dir.path,
@@ -27,7 +30,9 @@ void main() async {
       overrides: [
         isarProvider.overrideWithValue(isar),
       ],
-      child: const MyApp(),
+      child: const ToastificationWrapper(
+        child: MyApp(),
+      ),
     ),
   );
 }

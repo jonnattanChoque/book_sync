@@ -56,10 +56,17 @@ class BookSearchDto {
 
     // Aseguramos que las imágenes utilicen HTTPS
     String? rawCover = imageLinks?['thumbnail'] as String? ?? imageLinks?['smallThumbnail'] as String?;
-    if (rawCover != null && rawCover.startsWith('http://')) {
-      rawCover = rawCover.replaceFirst('http://', 'https://');
+    // 2. Si existe, asegurar protocolo HTTPS
+    if (rawCover != null && rawCover.isNotEmpty) {
+      if (rawCover.startsWith('http://')) {
+        rawCover = rawCover.replaceFirst('http://', 'https://');
+      }
+    } 
+    // 3. Si viene nula o vacía, armar la URL usando el id del volumen de Google Books
+    else if (json['id'] != null && (json['id'] as String).isNotEmpty) {
+      rawCover = 'https://covers.openlibrary.org/b/isbn/$extractedIsbn-L.jpg?default=false';
     }
-
+    
     return BookSearchDto(
       id: json['id'] as String? ?? '',
       title: volumeInfo['title'] as String? ?? 'Sin título',

@@ -1,6 +1,6 @@
 {
   "@@locale": "es",
-  "welcomeTitle": "Buenas tardes,",
+  "welcomeTitle": "Hola,",
   "@welcomeTitle": {
     "description": "Saludo inicial en la pantalla principal"
   },
@@ -25,7 +25,7 @@
     "description": "Porcentaje de avance en la lectura de un libro",
     "placeholders": {
       "percentage": {
-        "type": "int",
+        "type": "String",
         "example": "45"
       }
     }
@@ -72,21 +72,25 @@
       }
     }
   },
-  "tabLibraryOne": "Leyendo",
-  "@tabLibraryOne": {
+  "tabLibraryReading": "Leyendo",
+  "@tabLibraryReading": {
     "description": "Pestaña de libros en proceso de lectura"
   },
-  "tabLibraryTwo": "Por leer",
-  "@tabLibraryTwo": {
+  "tabLibraryToRead": "Por leer",
+  "@tabLibraryToRead": {
     "description": "Pestaña de libros pendientes de lectura"
   },
-  "tabLibraryThree": "Leídos",
-  "@tabLibraryThree": {
+  "tabLibraryRead": "Leídos",
+  "@tabLibraryRead": {
     "description": "Pestaña de libros terminados"
   },
-  "tabLibraryFour": "Olvidados",
-  "@tabLibraryFour": {
-    "description": "Pestaña de libros abandonados o pausados"
+  "tabLibraryDropped": "Abandonados",
+  "@tabLibraryDropped": {
+    "description": "Pestaña de libros abandonados"
+  },
+  "tabLibraryPaused": "Pausados",
+  "@tabLibraryPaused": {
+    "description": "Pestaña de libros pausados"
   },
   "emptyReading": "No hay libros en lectura",
   "@emptyReading": {
@@ -100,9 +104,9 @@
   "@emptyFinished": {
     "description": "Estado vacío de la pestaña leídos"
   },
-  "emptyDropped": "No hay libros olvidados aún",
+  "emptyDropped": "No hay libros abandonados aún",
   "@emptyDropped": {
-    "description": "Estado vacío de la pestaña olvidados"
+    "description": "Estado vacío de la pestaña abandonados"
   },
   "searchTitle": "Buscar Libro",
   "@searchTitle": {
@@ -120,7 +124,7 @@
   "@searchInitialHint": {
     "description": "Mensaje informativo en el centro de la pantalla antes de buscar"
   },
-  "addManualBook": "Agregar libro manualmente",
+  "addManualBook": "Agregar libro",
   "@addManualBook": {
     "description": "Título para el flujo de adición manual"
   },
@@ -191,5 +195,485 @@
   "btnSaveToLibrary": "Guardar en la biblioteca",
   "@btnSaveToLibrary": {
     "description": "Texto del botón principal para guardar la entidad en la base de datos"
+  },
+  "scanIsbnTitle": "Escanear Código ISBN",
+  "@scanIsbnTitle": {
+    "description": "Título principal de la pantalla del escáner de códigos de barras ISBN."
+  },
+  "scanIsbnInstruction": "Alinea el código de barras aquí",
+  "@scanIsbnInstruction": {
+    "description": "Texto con instrucciones para orientar al usuario al encuadrar el código de barras en la cámara."
+  },
+  "scanIsbnLoading": "Buscando libro por ISBN...",
+  "@scanIsbnLoading": {
+    "description": "Mensaje de carga desplegado mientras se realiza la consulta del libro en la API."
+  },
+  "searchImageTitle": "Buscar imagen",
+  "@searchImageTitle": {
+    "description": "Título de la pantalla o modal para la búsqueda de portadas de libros."
+  },
+  "searchImageHint": "Escribe para buscar imágenes en la red",
+  "@searchImageHint": {
+    "description": "Texto placeholder del campo de texto de búsqueda."
+  },
+  "confirmChangeCoverTitle": "Cambiar portada",
+  "@confirmChangeCoverTitle": {
+    "description": "Título del cuadro de diálogo de confirmación para reemplazar la portada."
+  },
+  "confirmChangeCoverMessage": "¿Deseas reemplazar la portada actual por esta imagen?",
+  "@confirmChangeCoverMessage": {
+    "description": "Mensaje principal del cuadro de diálogo de confirmación."
+  },
+  "actionCancel": "Cancelar",
+  "@actionCancel": {
+    "description": "Etiqueta para el botón de cancelar la acción."
+  },
+  "actionConfirm": "Confirmar",
+  "@actionConfirm": {
+    "description": "Etiqueta para el botón de aceptar o confirmar el cambio de portada."
+  },
+  "duplicateBookTitle": "Libro Duplicado",
+  "@duplicateBookTitle": {
+    "description": "Título del diálogo que advierte que un libro ya se encuentra en la biblioteca."
+  },
+  "duplicateBookMessage": "Ya existe este libro en tu biblioteca.",
+  "@duplicateBookMessage": {
+    "description": "Mensajes explicativo que informa al usuario que el ISBN ingresado ya está registrado."
+  },
+  "accept": "Aceptar",
+  "@accept": {
+    "description": "Texto del botón principal para cerrar o confirmar un diálogo de alerta."
+  },
+  "yourBookTitle": "Tu libro",
+  "@yourBookTitle": {
+    "description": "Título principal en el AppBar de la pantalla de detalles del libro"
+  },
+  "isbn": "ISBN",
+  "@isbn": {
+    "description": "Etiqueta para el código ISBN del libro"
+  },
+  "deleteAction": "Borrar",
+  "@deleteAction": {
+    "description": "Texto para el botón o acción de eliminar"
+  },
+  "editionInfo": "Información de Edición",
+  "@editionInfo": {
+    "description": "Título de la tarjeta de información de la editorial/edición"
+  },
+  "publisher": "Editorial",
+  "@publisher": {
+    "description": "Etiqueta para la editorial del libro"
+  },
+  "language": "Idioma",
+  "@language": {
+    "description": "Etiqueta para el idioma del libro"
+  },
+  "publicationDate": "Publicación",
+  "@publicationDate": {
+    "description": "Etiqueta para la fecha de publicación del libro"
+  },
+  "synopsis": "Sinopsis",
+  "@synopsis": {
+    "description": "Título de la sección de sinopsis o descripción"
+  },
+  "addNote": "Nota",
+  "@addNote": {
+    "description": "Texto del botón para agregar una nota rápida"
+  },
+  "newSession": "Leer",
+  "@newSession": {
+    "description": "Texto del botón para iniciar una nueva sesión de lectura"
+  },
+  "readingNotes": "Notas de Lectura",
+  "@readingNotes": {
+    "description": "Título de la sección desplegable de notas"
+  },
+  "noNotesRegistered": "No hay notas registradas en este libro.",
+  "@noNotesRegistered": {
+    "description": "Mensaje cuando no se han creado notas en el libro"
+  },
+  "readingHistory": "Historial de Lectura",
+  "@readingHistory": {
+    "description": "Título de la sección desplegable del historial de sesiones"
+  },
+  "noSessionsRegistered": "Aún no has registrado sesiones de lectura.",
+  "@noSessionsRegistered": {
+    "description": "Mensaje cuando no hay sesiones grabadas"
+  },
+  "progressInfo": "Información de progreso",
+  "@progressInfo": {
+    "description": "Título de la tarjeta de progreso y tiempos de lectura"
+  },
+  "startDate": "Inicio",
+  "@startDate": {
+    "description": "Etiqueta para la fecha de inicio de lectura"
+  },
+  "day": "Día",
+  "@day": {
+    "description": "Etiqueta para el día actual o transcurrido de lectura"
+  },
+  "remaining": "Restante",
+  "@remaining": {
+    "description": "Etiqueta para el tiempo estimado restante de lectura"
+  },
+  "progress": "Progreso",
+  "@progress": {
+    "description": "Texto que precede al porcentaje de avance"
+  },
+  "pagesAbbr": "págs",
+  "@pagesAbbr": {
+    "description": "Abreviatura de páginas"
+  },
+  "pageAbbr": "Pág",
+  "@pageAbbr": {
+    "description": "Abreviatura singular de página"
+  },
+  "minutesAbbr": "min",
+  "@minutesAbbr": {
+    "description": "Abreviatura de minutos"
+  },
+  "readingStatusTitle": "Estado de Lectura",
+  "@readingStatusTitle": {
+    "description": "Título del menú desplegable de selección de estado"
+  },
+  "readingStatusMessage": "Selecciona el estado actual de este libro",
+  "@readingStatusMessage": {
+    "description": "Mensaje instructivo del menú de estados"
+  },
+  "statusReading": "Leyendo",
+  "@statusReading": {
+    "description": "Estado: Leyendo"
+  },
+  "statusToRead": "Por leer",
+  "@statusToRead": {
+    "description": "Estado: Por leer"
+  },
+  "statusPaused": "Pausado",
+  "@statusPaused": {
+    "description": "Estado: Pausado"
+  },
+  "statusDropped": "Abandonado",
+  "@statusDropped": {
+    "description": "Estado: Abandonado"
+  },
+  "statusFinished": "Terminado",
+  "@statusFinished": {
+    "description": "Estado: Terminado"
+  },
+  "cancel": "Cancelar",
+  "@cancel": {
+    "description": "Texto genérico para cancelar diálogos o acciones"
+  },
+  "save": "Guardar",
+  "@save": {
+    "description": "Texto genérico para guardar cambios"
+  },
+  "newReadingNote": "Nueva Nota de Lectura",
+  "@newReadingNote": {
+    "description": "Título del modal para agregar nota"
+  },
+  "addNoteHint": "Escribe tu reflexión o cita del libro...",
+  "@addNoteHint": {
+    "description": "Placeholder dentro del campo de texto de nota"
+  },
+  "deleteBookDialogTitle": "Eliminar libro",
+  "@deleteBookDialogTitle": {
+    "description": "Título de la ventana modal de confirmación de borrado"
+  },
+  "deleteBookDialogMessage": "¿Estás seguro de que deseas eliminar \"{bookTitle}\"? Esta acción no se puede deshacer.",
+  "@deleteBookDialogMessage": {
+    "description": "Mensaje de confirmación para eliminar un libro especificando su título",
+    "placeholders": {
+      "bookTitle": {
+        "type": "String",
+        "example": "Cien años de soledad"
+      }
+    }
+  },
+  "addedToFavorites": "Agregado a favoritos",
+  "@addedToFavorites": {
+    "description": "Mensaje de confirmación cuando un libro se añade a la lista de favoritos."
+  },
+  "removedFromFavorites": "Quitado de favoritos",
+  "@removedFromFavorites": {
+    "description": "Mensaje de confirmación cuando un libro se elimina de la lista de favoritos."
+  },
+  "bookStatusUpdated": "Estado del libro actualizado",
+  "@bookStatusUpdated": {
+    "description": "Mensaje de confirmación tras cambiar el estado de lectura de un libro (ej. Por leer, Leyendo, Terminado)."
+  },
+  "pagesRange": "Páginas {startPage} a {endPage}",
+  "@pagesRange": {
+    "description": "Texto del rango de páginas leídas en una sesión",
+    "placeholders": {
+      "startPage": {
+        "type": "int",
+        "example": "10"
+      },
+      "endPage": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "upToPage": "Hasta página {endPage}",
+  "@upToPage": {
+    "description": "Texto para indicar la página final cuando no hay página de inicio registrada",
+    "placeholders": {
+      "endPage": {
+        "type": "int",
+        "example": "50"
+      }
+    }
+  },
+  "readingSessionTitle": "Sesión de Lectura",
+  "@readingSessionTitle": {
+    "description": "Título principal de la vista o modal de la sesión de lectura activa."
+  },
+  "timerStart": "Iniciar",
+  "@timerStart": {
+    "description": "Etiqueta del botón para comenzar el conteo del cronómetro de lectura por primera vez."
+  },
+  "timerResume": "Continuar",
+  "@timerResume": {
+    "description": "Etiqueta del botón para reanudar el conteo del cronómetro tras haber sido pausado."
+  },
+  "timerPause": "Pausar",
+  "@timerPause": {
+    "description": "Etiqueta del botón para detener temporalmente el cronómetro de lectura."
+  },
+  "viewNotes": "Ver notas",
+  "@viewNotes": {
+    "description": "Botón para desplegar la lista de notas dentro de la vista de lectura."
+  },
+  "hideNotes": "Ocultar notas",
+  "@hideNotes": {
+    "description": "Texto del botón cuando la lista de notas ya está visible."
+  },
+  "finishSession": "Finalizar",
+  "@finishSession": {
+    "description": "Botón principal para detener el cronómetro y registrar el avance de lectura."
+  },
+  "noNotesYet": "Aún no tienes notas registradas para este libro.",
+  "@noNotesYet": {
+    "description": "Mensaje informativo en caso de que el libro no posea notas registradas."
+  },
+  "addNoteTitle": "Agregar Nota",
+  "@addNoteTitle": {
+    "description": "Título principal del modal para crear una nueva nota."
+  },
+  "categoryLabel": "Categoría",
+  "@categoryLabel": {
+    "description": "Etiqueta para la sección de selección de categoría."
+  },
+  "categoryQuote": "Cita",
+  "@categoryQuote": {
+    "description": "Categoría para citas textuales."
+  },
+  "categorySummary": "Resumen",
+  "@categorySummary": {
+    "description": "Categoría para resúmenes."
+  },
+  "categoryQuestion": "Pregunta",
+  "@categoryQuestion": {
+    "description": "Categoría para preguntas o dudas."
+  },
+  "categoryReflection": "Reflexión",
+  "@categoryReflection": {
+    "description": "Categoría para reflexiones personales."
+  },
+  "categoryIdea": "Idea",
+  "@categoryIdea": {
+    "description": "Categoría para ideas o chispas de pensamiento."
+  },
+  "categoryOther": "Otro",
+  "@categoryOther": {
+    "description": "Categoría general."
+  },
+  "dateLabel": "Fecha",
+  "@dateLabel": {
+    "description": "Etiqueta para el campo de fecha."
+  },
+  "pageLabel": "Página",
+  "@pageLabel": {
+    "description": "Etiqueta para el campo de página."
+  },
+  "pageOption": "Pág. {page}",
+  "@pageOption": {
+    "description": "Opción desplegable para indicar el número de página.",
+    "placeholders": {
+      "page": {
+        "type": "int"
+      }
+    }
+  },
+  "noteLabel": "Nota",
+  "@noteLabel": {
+    "description": "Etiqueta para el campo de texto de la nota."
+  },
+  "noteInputHint": "Escribe tu cita, resumen o reflexión...",
+  "@noteInputHint": {
+    "description": "Texto de sugerencia en el cuadro de texto de la nota."
+  },
+  "saveNoteButton": "Guardar Nota",
+  "@saveNoteButton": {
+    "description": "Botón para confirmar y guardar la nota."
+  },
+  "errorEmptyPage": "Ingresa una página válida",
+  "@errorEmptyPage": {
+    "description": "Mensaje de error cuando el campo de página está vacío o no es un número."
+  },
+  "errorInvalidPageRange": "La página no puede ser mayor a {totalPages}",
+  "@errorInvalidPageRange": {
+    "description": "Mensaje de error cuando la página supera el total del libro.",
+    "placeholders": {
+      "totalPages": {
+        "type": "int"
+      }
+    }
+  },
+  "errorEmptyNote": "Escribe un contenido para la nota",
+  "@errorEmptyNote": {
+    "description": "Mensaje de error cuando el cuadro de texto de la nota está vacío."
+  },
+  "finishReadingTitle": "Finalizar lectura",
+  "@finishReadingTitle": {
+    "description": "Título principal del modal al finalizar una sesión de lectura."
+  },
+  "timeReadLabel": "Tiempo leído",
+  "@timeReadLabel": {
+    "description": "Etiqueta para mostrar la duración total de la sesión."
+  },
+  "minutesShort": "min",
+  "@minutesShort": {
+    "description": "Abreviatura de minutos."
+  },
+  "secondsShort": "s",
+  "@secondsShort": {
+    "description": "Abreviatura de segundos."
+  },
+  "whatPageDidYouReach": "¿En qué página te quedaste?",
+  "@whatPageDidYouReach": {
+    "description": "Etiqueta del campo donde el usuario ingresa la página alcanzada."
+  },
+  "currentPageHint": "Página actual (ej. {page})",
+  "@currentPageHint": {
+    "description": "Texto de sugerencia en el campo de texto de página actual.",
+    "placeholders": {
+      "page": {
+        "type": "int",
+        "example": "45"
+      }
+    }
+  },
+  "saveSessionButton": "Guardar sesión",
+  "@saveSessionButton": {
+    "description": "Texto del botón principal para guardar el registro de lectura."
+  },
+  "validationEnterEndPage": "Ingresa la página final",
+  "@validationEnterEndPage": {
+    "description": "Mensaje de error cuando el campo de página está vacío."
+  },
+  "validationInvalidNumber": "Ingresa un número válido",
+  "@validationInvalidNumber": {
+    "description": "Mensaje de error cuando el valor ingresado no es un entero válido."
+  },
+  "validationPageLowerThanCurrent": "No puede ser menor a la página anterior ({currentPage})",
+  "@validationPageLowerThanCurrent": {
+    "description": "Mensaje de error cuando la página final es menor a la página donde se inició.",
+    "placeholders": {
+      "currentPage": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "validationPageExceedsTotal": "No puede superar el total de páginas ({totalPages})",
+  "@validationPageExceedsTotal": {
+    "description": "Mensaje de error cuando la página ingresada excede las páginas totales del libro.",
+    "placeholders": {
+      "totalPages": {
+        "type": "int",
+        "example": "300"
+      }
+    }
+  },
+  "sessionSummaryTitle": "Resumen",
+  "@sessionSummaryTitle": {
+    "description": "Título superior de la pantalla de resumen."
+  },
+  "pagesReadLabel": "Páginas leídas",
+  "@pagesReadLabel": {
+    "description": "Etiqueta para la cantidad de páginas leídas en la sesión."
+  },
+  "readingSpeedLabel": "Velocidad de lectura",
+  "@readingSpeedLabel": {
+    "description": "Etiqueta para la velocidad en páginas por minuto."
+  },
+  "pagesPerMinute": "{speed} pág/min",
+  "@pagesPerMinute": {
+    "description": "Formato para la velocidad de lectura.",
+    "placeholders": {
+      "speed": {
+        "type": "String",
+        "example": "0.8"
+      }
+    }
+  },
+  "estimatedTimeRemaining": "Tiempo restante est.",
+  "@estimatedTimeRemaining": {
+    "description": "Etiqueta para la estimación de tiempo para terminar el libro."
+  },
+  "doneButton": "Finalizar",
+  "@doneButton": {
+    "description": "Botón principal para guardar y volver al inicio."
+  },
+  "sessionResultTitle": "Resultado de la sesión de lectura",
+  "@sessionResultTitle": {
+    "description": "Título principal de la vista de resumen al terminar de leer."
+  },
+  "readSummaryInfo": "Has leído {pages} páginas durante {duration}.",
+  "@readSummaryInfo": {
+    "description": "Informa cuántas páginas leyó el usuario y la duración de la sesión.",
+    "placeholders": {
+      "pages": {
+        "type": "int",
+        "example": "30"
+      },
+      "duration": {
+        "type": "String",
+        "example": "29m"
+      }
+    }
+  },
+  "readingSpeedInfo": "Esta es la velocidad promedio a la que lees: {pagesPerHour} páginas por hora.",
+  "@readingSpeedInfo": {
+    "description": "Muestra el promedio de velocidad de lectura por hora.",
+    "placeholders": {
+      "pagesPerHour": {
+        "type": "String",
+        "example": "60.71"
+      }
+    }
+  },
+  "timeRemainingInfo": "El tiempo para finalizar es {timeRemaining}.",
+  "@timeRemainingInfo": {
+    "description": "Muestra la estimación del tiempo restante para terminar el libro.",
+    "placeholders": {
+      "timeRemaining": {
+        "type": "String",
+        "example": "4h 11m"
+      }
+    }
+  },
+  "pagesRemainingInfo": "Quedan {pagesRemaining} páginas para terminar tu libro.",
+  "@pagesRemainingInfo": {
+    "description": "Indica cuántas páginas le faltan al usuario para concluir el libro.",
+    "placeholders": {
+      "pagesRemaining": {
+        "type": "int",
+        "example": "254"
+      }
+    }
   }
 }

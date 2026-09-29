@@ -1,7 +1,7 @@
-import 'dart:io';
-
 import 'package:book_sync/core/theme/app_colors.dart';
 import 'package:book_sync/core/theme/cozy_colors.dart';
+import 'package:book_sync/core/widgets/book_cover_image.dart';
+import 'package:book_sync/core/widgets/book_loader.dart';
 import 'package:book_sync/l10n/app_localizations.dart';
 import 'package:book_sync/src/domain/book.dart';
 import 'package:book_sync/src/features/reading_slider/presentation/providers/books_provider.dart';
@@ -110,7 +110,7 @@ class HomeLibraryCard extends ConsumerWidget {
           child: const SizedBox(
             height: 24,
             width: 24,
-            child: CircularProgressIndicator(strokeWidth: 2),
+            child: BookLoader(),
           ),
         ),
         error: (err, stack) => Container(
@@ -132,40 +132,43 @@ class HomeLibraryCard extends ConsumerWidget {
   Widget _buildBookAvatar(Book book) {
     final coverPath = book.coverPath;
 
-    if (coverPath != null && coverPath.isNotEmpty) {
-      final isNetworkImage = coverPath.startsWith('http://') || coverPath.startsWith('https://');
-
-      return CircleAvatar(
-        radius: 30,
-        backgroundColor: Colors.grey.shade300,
-        child: ClipOval(
-          child: SizedBox(
-            width: 60,
-            height: 60,
-            child: isNetworkImage
-                ? Image.network(
-                    coverPath,
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) => _buildFallbackIcon(),
-                  )
-                : Image.file(
-                    File(coverPath),
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) => _buildFallbackIcon(),
-                  ),
-          ),
+    return CircleAvatar(
+      radius: 30,
+      backgroundColor: Colors.grey.shade300,
+      child: ClipOval(
+        child: SizedBox(
+          width: 60,
+          height: 60,
+          child: _buildCoverImage(coverPath),
         ),
-      );
-    }
-
-    return _buildFallbackIcon();
+      ),
+    );
   }
 
-Widget _buildFallbackIcon() {
-  return CircleAvatar(
-    radius: 30,
-    backgroundColor: Colors.grey.shade400,
-    child: Icon(Icons.book, color: Colors.grey.shade600),
-  );
-}
+  Widget _buildCoverImage(String? coverPath) {
+    return BookCoverImage(
+      coverPath: coverPath,
+      fit: BoxFit.cover,
+      customLoader: const Center(
+        child: SizedBox(
+          width: 20,
+          height: 20,
+          child: BookLoader(),
+        ),
+      ),
+      customFallback: _buildFallbackIcon(),
+    );
+  }
+
+  Widget _buildFallbackIcon() {
+    return Container(
+      color: Colors.grey.shade200,
+      alignment: Alignment.center,
+      child: Icon(
+        Icons.book_rounded,
+        size: 28,
+        color: Colors.grey.shade600,
+      ),
+    );
+  }
 }

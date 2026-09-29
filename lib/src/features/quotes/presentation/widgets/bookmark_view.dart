@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DailyQuoteBookmark extends ConsumerWidget {
-  const DailyQuoteBookmark({super.key});
+class DailyQuoteBookmarkView extends ConsumerWidget {
+  const DailyQuoteBookmarkView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

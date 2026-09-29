@@ -36,17 +36,35 @@ final searchQueryProvider =
   return SearchQueryNotifier();
 });
 
-// 2. Agregamos .autoDispose para descartar los resultados en caché al salir
-final searchBooksProvider =
-    FutureProvider.autoDispose<List<BookSearchDto>>((ref) async {
+final searchBooksProvider = FutureProvider<List<BookSearchDto>>((ref) async {
   final query = ref.watch(searchQueryProvider);
   if (query.trim().isEmpty) return [];
 
   final service = ref.watch(googleBooksServiceProvider);
 
-  // 1. Solicitamos los JSONs crudos al servicio
-  final rawItems = await service.searchBooksRaw(query);
+  // 1. Validamos si es una consulta de código numérico (ISBN) o texto general
+  final cleanQuery = query.replaceAll('-', '').trim();
+  final isOnlyDigits = RegExp(r'^[0-9]+$').hasMatch(cleanQuery);
+  final isIsbn = isOnlyDigits && (cleanQuery.length == 10 || cleanQuery.length == 13);
 
-  // 2. Transmutamos la lista cruda a DTOs consumibles por la vista
+  if (isIsbn) {
+    // 1. Obtener la lista preliminar para rescatar el Volume ID
+    final rawList = await service.searchByIsbnRaw(cleanQuery);
+    if (rawList.isEmpty) return [];
+
+    final volumeId = rawList.first['id'] as String?;
+    if (volumeId != null && volumeId.isNotEmpty) {
+      final detailedJson = await service.getVolumeByIdRaw(volumeId);
+      if (detailedJson != null) {
+        return [BookSearchDto.fromJson(detailedJson)];
+      }
+    }
+
+    // Fallback si por alguna razón falla la segunda petición
+    return rawList.map((item) => BookSearchDto.fromJson(item)).toList();
+  }
+
+  // Búsqueda general por texto
+  final rawItems = await service.searchBooksRaw(query);
   return rawItems.map((item) => BookSearchDto.fromJson(item)).toList();
 });

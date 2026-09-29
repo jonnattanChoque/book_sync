@@ -1,14 +1,16 @@
 import 'package:book_sync/core/constants/app_icons.dart';
 import 'package:book_sync/core/theme/cozy_colors.dart';
 import 'package:book_sync/core/widgets/background_paper_texture.dart';
+import 'package:book_sync/core/widgets/book_loader.dart';
 import 'package:book_sync/l10n/app_localizations.dart';
 import 'package:book_sync/src/domain/book.dart';
 import 'package:book_sync/src/features/reading_slider/presentation/providers/books_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
-class LibrarySectionsView extends ConsumerWidget {
-  const LibrarySectionsView({super.key});
+class LibrarySectionScreen extends ConsumerWidget {
+  const LibrarySectionScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -51,10 +53,11 @@ class LibrarySectionsView extends ConsumerWidget {
             unselectedLabelColor: cozy.inkColor!.withValues(alpha: 0.5),
             indicatorColor: cozy.bookmarkColor!.withValues(alpha: 1),
             tabs: [
-              Tab(text: AppLocalizations.of(context)!.tabLibraryOne),
-              Tab(text: AppLocalizations.of(context)!.tabLibraryTwo), 
-              Tab(text: AppLocalizations.of(context)!.tabLibraryThree),
-              Tab(text: AppLocalizations.of(context)!.tabLibraryFour),
+              Tab(text: AppLocalizations.of(context)!.tabLibraryReading),
+              Tab(text: AppLocalizations.of(context)!.tabLibraryToRead), 
+              Tab(text: AppLocalizations.of(context)!.tabLibraryRead),
+              Tab(text: AppLocalizations.of(context)!.tabLibraryDropped),
+              Tab(text: AppLocalizations.of(context)!.tabLibraryPaused),
             ],
           ),
         ),
@@ -74,7 +77,7 @@ class LibrarySectionsView extends ConsumerWidget {
               ],
             );
           },
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const Center(child: BookLoader()),
           error: (err, stack) => Center(
             child: Text("Error al cargar la biblioteca: $err"),
           ),
@@ -115,10 +118,15 @@ class _BookListSection extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
             ),
             margin: const EdgeInsets.only(bottom: 12),
-            child: ListTile(
-              title: Text(book.title, style: const TextStyle(fontWeight: FontWeight.bold)),
-              subtitle: Text(book.author),
-              trailing: Text("${(book.progress * 100).toInt()}%"),
+            child: GestureDetector(
+              onTap: () {
+                context.push('/book_detail', extra: book);
+              },
+              child: ListTile(
+                title: Text(book.title, style: const TextStyle(fontWeight: FontWeight.bold)),
+                subtitle: Text(book.author),
+                trailing: Text("${(book.progress * 100).toStringAsFixed(1)}%"),
+              ),
             ),
           );
         },

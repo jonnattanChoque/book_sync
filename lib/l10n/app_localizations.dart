@@ -101,7 +101,7 @@ abstract class AppLocalizations {
   /// Greeting title on the main dashboard
   ///
   /// In en, this message translates to:
-  /// **'Good afternoon,'**
+  /// **'Hello,'**
   String get welcomeTitle;
 
   /// Subtitle greeting on the main dashboard
@@ -132,7 +132,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'{percentage}% completed'**
-  String progressLabel(int percentage);
+  String progressLabel(String percentage);
 
   /// Modal/Screen header for adding a book
   ///
@@ -192,25 +192,31 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Reading'**
-  String get tabLibraryOne;
+  String get tabLibraryReading;
 
   /// Tab for books queued to read
   ///
   /// In en, this message translates to:
   /// **'To Read'**
-  String get tabLibraryTwo;
+  String get tabLibraryToRead;
 
   /// Tab for finished books
   ///
   /// In en, this message translates to:
   /// **'Read'**
-  String get tabLibraryThree;
+  String get tabLibraryRead;
 
-  /// Tab for dropped or paused books
+  /// Tab for dropped books
   ///
   /// In en, this message translates to:
-  /// **'Forgotten'**
-  String get tabLibraryFour;
+  /// **'Dropped'**
+  String get tabLibraryDropped;
+
+  /// Tab for paused books
+  ///
+  /// In en, this message translates to:
+  /// **'Dropped'**
+  String get tabLibraryPaused;
 
   /// Empty state for the Reading tab
   ///
@@ -230,10 +236,10 @@ abstract class AppLocalizations {
   /// **'No books finished yet'**
   String get emptyFinished;
 
-  /// Empty state for the Forgotten tab
+  /// Empty state for the dropped tab
   ///
   /// In en, this message translates to:
-  /// **'No books forgotten yet'**
+  /// **'No books dropped yet'**
   String get emptyDropped;
 
   /// AppBar title on the online search screen
@@ -263,7 +269,7 @@ abstract class AppLocalizations {
   /// Title for manual entry flow
   ///
   /// In en, this message translates to:
-  /// **'Add book manually'**
+  /// **'Add book'**
   String get addManualBook;
 
   /// Message displayed when a search returns no items
@@ -367,6 +373,600 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Save to library'**
   String get btnSaveToLibrary;
+
+  /// Main title for the ISBN barcode scanner screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan ISBN Code'**
+  String get scanIsbnTitle;
+
+  /// Instruction text guiding the user to frame the barcode within the camera view.
+  ///
+  /// In en, this message translates to:
+  /// **'Align barcode here'**
+  String get scanIsbnInstruction;
+
+  /// Loading message displayed while querying the book via API.
+  ///
+  /// In en, this message translates to:
+  /// **'Searching book by ISBN...'**
+  String get scanIsbnLoading;
+
+  /// Title of the screen or modal for searching book covers.
+  ///
+  /// In en, this message translates to:
+  /// **'Search image'**
+  String get searchImageTitle;
+
+  /// Placeholder text for the search input field.
+  ///
+  /// In en, this message translates to:
+  /// **'Type to search images on the web'**
+  String get searchImageHint;
+
+  /// Title of the confirmation dialog to replace the book cover.
+  ///
+  /// In en, this message translates to:
+  /// **'Change cover'**
+  String get confirmChangeCoverTitle;
+
+  /// Main body message of the confirmation dialog.
+  ///
+  /// In en, this message translates to:
+  /// **'Do you want to replace the current cover with this image?'**
+  String get confirmChangeCoverMessage;
+
+  /// Label for the cancel button.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get actionCancel;
+
+  /// Label for the confirm/accept button.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get actionConfirm;
+
+  /// Title of the dialog warning that a book is already in the library.
+  ///
+  /// In en, this message translates to:
+  /// **'Duplicate Book'**
+  String get duplicateBookTitle;
+
+  /// Explanatory message informing the user that the entered ISBN is already registered.
+  ///
+  /// In en, this message translates to:
+  /// **'This book is already in your library.'**
+  String get duplicateBookMessage;
+
+  /// Text for the primary button to close or confirm an alert dialog.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept'**
+  String get accept;
+
+  /// Main title in the AppBar of the book details screen
+  ///
+  /// In en, this message translates to:
+  /// **'Your book'**
+  String get yourBookTitle;
+
+  /// Label for the book ISBN
+  ///
+  /// In en, this message translates to:
+  /// **'ISBN'**
+  String get isbn;
+
+  /// Text for the delete button or action
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get deleteAction;
+
+  /// Title of the publisher/edition info card
+  ///
+  /// In en, this message translates to:
+  /// **'Edition Information'**
+  String get editionInfo;
+
+  /// Label for the book publisher
+  ///
+  /// In en, this message translates to:
+  /// **'Publisher'**
+  String get publisher;
+
+  /// Label for the book language
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// Label for the book publication date
+  ///
+  /// In en, this message translates to:
+  /// **'Published'**
+  String get publicationDate;
+
+  /// Title of the synopsis or description section
+  ///
+  /// In en, this message translates to:
+  /// **'Synopsis'**
+  String get synopsis;
+
+  /// Button text for adding a quick note
+  ///
+  /// In en, this message translates to:
+  /// **'Note'**
+  String get addNote;
+
+  /// Button text for starting a new reading session
+  ///
+  /// In en, this message translates to:
+  /// **'Read'**
+  String get newSession;
+
+  /// Title of the expandable notes section
+  ///
+  /// In en, this message translates to:
+  /// **'Reading Notes'**
+  String get readingNotes;
+
+  /// Message when no notes have been created for the book
+  ///
+  /// In en, this message translates to:
+  /// **'No notes recorded for this book.'**
+  String get noNotesRegistered;
+
+  /// Title of the expandable session history section
+  ///
+  /// In en, this message translates to:
+  /// **'Reading History'**
+  String get readingHistory;
+
+  /// Message when no sessions are recorded
+  ///
+  /// In en, this message translates to:
+  /// **'You haven\'t recorded any reading sessions yet.'**
+  String get noSessionsRegistered;
+
+  /// Title of the progress and reading time card
+  ///
+  /// In en, this message translates to:
+  /// **'Progress Information'**
+  String get progressInfo;
+
+  /// Label for the reading start date
+  ///
+  /// In en, this message translates to:
+  /// **'Start'**
+  String get startDate;
+
+  /// Label for the current or elapsed reading day
+  ///
+  /// In en, this message translates to:
+  /// **'Day'**
+  String get day;
+
+  /// Label for the estimated remaining reading time
+  ///
+  /// In en, this message translates to:
+  /// **'Remaining'**
+  String get remaining;
+
+  /// Text preceding the progress percentage
+  ///
+  /// In en, this message translates to:
+  /// **'Progress'**
+  String get progress;
+
+  /// Abbreviation for pages
+  ///
+  /// In en, this message translates to:
+  /// **'pages'**
+  String get pagesAbbr;
+
+  /// Singular abbreviation for page
+  ///
+  /// In en, this message translates to:
+  /// **'Page'**
+  String get pageAbbr;
+
+  /// Abbreviation for minutes
+  ///
+  /// In en, this message translates to:
+  /// **'min'**
+  String get minutesAbbr;
+
+  /// Title for the status selection sheet
+  ///
+  /// In en, this message translates to:
+  /// **'Reading Status'**
+  String get readingStatusTitle;
+
+  /// Instruction message for the status menu
+  ///
+  /// In en, this message translates to:
+  /// **'Select the current status for this book'**
+  String get readingStatusMessage;
+
+  /// Status: Reading
+  ///
+  /// In en, this message translates to:
+  /// **'Reading'**
+  String get statusReading;
+
+  /// Status: To Read
+  ///
+  /// In en, this message translates to:
+  /// **'To Read'**
+  String get statusToRead;
+
+  /// Status: On Hold
+  ///
+  /// In en, this message translates to:
+  /// **'On Hold'**
+  String get statusPaused;
+
+  /// Status: Dropped
+  ///
+  /// In en, this message translates to:
+  /// **'Dropped'**
+  String get statusDropped;
+
+  /// Status: Finished
+  ///
+  /// In en, this message translates to:
+  /// **'Finished'**
+  String get statusFinished;
+
+  /// Generic text to cancel dialogs or actions
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// Generic text to save changes
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// Title of the add note modal
+  ///
+  /// In en, this message translates to:
+  /// **'New Reading Note'**
+  String get newReadingNote;
+
+  /// Placeholder inside the note text field
+  ///
+  /// In en, this message translates to:
+  /// **'Write your reflection or quote from the book...'**
+  String get addNoteHint;
+
+  /// Title of the delete confirmation modal
+  ///
+  /// In en, this message translates to:
+  /// **'Delete book'**
+  String get deleteBookDialogTitle;
+
+  /// Confirmation message to delete a book specifying its title
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete \"{bookTitle}\"? This action cannot be undone.'**
+  String deleteBookDialogMessage(String bookTitle);
+
+  /// Confirmation message when a book is added to favorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Added to favorites'**
+  String get addedToFavorites;
+
+  /// Confirmation message when a book is removed from favorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed from favorites'**
+  String get removedFromFavorites;
+
+  /// Confirmation message after changing a book's reading status.
+  ///
+  /// In en, this message translates to:
+  /// **'Book status updated'**
+  String get bookStatusUpdated;
+
+  /// Text for the range of pages read in a session
+  ///
+  /// In en, this message translates to:
+  /// **'Pages {startPage} to {endPage}'**
+  String pagesRange(int startPage, int endPage);
+
+  /// Text indicating the end page when no start page is recorded
+  ///
+  /// In en, this message translates to:
+  /// **'Up to page {endPage}'**
+  String upToPage(int endPage);
+
+  /// Main title of the active reading session screen or modal.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading Session'**
+  String get readingSessionTitle;
+
+  /// Button label to start the reading timer for the first time.
+  ///
+  /// In en, this message translates to:
+  /// **'Start'**
+  String get timerStart;
+
+  /// Button label to resume the reading timer after being paused.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume'**
+  String get timerResume;
+
+  /// Button label to temporarily pause the reading timer.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get timerPause;
+
+  /// Button to expand the notes list inside the reading view.
+  ///
+  /// In en, this message translates to:
+  /// **'View notes'**
+  String get viewNotes;
+
+  /// Button text when the notes list is currently expanded.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide notes'**
+  String get hideNotes;
+
+  /// Primary button to stop the timer and log reading progress.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish'**
+  String get finishSession;
+
+  /// Informational message when the book has no notes.
+  ///
+  /// In en, this message translates to:
+  /// **'No notes registered for this book yet.'**
+  String get noNotesYet;
+
+  /// Main title of the modal for creating a new note.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Note'**
+  String get addNoteTitle;
+
+  /// Label for the category selection section.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get categoryLabel;
+
+  /// Category for book quotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Quote'**
+  String get categoryQuote;
+
+  /// Category for summaries.
+  ///
+  /// In en, this message translates to:
+  /// **'Summary'**
+  String get categorySummary;
+
+  /// Category for questions or doubts.
+  ///
+  /// In en, this message translates to:
+  /// **'Question'**
+  String get categoryQuestion;
+
+  /// Category for personal reflections.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection'**
+  String get categoryReflection;
+
+  /// Category for ideas.
+  ///
+  /// In en, this message translates to:
+  /// **'Idea'**
+  String get categoryIdea;
+
+  /// General category.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get categoryOther;
+
+  /// Label for the date field.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get dateLabel;
+
+  /// Label for the page field.
+  ///
+  /// In en, this message translates to:
+  /// **'Page'**
+  String get pageLabel;
+
+  /// Dropdown option indicating page number.
+  ///
+  /// In en, this message translates to:
+  /// **'Page {page}'**
+  String pageOption(int page);
+
+  /// Label for the note text input field.
+  ///
+  /// In en, this message translates to:
+  /// **'Note'**
+  String get noteLabel;
+
+  /// Placeholder text inside the note text area.
+  ///
+  /// In en, this message translates to:
+  /// **'Write your quote, summary, or reflection...'**
+  String get noteInputHint;
+
+  /// Button to confirm and save the note.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Note'**
+  String get saveNoteButton;
+
+  /// Error message when the page field is empty or not a number.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid page'**
+  String get errorEmptyPage;
+
+  /// Error message when page number exceeds total book pages.
+  ///
+  /// In en, this message translates to:
+  /// **'Page cannot exceed {totalPages}'**
+  String errorInvalidPageRange(int totalPages);
+
+  /// Error message when note text field is empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter note content'**
+  String get errorEmptyNote;
+
+  /// Main title of the modal when ending a reading session.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish reading'**
+  String get finishReadingTitle;
+
+  /// Label for the total duration of the session.
+  ///
+  /// In en, this message translates to:
+  /// **'Time read'**
+  String get timeReadLabel;
+
+  /// Abbreviation for minutes.
+  ///
+  /// In en, this message translates to:
+  /// **'min'**
+  String get minutesShort;
+
+  /// Abbreviation for seconds.
+  ///
+  /// In en, this message translates to:
+  /// **'s'**
+  String get secondsShort;
+
+  /// Label for the input where the user enters the reached page.
+  ///
+  /// In en, this message translates to:
+  /// **'What page did you reach?'**
+  String get whatPageDidYouReach;
+
+  /// Hint text for the page input field.
+  ///
+  /// In en, this message translates to:
+  /// **'Current page (e.g. {page})'**
+  String currentPageHint(int page);
+
+  /// Text for the main button to save the reading entry.
+  ///
+  /// In en, this message translates to:
+  /// **'Save session'**
+  String get saveSessionButton;
+
+  /// Error message when the page field is empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter the end page'**
+  String get validationEnterEndPage;
+
+  /// Error message when the input value is not a valid integer.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid number'**
+  String get validationInvalidNumber;
+
+  /// Error message when the end page is lower than the starting page.
+  ///
+  /// In en, this message translates to:
+  /// **'Cannot be lower than the previous page ({currentPage})'**
+  String validationPageLowerThanCurrent(int currentPage);
+
+  /// Error message when the entered page exceeds total book pages.
+  ///
+  /// In en, this message translates to:
+  /// **'Cannot exceed total pages ({totalPages})'**
+  String validationPageExceedsTotal(int totalPages);
+
+  /// Main title for session summary page.
+  ///
+  /// In en, this message translates to:
+  /// **'Summary'**
+  String get sessionSummaryTitle;
+
+  /// Label for amount of pages read.
+  ///
+  /// In en, this message translates to:
+  /// **'Pages read'**
+  String get pagesReadLabel;
+
+  /// Label for reading speed in pages per minute.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading speed'**
+  String get readingSpeedLabel;
+
+  /// Format for reading speed.
+  ///
+  /// In en, this message translates to:
+  /// **'{speed} pages/min'**
+  String pagesPerMinute(String speed);
+
+  /// Label for estimated time left to finish the book.
+  ///
+  /// In en, this message translates to:
+  /// **'Est. time remaining'**
+  String get estimatedTimeRemaining;
+
+  /// Main button to save and go back home.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get doneButton;
+
+  /// Main title of the summary view when done reading.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading Session Result'**
+  String get sessionResultTitle;
+
+  /// Informs how many pages the user read and the session duration.
+  ///
+  /// In en, this message translates to:
+  /// **'You read {pages} pages in {duration}.'**
+  String readSummaryInfo(int pages, String duration);
+
+  /// Displays average reading speed per hour.
+  ///
+  /// In en, this message translates to:
+  /// **'This is your average reading speed: {pagesPerHour} pages per hour.'**
+  String readingSpeedInfo(String pagesPerHour);
+
+  /// Displays estimated time left to complete the book.
+  ///
+  /// In en, this message translates to:
+  /// **'Time left to finish is {timeRemaining}.'**
+  String timeRemainingInfo(String timeRemaining);
+
+  /// Indicates how many pages remain to complete the book.
+  ///
+  /// In en, this message translates to:
+  /// **'There are {pagesRemaining} pages left to finish your book.'**
+  String pagesRemainingInfo(int pagesRemaining);
 }
 
 class _AppLocalizationsDelegate

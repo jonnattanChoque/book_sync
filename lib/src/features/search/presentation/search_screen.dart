@@ -1,7 +1,10 @@
 import 'package:book_sync/core/constants/app_icons.dart';
 import 'package:book_sync/core/theme/cozy_colors.dart';
+import 'package:book_sync/core/widgets/book_loader.dart';
 import 'package:book_sync/core/widgets/primary_outlined_button.dart';
+import 'package:book_sync/src/features/reading_slider/presentation/providers/books_provider.dart';
 import 'package:book_sync/src/features/search/data/search_repository.dart';
+import 'package:book_sync/src/features/search/domain/book_search_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:book_sync/core/theme/app_colors.dart';
 import 'package:book_sync/core/widgets/background_paper_texture.dart';
@@ -25,6 +28,40 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     _searchController.dispose();
     _focusNode.dispose();
     super.dispose();
+  }
+
+  Future<void> _checkDuplicateIsbn(BookSearchDto book) async {
+    final isbn = book.isbn;
+    final checkDuplicateIsbn = ref.read(checkDuplicateIsbnProvider);
+    final existingBook = await checkDuplicateIsbn(isbn);
+
+    if (!mounted) return;
+    if (existingBook != null) {
+      final l10n = AppLocalizations.of(context);
+
+      if (l10n != null) {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text(l10n.duplicateBookTitle),
+              content: Text(l10n.duplicateBookMessage),
+              actions: [
+                TextButton(
+                  onPressed: () => {
+                    Navigator.of(context).pop(),
+                    context.pushReplacement('/book_detail', extra: existingBook)
+                  },
+                  child: Text(l10n.accept),
+                ),
+              ],
+            );
+          },
+        );
+      }
+      return;
+    }
+    context.push('/search_detail', extra: book);
   }
 
   @override
@@ -65,7 +102,6 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   }
 
   Padding _buildTitlte(BuildContext context, AppLocalizations l10n) {
-    
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
       child: Row(
@@ -92,10 +128,10 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   }
 
   Row _buildSearchBox(AppLocalizations l10n, CozyColors cozy, BuildContext context) {
-    
     return Row(
       children: [
         Expanded(
+          flex: 3,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
             child: Container(
@@ -115,10 +151,6 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                   hintText: l10n.searchPlaceholder,
                   hintStyle: TextStyle(
                     color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.5),
-                  ),
-                  prefixIcon: Icon(
-                    Icons.search,
-                    color: cozy.inkColor!.withValues(alpha: 0.8),
                   ),
                   suffixIcon: _searchController.text.isNotEmpty
                     ? IconButton(
@@ -151,30 +183,20 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
         ),
         
         // Botón de búsqueda fuera del TextField pero alineado en el mismo Row
-        Padding(
-          padding: const EdgeInsets.only(right: 20.0),
-          child: TextButton(
-            style: TextButton.styleFrom(
-              backgroundColor: cozy.bookmarkColor!.withValues(alpha: 0.1),
-              foregroundColor: Theme.of(context).colorScheme.onPrimary,
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-            onPressed: () {
-              final query = _searchController.text.trim();
-              if (query.isNotEmpty) {
-                FocusScope.of(context).unfocus();
-                ref.read(searchQueryProvider.notifier).submitQuery(query);
-              }
-            },
-            child: Text(
-              l10n.searchButton,
-              style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: cozy.bookmarkColor!.withValues(alpha: 0.6),
-              ),
+        Expanded(
+          flex: 2,
+          child: Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: PrimaryOutlinedButton(
+              onPressed: () {
+                final query = _searchController.text.trim();
+                if (query.isNotEmpty) {
+                  FocusScope.of(context).unfocus();
+                  ref.read(searchQueryProvider.notifier).submitQuery(query);
+                }
+              },
+              label: l10n.searchButton,
+              icon: Icons.search_sharp
             ),
           ),
         )
@@ -205,7 +227,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   Widget _buildSearchResultsList(AppLocalizations l10n, CozyColors cozy) {
     final searchResultAsync = ref.watch(searchBooksProvider);
     final currentQuery = ref.watch(searchQueryProvider);
-    
+
     return searchResultAsync.when(
       data: (books) {
         final hasSearched = currentQuery.trim().isNotEmpty;
@@ -274,7 +296,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                             ),
                           ),
                           onTap: () {
-                            context.push('/search_detail', extra: book);
+                            _checkDuplicateIsbn(book);
                           },
                         ),
                       );
@@ -290,7 +312,6 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                   label: l10n.addByManual,
                   icon: AppIcons.addManual,
                   onPressed: () {
-                    // Navega a la pantalla de detalle editable en modo manual (sin DTO)
                     context.push('/search_detail');
                   },
                 ),
@@ -300,9 +321,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
         );
       },
       loading: () => const Center(
-        child: CircularProgressIndicator(
-          color: AppColors.inkCharcoal,
-        ),
+        child: BookLoader(),
       ),
       error: (error, stack) => Center(
         child: Text(

@@ -1,4 +1,4 @@
-import 'package:book_sync/src/features/quotes/presentation/bookmark_screen.dart';
+import 'package:book_sync/src/features/quotes/presentation/widgets/bookmark_view.dart';
 import 'package:flutter/material.dart';
 import 'package:book_sync/core/widgets/background_paper_texture.dart';
 
@@ -17,7 +17,7 @@ class MainWrapper extends StatelessWidget {
             child: child,
           ),
           
-          DailyQuoteBookmark(), 
+          DailyQuoteBookmarkView(), 
         ],
       ),
     );

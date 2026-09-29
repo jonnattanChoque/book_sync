@@ -1,5 +1,8 @@
+import 'package:book_sync/core/widgets/add_note_modal.dart';
+import 'package:book_sync/core/widgets/book_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:isar/isar.dart';
 
 import 'package:book_sync/core/theme/cozy_colors.dart';
@@ -33,10 +36,8 @@ class _ReadingSliderState extends ConsumerState<ReadingSlider> {
 
   @override
   Widget build(BuildContext context) {
-    // Escuchar el evento de selección al guardar un libro
     ref.listen<Id?>(selectedBookIdProvider, (previous, nextBookId) {
       if (nextBookId != null) {
-        // Consultamos la lista de libros actual cargada en el slider
         final books = ref.read(currentlyReadingProvider).value ?? [];
         final targetIndex = books.indexWhere((book) => book.id == nextBookId);
 
@@ -48,7 +49,6 @@ class _ReadingSliderState extends ConsumerState<ReadingSlider> {
           );
         }
 
-        // Reseteamos la selección para no repetir la animación
         ref.read(selectedBookIdProvider.notifier).state = null;
       }
     });
@@ -109,7 +109,15 @@ class _ReadingSliderState extends ConsumerState<ReadingSlider> {
                       scale: value,
                       child: Opacity(
                         opacity: value,
-                        child: ReadingCard(book: book),
+                        child: ReadingCard(
+                          book: book,
+                          onTimerPressed: () {
+                            context.push('/reading_session', extra: book);
+                          },
+                          onNotesPressed: () {
+                            AddNoteModal.show(context, book: book);
+                          },
+                        ),
                       ),
                     ),
                   );
@@ -118,7 +126,7 @@ class _ReadingSliderState extends ConsumerState<ReadingSlider> {
             },
           );
         },
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const Center(child: BookLoader()),
         error: (error, stackTrace) => Center(
           child: Text('Error al cargar libros: $error'),
         ),
