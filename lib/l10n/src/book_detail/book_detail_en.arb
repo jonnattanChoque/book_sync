@@ -1,0 +1,89 @@
+{
+  "@@locale": "en",
+  "yourBookTitle": "Your Book",
+  "@yourBookTitle": {
+    "description": "AppBar title in book detail screen"
+  },
+  "isbn": "ISBN",
+  "@isbn": {
+    "description": "Label for ISBN code"
+  },
+  "deleteAction": "Delete",
+  "@deleteAction": {
+    "description": "Button text to delete book"
+  },
+  "editionInfo": "Edition Information",
+  "@editionInfo": {
+    "description": "Title for edition information card"
+  },
+  "publisher": "Publisher",
+  "@publisher": {
+    "description": "Label for book publisher"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "Label for book language"
+  },
+  "publicationDate": "Publication",
+  "@publicationDate": {
+    "description": "Label for publication date"
+  },
+  "synopsis": "Synopsis",
+  "@synopsis": {
+    "description": "Title for synopsis section"
+  },
+  "readingStatusTitle": "Reading Status",
+  "@readingStatusTitle": {
+    "description": "Dropdown title for selecting reading status"
+  },
+  "readingStatusMessage": "Select current status for this book",
+  "@readingStatusMessage": {
+    "description": "Instruction message for status selection"
+  },
+  "statusReading": "Reading",
+  "@statusReading": {
+    "description": "Status: Reading"
+  },
+  "statusToRead": "To Read",
+  "@statusToRead": {
+    "description": "Status: To Read"
+  },
+  "statusPaused": "Paused",
+  "@statusPaused": {
+    "description": "Status: Paused"
+  },
+  "statusDropped": "Dropped",
+  "@statusDropped": {
+    "description": "Status: Dropped"
+  },
+  "statusFinished": "Finished",
+  "@statusFinished": {
+    "description": "Status: Finished"
+  },
+  "deleteBookDialogTitle": "Delete book",
+  "@deleteBookDialogTitle": {
+    "description": "Modal title for book deletion confirmation"
+  },
+  "deleteBookDialogMessage": "Are you sure you want to delete \"{bookTitle}\"? This action cannot be undone.",
+  "@deleteBookDialogMessage": {
+    "description": "Deletion confirmation message with book title",
+    "placeholders": {
+      "bookTitle": {
+        "type": "String",
+        "example": "One Hundred Years of Solitude"
+      }
+    }
+  },
+  "addedToFavorites": "Added to favorites",
+  "@addedToFavorites": {
+    "description": "Confirmation message when book is favorited"
+  },
+  "removedFromFavorites": "Removed from favorites",
+  "@removedFromFavorites": {
+    "description": "Confirmation message when book is unfavorited"
+  },
+  "bookStatusUpdated": "Book status updated",
+  "@bookStatusUpdated": {
+    "description": "Confirmation message after changing reading status"
+  }
+}

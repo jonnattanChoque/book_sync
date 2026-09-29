@@ -1,0 +1,95 @@
+{
+  "@@locale": "es",
+  "addManualBook": "Agregar libro",
+  "@addManualBook": {
+    "description": "Título para el flujo de adición manual"
+  },
+  "addBookTitle": "Agregar libro",
+  "@addBookTitle": {
+    "description": "Título del AppBar en el detalle del libro para agregar"
+  },
+  "createBookTitle": "Agrega un libro a tu mesa de noche",
+  "@createBookTitle": {
+    "description": "Título en la vista o diálogo modal de adición de libros"
+  },
+  "sectionInfo": "Información",
+  "@sectionInfo": {
+    "description": "Encabezado de la sección de datos generales"
+  },
+  "sectionSelected": "Seleccione el estado de lectura",
+  "@sectionSelected": {
+    "description": "Encabezado de la sección para seleccionar el estado de lectura del libro"
+  },
+  "sectionDescription": "Descripción",
+  "@sectionDescription": {
+    "description": "Encabezado de la sección de sinopsis o resumen"
+  },
+  "sectionPublisher": "Editorial",
+  "@sectionPublisher": {
+    "description": "Encabezado de la sección de datos de publicación"
+  },
+  "sectionOther": "Otros",
+  "@sectionOther": {
+    "description": "Encabezado para información complementaria como categorías o tags"
+  },
+  "fieldTitle": "Título",
+  "@fieldTitle": {
+    "description": "Etiqueta para el campo de título"
+  },
+  "fieldAuthors": "Autor(es)",
+  "@fieldAuthors": {
+    "description": "Etiqueta para el campo de autores"
+  },
+  "fieldIsbn": "ISBN",
+  "@fieldIsbn": {
+    "description": "Etiqueta para el código ISBN"
+  },
+  "fieldLanguage": "Idioma",
+  "@fieldLanguage": {
+    "description": "Etiqueta para el idioma del libro"
+  },
+  "fieldPages": "Páginas",
+  "@fieldPages": {
+    "description": "Etiqueta para la cantidad de páginas"
+  },
+  "fieldPublisher": "Editorial",
+  "@fieldPublisher": {
+    "description": "Etiqueta para el nombre de la editorial"
+  },
+  "fieldPublishedDate": "Fecha de publicación",
+  "@fieldPublishedDate": {
+    "description": "Etiqueta para la fecha de lanzamiento"
+  },
+  "fieldCategories": "Categorías",
+  "@fieldCategories": {
+    "description": "Etiqueta para géneros o categorías"
+  },
+  "fieldRating": "Valoración",
+  "@fieldRating": {
+    "description": "Etiqueta para la calificación o puntaje del libro"
+  },
+  "btnSaveToLibrary": "Guardar en la biblioteca",
+  "@btnSaveToLibrary": {
+    "description": "Texto del botón principal para guardar la entidad en la base de datos"
+  },
+  "searchImageTitle": "Buscar imagen",
+  "@searchImageTitle": {
+    "description": "Título de la pantalla o modal para la búsqueda de portadas de libros."
+  },
+  "searchImageHint": "Escribe para buscar imágenes en la red",
+  "@searchImageHint": {
+    "description": "Texto placeholder del campo de texto de búsqueda."
+  },
+  "validationTitleRequired": "El título es requerido",
+  "@validationTitleRequired": {
+    "description": "Mensaje de error que se muestra cuando el campo de título del libro está vacío."
+  },
+  "confirmChangeCoverTitle": "Cambiar portada",
+  "@confirmChangeCoverTitle": {
+    "description": "Título del cuadro de diálogo de confirmación para reemplazar la portada."
+  },
+  "confirmChangeCoverMessage": "¿Deseas reemplazar la portada actual por esta imagen?",
+  "@confirmChangeCoverMessage": {
+    "description": "Mensaje principal del cuadro de diálogo de confirmación."
+  }
+}

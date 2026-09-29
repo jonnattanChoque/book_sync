@@ -1,0 +1,131 @@
+{
+  "@@locale": "en",
+  "addNote": "Note",
+  "@addNote": {
+    "description": "Button text to add a quick note"
+  },
+  "readingNotes": "Reading Notes",
+  "@readingNotes": {
+    "description": "Header for collapsible notes section"
+  },
+  "noNotesRegistered": "No notes recorded for this book.",
+  "@noNotesRegistered": {
+    "description": "Message when no notes have been created"
+  },
+  "newReadingNote": "New Reading Note",
+  "@newReadingNote": {
+    "description": "Modal title for adding a note"
+  },
+  "addNoteHint": "Write your thought or quote from the book...",
+  "@addNoteHint": {
+    "description": "Placeholder for note text field"
+  },
+  "viewNotes": "View notes",
+  "@viewNotes": {
+    "description": "Button to expand notes list in reading view"
+  },
+  "hideNotes": "Hide notes",
+  "@hideNotes": {
+    "description": "Button text when notes list is visible"
+  },
+  "noNotesYet": "You don't have any notes recorded for this book yet.",
+  "@noNotesYet": {
+    "description": "Informational message when no notes exist"
+  },
+  "addNoteTitle": "Add Note",
+  "@addNoteTitle": {
+    "description": "Title for creating a new note modal"
+  },
+  "categoryLabel": "Category",
+  "@categoryLabel": {
+    "description": "Label for category selection"
+  },
+  "categoryQuote": "Quote",
+  "@categoryQuote": {
+    "description": "Category for quotes"
+  },
+  "categorySummary": "Summary",
+  "@categorySummary": {
+    "description": "Category for summaries"
+  },
+  "categoryQuestion": "Question",
+  "@categoryQuestion": {
+    "description": "Category for questions"
+  },
+  "categoryReflection": "Reflection",
+  "@categoryReflection": {
+    "description": "Category for personal reflections"
+  },
+  "categoryIdea": "Idea",
+  "@categoryIdea": {
+    "description": "Category for ideas"
+  },
+  "categoryOther": "Other",
+  "@categoryOther": {
+    "description": "General category"
+  },
+  "dateLabel": "Date",
+  "@dateLabel": {
+    "description": "Label for date field"
+  },
+  "pageLabel": "Page",
+  "@pageLabel": {
+    "description": "Label for page field"
+  },
+  "pageOption": "Page {page}",
+  "@pageOption": {
+    "description": "Dropdown option for page number",
+    "placeholders": {
+      "page": {
+        "type": "int"
+      }
+    }
+  },
+  "noteLabel": "Note",
+  "@noteLabel": {
+    "description": "Label for note text field"
+  },
+  "noteInputHint": "Type your quote, summary, or reflection...",
+  "@noteInputHint": {
+    "description": "Hint text for note text field"
+  },
+  "saveNoteButton": "Save Note",
+  "@saveNoteButton": {
+    "description": "Button to confirm and save note"
+  },
+  "errorEmptyPage": "Please enter a valid page number",
+  "@errorEmptyPage": {
+    "description": "Error message when page field is invalid"
+  },
+  "errorInvalidPageRange": "Page number cannot exceed {totalPages}",
+  "@errorInvalidPageRange": {
+    "description": "Error message when page exceeds book total",
+    "placeholders": {
+      "totalPages": {
+        "type": "int"
+      }
+    }
+  },
+  "errorEmptyNote": "Please enter content for the note",
+  "@errorEmptyNote": {
+    "description": "Error message when note content is empty"
+  },
+  "bookNotesTitle": "Book notes",
+  "@bookNotesTitle": {
+    "description": "Title for notes section associated with a book"
+  },
+  "errorLoadingNotes": "Error loading notes: {error}",
+  "@errorLoadingNotes": {
+    "description": "Error message when fetching notes fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "DatabaseException"
+      }
+    }
+  },
+  "emptyNotesMessage": "No notes saved for this book",
+  "@emptyNotesMessage": {
+    "description": "Empty state message when no notes are saved"
+  }
+}

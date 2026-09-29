@@ -1,0 +1,199 @@
+{
+  "@@locale": "en",
+  "newSession": "Read",
+  "@newSession": {
+    "description": "Button text to start a new reading session"
+  },
+  "readingHistory": "Reading History",
+  "@readingHistory": {
+    "description": "Header for reading sessions history section"
+  },
+  "noSessionsRegistered": "You haven't recorded any reading sessions yet.",
+  "@noSessionsRegistered": {
+    "description": "Message when no sessions are saved"
+  },
+  "pagesRange": "Pages {startPage} to {endPage}",
+  "@pagesRange": {
+    "description": "Range of read pages in a session",
+    "placeholders": {
+      "startPage": {
+        "type": "int",
+        "example": "10"
+      },
+      "endPage": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "upToPage": "Up to page {endPage}",
+  "@upToPage": {
+    "description": "Text indicating end page when start page is missing",
+    "placeholders": {
+      "endPage": {
+        "type": "int",
+        "example": "50"
+      }
+    }
+  },
+  "readingSessionTitle": "Reading Session",
+  "@readingSessionTitle": {
+    "description": "Main title for active reading session screen"
+  },
+  "timerStart": "Start",
+  "@timerStart": {
+    "description": "Button label to start timer for the first time"
+  },
+  "timerResume": "Resume",
+  "@timerResume": {
+    "description": "Button label to resume paused timer"
+  },
+  "timerPause": "Pause",
+  "@timerPause": {
+    "description": "Button label to pause timer"
+  },
+  "finishSession": "Finish",
+  "@finishSession": {
+    "description": "Button to stop timer and record reading progress"
+  },
+  "finishReadingTitle": "Finish Reading",
+  "@finishReadingTitle": {
+    "description": "Modal title when ending a reading session"
+  },
+  "timeReadLabel": "Time Read",
+  "@timeReadLabel": {
+    "description": "Label displaying total session duration"
+  },
+  "minutesShort": "min",
+  "@minutesShort": {
+    "description": "Short form for minutes"
+  },
+  "secondsShort": "s",
+  "@secondsShort": {
+    "description": "Short form for seconds"
+  },
+  "whatPageDidYouReach": "What page did you reach?",
+  "@whatPageDidYouReach": {
+    "description": "Field label for entering last read page"
+  },
+  "currentPageHint": "Current page (e.g. {page})",
+  "@currentPageHint": {
+    "description": "Hint text in current page field",
+    "placeholders": {
+      "page": {
+        "type": "int",
+        "example": "45"
+      }
+    }
+  },
+  "saveSessionButton": "Save Session",
+  "@saveSessionButton": {
+    "description": "Main button to save reading entry"
+  },
+  "validationEnterEndPage": "Enter the final page",
+  "@validationEnterEndPage": {
+    "description": "Error message when page field is empty"
+  },
+  "validationInvalidNumber": "Enter a valid number",
+  "@validationInvalidNumber": {
+    "description": "Error message when input is not a valid integer"
+  },
+  "validationPageLowerThanCurrent": "Cannot be lower than previous page ({currentPage})",
+  "@validationPageLowerThanCurrent": {
+    "description": "Error message when final page is less than starting page",
+    "placeholders": {
+      "currentPage": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "validationPageExceedsTotal": "Cannot exceed total book pages ({totalPages})",
+  "@validationPageExceedsTotal": {
+    "description": "Error message when page exceeds total book pages",
+    "placeholders": {
+      "totalPages": {
+        "type": "int",
+        "example": "300"
+      }
+    }
+  },
+  "sessionSummaryTitle": "Summary",
+  "@sessionSummaryTitle": {
+    "description": "Top title for summary screen"
+  },
+  "pagesReadLabel": "Pages read",
+  "@pagesReadLabel": {
+    "description": "Label for total pages read in session"
+  },
+  "readingSpeedLabel": "Reading speed",
+  "@readingSpeedLabel": {
+    "description": "Label for speed in pages per minute"
+  },
+  "pagesPerMinute": "{speed} pages/min",
+  "@pagesPerMinute": {
+    "description": "Format for reading speed",
+    "placeholders": {
+      "speed": {
+        "type": "String",
+        "example": "0.8"
+      }
+    }
+  },
+  "estimatedTimeRemaining": "Est. time remaining",
+  "@estimatedTimeRemaining": {
+    "description": "Label for remaining time estimation"
+  },
+  "doneButton": "Done",
+  "@doneButton": {
+    "description": "Main button to save and return home"
+  },
+  "sessionResultTitle": "Reading Session Result",
+  "@sessionResultTitle": {
+    "description": "Main title of summary screen after reading"
+  },
+  "readSummaryInfo": "You read {pages} pages in {duration}.",
+  "@readSummaryInfo": {
+    "description": "Summary text showing pages read and duration",
+    "placeholders": {
+      "pages": {
+        "type": "int",
+        "example": "30"
+      },
+      "duration": {
+        "type": "String",
+        "example": "29m"
+      }
+    }
+  },
+  "readingSpeedInfo": "This is your average reading speed: {pagesPerHour} pages per hour.",
+  "@readingSpeedInfo": {
+    "description": "Shows average reading speed per hour",
+    "placeholders": {
+      "pagesPerHour": {
+        "type": "String",
+        "example": "60.71"
+      }
+    }
+  },
+  "timeRemainingInfo": "Estimated time left to finish is {timeRemaining}.",
+  "@timeRemainingInfo": {
+    "description": "Displays time remaining to finish book",
+    "placeholders": {
+      "timeRemaining": {
+        "type": "String",
+        "example": "4h 11m"
+      }
+    }
+  },
+  "pagesRemainingInfo": "There are {pagesRemaining} pages left to finish your book.",
+  "@pagesRemainingInfo": {
+    "description": "Indicates remaining pages to complete book",
+    "placeholders": {
+      "pagesRemaining": {
+        "type": "int",
+        "example": "254"
+      }
+    }
+  }
+}

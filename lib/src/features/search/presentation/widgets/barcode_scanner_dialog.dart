@@ -1,3 +1,4 @@
+import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -103,8 +104,8 @@ class _BarcodeScannerDialogState extends State<BarcodeScannerDialog> with Widget
           icon: const Icon(Icons.arrow_back, color: AppColors.beigePaper),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: const Text(
-          'Escanear ISBN',
+        title: Text(
+          context.l10n.scanIsbnTitle,
           style: TextStyle(color: AppColors.beigePaper),
         ),
         actions: [
@@ -133,11 +134,11 @@ class _BarcodeScannerDialogState extends State<BarcodeScannerDialog> with Widget
                   children: [
                     const Icon(Icons.videocam_off, color: Colors.white, size: 48),
                     const SizedBox(height: 12),
-                    const Text('Error al acceder a la cámara', style: TextStyle(color: Colors.white)),
+                    Text(context.l10n.cameraAccessError, style: TextStyle(color: Colors.white)),
                     const SizedBox(height: 12),
                     ElevatedButton(
                       onPressed: () => _controller.start(),
-                      child: const Text('Reintentar'),
+                      child: Text(context.l10n.retry),
                     ),
                   ],
                 ),

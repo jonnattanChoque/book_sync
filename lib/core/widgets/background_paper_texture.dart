@@ -1,4 +1,5 @@
 import 'package:book_sync/core/constants/app_assets.dart';
+import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +8,7 @@ class BackgroundPaperTexture extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isDark = context.theme.brightness == Brightness.dark;
 
     return Container(
       decoration: BoxDecoration(

@@ -98,874 +98,964 @@ abstract class AppLocalizations {
     Locale('es'),
   ];
 
-  /// Greeting title on the main dashboard
+  /// Saludo inicial en la pantalla principal
   ///
-  /// In en, this message translates to:
-  /// **'Hello,'**
+  /// In es, this message translates to:
+  /// **'Hola,'**
   String get welcomeTitle;
 
-  /// Subtitle greeting on the main dashboard
+  /// Subtítulo de bienvenida en la pantalla principal
   ///
-  /// In en, this message translates to:
-  /// **'Stories reader'**
+  /// In es, this message translates to:
+  /// **'Lector de historias'**
   String get welcomeMessage;
 
-  /// Default user display name
+  /// Nombre por defecto del usuario
   ///
-  /// In en, this message translates to:
-  /// **'Story Reader'**
+  /// In es, this message translates to:
+  /// **'Lector de Historias'**
   String get userName;
 
-  /// General action or button text to add a book
+  /// Texto del botón o acción general para agregar un libro
   ///
-  /// In en, this message translates to:
-  /// **'Add book'**
+  /// In es, this message translates to:
+  /// **'Agregar libro'**
   String get addBook;
 
-  /// Section header for the book currently being read
+  /// Encabezado de la sección del libro en lectura actual
   ///
-  /// In en, this message translates to:
-  /// **'Currently reading'**
+  /// In es, this message translates to:
+  /// **'Leyendo ahora'**
   String get currentlyReading;
 
-  /// Reading progress percentage
+  /// Título en la vista o diálogo modal de adición de libros
   ///
-  /// In en, this message translates to:
-  /// **'{percentage}% completed'**
-  String progressLabel(String percentage);
-
-  /// Modal/Screen header for adding a book
-  ///
-  /// In en, this message translates to:
-  /// **'Add a book to your nightstand'**
+  /// In es, this message translates to:
+  /// **'Agrega un libro a tu mesa de noche'**
   String get createBookTitle;
 
-  /// Title shown when the library is empty
+  /// Título del estado vacío de la biblioteca principal
   ///
-  /// In en, this message translates to:
-  /// **'Your nightstand is empty'**
+  /// In es, this message translates to:
+  /// **'Tu mesa de noche está vacía'**
   String get noBooksTitle;
 
-  /// Motivational message for an empty library
+  /// Mensaje motivacional cuando no hay libros registrados
   ///
-  /// In en, this message translates to:
-  /// **'What story will we start today?'**
+  /// In es, this message translates to:
+  /// **'¿Qué historia empezaremos hoy?'**
   String get noBooksSubtitle;
 
-  /// Option to add a book by online search
+  /// Opción para agregar libro mediante búsqueda en la API
   ///
-  /// In en, this message translates to:
-  /// **'Add by search'**
+  /// In es, this message translates to:
+  /// **'Agregar por búsqueda'**
   String get addBySearch;
 
-  /// Option to add a book by scanning its ISBN barcode
+  /// Opción para agregar libro escaneando código de barras
   ///
-  /// In en, this message translates to:
-  /// **'Add by scan (ISBN)'**
+  /// In es, this message translates to:
+  /// **'Agregar por código (ISBN)'**
   String get addByScan;
 
-  /// Option to add a book manually
+  /// Opción para agregar libro con formulario manual
   ///
-  /// In en, this message translates to:
-  /// **'Add manually'**
+  /// In es, this message translates to:
+  /// **'Agregar manualmente'**
   String get addByManual;
 
-  /// Header for the main library section
+  /// Mensaje de error desplegado cuando el controlador no puede iniciar el hardware de la cámara.
   ///
-  /// In en, this message translates to:
-  /// **'My Library'**
-  String get libraryTitle;
+  /// In es, this message translates to:
+  /// **'Error al acceder a la cámara'**
+  String get cameraAccessError;
 
-  /// Total book count indicator
+  /// Texto para el botón que permite reintentar una acción fallida.
   ///
-  /// In en, this message translates to:
-  /// **'{count} Books'**
-  String libraryCount(int count);
+  /// In es, this message translates to:
+  /// **'Reintentar'**
+  String get retry;
 
-  /// Text when no books are registered in a list
+  /// Etiqueta para el botón de cancelar la acción.
   ///
-  /// In en, this message translates to:
-  /// **'No books registered'**
-  String get noBooksRegistered;
-
-  /// Tab for books currently being read
-  ///
-  /// In en, this message translates to:
-  /// **'Reading'**
-  String get tabLibraryReading;
-
-  /// Tab for books queued to read
-  ///
-  /// In en, this message translates to:
-  /// **'To Read'**
-  String get tabLibraryToRead;
-
-  /// Tab for finished books
-  ///
-  /// In en, this message translates to:
-  /// **'Read'**
-  String get tabLibraryRead;
-
-  /// Tab for dropped books
-  ///
-  /// In en, this message translates to:
-  /// **'Dropped'**
-  String get tabLibraryDropped;
-
-  /// Tab for paused books
-  ///
-  /// In en, this message translates to:
-  /// **'Dropped'**
-  String get tabLibraryPaused;
-
-  /// Empty state for the Reading tab
-  ///
-  /// In en, this message translates to:
-  /// **'No books are currently being read'**
-  String get emptyReading;
-
-  /// Empty state for the To Read tab
-  ///
-  /// In en, this message translates to:
-  /// **'No books to read'**
-  String get emptyToRead;
-
-  /// Empty state for the Finished tab
-  ///
-  /// In en, this message translates to:
-  /// **'No books finished yet'**
-  String get emptyFinished;
-
-  /// Empty state for the dropped tab
-  ///
-  /// In en, this message translates to:
-  /// **'No books dropped yet'**
-  String get emptyDropped;
-
-  /// AppBar title on the online search screen
-  ///
-  /// In en, this message translates to:
-  /// **'Search Book'**
-  String get searchTitle;
-
-  /// Text for the search action button
-  ///
-  /// In en, this message translates to:
-  /// **'Search'**
-  String get searchButton;
-
-  /// Placeholder hint inside the search text field
-  ///
-  /// In en, this message translates to:
-  /// **'Title or author...'**
-  String get searchPlaceholder;
-
-  /// Initial hint displayed before searching
-  ///
-  /// In en, this message translates to:
-  /// **'Type to search books online'**
-  String get searchInitialHint;
-
-  /// Title for manual entry flow
-  ///
-  /// In en, this message translates to:
-  /// **'Add book'**
-  String get addManualBook;
-
-  /// Message displayed when a search returns no items
-  ///
-  /// In en, this message translates to:
-  /// **'No search results found'**
-  String get noSearchResults;
-
-  /// AppBar title on the book detail confirmation screen
-  ///
-  /// In en, this message translates to:
-  /// **'Add book'**
-  String get addBookTitle;
-
-  /// Section header for general book information
-  ///
-  /// In en, this message translates to:
-  /// **'Information'**
-  String get sectionInfo;
-
-  /// Section header for selecting the book's reading status
-  ///
-  /// In en, this message translates to:
-  /// **'Select Reading Status'**
-  String get sectionSelected;
-
-  /// Section header for the book description or synopsis
-  ///
-  /// In en, this message translates to:
-  /// **'Description'**
-  String get sectionDescription;
-
-  /// Section header for publishing details
-  ///
-  /// In en, this message translates to:
-  /// **'Publisher'**
-  String get sectionPublisher;
-
-  /// Section header for additional metadata like categories or ratings
-  ///
-  /// In en, this message translates to:
-  /// **'Others'**
-  String get sectionOther;
-
-  /// Label for title field
-  ///
-  /// In en, this message translates to:
-  /// **'Title'**
-  String get fieldTitle;
-
-  /// Label for authors field
-  ///
-  /// In en, this message translates to:
-  /// **'Author(s)'**
-  String get fieldAuthors;
-
-  /// Label for ISBN code field
-  ///
-  /// In en, this message translates to:
-  /// **'ISBN'**
-  String get fieldIsbn;
-
-  /// Label for language field
-  ///
-  /// In en, this message translates to:
-  /// **'Language'**
-  String get fieldLanguage;
-
-  /// Label for page count field
-  ///
-  /// In en, this message translates to:
-  /// **'Pages'**
-  String get fieldPages;
-
-  /// Label for publisher field
-  ///
-  /// In en, this message translates to:
-  /// **'Publisher'**
-  String get fieldPublisher;
-
-  /// Label for publication date field
-  ///
-  /// In en, this message translates to:
-  /// **'Publication date'**
-  String get fieldPublishedDate;
-
-  /// Label for book categories or genres
-  ///
-  /// In en, this message translates to:
-  /// **'Categories'**
-  String get fieldCategories;
-
-  /// Label for rating or score
-  ///
-  /// In en, this message translates to:
-  /// **'Rating'**
-  String get fieldRating;
-
-  /// Primary action button to save the book into the database
-  ///
-  /// In en, this message translates to:
-  /// **'Save to library'**
-  String get btnSaveToLibrary;
-
-  /// Main title for the ISBN barcode scanner screen.
-  ///
-  /// In en, this message translates to:
-  /// **'Scan ISBN Code'**
-  String get scanIsbnTitle;
-
-  /// Instruction text guiding the user to frame the barcode within the camera view.
-  ///
-  /// In en, this message translates to:
-  /// **'Align barcode here'**
-  String get scanIsbnInstruction;
-
-  /// Loading message displayed while querying the book via API.
-  ///
-  /// In en, this message translates to:
-  /// **'Searching book by ISBN...'**
-  String get scanIsbnLoading;
-
-  /// Title of the screen or modal for searching book covers.
-  ///
-  /// In en, this message translates to:
-  /// **'Search image'**
-  String get searchImageTitle;
-
-  /// Placeholder text for the search input field.
-  ///
-  /// In en, this message translates to:
-  /// **'Type to search images on the web'**
-  String get searchImageHint;
-
-  /// Title of the confirmation dialog to replace the book cover.
-  ///
-  /// In en, this message translates to:
-  /// **'Change cover'**
-  String get confirmChangeCoverTitle;
-
-  /// Main body message of the confirmation dialog.
-  ///
-  /// In en, this message translates to:
-  /// **'Do you want to replace the current cover with this image?'**
-  String get confirmChangeCoverMessage;
-
-  /// Label for the cancel button.
-  ///
-  /// In en, this message translates to:
-  /// **'Cancel'**
+  /// In es, this message translates to:
+  /// **'Cancelar'**
   String get actionCancel;
 
-  /// Label for the confirm/accept button.
+  /// Etiqueta para el botón de aceptar o confirmar el cambio de portada.
   ///
-  /// In en, this message translates to:
-  /// **'Confirm'**
+  /// In es, this message translates to:
+  /// **'Confirmar'**
   String get actionConfirm;
 
-  /// Title of the dialog warning that a book is already in the library.
+  /// Texto del botón principal para cerrar o confirmar un diálogo de alerta.
   ///
-  /// In en, this message translates to:
-  /// **'Duplicate Book'**
-  String get duplicateBookTitle;
-
-  /// Explanatory message informing the user that the entered ISBN is already registered.
-  ///
-  /// In en, this message translates to:
-  /// **'This book is already in your library.'**
-  String get duplicateBookMessage;
-
-  /// Text for the primary button to close or confirm an alert dialog.
-  ///
-  /// In en, this message translates to:
-  /// **'Accept'**
+  /// In es, this message translates to:
+  /// **'Aceptar'**
   String get accept;
 
-  /// Main title in the AppBar of the book details screen
+  /// Texto genérico para cancelar diálogos o acciones
   ///
-  /// In en, this message translates to:
-  /// **'Your book'**
-  String get yourBookTitle;
+  /// In es, this message translates to:
+  /// **'Cancelar'**
+  String get cancel;
 
-  /// Label for the book ISBN
+  /// Texto genérico para guardar cambios
   ///
-  /// In en, this message translates to:
-  /// **'ISBN'**
-  String get isbn;
+  /// In es, this message translates to:
+  /// **'Guardar'**
+  String get save;
 
-  /// Text for the delete button or action
+  /// Mensaje desplegado cuando ocurre un fallo al obtener la lista de libros.
   ///
-  /// In en, this message translates to:
-  /// **'Delete'**
-  String get deleteAction;
+  /// In es, this message translates to:
+  /// **'Error al cargar libros: {error}'**
+  String errorLoadingBooks(String error);
 
-  /// Title of the publisher/edition info card
+  /// Porcentaje de avance en la lectura de un libro
   ///
-  /// In en, this message translates to:
-  /// **'Edition Information'**
-  String get editionInfo;
+  /// In es, this message translates to:
+  /// **'{percentage}% completado'**
+  String progressLabel(String percentage);
 
-  /// Label for the book publisher
+  /// Muestra la fecha de inicio de lectura del libro.
   ///
-  /// In en, this message translates to:
-  /// **'Publisher'**
-  String get publisher;
+  /// In es, this message translates to:
+  /// **'Inicio: {date}'**
+  String startDateWith(String date);
 
-  /// Label for the book language
+  /// Tiempo estimado restante para finalizar el libro.
   ///
-  /// In en, this message translates to:
-  /// **'Language'**
-  String get language;
+  /// In es, this message translates to:
+  /// **'Restante: {time}'**
+  String remainingTime(String time);
 
-  /// Label for the book publication date
+  /// Progreso de lectura expresado en página actual y total.
   ///
-  /// In en, this message translates to:
-  /// **'Published'**
-  String get publicationDate;
+  /// In es, this message translates to:
+  /// **'Pág. {currentPage} / {totalPages}'**
+  String pageProgress(int currentPage, int totalPages);
 
-  /// Title of the synopsis or description section
+  /// Formato simple para indicar la página actual alcanzada.
   ///
-  /// In en, this message translates to:
-  /// **'Synopsis'**
-  String get synopsis;
+  /// In es, this message translates to:
+  /// **'Pág. {currentPage}'**
+  String currentPageFormat(int currentPage);
 
-  /// Button text for adding a quick note
+  /// Título de la tarjeta de progreso y tiempos de lectura
   ///
-  /// In en, this message translates to:
-  /// **'Note'**
-  String get addNote;
-
-  /// Button text for starting a new reading session
-  ///
-  /// In en, this message translates to:
-  /// **'Read'**
-  String get newSession;
-
-  /// Title of the expandable notes section
-  ///
-  /// In en, this message translates to:
-  /// **'Reading Notes'**
-  String get readingNotes;
-
-  /// Message when no notes have been created for the book
-  ///
-  /// In en, this message translates to:
-  /// **'No notes recorded for this book.'**
-  String get noNotesRegistered;
-
-  /// Title of the expandable session history section
-  ///
-  /// In en, this message translates to:
-  /// **'Reading History'**
-  String get readingHistory;
-
-  /// Message when no sessions are recorded
-  ///
-  /// In en, this message translates to:
-  /// **'You haven\'t recorded any reading sessions yet.'**
-  String get noSessionsRegistered;
-
-  /// Title of the progress and reading time card
-  ///
-  /// In en, this message translates to:
-  /// **'Progress Information'**
+  /// In es, this message translates to:
+  /// **'Información de progreso'**
   String get progressInfo;
 
-  /// Label for the reading start date
+  /// Etiqueta para la fecha de inicio de lectura
   ///
-  /// In en, this message translates to:
-  /// **'Start'**
+  /// In es, this message translates to:
+  /// **'Inicio'**
   String get startDate;
 
-  /// Label for the current or elapsed reading day
+  /// Etiqueta para el día actual o transcurrido de lectura
   ///
-  /// In en, this message translates to:
-  /// **'Day'**
+  /// In es, this message translates to:
+  /// **'Día'**
   String get day;
 
-  /// Label for the estimated remaining reading time
+  /// Etiqueta para el tiempo estimado restante de lectura
   ///
-  /// In en, this message translates to:
-  /// **'Remaining'**
+  /// In es, this message translates to:
+  /// **'Restante'**
   String get remaining;
 
-  /// Text preceding the progress percentage
+  /// Texto que precede al porcentaje de avance
   ///
-  /// In en, this message translates to:
-  /// **'Progress'**
+  /// In es, this message translates to:
+  /// **'Progreso'**
   String get progress;
 
-  /// Abbreviation for pages
+  /// Abreviatura de páginas
   ///
-  /// In en, this message translates to:
-  /// **'pages'**
+  /// In es, this message translates to:
+  /// **'págs'**
   String get pagesAbbr;
 
-  /// Singular abbreviation for page
+  /// Abreviatura singular de página
   ///
-  /// In en, this message translates to:
-  /// **'Page'**
+  /// In es, this message translates to:
+  /// **'Pág'**
   String get pageAbbr;
 
-  /// Abbreviation for minutes
+  /// Abreviatura de minutos
   ///
-  /// In en, this message translates to:
+  /// In es, this message translates to:
   /// **'min'**
   String get minutesAbbr;
 
-  /// Title for the status selection sheet
+  /// Título principal de la sección de biblioteca
   ///
-  /// In en, this message translates to:
-  /// **'Reading Status'**
-  String get readingStatusTitle;
+  /// In es, this message translates to:
+  /// **'Mi Biblioteca'**
+  String get libraryTitle;
 
-  /// Instruction message for the status menu
+  /// Texto indicativo para listas de biblioteca sin elementos
   ///
-  /// In en, this message translates to:
-  /// **'Select the current status for this book'**
-  String get readingStatusMessage;
+  /// In es, this message translates to:
+  /// **'No hay libros registrados'**
+  String get noBooksRegistered;
 
-  /// Status: Reading
+  /// Contador del total de libros guardados
   ///
-  /// In en, this message translates to:
-  /// **'Reading'**
-  String get statusReading;
+  /// In es, this message translates to:
+  /// **'{count} Libros'**
+  String libraryCount(int count);
 
-  /// Status: To Read
+  /// Contador del total de libros guardados
   ///
-  /// In en, this message translates to:
-  /// **'To Read'**
-  String get statusToRead;
+  /// In es, this message translates to:
+  /// **'{count} Libro'**
+  String libraryOneCount(int count);
 
-  /// Status: On Hold
+  /// Pestaña de libros en proceso de lectura
   ///
-  /// In en, this message translates to:
-  /// **'On Hold'**
-  String get statusPaused;
+  /// In es, this message translates to:
+  /// **'Leyendo'**
+  String get tabLibraryReading;
 
-  /// Status: Dropped
+  /// Pestaña de libros pendientes de lectura
   ///
-  /// In en, this message translates to:
-  /// **'Dropped'**
-  String get statusDropped;
+  /// In es, this message translates to:
+  /// **'Por leer'**
+  String get tabLibraryToRead;
 
-  /// Status: Finished
+  /// Pestaña de libros terminados
   ///
-  /// In en, this message translates to:
-  /// **'Finished'**
-  String get statusFinished;
+  /// In es, this message translates to:
+  /// **'Leídos'**
+  String get tabLibraryRead;
 
-  /// Generic text to cancel dialogs or actions
+  /// Pestaña de libros abandonados
   ///
-  /// In en, this message translates to:
-  /// **'Cancel'**
-  String get cancel;
+  /// In es, this message translates to:
+  /// **'Abandonados'**
+  String get tabLibraryDropped;
 
-  /// Generic text to save changes
+  /// Pestaña de libros pausados
   ///
-  /// In en, this message translates to:
-  /// **'Save'**
-  String get save;
+  /// In es, this message translates to:
+  /// **'Pausados'**
+  String get tabLibraryPaused;
 
-  /// Title of the add note modal
+  /// Estado vacío de la pestaña leyendo
   ///
-  /// In en, this message translates to:
-  /// **'New Reading Note'**
+  /// In es, this message translates to:
+  /// **'No hay libros en lectura'**
+  String get emptyReading;
+
+  /// Estado vacío de la pestaña por leer
+  ///
+  /// In es, this message translates to:
+  /// **'No hay libros por leer'**
+  String get emptyToRead;
+
+  /// Estado vacío de la pestaña leídos
+  ///
+  /// In es, this message translates to:
+  /// **'No hay libros leídos aún'**
+  String get emptyFinished;
+
+  /// Estado vacío de la pestaña abandonados
+  ///
+  /// In es, this message translates to:
+  /// **'No hay libros abandonados aún'**
+  String get emptyDropped;
+
+  /// Error al cargar la biblioteca
+  ///
+  /// In es, this message translates to:
+  /// **'Error al cargar la biblioteca'**
+  String get errorLoadLibrary;
+
+  /// Título del AppBar en la pantalla de búsqueda online
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar Libro'**
+  String get searchTitle;
+
+  /// Texto del botón de la barra de búsqueda
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar'**
+  String get searchButton;
+
+  /// Hint text dentro del campo de texto de búsqueda
+  ///
+  /// In es, this message translates to:
+  /// **'Título o autor...'**
+  String get searchPlaceholder;
+
+  /// Mensaje informativo en el centro de la pantalla antes de buscar
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe para buscar libros en la red'**
+  String get searchInitialHint;
+
+  /// Mensaje de búsqueda sin coincidencias
+  ///
+  /// In es, this message translates to:
+  /// **'No se encontraron resultados'**
+  String get noSearchResults;
+
+  /// Título principal de la pantalla del escáner de códigos de barras ISBN.
+  ///
+  /// In es, this message translates to:
+  /// **'Escanear Código ISBN'**
+  String get scanIsbnTitle;
+
+  /// Texto con instrucciones para orientar al usuario al encuadrar el código de barras en la cámara.
+  ///
+  /// In es, this message translates to:
+  /// **'Alinea el código de barras aquí'**
+  String get scanIsbnInstruction;
+
+  /// Mensaje de carga desplegado mientras se realiza la consulta del libro en la API.
+  ///
+  /// In es, this message translates to:
+  /// **'Buscando libro por ISBN...'**
+  String get scanIsbnLoading;
+
+  /// Mensaje de alerta o título cuando una búsqueda por ISBN o escaneo no arroja resultados.
+  ///
+  /// In es, this message translates to:
+  /// **'No se encontró el libro'**
+  String get bookNotFoundTitle;
+
+  /// Pregunta de sugerencia o mensaje para permitir al usuario realizar una búsqueda por título/autor.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Deseas buscarlo por nombre?'**
+  String get searchByNamePrompt;
+
+  /// Título del diálogo que advierte que un libro ya se encuentra en la biblioteca.
+  ///
+  /// In es, this message translates to:
+  /// **'Libro Duplicado'**
+  String get duplicateBookTitle;
+
+  /// Mensajes explicativo que informa al usuario que el ISBN ingresado ya está registrado.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya existe este libro en tu biblioteca.'**
+  String get duplicateBookMessage;
+
+  /// Texto del botón para agregar una nota rápida
+  ///
+  /// In es, this message translates to:
+  /// **'Nota'**
+  String get addNote;
+
+  /// Título de la sección desplegable de notas
+  ///
+  /// In es, this message translates to:
+  /// **'Notas de Lectura'**
+  String get readingNotes;
+
+  /// Mensaje cuando no se han creado notas en el libro
+  ///
+  /// In es, this message translates to:
+  /// **'No hay notas registradas en este libro.'**
+  String get noNotesRegistered;
+
+  /// Título del modal para agregar nota
+  ///
+  /// In es, this message translates to:
+  /// **'Nueva Nota de Lectura'**
   String get newReadingNote;
 
-  /// Placeholder inside the note text field
+  /// Placeholder dentro del campo de texto de nota
   ///
-  /// In en, this message translates to:
-  /// **'Write your reflection or quote from the book...'**
+  /// In es, this message translates to:
+  /// **'Escribe tu reflexión o cita del libro...'**
   String get addNoteHint;
 
-  /// Title of the delete confirmation modal
+  /// Botón para desplegar la lista de notas dentro de la vista de lectura.
   ///
-  /// In en, this message translates to:
-  /// **'Delete book'**
-  String get deleteBookDialogTitle;
-
-  /// Confirmation message to delete a book specifying its title
-  ///
-  /// In en, this message translates to:
-  /// **'Are you sure you want to delete \"{bookTitle}\"? This action cannot be undone.'**
-  String deleteBookDialogMessage(String bookTitle);
-
-  /// Confirmation message when a book is added to favorites.
-  ///
-  /// In en, this message translates to:
-  /// **'Added to favorites'**
-  String get addedToFavorites;
-
-  /// Confirmation message when a book is removed from favorites.
-  ///
-  /// In en, this message translates to:
-  /// **'Removed from favorites'**
-  String get removedFromFavorites;
-
-  /// Confirmation message after changing a book's reading status.
-  ///
-  /// In en, this message translates to:
-  /// **'Book status updated'**
-  String get bookStatusUpdated;
-
-  /// Text for the range of pages read in a session
-  ///
-  /// In en, this message translates to:
-  /// **'Pages {startPage} to {endPage}'**
-  String pagesRange(int startPage, int endPage);
-
-  /// Text indicating the end page when no start page is recorded
-  ///
-  /// In en, this message translates to:
-  /// **'Up to page {endPage}'**
-  String upToPage(int endPage);
-
-  /// Main title of the active reading session screen or modal.
-  ///
-  /// In en, this message translates to:
-  /// **'Reading Session'**
-  String get readingSessionTitle;
-
-  /// Button label to start the reading timer for the first time.
-  ///
-  /// In en, this message translates to:
-  /// **'Start'**
-  String get timerStart;
-
-  /// Button label to resume the reading timer after being paused.
-  ///
-  /// In en, this message translates to:
-  /// **'Resume'**
-  String get timerResume;
-
-  /// Button label to temporarily pause the reading timer.
-  ///
-  /// In en, this message translates to:
-  /// **'Pause'**
-  String get timerPause;
-
-  /// Button to expand the notes list inside the reading view.
-  ///
-  /// In en, this message translates to:
-  /// **'View notes'**
+  /// In es, this message translates to:
+  /// **'Ver notas'**
   String get viewNotes;
 
-  /// Button text when the notes list is currently expanded.
+  /// Texto del botón cuando la lista de notas ya está visible.
   ///
-  /// In en, this message translates to:
-  /// **'Hide notes'**
+  /// In es, this message translates to:
+  /// **'Ocultar notas'**
   String get hideNotes;
 
-  /// Primary button to stop the timer and log reading progress.
+  /// Mensaje informativo en caso de que el libro no posea notas registradas.
   ///
-  /// In en, this message translates to:
-  /// **'Finish'**
-  String get finishSession;
-
-  /// Informational message when the book has no notes.
-  ///
-  /// In en, this message translates to:
-  /// **'No notes registered for this book yet.'**
+  /// In es, this message translates to:
+  /// **'Aún no tienes notas registradas para este libro.'**
   String get noNotesYet;
 
-  /// Main title of the modal for creating a new note.
+  /// Título principal del modal para crear una nueva nota.
   ///
-  /// In en, this message translates to:
-  /// **'Add Note'**
+  /// In es, this message translates to:
+  /// **'Agregar Nota'**
   String get addNoteTitle;
 
-  /// Label for the category selection section.
+  /// Etiqueta para la sección de selección de categoría.
   ///
-  /// In en, this message translates to:
-  /// **'Category'**
+  /// In es, this message translates to:
+  /// **'Categoría'**
   String get categoryLabel;
 
-  /// Category for book quotes.
+  /// Categoría para citas textuales.
   ///
-  /// In en, this message translates to:
-  /// **'Quote'**
+  /// In es, this message translates to:
+  /// **'Cita'**
   String get categoryQuote;
 
-  /// Category for summaries.
+  /// Categoría para resúmenes.
   ///
-  /// In en, this message translates to:
-  /// **'Summary'**
+  /// In es, this message translates to:
+  /// **'Resumen'**
   String get categorySummary;
 
-  /// Category for questions or doubts.
+  /// Categoría para preguntas o dudas.
   ///
-  /// In en, this message translates to:
-  /// **'Question'**
+  /// In es, this message translates to:
+  /// **'Pregunta'**
   String get categoryQuestion;
 
-  /// Category for personal reflections.
+  /// Categoría para reflexiones personales.
   ///
-  /// In en, this message translates to:
-  /// **'Reflection'**
+  /// In es, this message translates to:
+  /// **'Reflexión'**
   String get categoryReflection;
 
-  /// Category for ideas.
+  /// Categoría para ideas o chispas de pensamiento.
   ///
-  /// In en, this message translates to:
+  /// In es, this message translates to:
   /// **'Idea'**
   String get categoryIdea;
 
-  /// General category.
+  /// Categoría general.
   ///
-  /// In en, this message translates to:
-  /// **'Other'**
+  /// In es, this message translates to:
+  /// **'Otro'**
   String get categoryOther;
 
-  /// Label for the date field.
+  /// Etiqueta para el campo de fecha.
   ///
-  /// In en, this message translates to:
-  /// **'Date'**
+  /// In es, this message translates to:
+  /// **'Fecha'**
   String get dateLabel;
 
-  /// Label for the page field.
+  /// Etiqueta para el campo de página.
   ///
-  /// In en, this message translates to:
-  /// **'Page'**
+  /// In es, this message translates to:
+  /// **'Página'**
   String get pageLabel;
 
-  /// Dropdown option indicating page number.
+  /// Opción desplegable para indicar el número de página.
   ///
-  /// In en, this message translates to:
-  /// **'Page {page}'**
+  /// In es, this message translates to:
+  /// **'Pág. {page}'**
   String pageOption(int page);
 
-  /// Label for the note text input field.
+  /// Etiqueta para el campo de texto de la nota.
   ///
-  /// In en, this message translates to:
-  /// **'Note'**
+  /// In es, this message translates to:
+  /// **'Nota'**
   String get noteLabel;
 
-  /// Placeholder text inside the note text area.
+  /// Texto de sugerencia en el cuadro de texto de la nota.
   ///
-  /// In en, this message translates to:
-  /// **'Write your quote, summary, or reflection...'**
+  /// In es, this message translates to:
+  /// **'Escribe tu cita, resumen o reflexión...'**
   String get noteInputHint;
 
-  /// Button to confirm and save the note.
+  /// Botón para confirmar y guardar la nota.
   ///
-  /// In en, this message translates to:
-  /// **'Save Note'**
+  /// In es, this message translates to:
+  /// **'Guardar Nota'**
   String get saveNoteButton;
 
-  /// Error message when the page field is empty or not a number.
+  /// Mensaje de error cuando el campo de página está vacío o no es un número.
   ///
-  /// In en, this message translates to:
-  /// **'Enter a valid page'**
+  /// In es, this message translates to:
+  /// **'Ingresa una página válida'**
   String get errorEmptyPage;
 
-  /// Error message when page number exceeds total book pages.
+  /// Mensaje de error cuando la página supera el total del libro.
   ///
-  /// In en, this message translates to:
-  /// **'Page cannot exceed {totalPages}'**
+  /// In es, this message translates to:
+  /// **'La página no puede ser mayor a {totalPages}'**
   String errorInvalidPageRange(int totalPages);
 
-  /// Error message when note text field is empty.
+  /// Mensaje de error cuando el cuadro de texto de la nota está vacío.
   ///
-  /// In en, this message translates to:
-  /// **'Please enter note content'**
+  /// In es, this message translates to:
+  /// **'Escribe un contenido para la nota'**
   String get errorEmptyNote;
 
-  /// Main title of the modal when ending a reading session.
+  /// Título de la sección o vista de notas asociadas a un libro.
   ///
-  /// In en, this message translates to:
-  /// **'Finish reading'**
+  /// In es, this message translates to:
+  /// **'Notas del libro'**
+  String get bookNotesTitle;
+
+  /// Mensaje de error cuando falla la carga del listado de notas.
+  ///
+  /// In es, this message translates to:
+  /// **'Error al cargar las notas: {error}'**
+  String errorLoadingNotes(String error);
+
+  /// Mensaje en estado vacío indicando que el libro no posee notas registradas.
+  ///
+  /// In es, this message translates to:
+  /// **'No hay notas guardadas para este libro'**
+  String get emptyNotesMessage;
+
+  /// Título principal en el AppBar de la pantalla de detalles del libro
+  ///
+  /// In es, this message translates to:
+  /// **'Tu libro'**
+  String get yourBookTitle;
+
+  /// Etiqueta para el código ISBN del libro
+  ///
+  /// In es, this message translates to:
+  /// **'ISBN'**
+  String get isbn;
+
+  /// Texto para el botón o acción de eliminar
+  ///
+  /// In es, this message translates to:
+  /// **'Borrar'**
+  String get deleteAction;
+
+  /// Título de la tarjeta de información de la editorial/edición
+  ///
+  /// In es, this message translates to:
+  /// **'Información de Edición'**
+  String get editionInfo;
+
+  /// Etiqueta para la editorial del libro
+  ///
+  /// In es, this message translates to:
+  /// **'Editorial'**
+  String get publisher;
+
+  /// Etiqueta para el idioma del libro
+  ///
+  /// In es, this message translates to:
+  /// **'Idioma'**
+  String get language;
+
+  /// Etiqueta para la fecha de publicación del libro
+  ///
+  /// In es, this message translates to:
+  /// **'Publicación'**
+  String get publicationDate;
+
+  /// Título de la sección de sinopsis o descripción
+  ///
+  /// In es, this message translates to:
+  /// **'Sinopsis'**
+  String get synopsis;
+
+  /// Título del menú desplegable de selección de estado
+  ///
+  /// In es, this message translates to:
+  /// **'Estado de Lectura'**
+  String get readingStatusTitle;
+
+  /// Mensaje instructivo del menú de estados
+  ///
+  /// In es, this message translates to:
+  /// **'Selecciona el estado actual de este libro'**
+  String get readingStatusMessage;
+
+  /// Estado: Leyendo
+  ///
+  /// In es, this message translates to:
+  /// **'Leyendo'**
+  String get statusReading;
+
+  /// Estado: Por leer
+  ///
+  /// In es, this message translates to:
+  /// **'Por leer'**
+  String get statusToRead;
+
+  /// Estado: Pausado
+  ///
+  /// In es, this message translates to:
+  /// **'Pausado'**
+  String get statusPaused;
+
+  /// Estado: Abandonado
+  ///
+  /// In es, this message translates to:
+  /// **'Abandonado'**
+  String get statusDropped;
+
+  /// Estado: Terminado
+  ///
+  /// In es, this message translates to:
+  /// **'Terminado'**
+  String get statusFinished;
+
+  /// Título de la ventana modal de confirmación de borrado
+  ///
+  /// In es, this message translates to:
+  /// **'Eliminar libro'**
+  String get deleteBookDialogTitle;
+
+  /// Mensaje de confirmación para eliminar un libro especificando su título
+  ///
+  /// In es, this message translates to:
+  /// **'¿Estás seguro de que deseas eliminar \"{bookTitle}\"? Esta acción no se puede deshacer.'**
+  String deleteBookDialogMessage(String bookTitle);
+
+  /// Mensaje de confirmación cuando un libro se añade a la lista de favoritos.
+  ///
+  /// In es, this message translates to:
+  /// **'Agregado a favoritos'**
+  String get addedToFavorites;
+
+  /// Mensaje de confirmación cuando un libro se elimina de la lista de favoritos.
+  ///
+  /// In es, this message translates to:
+  /// **'Quitado de favoritos'**
+  String get removedFromFavorites;
+
+  /// Mensaje de confirmación tras cambiar el estado de lectura de un libro (ej. Por leer, Leyendo, Terminado).
+  ///
+  /// In es, this message translates to:
+  /// **'Estado del libro actualizado'**
+  String get bookStatusUpdated;
+
+  /// Título para el flujo de adición manual
+  ///
+  /// In es, this message translates to:
+  /// **'Agregar libro'**
+  String get addManualBook;
+
+  /// Título del AppBar en el detalle del libro para agregar
+  ///
+  /// In es, this message translates to:
+  /// **'Agregar libro'**
+  String get addBookTitle;
+
+  /// Encabezado de la sección de datos generales
+  ///
+  /// In es, this message translates to:
+  /// **'Información'**
+  String get sectionInfo;
+
+  /// Encabezado de la sección para seleccionar el estado de lectura del libro
+  ///
+  /// In es, this message translates to:
+  /// **'Seleccione el estado de lectura'**
+  String get sectionSelected;
+
+  /// Encabezado de la sección de sinopsis o resumen
+  ///
+  /// In es, this message translates to:
+  /// **'Descripción'**
+  String get sectionDescription;
+
+  /// Encabezado de la sección de datos de publicación
+  ///
+  /// In es, this message translates to:
+  /// **'Editorial'**
+  String get sectionPublisher;
+
+  /// Encabezado para información complementaria como categorías o tags
+  ///
+  /// In es, this message translates to:
+  /// **'Otros'**
+  String get sectionOther;
+
+  /// Etiqueta para el campo de título
+  ///
+  /// In es, this message translates to:
+  /// **'Título'**
+  String get fieldTitle;
+
+  /// Etiqueta para el campo de autores
+  ///
+  /// In es, this message translates to:
+  /// **'Autor(es)'**
+  String get fieldAuthors;
+
+  /// Etiqueta para el código ISBN
+  ///
+  /// In es, this message translates to:
+  /// **'ISBN'**
+  String get fieldIsbn;
+
+  /// Etiqueta para el idioma del libro
+  ///
+  /// In es, this message translates to:
+  /// **'Idioma'**
+  String get fieldLanguage;
+
+  /// Etiqueta para la cantidad de páginas
+  ///
+  /// In es, this message translates to:
+  /// **'Páginas'**
+  String get fieldPages;
+
+  /// Etiqueta para el nombre de la editorial
+  ///
+  /// In es, this message translates to:
+  /// **'Editorial'**
+  String get fieldPublisher;
+
+  /// Etiqueta para la fecha de lanzamiento
+  ///
+  /// In es, this message translates to:
+  /// **'Fecha de publicación'**
+  String get fieldPublishedDate;
+
+  /// Etiqueta para géneros o categorías
+  ///
+  /// In es, this message translates to:
+  /// **'Categorías'**
+  String get fieldCategories;
+
+  /// Etiqueta para la calificación o puntaje del libro
+  ///
+  /// In es, this message translates to:
+  /// **'Valoración'**
+  String get fieldRating;
+
+  /// Texto del botón principal para guardar la entidad en la base de datos
+  ///
+  /// In es, this message translates to:
+  /// **'Guardar en la biblioteca'**
+  String get btnSaveToLibrary;
+
+  /// Título de la pantalla o modal para la búsqueda de portadas de libros.
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar imagen'**
+  String get searchImageTitle;
+
+  /// Texto placeholder del campo de texto de búsqueda.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe para buscar imágenes en la red'**
+  String get searchImageHint;
+
+  /// Mensaje de error que se muestra cuando el campo de título del libro está vacío.
+  ///
+  /// In es, this message translates to:
+  /// **'El título es requerido'**
+  String get validationTitleRequired;
+
+  /// Título del cuadro de diálogo de confirmación para reemplazar la portada.
+  ///
+  /// In es, this message translates to:
+  /// **'Cambiar portada'**
+  String get confirmChangeCoverTitle;
+
+  /// Mensaje principal del cuadro de diálogo de confirmación.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Deseas reemplazar la portada actual por esta imagen?'**
+  String get confirmChangeCoverMessage;
+
+  /// Texto del botón para iniciar una nueva sesión de lectura
+  ///
+  /// In es, this message translates to:
+  /// **'Leer'**
+  String get newSession;
+
+  /// Título de la sección desplegable del historial de sesiones
+  ///
+  /// In es, this message translates to:
+  /// **'Historial de Lectura'**
+  String get readingHistory;
+
+  /// Mensaje cuando no hay sesiones grabadas
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no has registrado sesiones de lectura.'**
+  String get noSessionsRegistered;
+
+  /// Texto del rango de páginas leídas en una sesión
+  ///
+  /// In es, this message translates to:
+  /// **'Páginas {startPage} a {endPage}'**
+  String pagesRange(int startPage, int endPage);
+
+  /// Texto para indicar la página final cuando no hay página de inicio registrada
+  ///
+  /// In es, this message translates to:
+  /// **'Hasta página {endPage}'**
+  String upToPage(int endPage);
+
+  /// Título principal de la vista o modal de la sesión de lectura activa.
+  ///
+  /// In es, this message translates to:
+  /// **'Sesión de Lectura'**
+  String get readingSessionTitle;
+
+  /// Etiqueta del botón para comenzar el conteo del cronómetro de lectura por primera vez.
+  ///
+  /// In es, this message translates to:
+  /// **'Iniciar'**
+  String get timerStart;
+
+  /// Etiqueta del botón para reanudar el conteo del cronómetro tras haber sido pausado.
+  ///
+  /// In es, this message translates to:
+  /// **'Continuar'**
+  String get timerResume;
+
+  /// Etiqueta del botón para detener temporalmente el cronómetro de lectura.
+  ///
+  /// In es, this message translates to:
+  /// **'Pausar'**
+  String get timerPause;
+
+  /// Botón principal para detener el cronómetro y registrar el avance de lectura.
+  ///
+  /// In es, this message translates to:
+  /// **'Finalizar'**
+  String get finishSession;
+
+  /// Título principal del modal al finalizar una sesión de lectura.
+  ///
+  /// In es, this message translates to:
+  /// **'Finalizar lectura'**
   String get finishReadingTitle;
 
-  /// Label for the total duration of the session.
+  /// Etiqueta para mostrar la duración total de la sesión.
   ///
-  /// In en, this message translates to:
-  /// **'Time read'**
+  /// In es, this message translates to:
+  /// **'Tiempo leído'**
   String get timeReadLabel;
 
-  /// Abbreviation for minutes.
+  /// Abreviatura de minutos.
   ///
-  /// In en, this message translates to:
+  /// In es, this message translates to:
   /// **'min'**
   String get minutesShort;
 
-  /// Abbreviation for seconds.
+  /// Abreviatura de segundos.
   ///
-  /// In en, this message translates to:
+  /// In es, this message translates to:
   /// **'s'**
   String get secondsShort;
 
-  /// Label for the input where the user enters the reached page.
+  /// Etiqueta del campo donde el usuario ingresa la página alcanzada.
   ///
-  /// In en, this message translates to:
-  /// **'What page did you reach?'**
+  /// In es, this message translates to:
+  /// **'¿En qué página te quedaste?'**
   String get whatPageDidYouReach;
 
-  /// Hint text for the page input field.
+  /// Texto de sugerencia en el campo de texto de página actual.
   ///
-  /// In en, this message translates to:
-  /// **'Current page (e.g. {page})'**
+  /// In es, this message translates to:
+  /// **'Página actual (ej. {page})'**
   String currentPageHint(int page);
 
-  /// Text for the main button to save the reading entry.
+  /// Texto del botón principal para guardar el registro de lectura.
   ///
-  /// In en, this message translates to:
-  /// **'Save session'**
+  /// In es, this message translates to:
+  /// **'Guardar sesión'**
   String get saveSessionButton;
 
-  /// Error message when the page field is empty.
+  /// Mensaje de error cuando el campo de página está vacío.
   ///
-  /// In en, this message translates to:
-  /// **'Please enter the end page'**
+  /// In es, this message translates to:
+  /// **'Ingresa la página final'**
   String get validationEnterEndPage;
 
-  /// Error message when the input value is not a valid integer.
+  /// Mensaje de error cuando el valor ingresado no es un entero válido.
   ///
-  /// In en, this message translates to:
-  /// **'Please enter a valid number'**
+  /// In es, this message translates to:
+  /// **'Ingresa un número válido'**
   String get validationInvalidNumber;
 
-  /// Error message when the end page is lower than the starting page.
+  /// Mensaje de error cuando la página final es menor a la página donde se inició.
   ///
-  /// In en, this message translates to:
-  /// **'Cannot be lower than the previous page ({currentPage})'**
+  /// In es, this message translates to:
+  /// **'No puede ser menor a la página anterior ({currentPage})'**
   String validationPageLowerThanCurrent(int currentPage);
 
-  /// Error message when the entered page exceeds total book pages.
+  /// Mensaje de error cuando la página ingresada excede las páginas totales del libro.
   ///
-  /// In en, this message translates to:
-  /// **'Cannot exceed total pages ({totalPages})'**
+  /// In es, this message translates to:
+  /// **'No puede superar el total de páginas ({totalPages})'**
   String validationPageExceedsTotal(int totalPages);
 
-  /// Main title for session summary page.
+  /// Título superior de la pantalla de resumen.
   ///
-  /// In en, this message translates to:
-  /// **'Summary'**
+  /// In es, this message translates to:
+  /// **'Resumen'**
   String get sessionSummaryTitle;
 
-  /// Label for amount of pages read.
+  /// Etiqueta para la cantidad de páginas leídas en la sesión.
   ///
-  /// In en, this message translates to:
-  /// **'Pages read'**
+  /// In es, this message translates to:
+  /// **'Páginas leídas'**
   String get pagesReadLabel;
 
-  /// Label for reading speed in pages per minute.
+  /// Etiqueta para la velocidad en páginas por minuto.
   ///
-  /// In en, this message translates to:
-  /// **'Reading speed'**
+  /// In es, this message translates to:
+  /// **'Velocidad de lectura'**
   String get readingSpeedLabel;
 
-  /// Format for reading speed.
+  /// Formato para la velocidad de lectura.
   ///
-  /// In en, this message translates to:
-  /// **'{speed} pages/min'**
+  /// In es, this message translates to:
+  /// **'{speed} pág/min'**
   String pagesPerMinute(String speed);
 
-  /// Label for estimated time left to finish the book.
+  /// Etiqueta para la estimación de tiempo para terminar el libro.
   ///
-  /// In en, this message translates to:
-  /// **'Est. time remaining'**
+  /// In es, this message translates to:
+  /// **'Tiempo restante est.'**
   String get estimatedTimeRemaining;
 
-  /// Main button to save and go back home.
+  /// Botón principal para guardar y volver al inicio.
   ///
-  /// In en, this message translates to:
-  /// **'Done'**
+  /// In es, this message translates to:
+  /// **'Finalizar'**
   String get doneButton;
 
-  /// Main title of the summary view when done reading.
+  /// Título principal de la vista de resumen al terminar de leer.
   ///
-  /// In en, this message translates to:
-  /// **'Reading Session Result'**
+  /// In es, this message translates to:
+  /// **'Resultado de la sesión de lectura'**
   String get sessionResultTitle;
 
-  /// Informs how many pages the user read and the session duration.
+  /// Informa cuántas páginas leyó el usuario y la duración de la sesión.
   ///
-  /// In en, this message translates to:
-  /// **'You read {pages} pages in {duration}.'**
+  /// In es, this message translates to:
+  /// **'Has leído {pages} páginas durante {duration}.'**
   String readSummaryInfo(int pages, String duration);
 
-  /// Displays average reading speed per hour.
+  /// Muestra el promedio de velocidad de lectura por hora.
   ///
-  /// In en, this message translates to:
-  /// **'This is your average reading speed: {pagesPerHour} pages per hour.'**
+  /// In es, this message translates to:
+  /// **'Esta es la velocidad promedio a la que lees: {pagesPerHour} páginas por hora.'**
   String readingSpeedInfo(String pagesPerHour);
 
-  /// Displays estimated time left to complete the book.
+  /// Muestra la estimación del tiempo restante para terminar el libro.
   ///
-  /// In en, this message translates to:
-  /// **'Time left to finish is {timeRemaining}.'**
+  /// In es, this message translates to:
+  /// **'El tiempo para finalizar es {timeRemaining}.'**
   String timeRemainingInfo(String timeRemaining);
 
-  /// Indicates how many pages remain to complete the book.
+  /// Indica cuántas páginas le faltan al usuario para concluir el libro.
   ///
-  /// In en, this message translates to:
-  /// **'There are {pagesRemaining} pages left to finish your book.'**
+  /// In es, this message translates to:
+  /// **'Quedan {pagesRemaining} páginas para terminar tu libro.'**
   String pagesRemainingInfo(int pagesRemaining);
 }
 

@@ -1,0 +1,51 @@
+{
+  "@@locale": "es",
+  "searchTitle": "Buscar Libro",
+  "@searchTitle": {
+    "description": "Título del AppBar en la pantalla de búsqueda online"
+  },
+  "searchButton": "Buscar",
+  "@searchButton": {
+    "description": "Texto del botón de la barra de búsqueda"
+  },
+  "searchPlaceholder": "Título o autor...",
+  "@searchPlaceholder": {
+    "description": "Hint text dentro del campo de texto de búsqueda"
+  },
+  "searchInitialHint": "Escribe para buscar libros en la red",
+  "@searchInitialHint": {
+    "description": "Mensaje informativo en el centro de la pantalla antes de buscar"
+  },
+  "noSearchResults": "No se encontraron resultados",
+  "@noSearchResults": {
+    "description": "Mensaje de búsqueda sin coincidencias"
+  },
+  "scanIsbnTitle": "Escanear Código ISBN",
+  "@scanIsbnTitle": {
+    "description": "Título principal de la pantalla del escáner de códigos de barras ISBN."
+  },
+  "scanIsbnInstruction": "Alinea el código de barras aquí",
+  "@scanIsbnInstruction": {
+    "description": "Texto con instrucciones para orientar al usuario al encuadrar el código de barras en la cámara."
+  },
+  "scanIsbnLoading": "Buscando libro por ISBN...",
+  "@scanIsbnLoading": {
+    "description": "Mensaje de carga desplegado mientras se realiza la consulta del libro en la API."
+  },
+  "bookNotFoundTitle": "No se encontró el libro",
+  "@bookNotFoundTitle": {
+    "description": "Mensaje de alerta o título cuando una búsqueda por ISBN o escaneo no arroja resultados."
+  },
+  "searchByNamePrompt": "¿Deseas buscarlo por nombre?",
+  "@searchByNamePrompt": {
+    "description": "Pregunta de sugerencia o mensaje para permitir al usuario realizar una búsqueda por título/autor."
+  },
+  "duplicateBookTitle": "Libro Duplicado",
+  "@duplicateBookTitle": {
+    "description": "Título del diálogo que advierte que un libro ya se encuentra en la biblioteca."
+  },
+  "duplicateBookMessage": "Ya existe este libro en tu biblioteca.",
+  "@duplicateBookMessage": {
+    "description": "Mensajes explicativo que informa al usuario que el ISBN ingresado ya está registrado."
+  }
+}

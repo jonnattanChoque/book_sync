@@ -1,0 +1,131 @@
+{
+  "@@locale": "es",
+  "addNote": "Nota",
+  "@addNote": {
+    "description": "Texto del botón para agregar una nota rápida"
+  },
+  "readingNotes": "Notas de Lectura",
+  "@readingNotes": {
+    "description": "Título de la sección desplegable de notas"
+  },
+  "noNotesRegistered": "No hay notas registradas en este libro.",
+  "@noNotesRegistered": {
+    "description": "Mensaje cuando no se han creado notas en el libro"
+  },
+  "newReadingNote": "Nueva Nota de Lectura",
+  "@newReadingNote": {
+    "description": "Título del modal para agregar nota"
+  },
+  "addNoteHint": "Escribe tu reflexión o cita del libro...",
+  "@addNoteHint": {
+    "description": "Placeholder dentro del campo de texto de nota"
+  },
+  "viewNotes": "Ver notas",
+  "@viewNotes": {
+    "description": "Botón para desplegar la lista de notas dentro de la vista de lectura."
+  },
+  "hideNotes": "Ocultar notas",
+  "@hideNotes": {
+    "description": "Texto del botón cuando la lista de notas ya está visible."
+  },
+  "noNotesYet": "Aún no tienes notas registradas para este libro.",
+  "@noNotesYet": {
+    "description": "Mensaje informativo en caso de que el libro no posea notas registradas."
+  },
+  "addNoteTitle": "Agregar Nota",
+  "@addNoteTitle": {
+    "description": "Título principal del modal para crear una nueva nota."
+  },
+  "categoryLabel": "Categoría",
+  "@categoryLabel": {
+    "description": "Etiqueta para la sección de selección de categoría."
+  },
+  "categoryQuote": "Cita",
+  "@categoryQuote": {
+    "description": "Categoría para citas textuales."
+  },
+  "categorySummary": "Resumen",
+  "@categorySummary": {
+    "description": "Categoría para resúmenes."
+  },
+  "categoryQuestion": "Pregunta",
+  "@categoryQuestion": {
+    "description": "Categoría para preguntas o dudas."
+  },
+  "categoryReflection": "Reflexión",
+  "@categoryReflection": {
+    "description": "Categoría para reflexiones personales."
+  },
+  "categoryIdea": "Idea",
+  "@categoryIdea": {
+    "description": "Categoría para ideas o chispas de pensamiento."
+  },
+  "categoryOther": "Otro",
+  "@categoryOther": {
+    "description": "Categoría general."
+  },
+  "dateLabel": "Fecha",
+  "@dateLabel": {
+    "description": "Etiqueta para el campo de fecha."
+  },
+  "pageLabel": "Página",
+  "@pageLabel": {
+    "description": "Etiqueta para el campo de página."
+  },
+  "pageOption": "Pág. {page}",
+  "@pageOption": {
+    "description": "Opción desplegable para indicar el número de página.",
+    "placeholders": {
+      "page": {
+        "type": "int"
+      }
+    }
+  },
+  "noteLabel": "Nota",
+  "@noteLabel": {
+    "description": "Etiqueta para el campo de texto de la nota."
+  },
+  "noteInputHint": "Escribe tu cita, resumen o reflexión...",
+  "@noteInputHint": {
+    "description": "Texto de sugerencia en el cuadro de texto de la nota."
+  },
+  "saveNoteButton": "Guardar Nota",
+  "@saveNoteButton": {
+    "description": "Botón para confirmar y guardar la nota."
+  },
+  "errorEmptyPage": "Ingresa una página válida",
+  "@errorEmptyPage": {
+    "description": "Mensaje de error cuando el campo de página está vacío o no es un número."
+  },
+  "errorInvalidPageRange": "La página no puede ser mayor a {totalPages}",
+  "@errorInvalidPageRange": {
+    "description": "Mensaje de error cuando la página supera el total del libro.",
+    "placeholders": {
+      "totalPages": {
+        "type": "int"
+      }
+    }
+  },
+  "errorEmptyNote": "Escribe un contenido para la nota",
+  "@errorEmptyNote": {
+    "description": "Mensaje de error cuando el cuadro de texto de la nota está vacío."
+  },
+  "bookNotesTitle": "Notas del libro",
+  "@bookNotesTitle": {
+    "description": "Título de la sección o vista de notas asociadas a un libro."
+  },
+  "errorLoadingNotes": "Error al cargar las notas: {error}",
+  "@errorLoadingNotes": {
+    "description": "Mensaje de error cuando falla la carga del listado de notas.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "DatabaseException"
+      }
+    }
+  },
+  "emptyNotesMessage": "No hay notas guardadas para este libro",
+  "@emptyNotesMessage": {
+    "description": "Mensaje en estado vacío indicando que el libro no posee notas registradas."
+  }
+}

@@ -1,4 +1,5 @@
 import 'package:book_sync/core/constants/app_icons.dart';
+import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/widgets/background_paper_texture.dart';
 import 'package:book_sync/core/widgets/primary_outlined_button.dart';
 import 'package:book_sync/l10n/app_localizations.dart';
@@ -120,40 +121,34 @@ class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen>
 
     if (!mounted) return;
     if (existingBook != null) {
-      final l10n = AppLocalizations.of(context);
 
-      if (l10n != null) {
-        showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: Text(l10n.duplicateBookTitle),
-              content: Text(l10n.duplicateBookMessage),
-              actions: [
-                TextButton(
-                  onPressed: () => {
-                    Navigator.of(context).pop(),
-                    context.pushReplacement('/')
-                  },
-                  child: Text(l10n.accept),
-                ),
-              ],
-            );
-          },
-        );
-      }
-      return;
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(context.l10n.duplicateBookTitle),
+            content: Text(context.l10n.duplicateBookMessage),
+            actions: [
+              TextButton(
+                onPressed: () => {
+                  Navigator.of(context).pop(),
+                  context.pushReplacement('/')
+                },
+                child: Text(context.l10n.accept),
+              ),
+            ],
+          );
+        },
+      );
+          return;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final l10n = AppLocalizations.of(context)!;
 
     return ColoredBox(
-      color: theme.scaffoldBackgroundColor,
+      color: context.theme.scaffoldBackgroundColor,
       child: Stack(
         children: [
           const Positioned.fill(
@@ -161,10 +156,10 @@ class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen>
           ),
           Scaffold(
             backgroundColor: Colors.transparent,
-            appBar: _buildTitle(colorScheme, context, l10n, theme),
+            appBar: _buildTitle(),
             body: Form(
               key: _formKey,
-              child: _buildScrollContent(context, l10n, theme, colorScheme),
+              child: _buildScrollContent(),
             ),
           ),
         ],
@@ -172,12 +167,7 @@ class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen>
     );
   }
 
-  AppBar _buildTitle(
-    ColorScheme colorScheme,
-    BuildContext context,
-    AppLocalizations l10n,
-    ThemeData theme,
-  ) {
+  AppBar _buildTitle() {
     final isManual = widget.book == null;
     return AppBar(
       centerTitle: true,
@@ -186,7 +176,7 @@ class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen>
       leading: IconButton(
         icon: Icon(
           AppIcons.back,
-          color: colorScheme.onSurface,
+          color: context.colorScheme.onSurface,
         ),
         onPressed: () {
           FocusScope.of(context).unfocus();
@@ -194,66 +184,55 @@ class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen>
         },
       ),
       title: Text(
-        isManual ? l10n.addManualBook : l10n.addBookTitle,
-        style: theme.textTheme.titleLarge,
+        isManual ? context.l10n.addManualBook : context.l10n.addBookTitle,
+        style: context.theme.textTheme.titleLarge,
       ),
     );
   }
 
-  SingleChildScrollView _buildScrollContent(
-    BuildContext context,
-    AppLocalizations l10n,
-    ThemeData theme,
-    ColorScheme colorScheme,
-  ) {
+  SingleChildScrollView _buildScrollContent() {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           // 1. Portada del libro centrada
-          _buildCover(context, _titleController.text),
+          _buildCover(_titleController.text),
           const SizedBox(height: 24),
 
           // 2. Sección Información Principal
-          _buildSectionHeader(context, l10n.sectionInfo),
+          _buildSectionHeader(context.l10n.sectionInfo),
           _buildDetailCard(
-            context,
              true,
             children: [
               _buildEditableRow(
-                context,
-                label: l10n.fieldTitle,
+                label: context.l10n.fieldTitle,
                 controller: _titleController,
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
-                    return 'El título es requerido';
+                    return context.l10n.validationTitleRequired;
                   }
                   return null;
                 },
               ),
-              _buildDivider(context),
+              _buildDivider(),
               _buildEditableRow(
-                context,
-                label: l10n.fieldAuthors,
+                label: context.l10n.fieldAuthors,
                 controller: _authorsController,
               ),
-              _buildDivider(context),
+              _buildDivider(),
               _buildEditableRow(
-                context,
-                label: l10n.fieldIsbn,
+                label: context.l10n.fieldIsbn,
                 controller: _isbnController,
               ),
-              _buildDivider(context),
+              _buildDivider(),
               _buildEditableRow(
-                context,
-                label: l10n.fieldLanguage,
+                label: context.l10n.fieldLanguage,
                 controller: _languageController,
               ),
-              _buildDivider(context),
+              _buildDivider(),
               _buildEditableRow(
-                context,
-                label: l10n.fieldPages,
+                label: context.l10n.fieldPages,
                 controller: _pagesController,
                 keyboardType: TextInputType.number,
               ),
@@ -261,22 +240,21 @@ class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen>
           ),
           const SizedBox(height: 20),
           
-          _buildSectionHeader(context, l10n.sectionSelected),
-          _buildDetailCard(context, false, children: [_buildStatusSelector(l10n)]),
+          _buildSectionHeader(context.l10n.sectionSelected),
+          _buildDetailCard(false, children: [_buildStatusSelector()]),
           const SizedBox(height: 20),
 
           // 3. Sección Descripción
-          _buildSectionHeader(context, l10n.sectionDescription),
+          _buildSectionHeader(context.l10n.sectionDescription),
           _buildDetailCard(
-            context,
              true,
             children: [
               TextFormField(
                 controller: _descriptionController,
                 maxLines: 4,
                 minLines: 2,
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: colorScheme.onSurface,
+                style: context.theme.textTheme.bodyMedium?.copyWith(
+                  color: context.colorScheme.onSurface,
                 ),
                 decoration: InputDecoration(
                   isDense: true,
@@ -284,8 +262,8 @@ class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen>
                   border: InputBorder.none,
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
-                  hintStyle: theme.textTheme.bodyMedium?.copyWith(
-                    color: colorScheme.onSurface.withValues(alpha: 0.4),
+                  hintStyle: context.theme.textTheme.bodyMedium?.copyWith(
+                    color: context.colorScheme.onSurface.withValues(alpha: 0.4),
                   ),
                 ),
               ),
@@ -294,20 +272,17 @@ class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen>
           const SizedBox(height: 20),
 
           // 4. Sección Editorial
-          _buildSectionHeader(context, l10n.sectionPublisher),
+          _buildSectionHeader(context.l10n.sectionPublisher),
           _buildDetailCard(
-            context,
              true,
             children: [
               _buildEditableRow(
-                context,
-                label: l10n.fieldPublisher,
+                label: context.l10n.fieldPublisher,
                 controller: _publisherController,
               ),
-              _buildDivider(context),
+              _buildDivider(),
               _buildEditableRow(
-                context,
-                label: l10n.fieldPublishedDate,
+                label: context.l10n.fieldPublishedDate,
                 controller: _publishedDateController,
               ),
             ],
@@ -315,14 +290,12 @@ class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen>
           const SizedBox(height: 20),
 
           // 5. Sección Otros
-          _buildSectionHeader(context, l10n.sectionOther),
+          _buildSectionHeader(context.l10n.sectionOther),
           _buildDetailCard(
-            context,
              true,
             children: [
               _buildEditableRow(
-                context,
-                label: l10n.fieldCategories,
+                label: context.l10n.fieldCategories,
                 controller: _categoriesController,
               ),
             ],
@@ -331,7 +304,7 @@ class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen>
 
           // 6. Botón de Acción Principal
           PrimaryOutlinedButton(
-            label: l10n.btnSaveToLibrary,
+            label: context.l10n.btnSaveToLibrary,
             icon: AppIcons.save,
             onPressed: _saveBook
             ,
@@ -342,22 +315,21 @@ class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen>
     );
   }
 
-  Widget _buildSectionHeader(BuildContext context, String title) {
-    final theme = Theme.of(context);
+  Widget _buildSectionHeader(String title) {
     return Padding(
       padding: const EdgeInsets.only(left: 4.0, bottom: 8.0),
       child: Text(
         title,
-        style: theme.textTheme.titleSmall?.copyWith(
+        style: context.theme.textTheme.titleSmall?.copyWith(
           fontWeight: FontWeight.bold,
-          color: theme.colorScheme.primary,
+          color: context.theme.colorScheme.primary,
           letterSpacing: 0.5,
         ),
       ),
     );
   }
 
-  Center _buildCover(BuildContext context, String title) {
+  Center _buildCover(String title) {
     return Center(
       child: Stack(
         children: [
@@ -381,16 +353,16 @@ class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen>
                     _coverUrl!,
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) =>
-                        _buildPlaceholderCover(context),
+                        _buildPlaceholderCover(),
                   )
-                : _buildPlaceholderCover(context),
+                : _buildPlaceholderCover(),
             ),
           ),
           Positioned(
             right: 6,
             bottom: 6,
             child: Material(
-              color: Theme.of(context).primaryColor,
+              color: context.theme.primaryColor,
               shape: const CircleBorder(),
               elevation: 4,
               child: InkWell(
@@ -423,17 +395,17 @@ class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen>
     );
   }
 
-  Widget _buildStatusSelector(AppLocalizations l10n) {
+  Widget _buildStatusSelector() {
     return SegmentedButton<BookStatus>(
       segments: [
         ButtonSegment(
           value: BookStatus.toRead,
-          label: Text(l10n.tabLibraryToRead),
+          label: Text(context.l10n.tabLibraryToRead),
           icon: Icon(Icons.bookmark_border),
         ),
         ButtonSegment(
           value: BookStatus.reading,
-          label: Text(l10n.tabLibraryReading),
+          label: Text(context.l10n.tabLibraryReading),
           icon: Icon(Icons.book),
         ),
       ],
@@ -446,16 +418,15 @@ class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen>
     );
   }
 
-  Widget _buildDetailCard(BuildContext context, bool isBorderless, {required List<Widget> children}) {
-    final theme = Theme.of(context);
+  Widget _buildDetailCard(bool isBorderless, {required List<Widget> children}) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isBorderless ? theme.cardColor.withValues(alpha: 0.8) : null,
+        color: isBorderless ? context.theme.cardColor.withValues(alpha: 0.8) : null,
         borderRadius: isBorderless ? BorderRadius.circular(14) : BorderRadius.circular(0),
         border: isBorderless ? Border.all(
-          color: theme.colorScheme.outline.withValues(alpha: 0.15),
+          color: context.theme.colorScheme.outline.withValues(alpha: 0.15),
         ) : null,
       ),
       child: Column(
@@ -465,15 +436,12 @@ class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen>
     );
   }
 
-  Widget _buildEditableRow(
-    BuildContext context, {
+  Widget _buildEditableRow({
     required String label,
     required TextEditingController controller,
     TextInputType keyboardType = TextInputType.text,
     String? Function(String?)? validator,
   }) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2.0),
@@ -484,8 +452,8 @@ class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen>
             width: 120,
             child: Text(
               label,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: colorScheme.onSurface.withValues(alpha: 0.6),
+              style: context.theme.textTheme.bodyMedium?.copyWith(
+                color: context.theme.colorScheme.onSurface.withValues(alpha: 0.6),
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -495,23 +463,23 @@ class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen>
               controller: controller,
               keyboardType: keyboardType,
               validator: validator,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: colorScheme.onSurface,
+              style: context.theme.textTheme.bodyMedium?.copyWith(
+                color: context.theme.colorScheme.onSurface,
                 fontWeight: FontWeight.w600,
               ),
               decoration: InputDecoration(
                 isDense: true,
                 contentPadding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
                 hintText: '---',
-                hintStyle: theme.textTheme.bodyMedium?.copyWith(
-                  color: colorScheme.onSurface.withValues(alpha: 0.3),
+                hintStyle: context.theme.textTheme.bodyMedium?.copyWith(
+                  color: context.theme.colorScheme.onSurface.withValues(alpha: 0.3),
                 ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                   borderSide: BorderSide.none,
                 ),
                 filled: true,
-                fillColor: colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
+                fillColor: context.theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
               ),
             ),
           ),
@@ -520,16 +488,16 @@ class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen>
     );
   }
 
-  Widget _buildDivider(BuildContext context) {
+  Widget _buildDivider() {
     return Divider(
       height: 12,
       thickness: 1,
-      color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
+      color: context.theme.colorScheme.outline.withValues(alpha: 0.1),
     );
   }
 
-  Widget _buildPlaceholderCover(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+  Widget _buildPlaceholderCover() {
+    final colorScheme = context.theme.colorScheme;
     return Container(
       color: colorScheme.surfaceContainerHighest,
       child: Icon(

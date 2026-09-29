@@ -1,5 +1,6 @@
 // ignore_for_file: camel_case_types
 
+import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/theme/cozy_colors.dart';
 import 'package:book_sync/core/utils/date_formatter.dart';
 import 'package:book_sync/l10n/app_localizations.dart';
@@ -34,13 +35,13 @@ class _homeTitle extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          AppLocalizations.of(context)!.welcomeTitle,
-          style: Theme.of(context).textTheme.titleLarge,
+          context.l10n.welcomeTitle,
+          style: context.theme.textTheme.titleLarge,
         ),
         const SizedBox(height: 4),
         Text(
-          AppLocalizations.of(context)!.welcomeMessage,
-          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+          context.l10n.welcomeMessage,
+          style: context.theme.textTheme.headlineMedium?.copyWith(
             fontSize: 26,
             fontWeight: FontWeight.bold,
           ),

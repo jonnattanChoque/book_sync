@@ -1,0 +1,85 @@
+{
+  "@@locale": "es",
+  "welcomeTitle": "Hola,",
+  "@welcomeTitle": {
+    "description": "Saludo inicial en la pantalla principal"
+  },
+  "welcomeMessage": "Lector de historias",
+  "@welcomeMessage": {
+    "description": "Subtítulo de bienvenida en la pantalla principal"
+  },
+  "userName": "Lector de Historias",
+  "@userName": {
+    "description": "Nombre por defecto del usuario"
+  },
+  "addBook": "Agregar libro",
+  "@addBook": {
+    "description": "Texto del botón o acción general para agregar un libro"
+  },
+  "currentlyReading": "Leyendo ahora",
+  "@currentlyReading": {
+    "description": "Encabezado de la sección del libro en lectura actual"
+  },
+  "createBookTitle": "Agrega un libro a tu mesa de noche",
+  "@createBookTitle": {
+    "description": "Título en la vista o diálogo modal de adición de libros"
+  },
+  "noBooksTitle": "Tu mesa de noche está vacía",
+  "@noBooksTitle": {
+    "description": "Título del estado vacío de la biblioteca principal"
+  },
+  "noBooksSubtitle": "¿Qué historia empezaremos hoy?",
+  "@noBooksSubtitle": {
+    "description": "Mensaje motivacional cuando no hay libros registrados"
+  },
+  "addBySearch": "Agregar por búsqueda",
+  "@addBySearch": {
+    "description": "Opción para agregar libro mediante búsqueda en la API"
+  },
+  "addByScan": "Agregar por código (ISBN)",
+  "@addByScan": {
+    "description": "Opción para agregar libro escaneando código de barras"
+  },
+  "addByManual": "Agregar manualmente",
+  "@addByManual": {
+    "description": "Opción para agregar libro con formulario manual"
+  },
+  "cameraAccessError": "Error al acceder a la cámara",
+  "@cameraAccessError": {
+    "description": "Mensaje de error desplegado cuando el controlador no puede iniciar el hardware de la cámara."
+  },
+  "retry": "Reintentar",
+  "@retry": {
+    "description": "Texto para el botón que permite reintentar una acción fallida."
+  },
+  "actionCancel": "Cancelar",
+  "@actionCancel": {
+    "description": "Etiqueta para el botón de cancelar la acción."
+  },
+  "actionConfirm": "Confirmar",
+  "@actionConfirm": {
+    "description": "Etiqueta para el botón de aceptar o confirmar el cambio de portada."
+  },
+  "accept": "Aceptar",
+  "@accept": {
+    "description": "Texto del botón principal para cerrar o confirmar un diálogo de alerta."
+  },
+  "cancel": "Cancelar",
+  "@cancel": {
+    "description": "Texto genérico para cancelar diálogos o acciones"
+  },
+  "save": "Guardar",
+  "@save": {
+    "description": "Texto genérico para guardar cambios"
+  },
+  "errorLoadingBooks": "Error al cargar libros: {error}",
+  "@errorLoadingBooks": {
+    "description": "Mensaje desplegado cuando ocurre un fallo al obtener la lista de libros.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "SocketException"
+      }
+    }
+  }
+}

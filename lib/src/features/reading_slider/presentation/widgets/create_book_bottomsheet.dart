@@ -1,6 +1,5 @@
-import 'package:book_sync/core/theme/cozy_colors.dart';
+import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/widgets/handdrawn_button.dart';
-import 'package:book_sync/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -9,7 +8,6 @@ class CreateBookBottomsheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cozy = Theme.of(context).extension<CozyColors>();
 
     return SizedBox(
       height: 300,
@@ -20,8 +18,8 @@ class CreateBookBottomsheet extends StatelessWidget {
           children: <Widget>[
             Expanded(
               child: Text(
-                AppLocalizations.of(context)!.addBook,
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(color: cozy!.textColor),
+                context.l10n.addBook,
+                style: context.theme.textTheme.titleLarge?.copyWith(color: context.cozy.textColor),
               ),
             ),
             HandDrawnButton(
@@ -30,7 +28,7 @@ class CreateBookBottomsheet extends StatelessWidget {
                 context.push('/search');
               },
               icon: Icons.search,
-              text: AppLocalizations.of(context)!.addBySearch,
+              text: context.l10n.addBySearch,
             ),
             HandDrawnButton(
               onPressed: () {
@@ -38,7 +36,7 @@ class CreateBookBottomsheet extends StatelessWidget {
                 context.push('/scanner');
               },
               icon: Icons.document_scanner,
-              text: AppLocalizations.of(context)!.addByScan,
+              text: context.l10n.addByScan,
             ),
             HandDrawnButton(
               onPressed: () {
@@ -46,7 +44,7 @@ class CreateBookBottomsheet extends StatelessWidget {
                 context.push('/search_detail');
               },
               icon: Icons.keyboard,
-              text: AppLocalizations.of(context)!.addByManual,
+              text: context.l10n.addByManual,
             ),
             SizedBox(height: 16),
           ],

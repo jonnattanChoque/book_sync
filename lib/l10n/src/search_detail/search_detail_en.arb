@@ -1,0 +1,95 @@
+{
+  "@@locale": "en",
+  "addManualBook": "Add book manually",
+  "@addManualBook": {
+    "description": "Title for manual entry flow"
+  },
+  "addBookTitle": "Add book",
+  "@addBookTitle": {
+    "description": "AppBar title in book detail screen"
+  },
+  "createBookTitle": "Add a book to your nightstand",
+  "@createBookTitle": {
+    "description": "Title in book addition dialog"
+  },
+  "sectionInfo": "Information",
+  "@sectionInfo": {
+    "description": "Header for general data section"
+  },
+  "sectionSelected": "Select reading status",
+  "@sectionSelected": {
+    "description": "Header for reading status selection"
+  },
+  "sectionDescription": "Description",
+  "@sectionDescription": {
+    "description": "Header for synopsis section"
+  },
+  "sectionPublisher": "Publisher",
+  "@sectionPublisher": {
+    "description": "Header for publication section"
+  },
+  "sectionOther": "Other",
+  "@sectionOther": {
+    "description": "Header for categories or extra info"
+  },
+  "fieldTitle": "Title",
+  "@fieldTitle": {
+    "description": "Label for title field"
+  },
+  "fieldAuthors": "Author(s)",
+  "@fieldAuthors": {
+    "description": "Label for authors field"
+  },
+  "fieldIsbn": "ISBN",
+  "@fieldIsbn": {
+    "description": "Label for ISBN code"
+  },
+  "fieldLanguage": "Language",
+  "@fieldLanguage": {
+    "description": "Label for book language"
+  },
+  "fieldPages": "Pages",
+  "@fieldPages": {
+    "description": "Label for page count"
+  },
+  "fieldPublisher": "Publisher",
+  "@fieldPublisher": {
+    "description": "Label for publisher name"
+  },
+  "fieldPublishedDate": "Publication Date",
+  "@fieldPublishedDate": {
+    "description": "Label for release date"
+  },
+  "fieldCategories": "Categories",
+  "@fieldCategories": {
+    "description": "Label for genres or categories"
+  },
+  "fieldRating": "Rating",
+  "@fieldRating": {
+    "description": "Label for book rating"
+  },
+  "btnSaveToLibrary": "Save to library",
+  "@btnSaveToLibrary": {
+    "description": "Button text to save book to database"
+  },
+  "searchImageTitle": "Search Cover Image",
+  "@searchImageTitle": {
+    "description": "Title for cover image search modal"
+  },
+  "searchImageHint": "Type to search images online",
+  "@searchImageHint": {
+    "description": "Placeholder for image search field"
+  },
+  "validationTitleRequired": "Title is required",
+  "@validationTitleRequired": {
+    "description": "Validation error when title field is empty"
+  },
+  "confirmChangeCoverTitle": "Change Cover",
+  "@confirmChangeCoverTitle": {
+    "description": "Confirmation dialog title for cover replacement"
+  },
+  "confirmChangeCoverMessage": "Do you want to replace the current cover with this image?",
+  "@confirmChangeCoverMessage": {
+    "description": "Main message for cover change confirmation"
+  }
+}

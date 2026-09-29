@@ -1,0 +1,199 @@
+{
+  "@@locale": "es",
+  "newSession": "Leer",
+  "@newSession": {
+    "description": "Texto del botón para iniciar una nueva sesión de lectura"
+  },
+  "readingHistory": "Historial de Lectura",
+  "@readingHistory": {
+    "description": "Título de la sección desplegable del historial de sesiones"
+  },
+  "noSessionsRegistered": "Aún no has registrado sesiones de lectura.",
+  "@noSessionsRegistered": {
+    "description": "Mensaje cuando no hay sesiones grabadas"
+  },
+  "pagesRange": "Páginas {startPage} a {endPage}",
+  "@pagesRange": {
+    "description": "Texto del rango de páginas leídas en una sesión",
+    "placeholders": {
+      "startPage": {
+        "type": "int",
+        "example": "10"
+      },
+      "endPage": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "upToPage": "Hasta página {endPage}",
+  "@upToPage": {
+    "description": "Texto para indicar la página final cuando no hay página de inicio registrada",
+    "placeholders": {
+      "endPage": {
+        "type": "int",
+        "example": "50"
+      }
+    }
+  },
+  "readingSessionTitle": "Sesión de Lectura",
+  "@readingSessionTitle": {
+    "description": "Título principal de la vista o modal de la sesión de lectura activa."
+  },
+  "timerStart": "Iniciar",
+  "@timerStart": {
+    "description": "Etiqueta del botón para comenzar el conteo del cronómetro de lectura por primera vez."
+  },
+  "timerResume": "Continuar",
+  "@timerResume": {
+    "description": "Etiqueta del botón para reanudar el conteo del cronómetro tras haber sido pausado."
+  },
+  "timerPause": "Pausar",
+  "@timerPause": {
+    "description": "Etiqueta del botón para detener temporalmente el cronómetro de lectura."
+  },
+  "finishSession": "Finalizar",
+  "@finishSession": {
+    "description": "Botón principal para detener el cronómetro y registrar el avance de lectura."
+  },
+  "finishReadingTitle": "Finalizar lectura",
+  "@finishReadingTitle": {
+    "description": "Título principal del modal al finalizar una sesión de lectura."
+  },
+  "timeReadLabel": "Tiempo leído",
+  "@timeReadLabel": {
+    "description": "Etiqueta para mostrar la duración total de la sesión."
+  },
+  "minutesShort": "min",
+  "@minutesShort": {
+    "description": "Abreviatura de minutos."
+  },
+  "secondsShort": "s",
+  "@secondsShort": {
+    "description": "Abreviatura de segundos."
+  },
+  "whatPageDidYouReach": "¿En qué página te quedaste?",
+  "@whatPageDidYouReach": {
+    "description": "Etiqueta del campo donde el usuario ingresa la página alcanzada."
+  },
+  "currentPageHint": "Página actual (ej. {page})",
+  "@currentPageHint": {
+    "description": "Texto de sugerencia en el campo de texto de página actual.",
+    "placeholders": {
+      "page": {
+        "type": "int",
+        "example": "45"
+      }
+    }
+  },
+  "saveSessionButton": "Guardar sesión",
+  "@saveSessionButton": {
+    "description": "Texto del botón principal para guardar el registro de lectura."
+  },
+  "validationEnterEndPage": "Ingresa la página final",
+  "@validationEnterEndPage": {
+    "description": "Mensaje de error cuando el campo de página está vacío."
+  },
+  "validationInvalidNumber": "Ingresa un número válido",
+  "@validationInvalidNumber": {
+    "description": "Mensaje de error cuando el valor ingresado no es un entero válido."
+  },
+  "validationPageLowerThanCurrent": "No puede ser menor a la página anterior ({currentPage})",
+  "@validationPageLowerThanCurrent": {
+    "description": "Mensaje de error cuando la página final es menor a la página donde se inició.",
+    "placeholders": {
+      "currentPage": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "validationPageExceedsTotal": "No puede superar el total de páginas ({totalPages})",
+  "@validationPageExceedsTotal": {
+    "description": "Mensaje de error cuando la página ingresada excede las páginas totales del libro.",
+    "placeholders": {
+      "totalPages": {
+        "type": "int",
+        "example": "300"
+      }
+    }
+  },
+  "sessionSummaryTitle": "Resumen",
+  "@sessionSummaryTitle": {
+    "description": "Título superior de la pantalla de resumen."
+  },
+  "pagesReadLabel": "Páginas leídas",
+  "@pagesReadLabel": {
+    "description": "Etiqueta para la cantidad de páginas leídas en la sesión."
+  },
+  "readingSpeedLabel": "Velocidad de lectura",
+  "@readingSpeedLabel": {
+    "description": "Etiqueta para la velocidad en páginas por minuto."
+  },
+  "pagesPerMinute": "{speed} pág/min",
+  "@pagesPerMinute": {
+    "description": "Formato para la velocidad de lectura.",
+    "placeholders": {
+      "speed": {
+        "type": "String",
+        "example": "0.8"
+      }
+    }
+  },
+  "estimatedTimeRemaining": "Tiempo restante est.",
+  "@estimatedTimeRemaining": {
+    "description": "Etiqueta para la estimación de tiempo para terminar el libro."
+  },
+  "doneButton": "Finalizar",
+  "@doneButton": {
+    "description": "Botón principal para guardar y volver al inicio."
+  },
+  "sessionResultTitle": "Resultado de la sesión de lectura",
+  "@sessionResultTitle": {
+    "description": "Título principal de la vista de resumen al terminar de leer."
+  },
+  "readSummaryInfo": "Has leído {pages} páginas durante {duration}.",
+  "@readSummaryInfo": {
+    "description": "Informa cuántas páginas leyó el usuario y la duración de la sesión.",
+    "placeholders": {
+      "pages": {
+        "type": "int",
+        "example": "30"
+      },
+      "duration": {
+        "type": "String",
+        "example": "29m"
+      }
+    }
+  },
+  "readingSpeedInfo": "Esta es la velocidad promedio a la que lees: {pagesPerHour} páginas por hora.",
+  "@readingSpeedInfo": {
+    "description": "Muestra el promedio de velocidad de lectura por hora.",
+    "placeholders": {
+      "pagesPerHour": {
+        "type": "String",
+        "example": "60.71"
+      }
+    }
+  },
+  "timeRemainingInfo": "El tiempo para finalizar es {timeRemaining}.",
+  "@timeRemainingInfo": {
+    "description": "Muestra la estimación del tiempo restante para terminar el libro.",
+    "placeholders": {
+      "timeRemaining": {
+        "type": "String",
+        "example": "4h 11m"
+      }
+    }
+  },
+  "pagesRemainingInfo": "Quedan {pagesRemaining} páginas para terminar tu libro.",
+  "@pagesRemainingInfo": {
+    "description": "Indica cuántas páginas le faltan al usuario para concluir el libro.",
+    "placeholders": {
+      "pagesRemaining": {
+        "type": "int",
+        "example": "254"
+      }
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import 'package:book_sync/core/constants/app_icons.dart';
-import 'package:book_sync/core/theme/cozy_colors.dart';
+import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/widgets/background_paper_texture.dart';
 import 'package:book_sync/core/widgets/book_loader.dart';
 import 'package:book_sync/l10n/app_localizations.dart';
@@ -15,19 +15,18 @@ class LibrarySectionScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final allBooksAsync = ref.watch(allBooksProvider);
-    final cozy = Theme.of(context).extension<CozyColors>()!;
 
     return Scaffold(
       body: Stack(
         children: [
           const BackgroundPaperTexture(),
-          _buildLibraryContent(context, cozy, allBooksAsync),
+          _buildLibraryContent(context, allBooksAsync),
         ]
       )
     );
   }
 
-  DefaultTabController _buildLibraryContent(BuildContext context, CozyColors cozy, AsyncValue<List<Book>> allBooksAsync) {
+  DefaultTabController _buildLibraryContent(BuildContext context, AsyncValue<List<Book>> allBooksAsync) {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
@@ -40,24 +39,24 @@ class LibrarySectionScreen extends ConsumerWidget {
           leading: IconButton(
             icon: Icon(
               AppIcons.back,
-              color: Theme.of(context).colorScheme.onSurface,
+              color: context.theme.colorScheme.onSurface,
             ),
             onPressed: () {
               FocusScope.of(context).unfocus();
               Navigator.of(context).pop();
             },
           ),
-          title: Text(AppLocalizations.of(context)!.libraryTitle, style: Theme.of(context).textTheme.titleLarge),
+          title: Text(context.l10n.libraryTitle, style: context.theme.textTheme.titleLarge),
           bottom: TabBar(
-            labelColor: cozy.bookmarkColor!,
-            unselectedLabelColor: cozy.inkColor!.withValues(alpha: 0.5),
-            indicatorColor: cozy.bookmarkColor!.withValues(alpha: 1),
+            labelColor: context.cozy.bookmarkColor!,
+            unselectedLabelColor: context.cozy.inkColor!.withValues(alpha: 0.5),
+            indicatorColor: context.cozy.bookmarkColor!.withValues(alpha: 1),
             tabs: [
-              Tab(text: AppLocalizations.of(context)!.tabLibraryReading),
-              Tab(text: AppLocalizations.of(context)!.tabLibraryToRead), 
-              Tab(text: AppLocalizations.of(context)!.tabLibraryRead),
-              Tab(text: AppLocalizations.of(context)!.tabLibraryDropped),
-              Tab(text: AppLocalizations.of(context)!.tabLibraryPaused),
+              Tab(text: context.l10n.tabLibraryReading),
+              Tab(text: context.l10n.tabLibraryToRead), 
+              Tab(text: context.l10n.tabLibraryRead),
+              Tab(text: context.l10n.tabLibraryDropped),
+              Tab(text: context.l10n.tabLibraryPaused),
             ],
           ),
         ),
@@ -70,10 +69,10 @@ class LibrarySectionScreen extends ConsumerWidget {
     
             return TabBarView(
               children: [
-                _BookListSection(books: readingBooks, emptyMessage: AppLocalizations.of(context)!.emptyReading),
-                _BookListSection(books: toReadBooks, emptyMessage: AppLocalizations.of(context)!.emptyToRead),
-                _BookListSection(books: finishedBooks, emptyMessage: AppLocalizations.of(context)!.emptyFinished),
-                _BookListSection(books: forggotenBooks, emptyMessage: AppLocalizations.of(context)!.emptyDropped),
+                _BookListSection(books: readingBooks, emptyMessage: context.l10n.emptyReading),
+                _BookListSection(books: toReadBooks, emptyMessage: context.l10n.emptyToRead),
+                _BookListSection(books: finishedBooks, emptyMessage: context.l10n.emptyFinished),
+                _BookListSection(books: forggotenBooks, emptyMessage: context.l10n.emptyDropped),
               ],
             );
           },
@@ -100,7 +99,7 @@ class _BookListSection extends StatelessWidget {
       return Center(
         child: Text(
           emptyMessage,
-          style: Theme.of(context).textTheme.labelLarge
+          style: context.theme.textTheme.labelLarge
         ),
       );
     }
@@ -113,7 +112,7 @@ class _BookListSection extends StatelessWidget {
         itemBuilder: (context, index) {
           final book = books[index];
           return Card(
-            color: Theme.of(context).cardColor.withValues(alpha: 0.8),
+            color: context.theme.cardColor.withValues(alpha: 0.8),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),

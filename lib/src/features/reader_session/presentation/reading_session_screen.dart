@@ -1,13 +1,12 @@
 import 'dart:async';
+import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/theme/app_colors.dart';
-import 'package:book_sync/core/theme/cozy_colors.dart';
 import 'package:book_sync/core/utils/categories_helper.dart';
 import 'package:book_sync/core/widgets/add_note_modal.dart';
 import 'package:book_sync/core/widgets/background_paper_texture.dart';
 import 'package:book_sync/core/widgets/book_cover_image.dart';
 import 'package:book_sync/core/widgets/hand_drawn_border_painter.dart';
 import 'package:book_sync/core/widgets/primary_outlined_button.dart';
-import 'package:book_sync/l10n/app_localizations.dart';
 import 'package:book_sync/src/domain/book.dart';
 import 'package:book_sync/src/domain/note.dart';
 import 'package:book_sync/src/features/reader_session/presentation/providers/notes_provider.dart';
@@ -81,11 +80,11 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
     });
   }
 
-  String _getTimerButtonLabel(AppLocalizations l10n) {
+  String _getTimerButtonLabel() {
   if (_secondsElapsed == 0) {
-    return l10n.timerStart;
+    return context.l10n.timerStart;
   }
-  return _isPaused ? l10n.timerResume : l10n.timerPause;
+  return _isPaused ? context.l10n.timerResume : context.l10n.timerPause;
 }
 
   String get _formattedTime {
@@ -110,7 +109,7 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
     });
   }
 
-  void _openAddNoteModal(BuildContext context) {
+  void _openAddNoteModal() {
     void onClosePressed() => _continueTimer();
     AddNoteModal.show(context, book: widget.book, onClosePressed: onClosePressed);
   }
@@ -126,16 +125,11 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final cozy = Theme.of(context).extension<CozyColors>()!;
-    final l10n = AppLocalizations.of(context)!;
-    final timerButtonBg = _isPaused ? AppColors.oliveGreen : cozy.bookmarkColor;
-
+    final timerButtonBg = _isPaused ? AppColors.oliveGreen : context.cozy.bookmarkColor;
     final notesState = ref.watch(notesNotifierProvider);
 
     return ColoredBox(
-      color: theme.scaffoldBackgroundColor,
+      color: context.theme.scaffoldBackgroundColor,
       child: Stack(
         children: [
           const Positioned.fill(
@@ -143,11 +137,11 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
           ),
           Scaffold(
             backgroundColor: Colors.transparent,
-            appBar: _buildNav(colorScheme, context, l10n, theme),
+            appBar: _buildNav(),
             body: Column(
               children: [
                 // --- 1. CRONÓMETRO FIJO ---
-                _buildTimer(l10n, theme, colorScheme, timerButtonBg),
+                _buildTimer(timerButtonBg),
 
                 const SizedBox(height: 12),
 
@@ -162,13 +156,13 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
                         // La tarjeta con su cambio de color animado
                         Padding(
                           padding: EdgeInsetsGeometry.all(16),
-                          child: _buildBookInfoCard(context, theme, colorScheme, cozy, l10n),
+                          child: _buildBookInfoCard(),
                         ),
 
                         const SizedBox(height: 16),
 
                         // Sección Desplegable de Notas
-                        if (_showNotes) _buildNotesList(context, theme, colorScheme, cozy, l10n, notesState),
+                        if (_showNotes) _buildNotesList(notesState),
 
                         const SizedBox(height: 32),
                       ],
@@ -184,7 +178,7 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
   }
 
 
-  AppBar _buildNav(ColorScheme colorScheme, BuildContext context, AppLocalizations l10n, ThemeData theme) {
+  AppBar _buildNav() {
     return AppBar(
       centerTitle: true,
       backgroundColor: Colors.transparent,
@@ -193,30 +187,30 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
       leading: IconButton(
         icon: Icon(
           Icons.arrow_back,
-          color: colorScheme.onSurface,
+          color: context.colorScheme.onSurface,
         ),
         onPressed: () => Navigator.of(context).pop(),
       ),
       title: Text(
-        l10n.readingSessionTitle,
-        style: theme.textTheme.titleLarge?.copyWith(
+        context.l10n.readingSessionTitle,
+        style: context.theme.textTheme.titleLarge?.copyWith(
           fontWeight: FontWeight.bold,
         ),
       ),
     );
   }
 
-  Padding _buildTimer(AppLocalizations l10n, ThemeData theme, ColorScheme colorScheme, Color? timerButtonBg) {
+  Padding _buildTimer(Color? timerButtonBg) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
       child: Column(
         children: [
           Text(
             _formattedTime,
-            style: theme.textTheme.displayLarge?.copyWith(
+            style: context.theme.textTheme.displayLarge?.copyWith(
               fontWeight: FontWeight.bold,
               letterSpacing: 3.0,
-              color: colorScheme.onSurface,
+              color: context.colorScheme.onSurface,
             ),
           ),
           const SizedBox(height: 16),
@@ -246,8 +240,8 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
                     ),
                   ),
                   label: Text(
-                    _getTimerButtonLabel(l10n),
-                    style: theme.textTheme.labelLarge?.copyWith(
+                    _getTimerButtonLabel(),
+                    style: context.theme.textTheme.labelLarge?.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
@@ -263,7 +257,7 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
                       vertical: 12,
                     ),
                     side: BorderSide(
-                      color: colorScheme.onSurface.withValues(alpha: 0.4),
+                      color: context.colorScheme.onSurface.withValues(alpha: 0.4),
                     ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -275,12 +269,12 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
                   },
                   icon: Icon(
                     Icons.stop_circle_outlined,
-                    color: colorScheme.onSurface,
+                    color: context.colorScheme.onSurface,
                   ),
                   label: Text(
-                    l10n.finishSession,
-                    style: theme.textTheme.labelLarge?.copyWith(
-                      color: colorScheme.onSurface,
+                    context.l10n.finishSession,
+                    style: context.theme.textTheme.labelLarge?.copyWith(
+                      color: context.colorScheme.onSurface,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -293,14 +287,8 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
   }
 
   /// Tarjeta del libro con cambio de color animado al pausar/continuar
-  CustomPaint _buildBookInfoCard(
-    BuildContext context,
-    ThemeData theme,
-    ColorScheme colorScheme,
-    CozyColors cozy,
-    AppLocalizations l10n,
-  ) {
-    final isDark = theme.brightness == Brightness.dark;
+  CustomPaint _buildBookInfoCard() {
+    final isDark = context.theme.brightness == Brightness.dark;
     final cardBackgroundColor = !_isPaused
     ? (isDark
       ? AppColors.prussianBlueDark.withValues(alpha: 0.4)
@@ -308,7 +296,7 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
     : Colors.transparent;
 
     return CustomPaint(
-      painter: HandDrawnBorderPainter(color: cozy.inkColor!.withValues(alpha: 0.5)),
+      painter: HandDrawnBorderPainter(color: context.cozy.inkColor!.withValues(alpha: 0.5)),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 350),
         curve: Curves.easeInOut,
@@ -330,11 +318,11 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: widget.book.coverPath != null && widget.book.coverPath!.isNotEmpty
-                    ? _buildCoverImage(widget.book.coverPath!, cozy)
+                    ? _buildCoverImage(widget.book.coverPath!)
                     : Center(
                         child: Icon(
                           Icons.book,
-                          color: cozy.inkColor!.withValues(alpha: 0.2),
+                          color: context.cozy.inkColor!.withValues(alpha: 0.2),
                           size: 40,
                         ),
                       ),
@@ -348,7 +336,7 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
                     children: [
                       Text(
                         widget.book.title,
-                        style: theme.textTheme.titleMedium?.copyWith(
+                        style: context.theme.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                         maxLines: 2,
@@ -357,8 +345,8 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
                       const SizedBox(height: 4),
                       Text(
                         widget.book.author,
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          color: cozy.textColor?.withValues(alpha: 0.7),
+                        style: context.theme.textTheme.bodyMedium?.copyWith(
+                          color: context.cozy.textColor?.withValues(alpha: 0.7),
                         ),
                         maxLines: 4,
                         overflow: TextOverflow.ellipsis,
@@ -378,18 +366,18 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  l10n.progressLabel((widget.book.progress * 100).toStringAsFixed(1)),
-                  style: theme.textTheme.labelMedium?.copyWith(
-                    color: cozy.textColor?.withValues(alpha: 0.7),
+                  context.l10n.progressLabel((widget.book.progress * 100).toStringAsFixed(1)),
+                  style: context.theme.textTheme.labelMedium?.copyWith(
+                    color: context.cozy.textColor?.withValues(alpha: 0.7),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
                   widget.book.totalPages != null
-                      ? 'Pág. ${widget.book.currentPage} / ${widget.book.totalPages}'
-                      : 'Pág. ${widget.book.currentPage}',
-                  style: theme.textTheme.labelMedium?.copyWith(
-                    color: cozy.textColor?.withValues(alpha: 0.7),
+                      ? context.l10n.pageProgress(widget.book.currentPage, widget.book.totalPages ?? 0)
+                      : context.l10n.currentPageFormat(widget.book.currentPage),
+                  style: context.theme.textTheme.labelMedium?.copyWith(
+                    color: context.cozy.textColor?.withValues(alpha: 0.7),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -401,14 +389,14 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
               child: LinearProgressIndicator(
                 value: widget.book.progress,
                 minHeight: 6,
-                backgroundColor: cozy.inkColor!.withValues(alpha: 0.1),
-                valueColor: AlwaysStoppedAnimation<Color>(colorScheme.primary),
+                backgroundColor: context.cozy.inkColor!.withValues(alpha: 0.1),
+                valueColor: AlwaysStoppedAnimation<Color>(context.colorScheme.primary),
               ),
             ),
             Divider(
               height: 24,
               thickness: 1,
-              color: cozy.inkColor?.withValues(alpha: 0.2),
+              color: context.cozy.inkColor?.withValues(alpha: 0.2),
             ),
 
             // Botones de acción
@@ -419,12 +407,12 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
                     onPressed: _toggleNotes,
                     icon: Icon(
                       _showNotes ? Icons.keyboard_arrow_up : Icons.notes,
-                      color: cozy.bookmarkColor,
+                      color: context.cozy.bookmarkColor,
                     ),
                     label: Text(
-                      _showNotes ? l10n.hideNotes : l10n.viewNotes,
-                      style: theme.textTheme.labelMedium?.copyWith(
-                        color: cozy.bookmarkColor,
+                      _showNotes ? context.l10n.hideNotes : context.l10n.viewNotes,
+                      style: context.theme.textTheme.labelMedium?.copyWith(
+                        color: context.cozy.bookmarkColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -435,10 +423,10 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
                   child: PrimaryOutlinedButton(
                     onPressed: () {
                       _pauseTimer();
-                      _openAddNoteModal(context);
+                      _openAddNoteModal();
                     },
                     icon: Icons.add_comment_outlined,
-                    label: l10n.addNote,
+                    label: context.l10n.addNote,
                   ),
                 ),
               ],
@@ -449,21 +437,16 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
     );
   }
 
-  Widget _buildCoverImage(String coverPath, CozyColors cozy) {
+  Widget _buildCoverImage(String coverPath) {
     return BookCoverImage(
       coverPath: coverPath,
-      inkColor: cozy.inkColor,
+      inkColor: context.cozy.inkColor,
       fit: BoxFit.cover,
       iconSize: 30,
     );
   }
 
   Widget _buildNotesList(
-    BuildContext context,
-    ThemeData theme,
-    ColorScheme colorScheme,
-    CozyColors cozy,
-    AppLocalizations l10n,
     AsyncValue<List<Note>> notesState,
   ) {
     return Column(
@@ -472,10 +455,10 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
           child: Text(
-            'Notas del libro',
-            style: theme.textTheme.titleSmall?.copyWith(
+            context.l10n.bookNotesTitle,
+            style: context.theme.textTheme.titleSmall?.copyWith(
               fontWeight: FontWeight.bold,
-              color: colorScheme.onSurface,
+              color: context.colorScheme.onSurface,
             ),
           ),
         ),
@@ -491,8 +474,8 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                'Error al cargar las notas. $error',
-                style: theme.textTheme.bodyMedium?.copyWith(color: colorScheme.error),
+                context.l10n.errorLoadingNotes('$error'),
+                style: context.theme.textTheme.bodyMedium?.copyWith(color: context.colorScheme.error),
               ),
             ),
           ),
@@ -502,9 +485,9 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Text(
-                    'No hay notas guardadas para este libro',
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: colorScheme.onSurface.withValues(alpha: 0.5),
+                    context.l10n.emptyNotesMessage,
+                    style: context.theme.textTheme.bodySmall?.copyWith(
+                      color: context.colorScheme.onSurface.withValues(alpha: 0.5),
                     ),
                   ),
                 ),
@@ -525,10 +508,10 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
                 return Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: theme.cardColor.withValues(alpha: 0.8),
+                    color: context.theme.cardColor.withValues(alpha: 0.8),
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(
-                      color: cozy.inkColor!.withValues(alpha: 0.2),
+                      color: context.cozy.inkColor!.withValues(alpha: 0.2),
                     ),
                   ),
                   child: Column(
@@ -546,8 +529,8 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
                                   borderRadius: BorderRadius.circular(6),
                                 ),
                                 child: Text(
-                                  l10n.pageOption(note.page),
-                                  style: theme.textTheme.labelSmall?.copyWith(
+                                  context.l10n.pageOption(note.page),
+                                  style: context.theme.textTheme.labelSmall?.copyWith(
                                     fontWeight: FontWeight.bold,
                                     color: AppColors.oliveGreen,
                                   ),
@@ -555,9 +538,9 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
                               ),
                               const SizedBox(width: 8),
                               Text(
-                                NoteCategoryHelper.getLabelById(note.category, l10n),
-                                style: theme.textTheme.labelSmall?.copyWith(
-                                  color: colorScheme.onSurface.withValues(alpha: 0.6),
+                                NoteCategoryHelper.getLabelById(note.category, context.l10n),
+                                style: context.theme.textTheme.labelSmall?.copyWith(
+                                  color: context.colorScheme.onSurface.withValues(alpha: 0.6),
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -565,8 +548,8 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
                           ),
                           Text(
                             formattedDate,
-                            style: theme.textTheme.labelSmall?.copyWith(
-                              color: colorScheme.onSurface.withValues(alpha: 0.5),
+                            style: context.theme.textTheme.labelSmall?.copyWith(
+                              color: context.colorScheme.onSurface.withValues(alpha: 0.5),
                             ),
                           ),
                         ],
@@ -574,8 +557,8 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
                       const SizedBox(height: 8),
                       Text(
                         note.content,
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          color: colorScheme.onSurface,
+                        style: context.theme.textTheme.bodyMedium?.copyWith(
+                          color: context.colorScheme.onSurface,
                         ),
                       ),
                     ],

@@ -1,3 +1,4 @@
+import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:toastification/toastification.dart';
 import 'package:book_sync/core/theme/cozy_colors.dart';
@@ -9,8 +10,7 @@ class CozyToast {
     String? description,
     IconData icon = Icons.bookmark_added_rounded,
   }) {
-    final cozy = Theme.of(context).extension<CozyColors>();
-    final theme = Theme.of(context);
+    final cozy = context.theme.extension<CozyColors>();
 
     toastification.show(
       context: context,
@@ -22,7 +22,7 @@ class CozyToast {
         title,
         style: TextStyle(
           fontWeight: FontWeight.bold,
-          color: cozy?.textColor ?? theme.colorScheme.onSurface,
+          color: cozy?.textColor ?? context.theme.colorScheme.onSurface,
         ),
       ),
       description: description != null
@@ -30,19 +30,19 @@ class CozyToast {
               description,
               style: TextStyle(
                 color: cozy?.inkColor?.withValues(alpha: 0.7) ??
-                    theme.colorScheme.onSurface.withValues(alpha: 0.7),
+                  context.theme.colorScheme.onSurface.withValues(alpha: 0.7),
               ),
             )
           : null,
       icon: Icon(
         icon,
-        color: cozy?.bookmarkColor ?? theme.colorScheme.primary,
+        color: cozy?.bookmarkColor ?? context.theme.colorScheme.primary,
       ),
       borderRadius: BorderRadius.circular(12),
-      backgroundColor: theme.scaffoldBackgroundColor,
+      backgroundColor: context.theme.scaffoldBackgroundColor,
       borderSide: BorderSide(
         color: cozy?.inkColor?.withValues(alpha: 0.3) ??
-            theme.colorScheme.outline.withValues(alpha: 0.3),
+            context.theme.colorScheme.outline.withValues(alpha: 0.3),
         width: 1.5,
       ),
       boxShadow: [

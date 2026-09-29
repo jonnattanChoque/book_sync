@@ -1,5 +1,5 @@
+import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/theme/app_colors.dart';
-import 'package:book_sync/core/theme/cozy_colors.dart';
 import 'package:book_sync/core/widgets/bookmark_clipper.dart';
 import 'package:book_sync/src/features/quotes/presentation/bookmark_provider.dart';
 import 'package:book_sync/src/features/quotes/presentation/daily_quote_provider.dart';
@@ -12,7 +12,7 @@ class DailyQuoteBookmarkView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final cozyColors = Theme.of(context).extension<CozyColors>();
+    final cozyColors = context.cozy;
     final status = ref.watch(bookmarkProvider);
     final quoteAsync = ref.watch(dailyQuoteProvider);
     const double hiddenPos = -350.0;
@@ -47,7 +47,7 @@ class DailyQuoteBookmarkView extends ConsumerWidget {
             ),
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
             decoration: BoxDecoration(
-              color: cozyColors?.bookmarkColor,
+              color: cozyColors.bookmarkColor,
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(8),
                 bottomLeft: Radius.circular(8),

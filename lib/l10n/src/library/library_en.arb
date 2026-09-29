@@ -1,0 +1,79 @@
+{
+  "@@locale": "en",
+  "libraryTitle": "My Library",
+  "@libraryTitle": {
+    "description": "Main title of library section"
+  },
+  "noBooksRegistered": "No books registered",
+  "@noBooksRegistered": {
+    "description": "Empty state text for empty library lists"
+  },
+  "noBooksTitle": "Your nightstand is empty",
+  "@noBooksTitle": {
+    "description": "Empty state title for main library"
+  },
+  "noBooksSubtitle": "What story shall we start today?",
+  "@noBooksSubtitle": {
+    "description": "Motivational message when no books exist"
+  },
+  "libraryCount": "{count} Books",
+  "@libraryCount": {
+    "description": "Count of total saved books",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "12"
+      }
+    }
+  },
+  "libraryOneCount": "{count} Books",
+  "@libraryOneCount": {
+    "description": "Count of total saved books",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "tabLibraryReading": "Reading",
+  "@tabLibraryReading": {
+    "description": "Tab for books currently being read"
+  },
+  "tabLibraryToRead": "To Read",
+  "@tabLibraryToRead": {
+    "description": "Tab for pending books"
+  },
+  "tabLibraryRead": "Read",
+  "@tabLibraryRead": {
+    "description": "Tab for finished books"
+  },
+  "tabLibraryDropped": "Dropped",
+  "@tabLibraryDropped": {
+    "description": "Tab for dropped books"
+  },
+  "tabLibraryPaused": "Paused",
+  "@tabLibraryPaused": {
+    "description": "Tab for paused books"
+  },
+  "emptyReading": "No books are currently being read",
+  "@emptyReading": {
+    "description": "Empty state for reading tab"
+  },
+  "emptyToRead": "No books to read",
+  "@emptyToRead": {
+    "description": "Empty state for to-read tab"
+  },
+  "emptyFinished": "No books finished yet",
+  "@emptyFinished": {
+    "description": "Empty state for read tab"
+  },
+  "emptyDropped": "No books dropped yet",
+  "@emptyDropped": {
+    "description": "Empty state for dropped tab"
+  },
+  "errorLoadLibrary": "Error loading library",
+  "@errorLoadLibrary": {
+    "description": "Error message when fetching library fails"
+  }
+}

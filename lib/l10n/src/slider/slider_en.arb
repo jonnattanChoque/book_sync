@@ -1,0 +1,89 @@
+{
+  "@@locale": "en",
+  "progressLabel": "{percentage}% completed",
+  "@progressLabel": {
+    "description": "Reading progress percentage",
+    "placeholders": {
+      "percentage": {
+        "type": "String",
+        "example": "45"
+      }
+    }
+  },
+  "startDateWith": "Start: {date}",
+  "@startDateWith": {
+    "description": "Shows book reading start date",
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "example": "Jan 12, 2024"
+      }
+    }
+  },
+  "remainingTime": "Remaining: {time}",
+  "@remainingTime": {
+    "description": "Estimated time remaining to finish book",
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "2h 15m"
+      }
+    }
+  },
+  "pageProgress": "Page {currentPage} / {totalPages}",
+  "@pageProgress": {
+    "description": "Reading progress showing current and total pages",
+    "placeholders": {
+      "currentPage": {
+        "type": "int",
+        "example": "45"
+      },
+      "totalPages": {
+        "type": "int",
+        "example": "300"
+      }
+    }
+  },
+  "currentPageFormat": "Page {currentPage}",
+  "@currentPageFormat": {
+    "description": "Format showing current reached page",
+    "placeholders": {
+      "currentPage": {
+        "type": "int",
+        "example": "45"
+      }
+    }
+  },
+  "progressInfo": "Progress Information",
+  "@progressInfo": {
+    "description": "Title for progress and time card"
+  },
+  "startDate": "Start",
+  "@startDate": {
+    "description": "Label for start reading date"
+  },
+  "day": "Day",
+  "@day": {
+    "description": "Label for current or elapsed reading day"
+  },
+  "remaining": "Remaining",
+  "@remaining": {
+    "description": "Label for estimated remaining time"
+  },
+  "progress": "Progress",
+  "@progress": {
+    "description": "Text preceding progress percentage"
+  },
+  "pagesAbbr": "pages",
+  "@pagesAbbr": {
+    "description": "Abbreviation or short form for pages"
+  },
+  "pageAbbr": "Pg",
+  "@pageAbbr": {
+    "description": "Singular abbreviation for page"
+  },
+  "minutesAbbr": "min",
+  "@minutesAbbr": {
+    "description": "Abbreviation for minutes"
+  }
+}

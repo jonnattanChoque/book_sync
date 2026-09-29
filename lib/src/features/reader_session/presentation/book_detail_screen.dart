@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:book_sync/core/constants/app_icons.dart';
+import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/theme/app_colors.dart';
 import 'package:book_sync/core/utils/categories_helper.dart';
 import 'package:book_sync/core/widgets/add_note_modal.dart';
@@ -8,14 +9,12 @@ import 'package:book_sync/core/widgets/background_paper_texture.dart';
 import 'package:book_sync/core/widgets/book_loader.dart';
 import 'package:book_sync/core/widgets/cozy_toast.dart';
 import 'package:book_sync/core/widgets/primary_outlined_button.dart';
-import 'package:book_sync/l10n/app_localizations.dart';
 import 'package:book_sync/src/domain/note.dart';
 import 'package:book_sync/src/features/reader_session/presentation/providers/notes_provider.dart';
 import 'package:book_sync/src/features/reading_slider/presentation/providers/books_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:book_sync/core/theme/cozy_colors.dart';
 import 'package:book_sync/core/widgets/hand_drawn_border_painter.dart';
 import 'package:book_sync/src/domain/book.dart';
 import 'package:go_router/go_router.dart';
@@ -42,68 +41,68 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
     });
   }
 
-  void _updateBookStatus(BookStatus newStatus, AppLocalizations l10n) async {
+  void _updateBookStatus(BookStatus newStatus) async {
     setState(() {
       widget.book.status = newStatus;
     });
     await ref.read(bookRepositoryProvider).updateBookStatus(widget.book.id, newStatus);
-    CozyToast.showSuccess(context, title: l10n.bookStatusUpdated);
+    CozyToast.showSuccess(context, title: context.l10n.bookStatusUpdated);
   }
 
-  String _getStatusLabel(BookStatus status, AppLocalizations l10n) {
+  String _getStatusLabel(BookStatus status) {
     switch (status) {
       case BookStatus.reading:
-        return l10n.statusReading;
+        return context.l10n.statusReading;
       case BookStatus.toRead:
-        return l10n.statusToRead;
+        return context.l10n.statusToRead;
       case BookStatus.dropped:
-        return l10n.statusDropped;
+        return context.l10n.statusDropped;
       case BookStatus.finished:
-        return l10n.statusFinished;
+        return context.l10n.statusFinished;
     }
   }
 
-  void _showStatusActionSheet(BuildContext context, BookStatus currentStatus, AppLocalizations l10n) {
+  void _showStatusActionSheet(BookStatus currentStatus) {
     final availableStatuses = _getAvailableStatuses(currentStatus);
 
     showCupertinoModalPopup<void>(
       context: context,
       builder: (BuildContext context) => CupertinoActionSheet(
-        title: Text(l10n.readingStatusTitle),
-        message: Text(l10n.readingStatusMessage),
+        title: Text(context.l10n.readingStatusTitle),
+        message: Text(context.l10n.readingStatusMessage),
         actions: availableStatuses.map((status) {
           return CupertinoActionSheetAction(
             isDefaultAction: status == BookStatus.finished || status == BookStatus.reading,
-            child: Text(_getStatusLabel(status, l10n)),
+            child: Text(_getStatusLabel(status)),
             onPressed: () {
                Navigator.pop(context);
-              _updateBookStatus(status, l10n);
+              _updateBookStatus(status);
             },
           );
         }).toList(),
         cancelButton: CupertinoActionSheetAction(
           isDestructiveAction: true,
           onPressed: () => Navigator.pop(context),
-          child: Text(l10n.cancel),
+          child: Text(context.l10n.cancel),
         ),
       ),
     );
   }
 
-  void _showAddNoteDialog(BuildContext context, CozyColors cozy, AppLocalizations l10n) {
+  void _showAddNoteDialog() {
     AddNoteModal.show(context, book: widget.book);
   }
 
-  void _showDeleteConfirmation(BuildContext context, AppLocalizations l10n) {
+  void _showDeleteConfirmation() {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(l10n.deleteBookDialogTitle),
-        content: Text(l10n.deleteBookDialogMessage(widget.book.title)),
+        title: Text(context.l10n.deleteBookDialogTitle),
+        content: Text(context.l10n.deleteBookDialogMessage(widget.book.title)),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text(l10n.cancel),
+            child: Text(context.l10n.cancel),
           ),
           TextButton(
             onPressed: () async {
@@ -117,31 +116,27 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                 context.go('/');
               }
             },
-            child: Text(l10n.deleteAction, style: const TextStyle(color: Colors.red)),
+            child: Text(context.l10n.deleteAction, style: const TextStyle(color: Colors.red)),
           ),
         ],
       ),
     );
   }
 
-  void _updateBookFavorite(BuildContext context, AppLocalizations l10n) async {
+  void _updateBookFavorite(BuildContext context) async {
     setState(() => _isFavorite = !_isFavorite);
     await ref.read(bookRepositoryProvider).updateBookFavorite(widget.book.id, _isFavorite);
-    CozyToast.showSuccess(context, title: _isFavorite ? l10n.addedToFavorites : l10n.removedFromFavorites);
+    CozyToast.showSuccess(context, title: _isFavorite ? context.l10n.addedToFavorites : context.l10n.removedFromFavorites);
   }
 
   @override
   Widget build(BuildContext context) {
-    final cozy = Theme.of(context).extension<CozyColors>()!;
     final book = widget.book;
-    final theme = Theme.of(context);
-    final l10n = AppLocalizations.of(context)!;
-    final colorScheme = theme.colorScheme;
     final notesState = ref.watch(notesNotifierProvider);
     final notes = notesState.value ?? [];
 
     return ColoredBox(
-      color: theme.scaffoldBackgroundColor,
+      color: context.theme.scaffoldBackgroundColor,
       child: Stack(
         children: [
           const Positioned.fill(
@@ -149,33 +144,33 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
           ),
           Scaffold(
             backgroundColor: Colors.transparent,
-            appBar: _buildNavBar(l10n, theme, context, cozy),
+            appBar: _buildNavBar(),
             body: SingleChildScrollView(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildBookHeader(context, cozy, colorScheme, book, l10n),
+                  _buildBookHeader(book),
                   const SizedBox(height: 20),
-                  _buildMetricsCard(context, cozy, book, l10n, theme),
+                  _buildMetricsCard(book),
                   const SizedBox(height: 16),
-                  _buildEditorialDetailsCard(context, cozy, book, l10n, theme),
+                  _buildEditorialDetailsCard(book),
                   const SizedBox(height: 20),
                   if (book.description != null && book.description!.isNotEmpty) ...[
                     Text(
-                      l10n.synopsis,
-                      style: Theme.of(context).textTheme.titleMedium,
+                      context.l10n.synopsis,
+                      style: context.theme.textTheme.titleMedium,
                     ),
                     const SizedBox(height: 8),
                     Text(
                       book.description!,
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: cozy.inkColor?.withValues(alpha: 0.8),
-                          ),
+                      style: context.theme.textTheme.bodyMedium?.copyWith(
+                        color: context.cozy.inkColor?.withValues(alpha: 0.8),
+                      ),
                     ),
                     const SizedBox(height: 20),
                   ],
-                  _buildActionButtons(context, cozy, l10n),
+                  _buildActionButtons(),
                   const SizedBox(height: 20),
 
                   Row(
@@ -183,7 +178,7 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                     children: [
                       Expanded(
                         child: _buildAccordionHeader(
-                          title: '${l10n.readingNotes} (${notes.length})',
+                          title: '${context.l10n.readingNotes} (${notes.length})',
                           isExpanded: _isNotesExpanded,
                           onToggle: () => setState(() => _isNotesExpanded = !_isNotesExpanded),
                         ),
@@ -201,18 +196,18 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                       ),
                       error: (error, _) => Text(
                         'Error: $error',
-                        style: TextStyle(color: Theme.of(context).colorScheme.error),
+                        style: TextStyle(color: context.theme.colorScheme.error),
                       ),
                       data: (notesList) {
                         if (notesList.isEmpty) {
-                          return Text(l10n.noNotesRegistered);
+                          return Text(context.l10n.noNotesRegistered);
                         }
                         return ListView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: notesList.length,
                           itemBuilder: (context, index) {
-                            return _buildNoteCard(notesList[index], cozy, l10n);
+                            return _buildNoteCard(notesList[index]);
                           },
                         );
                       },
@@ -225,7 +220,7 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                     children: [
                       Expanded(
                         child: _buildAccordionHeader(
-                          title: '${l10n.readingHistory} (${book.sessions.length})',
+                          title: '${context.l10n.readingHistory} (${book.sessions.length})',
                           isExpanded: _isHistoryExpanded,
                           onToggle: () => setState(() => _isHistoryExpanded = !_isHistoryExpanded),
                         ),
@@ -235,8 +230,8 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                   if (_isHistoryExpanded) ...[
                     const SizedBox(height: 12),
                     book.sessions.isEmpty
-                        ? Text(l10n.noSessionsRegistered)
-                        : _buildTimelineHistory(book.sessions.toList(), cozy, l10n),
+                      ? Text(context.l10n.noSessionsRegistered)
+                      : _buildTimelineHistory(book.sessions.toList()),
                   ],
                   const SizedBox(height: 80),
                 ],
@@ -248,29 +243,29 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
     );
   }
 
-  AppBar _buildNavBar(AppLocalizations l10n, ThemeData theme, BuildContext context, cozy) {
+  AppBar _buildNavBar() {
     return AppBar(
       centerTitle: true,
-      title: Text(l10n.yourBookTitle, style: theme.textTheme.titleLarge),
+      title: Text(context.l10n.yourBookTitle, style: context.theme.textTheme.titleLarge),
       backgroundColor: Colors.transparent,
       elevation: 0,
       actions: [
         IconButton(
           icon: Icon(
             _isFavorite ? Icons.favorite_outlined : Icons.favorite_border_outlined, 
-            color: cozy.inkColor
+            color: context.cozy.inkColor
           ),
-          onPressed: () => _updateBookFavorite(context, l10n),
+          onPressed: () => _updateBookFavorite(context),
         ),
         IconButton(
-          icon: Icon(Icons.delete_outline_outlined, color: cozy.inkColor),
-          onPressed: () => _showDeleteConfirmation(context, l10n),
+          icon: Icon(Icons.delete_outline_outlined, color: context.cozy.inkColor),
+          onPressed: () => _showDeleteConfirmation(),
         ),
       ],
     );
   }
 
-  Row _buildBookHeader(BuildContext context, CozyColors cozy, ColorScheme colorScheme, Book book, AppLocalizations l10n) {
+  Row _buildBookHeader(Book book) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -278,15 +273,15 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
           width: 100,
           height: 150,
           child: CustomPaint(
-            painter: HandDrawnBorderPainter(color: cozy.inkColor!.withValues(alpha: 0.4)),
+            painter: HandDrawnBorderPainter(color: context.cozy.inkColor!.withValues(alpha: 0.4)),
             child: book.coverPath != null && book.coverPath!.isNotEmpty
-              ? Image.network(
-                  book.coverPath!,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) =>
-                      _buildPlaceholderCover(context),
-                )
-              : _buildPlaceholderCover(context),
+            ? Image.network(
+                book.coverPath!,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) =>
+                    _buildPlaceholderCover(),
+              )
+            : _buildPlaceholderCover(),
           ),
         ),
         const SizedBox(width: 16),
@@ -294,37 +289,37 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(book.title, style: Theme.of(context).textTheme.headlineSmall),
+              Text(book.title, style: context.theme.textTheme.headlineSmall),
               const SizedBox(height: 4),
               Text(
                 book.author,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: cozy.textColor,
+                style: context.theme.textTheme.titleMedium?.copyWith(
+                  color: context.cozy.textColor,
                 ),
               ),
               const SizedBox(height: 12),
               InkWell(
-                onTap: () => _showStatusActionSheet(context, book.status, l10n),
+                onTap: () => _showStatusActionSheet(book.status),
                 borderRadius: BorderRadius.circular(20),
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: colorScheme.onSurface.withValues(alpha: 0.8), width: 1.2),
+                    border: Border.all(color: context.colorScheme.onSurface.withValues(alpha: 0.8), width: 1.2),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        _getStatusLabel(book.status, l10n),
+                        _getStatusLabel(book.status),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: cozy.inkColor,
+                          color: context.cozy.inkColor,
                           fontSize: 13,
                         ),
                       ),
                       const SizedBox(width: 4),
-                      Icon(Icons.keyboard_arrow_down, size: 18, color: cozy.inkColor),
+                      Icon(Icons.keyboard_arrow_down, size: 18, color: context.cozy.inkColor),
                     ],
                   ),
                 ),
@@ -348,14 +343,14 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
     }
   }
 
-  Row _buildActionButtons(BuildContext context, CozyColors cozy, AppLocalizations l10n) {
+  Row _buildActionButtons() {
     return Row(
       children: [
         Expanded(
           child: PrimaryOutlinedButton(
-            onPressed: () => _showAddNoteDialog(context, cozy, l10n),
+            onPressed: () => _showAddNoteDialog(),
             icon: Icons.add_comment_outlined,
-            label: l10n.addNote
+            label: context.l10n.addNote
           ),
         ),
         const SizedBox(width: 12),
@@ -365,86 +360,80 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
               context.push('/reading_session', extra: widget.book);
             },
             icon: Icons.timer_outlined,
-            label: l10n.newSession,
+            label: context.l10n.newSession,
           ),
         ),
       ],
     );
   }
 
-  Widget _buildNoteCard(
-  Note note,
-  CozyColors cozy,
-  AppLocalizations l10n,
-) {
-  final theme = Theme.of(context);
-  final colorScheme = theme.colorScheme;
+  Widget _buildNoteCard(Note note) {
 
-  return Container(
-    margin: const EdgeInsets.only(bottom: 8.0),
-    padding: const EdgeInsets.all(12),
-    decoration: BoxDecoration(
-      color: theme.cardColor.withValues(alpha: 0.8),
-      borderRadius: BorderRadius.circular(8),
-      border: Border.all(
-        color: cozy.inkColor!.withValues(alpha: 0.2),
+    return Container(
+      margin: const EdgeInsets.only(bottom: 8.0),
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: context.theme.cardColor.withValues(alpha: 0.8),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: context.cozy.inkColor!.withValues(alpha: 0.2),
+        ),
       ),
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                  decoration: BoxDecoration(
-                    color: AppColors.oliveGreen.withValues(alpha: 0.15),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  child: Text(
-                    l10n.pageOption(note.page),
-                    style: theme.textTheme.labelSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.oliveGreen,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                    decoration: BoxDecoration(
+                      color: AppColors.oliveGreen.withValues(alpha: 0.15),
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: Text(
+                      context.l10n.pageOption(note.page),
+                      style: context.theme.textTheme.labelSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.oliveGreen,
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  NoteCategoryHelper.getLabelById(note.category, l10n),
-                  style: theme.textTheme.labelSmall?.copyWith(
-                    color: colorScheme.onSurface.withValues(alpha: 0.6),
-                    fontWeight: FontWeight.w600,
+                  const SizedBox(width: 8),
+                  Text(
+                    NoteCategoryHelper.getLabelById(note.category, context.l10n),
+                    style: context.theme.textTheme.labelSmall?.copyWith(
+                      color: context.colorScheme.onSurface.withValues(alpha: 0.6),
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            Text(
-              '${note.createdAt.day}/${note.createdAt.month}/${note.createdAt.year}',
-              style: theme.textTheme.labelSmall?.copyWith(
-                color: colorScheme.onSurface.withValues(alpha: 0.5),
+                ],
               ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 8),
-        Text(
-          note.content,
-          style: theme.textTheme.bodyMedium?.copyWith(
-            color: colorScheme.onSurface,
+              Text(
+                '${note.createdAt.day}/${note.createdAt.month}/${note.createdAt.year}',
+                style: context.theme.textTheme.labelSmall?.copyWith(
+                  color: context.colorScheme.onSurface.withValues(alpha: 0.5),
+                ),
+              ),
+            ],
           ),
-        ),
-      ],
-    ),
-  );
-}
+          const SizedBox(height: 8),
+          Text(
+            note.content,
+            style: context.theme.textTheme.bodyMedium?.copyWith(
+              color: context.colorScheme.onSurface,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
-  CustomPaint _buildEditorialDetailsCard(BuildContext context, CozyColors cozy, Book book, AppLocalizations l10n, ThemeData theme) {
+  CustomPaint _buildEditorialDetailsCard(Book book) {
     return CustomPaint(
-      painter: HandDrawnBorderPainter(color: cozy.inkColor!.withValues(alpha: 0.3)),
+      painter: HandDrawnBorderPainter(color: context.cozy.inkColor!.withValues(alpha: 0.3)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -452,28 +441,28 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
           children: [
             Row(
               children: [
-                Icon(Icons.menu_book_outlined, size: 18, color: cozy.bookmarkColor),
+                Icon(Icons.menu_book_outlined, size: 18, color: context.cozy.bookmarkColor),
                 const SizedBox(width: 8),
                 Text(
-                  l10n.editionInfo,
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                  context.l10n.editionInfo,
+                  style: context.theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
             const Divider(height: 20),
             Row(
               children: [
-                Expanded(child: _buildDetailRow(l10n.publisher, book.publisher ?? '-', cozy, theme)),
-                Expanded(child: _buildDetailRow('ISBN', book.isbn ?? '-', cozy, theme)),
+                Expanded(child: _buildDetailRow(context.l10n.publisher, book.publisher ?? '-')),
+                Expanded(child: _buildDetailRow(context.l10n.isbn, book.isbn ?? '-')),
               ],
             ),
             const SizedBox(height: 12),
             Row(
               children: [
-                Expanded(child: _buildDetailRow(l10n.language, book.language ?? '-', cozy, theme)),
-                Expanded(child: _buildDetailRow(l10n.publicationDate, book.publishedDate ?? '-', cozy, theme)),
+                Expanded(child: _buildDetailRow(context.l10n.language, book.language ?? '-')),
+                Expanded(child: _buildDetailRow(context.l10n.publicationDate, book.publishedDate ?? '-')),
               ],
             ),
           ],
@@ -482,23 +471,23 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
     );
   }
 
-  Column _buildDetailRow(String label, String value, CozyColors cozy, ThemeData theme) {
+  Column _buildDetailRow(String label, String value) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           label, 
-          style: theme.textTheme.titleSmall?.copyWith(
+          style: context.theme.textTheme.titleSmall?.copyWith(
             fontWeight: FontWeight.bold,
-            color: theme.colorScheme.primary,
+            color: context.theme.colorScheme.primary,
             letterSpacing: 0.5,
           )
         ),
         const SizedBox(height: 2),
         Text(
           value,
-          style: theme.textTheme.bodyMedium?.copyWith(
-            color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+          style: context.theme.textTheme.bodyMedium?.copyWith(
+            color: context.theme.colorScheme.onSurface.withValues(alpha: 0.6),
             fontWeight: FontWeight.w500,
           ),
           maxLines: 2,
@@ -508,20 +497,20 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
     );
   }
 
-  CustomPaint _buildMetricsCard(BuildContext context, CozyColors cozy, Book book, AppLocalizations l10n, ThemeData theme) {
+  CustomPaint _buildMetricsCard(Book book) {
     return CustomPaint(
-      painter: HandDrawnBorderPainter(color: cozy.inkColor!.withValues(alpha: 0.3)),
+      painter: HandDrawnBorderPainter(color: context.cozy.inkColor!.withValues(alpha: 0.3)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             Row(
               children: [
-                Icon(Icons.menu_book_outlined, size: 18, color: cozy.bookmarkColor),
+                Icon(Icons.menu_book_outlined, size: 18, color: context.cozy.bookmarkColor),
                 const SizedBox(width: 8),
                 Text(
-                  l10n.progressInfo,
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
+                  context.l10n.progressInfo,
+                  style: context.theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
                 ),
               ],
             ),
@@ -529,20 +518,20 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildMetricItem(l10n.startDate, book.startDateText, cozy, theme),
-                _buildMetricItem(l10n.day, book.readingDayText.isEmpty ? '-' : book.readingDayText, cozy, theme ),
-                _buildMetricItem(l10n.remaining, book.remainingTimeText, cozy, theme),
+                _buildMetricItem(context.l10n.startDate, book.startDateText),
+                _buildMetricItem(context.l10n.day, book.readingDayText.isEmpty ? '-' : book.readingDayText),
+                _buildMetricItem(context.l10n.remaining, book.remainingTimeText),
               ],
             ),
             const Divider(height: 24),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('${l10n.progress}: ${(book.progress * 100).toStringAsFixed(1)}%'),
+                Text('${context.l10n.progress}: ${(book.progress * 100).toStringAsFixed(1)}%'),
                 Text(
                   book.totalPages != null
-                      ? '${book.currentPage} / ${book.totalPages} ${l10n.pagesAbbr}'
-                      : '${book.currentPage} ${l10n.pagesAbbr}',
+                      ? '${book.currentPage} / ${book.totalPages} ${context.l10n.pagesAbbr}'
+                      : '${book.currentPage} ${context.l10n.pagesAbbr}',
                 ),
               ],
             ),
@@ -552,8 +541,8 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
               child: LinearProgressIndicator(
                 value: widget.book.progress,
                 minHeight: 6,
-                backgroundColor: cozy.inkColor!.withValues(alpha: 0.1),
-                valueColor: AlwaysStoppedAnimation<Color>(theme.colorScheme.primary),
+                backgroundColor: context.cozy.inkColor!.withValues(alpha: 0.1),
+                valueColor: AlwaysStoppedAnimation<Color>(context.theme.colorScheme.primary),
               ),
             )
           ],
@@ -562,22 +551,22 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
     );
   }
 
-  Column _buildMetricItem(String label, String value, CozyColors cozy, ThemeData theme) {
+  Column _buildMetricItem(String label, String value) {
     return Column(
       children: [
         Text(
           label, 
-          style: theme.textTheme.titleSmall?.copyWith(
+          style: context.theme.textTheme.titleSmall?.copyWith(
             fontWeight: FontWeight.bold,
-            color: theme.colorScheme.primary,
+            color: context.theme.colorScheme.primary,
             letterSpacing: 0.5,
           )
         ),
         const SizedBox(height: 4),
         Text(
           value, 
-          style: theme.textTheme.bodyMedium?.copyWith(
-            color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+          style: context.theme.textTheme.bodyMedium?.copyWith(
+            color: context.theme.colorScheme.onSurface.withValues(alpha: 0.6),
             fontWeight: FontWeight.w500,
           )
         ),
@@ -597,7 +586,7 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(title, style: Theme.of(context).textTheme.titleMedium),
+            Text(title, style: context.theme.textTheme.titleMedium),
             Icon(isExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down),
           ],
         ),
@@ -605,89 +594,86 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
     );
   }
 
-  ListView _buildTimelineHistory(List<ReadingSession> sessions, CozyColors cozy, AppLocalizations l10n) {
-  final sorted = List<ReadingSession>.from(sessions)
-    ..sort((a, b) => b.startTime.compareTo(a.startTime));
+  ListView _buildTimelineHistory(List<ReadingSession> sessions) {
+    final sorted = List<ReadingSession>.from(sessions)
+      ..sort((a, b) => b.startTime.compareTo(a.startTime));
 
-  return ListView.builder(
-    shrinkWrap: true,
-    physics: const NeverScrollableScrollPhysics(),
-    itemCount: sorted.length,
-    itemBuilder: (context, index) {
-      final session = sorted[index];
-      final isLast = index == sorted.length - 1;
-      
-      // Cálculo de minutos a partir de durationSeconds
-      final minutesRead = (session.durationSeconds / 60).round();
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: sorted.length,
+      itemBuilder: (context, index) {
+        final session = sorted[index];
+        final isLast = index == sorted.length - 1;
+        final minutesRead = (session.durationSeconds / 60).round();
 
-      return IntrinsicHeight(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              width: 24,
-              child: Column(
-                children: [
-                  Container(
-                    width: 12,
-                    height: 12,
-                    decoration: BoxDecoration(
-                      color: cozy.bookmarkColor,
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                  if (!isLast)
-                    Expanded(
-                      child: Container(
-                        width: 2,
-                        color: cozy.inkColor?.withValues(alpha: 0.2),
-                      ),
-                    ),
-                ],
-              ),
-            ),
-            const SizedBox(width: 8),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 16.0),
+        return IntrinsicHeight(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 24,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      '${session.startTime.day}/${session.startTime.month}/${session.startTime.year} - $minutesRead ${l10n.minutesAbbr}',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        color: cozy.inkColor,
+                    Container(
+                      width: 12,
+                      height: 12,
+                      decoration: BoxDecoration(
+                        color: context.cozy.bookmarkColor,
+                        shape: BoxShape.circle,
                       ),
                     ),
-                    Text(
-                      session.startPage > 0
-                          ? l10n.pagesRange(session.startPage, session.endPage)
-                          : l10n.upToPage(session.endPage),
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: cozy.inkColor?.withValues(alpha: 0.7),
+                    if (!isLast)
+                      Expanded(
+                        child: Container(
+                          width: 2,
+                          color: context.cozy.inkColor?.withValues(alpha: 0.2),
+                        ),
                       ),
-                    ),
                   ],
                 ),
               ),
-            ),
-          ],
-        ),
-      );
-    },
-  );
-}
+              const SizedBox(width: 8),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '${session.startTime.day}/${session.startTime.month}/${session.startTime.year} - $minutesRead ${context.l10n.minutesAbbr}',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          color: context.cozy.inkColor,
+                        ),
+                      ),
+                      Text(
+                        session.startPage > 0
+                        ? context.l10n.pagesRange(session.startPage, session.endPage)
+                        : context.l10n.upToPage(session.endPage),
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: context.cozy.inkColor?.withValues(alpha: 0.7),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
 
-  Widget _buildPlaceholderCover(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+  Widget _buildPlaceholderCover() {
     return Container(
-      color: colorScheme.surfaceContainerHighest,
+      color: context.colorScheme.surfaceContainerHighest,
       child: Icon(
         AppIcons.bookPlaceholder,
         size: 48,
-        color: colorScheme.onSurfaceVariant.withValues(alpha: 0.5),
+        color: context.colorScheme.onSurfaceVariant.withValues(alpha: 0.5),
       ),
     );
   }

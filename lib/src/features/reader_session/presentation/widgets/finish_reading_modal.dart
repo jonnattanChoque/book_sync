@@ -1,8 +1,7 @@
 // lib/src/features/reading/presentation/widgets/finish_reading_modal.dart
 
-import 'package:book_sync/core/theme/cozy_colors.dart';
+import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/widgets/primary_outlined_button.dart';
-import 'package:book_sync/l10n/app_localizations.dart';
 import 'package:book_sync/src/domain/book.dart';
 import 'package:book_sync/src/features/reader_session/presentation/summary_screen.dart';
 import 'package:book_sync/src/features/reading_slider/presentation/providers/books_provider.dart';
@@ -24,15 +23,14 @@ class FinishReadingModal extends ConsumerStatefulWidget {
     required Book book,
     required Duration elapsedDuration,
   }) {
-    final cozy = Theme.of(context).extension<CozyColors>()!;
     
     return showModalBottomSheet(
       context: context,
-      backgroundColor: Theme.of(context).cardColor.withValues(alpha: 0.85),
+      backgroundColor: context.theme.cardColor.withValues(alpha: 0.85),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
       ),
-      barrierColor: cozy.inkColor!.withValues(alpha: 0.2),
+      barrierColor: context.cozy.inkColor!.withValues(alpha: 0.2),
       showDragHandle: true,
       isDismissible: true,
       isScrollControlled: true,
@@ -63,13 +61,13 @@ class _FinishReadingModalState extends ConsumerState<FinishReadingModal> {
     super.dispose();
   }
 
-  String _formatDuration(Duration duration, AppLocalizations l10n) {
+  String _formatDuration(Duration duration) {
     final minutes = duration.inMinutes;
     final seconds = duration.inSeconds % 60;
     if (minutes > 0) {
-      return '$minutes ${l10n.minutesShort} $seconds ${l10n.secondsShort}';
+      return '$minutes ${context.l10n.minutesShort} $seconds ${context.l10n.secondsShort}';
     }
-    return '$seconds ${l10n.secondsShort}';
+    return '$seconds ${context.l10n.secondsShort}';
   }
 
   void _onSubmit() async {
@@ -99,10 +97,6 @@ class _FinishReadingModalState extends ConsumerState<FinishReadingModal> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final cozy = theme.extension<CozyColors>()!;
-    final l10n = AppLocalizations.of(context)!;
     final bottomInset = MediaQuery.of(context).viewInsets.bottom;
 
     return Container(
@@ -119,31 +113,31 @@ class _FinishReadingModalState extends ConsumerState<FinishReadingModal> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Header
-            _buildTitle(l10n, context),
+            _buildTitle(),
             const SizedBox(height: 12),
 
             // Time summary
-            _buildTimeInfo(l10n),
+            _buildTimeInfo(),
             const SizedBox(height: 20),
 
             // End page input
-            _buildTextFieldPage(l10n, theme, colorScheme, cozy),
+            _buildTextFieldPage(),
             const SizedBox(height: 24),
 
             // Save button
-            _buildButton(l10n, context)
+            _buildButton()
           ],
         ),
       ),
     );
   }
 
-  Row _buildTitle(AppLocalizations l10n, BuildContext context) {
+  Row _buildTitle() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          l10n.finishReadingTitle,
+          context.l10n.finishReadingTitle,
           style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -157,7 +151,7 @@ class _FinishReadingModalState extends ConsumerState<FinishReadingModal> {
     );
   }
 
-  Container _buildTimeInfo(AppLocalizations l10n) {
+  Container _buildTimeInfo() {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
@@ -168,7 +162,7 @@ class _FinishReadingModalState extends ConsumerState<FinishReadingModal> {
           const Icon(Icons.timer_outlined, color: Colors.blueAccent),
           const SizedBox(width: 10),
           Text(
-            '${l10n.timeReadLabel}: ${_formatDuration(widget.elapsedDuration, l10n)}',
+            '${context.l10n.timeReadLabel}: ${_formatDuration(widget.elapsedDuration)}',
             style: const TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 15,
@@ -179,76 +173,73 @@ class _FinishReadingModalState extends ConsumerState<FinishReadingModal> {
     );
   }
 
-  Column _buildTextFieldPage(AppLocalizations l10n, ThemeData theme, ColorScheme colorScheme, CozyColors cozy) {
+  Column _buildTextFieldPage() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        // Encabezado/Label superior idéntico al modal de notas
         Text(
-          l10n.whatPageDidYouReach,
-          style: theme.textTheme.bodyMedium?.copyWith(
+          context.l10n.whatPageDidYouReach,
+          style: context.theme.textTheme.bodyMedium?.copyWith(
             fontWeight: FontWeight.w600,
-            color: colorScheme.onSurface,
+            color: context.colorScheme.onSurface,
           ),
         ),
         const SizedBox(height: 8),
-
-        // Input con el estilo visual unificado
         TextFormField(
           controller: _endPageController,
           keyboardType: TextInputType.number,
-          style: theme.textTheme.bodyMedium?.copyWith(
-            color: colorScheme.onSurface,
+          style: context.theme.textTheme.bodyMedium?.copyWith(
+            color: context.colorScheme.onSurface,
           ),
           decoration: InputDecoration(
-            hintText: l10n.currentPageHint(widget.book.currentPage),
-            hintStyle: theme.textTheme.bodyMedium?.copyWith(
-              color: colorScheme.onSurface.withValues(alpha: 0.4),
+            hintText: context.l10n.currentPageHint(widget.book.currentPage),
+            hintStyle: context.theme.textTheme.bodyMedium?.copyWith(
+              color: context.colorScheme.onSurface.withValues(alpha: 0.4),
             ),
             filled: true,
-            fillColor: theme.cardColor,
+            fillColor: context.theme.cardColor,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide(
-                color: cozy.inkColor!.withValues(alpha: 0.5),
+                color: context.cozy.inkColor!.withValues(alpha: 0.5),
               ),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide(
-                color: cozy.inkColor!.withValues(alpha: 0.8),
+                color: context.cozy.inkColor!.withValues(alpha: 0.8),
               ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide(
-                color: colorScheme.primary,
+                color: context.colorScheme.primary,
                 width: 2,
               ),
             ),
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide(
-                color: colorScheme.error,
+                color: context.colorScheme.error,
               ),
             ),
           ),
           validator: (value) {
             if (value == null || value.trim().isEmpty) {
-              return l10n.validationEnterEndPage;
+              return context.l10n.validationEnterEndPage;
             }
             final page = int.tryParse(value.trim());
             if (page == null || page < 0) {
-              return l10n.validationInvalidNumber;
+              return context.l10n.validationInvalidNumber;
             }
             if (page <= widget.book.currentPage) {
-              return l10n.validationPageLowerThanCurrent(widget.book.currentPage);
+              return context.l10n.validationPageLowerThanCurrent(widget.book.currentPage);
             }
             final totalPages = widget.book.totalPages;
 
             if (totalPages != null && totalPages > 0 && page > totalPages) {
-              return l10n.validationPageExceedsTotal(totalPages);
+              return context.l10n.validationPageExceedsTotal(totalPages);
             }
 
             return null;
@@ -258,10 +249,10 @@ class _FinishReadingModalState extends ConsumerState<FinishReadingModal> {
     );
   }
 
-  PrimaryOutlinedButton _buildButton(AppLocalizations l10n, BuildContext context) {
+  PrimaryOutlinedButton _buildButton() {
     return PrimaryOutlinedButton(
       onPressed: _onSubmit,
-      label: l10n.saveSessionButton,
+      label: context.l10n.saveSessionButton,
       icon: Icons.check_circle_outline,
     );
   }

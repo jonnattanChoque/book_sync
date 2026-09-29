@@ -1,5 +1,5 @@
+import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/theme/app_colors.dart';
-import 'package:book_sync/core/theme/cozy_colors.dart';
 import 'package:book_sync/core/widgets/book_cover_image.dart';
 import 'package:book_sync/core/widgets/book_loader.dart';
 import 'package:book_sync/l10n/app_localizations.dart';
@@ -21,7 +21,6 @@ class HomeLibraryCard extends ConsumerWidget {
       child: allBooksAsync.when(
         data: (books) {
           final previewBooks = books.take(5).toList();
-          final cozy = Theme.of(context).extension<CozyColors>()!;
 
           return Material(
             color: Colors.transparent,
@@ -33,10 +32,10 @@ class HomeLibraryCard extends ConsumerWidget {
               child: Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: Theme.of(context).cardColor.withValues(alpha: 0.5),
+                  color: context.theme.cardColor.withValues(alpha: 0.5),
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
-                    color: cozy.bookmarkColor!.withValues(alpha: 0.2),
+                    color: context.cozy.bookmarkColor!.withValues(alpha: 0.2),
                   ),
                 ),
                 child: Column(
@@ -46,7 +45,7 @@ class HomeLibraryCard extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          AppLocalizations.of(context)!.libraryTitle,
+                          context.l10n.libraryTitle,
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -58,15 +57,15 @@ class HomeLibraryCard extends ConsumerWidget {
                             vertical: 4,
                           ),
                           decoration: BoxDecoration(
-                            color: cozy.bookmarkColor!.withValues(alpha: 0.1),
+                            color: context.cozy.bookmarkColor!.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Text(
-                            AppLocalizations.of(context)!.libraryCount(books.length),
+                            books.length == 1 ? context.l10n.libraryOneCount(1) : context.l10n.libraryCount(books.length),
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
-                              color: cozy.bookmarkColor!.withValues(alpha: 0.6),
+                              color: context.cozy.bookmarkColor!.withValues(alpha: 0.6),
                             ),
                           ),
                         ),
@@ -76,7 +75,7 @@ class HomeLibraryCard extends ConsumerWidget {
 
                     if (previewBooks.isEmpty)
                       Text(
-                        AppLocalizations.of(context)!.noBooksRegistered,
+                        context.l10n.noBooksRegistered,
                         style: const TextStyle(fontSize: 13, color: Colors.grey),
                       )
                     else
@@ -103,7 +102,7 @@ class HomeLibraryCard extends ConsumerWidget {
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: Theme.of(context).cardColor.withValues(alpha: 0.8),
+            color: context.theme.cardColor.withValues(alpha: 0.8),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(color: AppColors.prussianBlue.withValues(alpha: 0.2)),
           ),
@@ -116,7 +115,7 @@ class HomeLibraryCard extends ConsumerWidget {
         error: (err, stack) => Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-            color: Theme.of(context).cardColor.withValues(alpha: 0.8),
+            color: context.theme.cardColor.withValues(alpha: 0.8),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(color: Colors.red.withValues(alpha: 0.3)),
           ),

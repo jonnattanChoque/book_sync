@@ -1,0 +1,85 @@
+{
+  "@@locale": "en",
+  "welcomeTitle": "Hello,",
+  "@welcomeTitle": {
+    "description": "Greeting on the home screen"
+  },
+  "welcomeMessage": "Book lover",
+  "@welcomeMessage": {
+    "description": "Subtitle on the home screen"
+  },
+  "userName": "Book Lover",
+  "@userName": {
+    "description": "Default user name"
+  },
+  "addBook": "Add book",
+  "@addBook": {
+    "description": "General action text for adding a book"
+  },
+  "currentlyReading": "Reading now",
+  "@currentlyReading": {
+    "description": "Header for the currently reading section"
+  },
+  "createBookTitle": "Add a book to your nightstand",
+  "@createBookTitle": {
+    "description": "Title in the book addition modal"
+  },
+  "noBooksTitle": "Your nightstand is empty",
+  "@noBooksTitle": {
+    "description": "Empty state title for main library"
+  },
+  "noBooksSubtitle": "What story shall we start today?",
+  "@noBooksSubtitle": {
+    "description": "Motivational message when no books are saved"
+  },
+  "addBySearch": "Add by search",
+  "@addBySearch": {
+    "description": "Option to add a book by API search"
+  },
+  "addByScan": "Add by scan (ISBN)",
+  "@addByScan": {
+    "description": "Option to add a book by scanning ISBN barcode"
+  },
+  "addByManual": "Add manually",
+  "@addByManual": {
+    "description": "Option to add a book with manual form"
+  },
+  "cameraAccessError": "Error accessing camera",
+  "@cameraAccessError": {
+    "description": "Error message shown when camera fails to start"
+  },
+  "retry": "Retry",
+  "@retry": {
+    "description": "Text for retrying a failed action"
+  },
+  "actionCancel": "Cancel",
+  "@actionCancel": {
+    "description": "Label for cancelling an action"
+  },
+  "actionConfirm": "Confirm",
+  "@actionConfirm": {
+    "description": "Label for confirming cover change"
+  },
+  "accept": "Accept",
+  "@accept": {
+    "description": "Text for closing or confirming an alert dialog"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Generic cancel text"
+  },
+  "save": "Save",
+  "@save": {
+    "description": "Generic save text"
+  },
+  "errorLoadingBooks": "Error loading books: {error}",
+  "@errorLoadingBooks": {
+    "description": "Message shown when fetching books fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "SocketException"
+      }
+    }
+  }
+}

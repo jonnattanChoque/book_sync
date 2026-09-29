@@ -1,0 +1,89 @@
+{
+  "@@locale": "es",
+  "progressLabel": "{percentage}% completado",
+  "@progressLabel": {
+    "description": "Porcentaje de avance en la lectura de un libro",
+    "placeholders": {
+      "percentage": {
+        "type": "String",
+        "example": "45"
+      }
+    }
+  },
+  "startDateWith": "Inicio: {date}",
+  "@startDateWith": {
+    "description": "Muestra la fecha de inicio de lectura del libro.",
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "example": "12 Ene 2024"
+      }
+    }
+  },
+  "remainingTime": "Restante: {time}",
+  "@remainingTime": {
+    "description": "Tiempo estimado restante para finalizar el libro.",
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "2h 15m"
+      }
+    }
+  },
+  "pageProgress": "Pág. {currentPage} / {totalPages}",
+  "@pageProgress": {
+    "description": "Progreso de lectura expresado en página actual y total.",
+    "placeholders": {
+      "currentPage": {
+        "type": "int",
+        "example": "45"
+      },
+      "totalPages": {
+        "type": "int",
+        "example": "300"
+      }
+    }
+  },
+  "currentPageFormat": "Pág. {currentPage}",
+  "@currentPageFormat": {
+    "description": "Formato simple para indicar la página actual alcanzada.",
+    "placeholders": {
+      "currentPage": {
+        "type": "int",
+        "example": "45"
+      }
+    }
+  },
+  "progressInfo": "Información de progreso",
+  "@progressInfo": {
+    "description": "Título de la tarjeta de progreso y tiempos de lectura"
+  },
+  "startDate": "Inicio",
+  "@startDate": {
+    "description": "Etiqueta para la fecha de inicio de lectura"
+  },
+  "day": "Día",
+  "@day": {
+    "description": "Etiqueta para el día actual o transcurrido de lectura"
+  },
+  "remaining": "Restante",
+  "@remaining": {
+    "description": "Etiqueta para el tiempo estimado restante de lectura"
+  },
+  "progress": "Progreso",
+  "@progress": {
+    "description": "Texto que precede al porcentaje de avance"
+  },
+  "pagesAbbr": "págs",
+  "@pagesAbbr": {
+    "description": "Abreviatura de páginas"
+  },
+  "pageAbbr": "Pág",
+  "@pageAbbr": {
+    "description": "Abreviatura singular de página"
+  },
+  "minutesAbbr": "min",
+  "@minutesAbbr": {
+    "description": "Abreviatura de minutos"
+  }
+}

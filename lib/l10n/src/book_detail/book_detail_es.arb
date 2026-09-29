@@ -1,0 +1,89 @@
+{
+  "@@locale": "es",
+  "yourBookTitle": "Tu libro",
+  "@yourBookTitle": {
+    "description": "Título principal en el AppBar de la pantalla de detalles del libro"
+  },
+  "isbn": "ISBN",
+  "@isbn": {
+    "description": "Etiqueta para el código ISBN del libro"
+  },
+  "deleteAction": "Borrar",
+  "@deleteAction": {
+    "description": "Texto para el botón o acción de eliminar"
+  },
+  "editionInfo": "Información de Edición",
+  "@editionInfo": {
+    "description": "Título de la tarjeta de información de la editorial/edición"
+  },
+  "publisher": "Editorial",
+  "@publisher": {
+    "description": "Etiqueta para la editorial del libro"
+  },
+  "language": "Idioma",
+  "@language": {
+    "description": "Etiqueta para el idioma del libro"
+  },
+  "publicationDate": "Publicación",
+  "@publicationDate": {
+    "description": "Etiqueta para la fecha de publicación del libro"
+  },
+  "synopsis": "Sinopsis",
+  "@synopsis": {
+    "description": "Título de la sección de sinopsis o descripción"
+  },
+  "readingStatusTitle": "Estado de Lectura",
+  "@readingStatusTitle": {
+    "description": "Título del menú desplegable de selección de estado"
+  },
+  "readingStatusMessage": "Selecciona el estado actual de este libro",
+  "@readingStatusMessage": {
+    "description": "Mensaje instructivo del menú de estados"
+  },
+  "statusReading": "Leyendo",
+  "@statusReading": {
+    "description": "Estado: Leyendo"
+  },
+  "statusToRead": "Por leer",
+  "@statusToRead": {
+    "description": "Estado: Por leer"
+  },
+  "statusPaused": "Pausado",
+  "@statusPaused": {
+    "description": "Estado: Pausado"
+  },
+  "statusDropped": "Abandonado",
+  "@statusDropped": {
+    "description": "Estado: Abandonado"
+  },
+  "statusFinished": "Terminado",
+  "@statusFinished": {
+    "description": "Estado: Terminado"
+  },
+  "deleteBookDialogTitle": "Eliminar libro",
+  "@deleteBookDialogTitle": {
+    "description": "Título de la ventana modal de confirmación de borrado"
+  },
+  "deleteBookDialogMessage": "¿Estás seguro de que deseas eliminar \"{bookTitle}\"? Esta acción no se puede deshacer.",
+  "@deleteBookDialogMessage": {
+    "description": "Mensaje de confirmación para eliminar un libro especificando su título",
+    "placeholders": {
+      "bookTitle": {
+        "type": "String",
+        "example": "Cien años de soledad"
+      }
+    }
+  },
+  "addedToFavorites": "Agregado a favoritos",
+  "@addedToFavorites": {
+    "description": "Mensaje de confirmación cuando un libro se añade a la lista de favoritos."
+  },
+  "removedFromFavorites": "Quitado de favoritos",
+  "@removedFromFavorites": {
+    "description": "Mensaje de confirmación cuando un libro se elimina de la lista de favoritos."
+  },
+  "bookStatusUpdated": "Estado del libro actualizado",
+  "@bookStatusUpdated": {
+    "description": "Mensaje de confirmación tras cambiar el estado de lectura de un libro (ej. Por leer, Leyendo, Terminado)."
+  }
+}

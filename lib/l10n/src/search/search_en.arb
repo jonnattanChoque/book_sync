@@ -1,0 +1,51 @@
+{
+  "@@locale": "en",
+  "searchTitle": "Search Book",
+  "@searchTitle": {
+    "description": "Title of AppBar in online search screen"
+  },
+  "searchButton": "Search",
+  "@searchButton": {
+    "description": "Search button text"
+  },
+  "searchPlaceholder": "Title or author...",
+  "@searchPlaceholder": {
+    "description": "Hint text in search textfield"
+  },
+  "searchInitialHint": "Type to search books online",
+  "@searchInitialHint": {
+    "description": "Informational message before searching"
+  },
+  "noSearchResults": "No results found",
+  "@noSearchResults": {
+    "description": "Message when search has no matches"
+  },
+  "scanIsbnTitle": "Scan ISBN Code",
+  "@scanIsbnTitle": {
+    "description": "Title for barcode scanner screen"
+  },
+  "scanIsbnInstruction": "Align barcode within frame",
+  "@scanIsbnInstruction": {
+    "description": "Instruction text for barcode framing"
+  },
+  "scanIsbnLoading": "Searching book by ISBN...",
+  "@scanIsbnLoading": {
+    "description": "Loading message while querying API"
+  },
+  "bookNotFoundTitle": "Book not found",
+  "@bookNotFoundTitle": {
+    "description": "Title when search returns no results"
+  },
+  "searchByNamePrompt": "Would you like to search by title?",
+  "@searchByNamePrompt": {
+    "description": "Prompt suggesting to search by name/title"
+  },
+  "duplicateBookTitle": "Duplicate Book",
+  "@duplicateBookTitle": {
+    "description": "Dialog title warning that book is already in library"
+  },
+  "duplicateBookMessage": "This book is already in your library.",
+  "@duplicateBookMessage": {
+    "description": "Explanatory message for duplicate ISBN"
+  }
+}

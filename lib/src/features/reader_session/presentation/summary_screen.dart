@@ -1,7 +1,6 @@
-import 'package:book_sync/core/theme/cozy_colors.dart';
+import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/widgets/background_paper_texture.dart';
 import 'package:book_sync/core/widgets/book_cover_image.dart';
-import 'package:book_sync/l10n/app_localizations.dart';
 import 'package:book_sync/src/domain/book.dart';
 import 'package:flutter/material.dart';
 
@@ -21,10 +20,6 @@ class SessionSummaryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final cozy = theme.extension<CozyColors>()!;
 
     // Usamos la página final de la sesión para reflejar el progreso actual
     final int effectiveCurrentPage = session.endPage > 0 ? session.endPage : book.currentPage;
@@ -55,12 +50,12 @@ class SessionSummaryPage extends StatelessWidget {
               backgroundColor: Colors.transparent,
               elevation: 0,
               leading: IconButton(
-                icon: Icon(Icons.arrow_back, color: colorScheme.onSurface),
+                icon: Icon(Icons.arrow_back, color: context.colorScheme.onSurface),
                 onPressed: () => _goHome(context),
               ),
               title: Text(
-                l10n.sessionSummaryTitle,
-                style: theme.textTheme.titleLarge?.copyWith(
+                context.l10n.sessionSummaryTitle,
+                style: context.theme.textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -74,11 +69,11 @@ class SessionSummaryPage extends StatelessWidget {
                     // 1. Tarjeta con imagen del libro, título y barra de progreso
                     Card(
                       elevation: 0,
-                      color: theme.cardColor,
+                      color: context.theme.cardColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16.0),
                         side: BorderSide(
-                          color: cozy.inkColor!.withValues(alpha: 0.2),
+                          color: context.cozy.inkColor!.withValues(alpha: 0.2),
                         ),
                       ),
                       child: Padding(
@@ -87,7 +82,7 @@ class SessionSummaryPage extends StatelessWidget {
                           children: [
                             BookCoverImage(
                               coverPath: book.coverPath,
-                              inkColor: cozy.inkColor,
+                              inkColor: context.cozy.inkColor,
                               fit: BoxFit.cover,
                               iconSize: 60,
                             ),
@@ -98,9 +93,9 @@ class SessionSummaryPage extends StatelessWidget {
                                 children: [
                                   Text(
                                     book.title,
-                                    style: theme.textTheme.titleMedium?.copyWith(
+                                    style: context.theme.textTheme.titleMedium?.copyWith(
                                       fontWeight: FontWeight.bold,
-                                      color: colorScheme.onSurface,
+                                      color: context.colorScheme.onSurface,
                                     ),
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
@@ -111,15 +106,15 @@ class SessionSummaryPage extends StatelessWidget {
                                     child: LinearProgressIndicator(
                                       value: calculatedProgress,
                                       minHeight: 6,
-                                      backgroundColor: cozy.inkColor!.withValues(alpha: 0.1),
-                                      valueColor: AlwaysStoppedAnimation<Color>(colorScheme.primary),
+                                      backgroundColor: context.cozy.inkColor!.withValues(alpha: 0.1),
+                                      valueColor: AlwaysStoppedAnimation<Color>(context.colorScheme.primary),
                                     ),
                                   ),
                                   const SizedBox(height: 6),
                                   Text(
                                     '${(calculatedProgress * 100).toStringAsFixed(1)}%',
-                                    style: theme.textTheme.bodySmall?.copyWith(
-                                      color: colorScheme.onSurface.withValues(alpha: 0.6),
+                                    style: context.theme.textTheme.bodySmall?.copyWith(
+                                      color: context.colorScheme.onSurface.withValues(alpha: 0.6),
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
@@ -136,7 +131,7 @@ class SessionSummaryPage extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 12.0, bottom: 20.0, left: 4.0),
                       child: Text(
                         session.formattedDate,
-                        style: theme.textTheme.titleLarge,
+                        style: context.theme.textTheme.titleLarge,
                       ),
                     ),
           
@@ -144,10 +139,10 @@ class SessionSummaryPage extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(20.0),
                       decoration: BoxDecoration(
-                        color: theme.cardColor,
+                        color: context.theme.cardColor,
                         borderRadius: BorderRadius.circular(16.0),
                         border: Border.all(
-                          color: cozy.inkColor!.withValues(alpha: 0.2),
+                          color: context.cozy.inkColor!.withValues(alpha: 0.2),
                         ),
                       ),
                       child: Column(
@@ -155,7 +150,7 @@ class SessionSummaryPage extends StatelessWidget {
                           // Resumen de páginas y tiempo
                           _HighlightedInfoRow(
                             icon: Icons.auto_stories_outlined,
-                            fullText: l10n.readSummaryInfo(
+                            fullText: context.l10n.readSummaryInfo(
                               session.pagesRead,
                               session.durationFormatted,
                             ),
@@ -163,44 +158,44 @@ class SessionSummaryPage extends StatelessWidget {
                               '${session.pagesRead}',
                               session.durationFormatted,
                             ],
-                            theme: theme,
+                            theme: context.theme,
                           ),
-                          Divider(height: 32, color: cozy.inkColor!.withValues(alpha: 0.1)),
+                          Divider(height: 32, color: context.cozy.inkColor!.withValues(alpha: 0.1)),
           
                           // Velocidad promedio
                           _HighlightedInfoRow(
                             icon: Icons.speed_rounded,
-                            fullText: l10n.readingSpeedInfo(
+                            fullText: context.l10n.readingSpeedInfo(
                               session.pagesPerHour.toStringAsFixed(2),
                             ),
                             highlightTargets: [
                               session.pagesPerHour.toStringAsFixed(2),
                             ],
-                            theme: theme,
+                            theme: context.theme,
                           ),
-                          Divider(height: 32, color: cozy.inkColor!.withValues(alpha: 0.1)),
+                          Divider(height: 32, color: context.cozy.inkColor!.withValues(alpha: 0.1)),
           
                           // Tiempo estimado restante
                           _HighlightedInfoRow(
                             icon: Icons.timer_outlined,
-                            fullText: l10n.timeRemainingInfo(
+                            fullText: context.l10n.timeRemainingInfo(
                               book.remainingTimeText != '-' ? book.remainingTimeText : '4h 11m', // Fallback si es mock
                             ),
                             highlightTargets: [
                               book.remainingTimeText != '-' ? book.remainingTimeText : '4h 11m',
                             ],
-                            theme: theme,
+                            theme: context.theme,
                           ),
-                          Divider(height: 32, color: cozy.inkColor!.withValues(alpha: 0.1)),
+                          Divider(height: 32, color: context.cozy.inkColor!.withValues(alpha: 0.1)),
           
                           // Páginas restantes
                           _HighlightedInfoRow(
                             icon: Icons.menu_book_rounded,
-                            fullText: l10n.pagesRemainingInfo(remainingPages),
+                            fullText: context.l10n.pagesRemainingInfo(remainingPages),
                             highlightTargets: [
                               '$remainingPages',
                             ],
-                            theme: theme,
+                            theme: context.theme,
                           ),
                         ],
                       ),

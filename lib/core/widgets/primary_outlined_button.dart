@@ -1,3 +1,4 @@
+import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/widgets/book_loader.dart';
 import 'package:flutter/material.dart';
 
@@ -17,8 +18,6 @@ class PrimaryOutlinedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -28,7 +27,7 @@ class PrimaryOutlinedButton extends StatelessWidget {
           style: OutlinedButton.styleFrom(
             padding: const EdgeInsets.symmetric(vertical: 14),
             side: BorderSide(
-              color: colorScheme.onSurface.withValues(alpha: 0.5),
+              color: context.theme.colorScheme.onSurface.withValues(alpha: 0.5),
               width: 1.5,
             ),
             shape: RoundedRectangleBorder(
@@ -43,13 +42,13 @@ class PrimaryOutlinedButton extends StatelessWidget {
               )
             : Icon(
                 icon,
-                color: colorScheme.onSurface,
+                color: context.theme.colorScheme.onSurface,
               ),
           label: Text(
             label,
-            style: theme.textTheme.titleMedium?.copyWith(
+            style: context.theme.textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.bold,
-              color: colorScheme.onSurface,
+              color: context.theme.colorScheme.onSurface,
             ),
           ),
           onPressed: isLoading ? null : onPressed,

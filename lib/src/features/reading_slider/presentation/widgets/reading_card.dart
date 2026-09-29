@@ -1,11 +1,11 @@
 import 'package:book_sync/core/constants/app_icons.dart';
+import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/widgets/book_cover_image.dart';
 import 'package:book_sync/core/widgets/primary_outlined_button.dart';
 import 'package:book_sync/src/domain/book.dart';
 import 'package:flutter/material.dart';
 import 'package:book_sync/core/theme/cozy_colors.dart';
 import 'package:book_sync/core/widgets/hand_drawn_border_painter.dart';
-import 'package:book_sync/l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 
 class ReadingCard extends StatelessWidget {
@@ -22,13 +22,9 @@ class ReadingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cozy = Theme.of(context).extension<CozyColors>()!;
-    final l10n = AppLocalizations.of(context)!;
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
 
     return CustomPaint(
-      painter: HandDrawnBorderPainter(color: cozy.inkColor!.withValues(alpha: 0.5)),
+      painter: HandDrawnBorderPainter(color: context.cozy.inkColor!.withValues(alpha: 0.5)),
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: () {
@@ -45,7 +41,7 @@ class ReadingCard extends StatelessWidget {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _buildCover(cozy, context),
+                      _buildCover(context),
                       const SizedBox(width: 12),
                       Expanded(
                         child: Padding(
@@ -55,7 +51,7 @@ class ReadingCard extends StatelessWidget {
                             children: [
                               Text(
                                 book.title,
-                                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                style: context.theme.textTheme.titleMedium?.copyWith(
                                   fontWeight: FontWeight.bold,
                                 ),
                                 maxLines: 3,
@@ -64,8 +60,8 @@ class ReadingCard extends StatelessWidget {
                               const SizedBox(height: 4),
                               Text(
                                 book.author,
-                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                  color: cozy.textColor?.withValues(alpha: 0.7),
+                                style: context.theme.textTheme.bodyMedium?.copyWith(
+                                  color: context.cozy.textColor?.withValues(alpha: 0.7),
                                 ),
                                 maxLines: 4,
                                 overflow: TextOverflow.ellipsis,
@@ -80,88 +76,94 @@ class ReadingCard extends StatelessWidget {
                   Divider(
                     height: 16,
                     thickness: 1,
-                    color: cozy.inkColor?.withValues(alpha: 0.3),
+                    color: context.cozy.inkColor?.withValues(alpha: 0.3),
                   ),
                   const SizedBox(height: 8),
 
                   // Fechas y Estimados de Tiempo
-                  _buldDatesAndTimes(context, cozy),
+                  _buldDatesAndTimes(context),
                   const SizedBox(height: 8),
 
                   // Acciones: Cronómetro y Notas
-                  _buildActionButtons(cozy, l10n),
+                  _buildActionButtons(context),
                   const SizedBox(height: 8),
 
                   // Barra e Información de Progreso
-                  _buildProgress(l10n, context, cozy),
+                  _buildProgress(context),
                   const SizedBox(height: 8),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(4.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(4.0),
-                      child: LinearProgressIndicator(
-                        value: book.progress,
-                        minHeight: 6,
-                        backgroundColor: cozy.inkColor!.withValues(alpha: 0.1),
-                        valueColor: AlwaysStoppedAnimation<Color>(colorScheme.primary),
-                      ),
-                    ),
-                  )
+                  _buildProgressLine(context)
                 ],
               )
             ),
-
-            // Bookmark del Día de Lectura ubicado en la esquina superior derecha de toda la tarjeta
-            Positioned(
-              top: 0,
-              right: 16,
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-                decoration: BoxDecoration(
-                  color: cozy.bookmarkColor,
-                  borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(8),
-                    bottomRight: Radius.circular(8),
-                  ),
-                ),
-                child: Text(
-                  book.readingDayText,
-                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
+            _buildDaysRead(context),
           ],
         ),
       ),
     );
   }
 
-  Row _buildProgress(AppLocalizations l10n, BuildContext context, CozyColors cozy) {
+  Positioned _buildDaysRead(BuildContext context) {
+    return Positioned(
+      top: 0,
+      right: 16,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+        decoration: BoxDecoration(
+          color: context.cozy.bookmarkColor,
+          borderRadius: const BorderRadius.only(
+            bottomLeft: Radius.circular(8),
+            bottomRight: Radius.circular(8),
+          ),
+        ),
+        child: Text(
+          book.readingDayText,
+          style: context.theme.textTheme.labelSmall?.copyWith(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Row _buildProgress(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          l10n.progressLabel((book.progress * 100).toStringAsFixed(1)),
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            color: cozy.textColor?.withValues(alpha: 0.7),
+          context.l10n.progressLabel((book.progress * 100).toStringAsFixed(1)),
+          style: context.theme.textTheme.titleMedium?.copyWith(
+            color: context.cozy.textColor?.withValues(alpha: 0.7),
           ),
         ),
         Text(
           book.totalPages != null
-            ? 'Pág. ${book.currentPage} / ${book.totalPages}'
-            : 'Pág. ${book.currentPage}',
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            color: cozy.textColor?.withValues(alpha: 0.7),
+            ? context.l10n.pageProgress(book.currentPage, book.totalPages ?? 0)
+            : context.l10n.currentPageFormat(book.currentPage),
+          style: context.theme.textTheme.titleMedium?.copyWith(
+            color: context.cozy.textColor?.withValues(alpha: 0.7),
           ),
         ),
       ],
     );
   }
 
-  Row _buildActionButtons(CozyColors cozy, AppLocalizations l10n) {
+  ClipRRect _buildProgressLine(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(4.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(4.0),
+        child: LinearProgressIndicator(
+          value: book.progress,
+          minHeight: 6,
+          backgroundColor: context.cozy.inkColor!.withValues(alpha: 0.1),
+          valueColor: AlwaysStoppedAnimation<Color>(context.colorScheme.primary),
+        ),
+      ),
+    );
+  }
+
+  Row _buildActionButtons(BuildContext context) {
     final count = book.notesCount ?? 0;
 
     return Row(
@@ -170,7 +172,7 @@ class ReadingCard extends StatelessWidget {
           child: PrimaryOutlinedButton(
             onPressed: () => onTimerPressed?.call(),
             icon: Icons.timer_outlined,
-            label: l10n.newSession,
+            label: context.l10n.newSession,
           ),
         ),
         const SizedBox(width: 0),
@@ -179,49 +181,49 @@ class ReadingCard extends StatelessWidget {
             onPressed: () => onNotesPressed?.call(),
             icon: Icons.add_comment_outlined,
             label: count > 0
-              ? "${l10n.addNote}($count)"
-              : l10n.addNote,
+              ? "${context.l10n.addNote}($count)"
+              : context.l10n.addNote,
           ),
         ),
       ],
     );
   }
 
-  Column _buldDatesAndTimes(BuildContext context, CozyColors cozy) {
+  Column _buldDatesAndTimes(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Inicio: ${book.startDateText}',
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-            color: cozy.inkColor?.withValues(alpha: 0.9),
+          context.l10n.startDateWith(book.startDateText),
+          style: context.theme.textTheme.bodyLarge?.copyWith(
+            color: context.cozy.inkColor?.withValues(alpha: 0.9),
           ),
         ),
         Text(
-          'Restante: ${book.remainingTimeText}',
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-            color: cozy.inkColor?.withValues(alpha: 0.9),
+          context.l10n.remainingTime(book.remainingTimeText),
+          style: context.theme.textTheme.bodyLarge?.copyWith(
+            color: context.cozy.inkColor?.withValues(alpha: 0.9),
           ),
         ),
       ],
     );
   }
 
-  Widget _buildCover(CozyColors cozy, BuildContext context) {
+  Widget _buildCover(BuildContext context) {
     return SizedBox(
       height: 150,
       width: 100,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
         child: book.coverPath != null && book.coverPath!.isNotEmpty
-            ? _buildCoverImage(book.coverPath!, cozy)
-            : Center(
-                child: Icon(
-                  AppIcons.bookPlaceholder,
-                  color: cozy.inkColor!.withValues(alpha: 0.2),
-                  size: 50,
-                ),
-              ),
+        ? _buildCoverImage(book.coverPath!, context.cozy)
+        : Center(
+            child: Icon(
+              AppIcons.bookPlaceholder,
+              color: context.cozy.inkColor!.withValues(alpha: 0.2),
+              size: 50,
+            ),
+          ),
       ),
     );
   }

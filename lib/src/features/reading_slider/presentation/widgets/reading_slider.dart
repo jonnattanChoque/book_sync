@@ -1,12 +1,10 @@
+import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/widgets/add_note_modal.dart';
 import 'package:book_sync/core/widgets/book_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:isar/isar.dart';
-
-import 'package:book_sync/core/theme/cozy_colors.dart';
-import 'package:book_sync/l10n/app_localizations.dart';
 import 'package:book_sync/src/features/reading_slider/presentation/widgets/create_book_bottomsheet.dart';
 import 'package:book_sync/src/features/reading_slider/presentation/widgets/reading_empty_card.dart';
 import 'package:book_sync/src/features/reading_slider/presentation/providers/books_provider.dart'; 
@@ -52,8 +50,6 @@ class _ReadingSliderState extends ConsumerState<ReadingSlider> {
         ref.read(selectedBookIdProvider.notifier).state = null;
       }
     });
-
-    final cozy = Theme.of(context).extension<CozyColors>()!;
     final readingBooksAsync = ref.watch(currentlyReadingProvider);
 
     return SizedBox(
@@ -62,7 +58,7 @@ class _ReadingSliderState extends ConsumerState<ReadingSlider> {
         data: (books) {
           if (books.isEmpty) {
             return Center(
-              child: _showReadingEmptyCard(context, cozy, AppLocalizations.of(context)!.noBooksTitle),
+              child: _showReadingEmptyCard(context.l10n.noBooksTitle),
             );
           }
           final totalItems = books.length + 1;
@@ -86,7 +82,7 @@ class _ReadingSliderState extends ConsumerState<ReadingSlider> {
                         scale: value,
                         child: Opacity(
                           opacity: value,
-                          child: _showReadingEmptyCard(context, cozy, AppLocalizations.of(context)!.createBookTitle),
+                          child: _showReadingEmptyCard(context.l10n.createBookTitle),
                         ),
                       ),
                     );
@@ -128,21 +124,21 @@ class _ReadingSliderState extends ConsumerState<ReadingSlider> {
         },
         loading: () => const Center(child: BookLoader()),
         error: (error, stackTrace) => Center(
-          child: Text('Error al cargar libros: $error'),
+          child: Text(context.l10n.errorLoadingBooks('$error')),
         ),
       ),
     );
   }
 
-  Widget _showReadingEmptyCard(BuildContext context, CozyColors cozy, String title) {
+  Widget _showReadingEmptyCard(String title) {
     return ReadingEmptyCard(
       onTap: () {
         showModalBottomSheet(
-          backgroundColor: Theme.of(context).cardColor.withValues(alpha: 0.85),
+          backgroundColor: context.theme.cardColor.withValues(alpha: 0.85),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
           ),
-          barrierColor: cozy.inkColor!.withValues(alpha: 0.2),
+          barrierColor: context.cozy.inkColor!.withValues(alpha: 0.2),
           showDragHandle: true,
           isDismissible: true,
           sheetAnimationStyle: AnimationStyle(curve: Curves.bounceOut),

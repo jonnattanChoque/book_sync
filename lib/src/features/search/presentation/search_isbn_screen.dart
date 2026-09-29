@@ -1,7 +1,6 @@
 import 'package:book_sync/core/constants/app_icons.dart';
-import 'package:book_sync/core/theme/cozy_colors.dart';
+import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/widgets/book_loader.dart';
-import 'package:book_sync/l10n/app_localizations.dart';
 import 'package:book_sync/src/features/reading_slider/presentation/providers/books_provider.dart';
 import 'package:book_sync/src/features/search/data/search_repository.dart';
 import 'package:book_sync/src/features/search/domain/book_search_dto.dart';
@@ -54,7 +53,6 @@ class _BarcodeScannerScreenState extends ConsumerState<SearchScannerScreen> with
 
   @override
   void dispose() {
-    // 3. Remover observador y destruir el controlador
     WidgetsBinding.instance.removeObserver(this);
     _cameraController.dispose();
     super.dispose();
@@ -67,37 +65,34 @@ class _BarcodeScannerScreenState extends ConsumerState<SearchScannerScreen> with
 
     if (!mounted) return;
     if (existingBook != null) {
-      final l10n = AppLocalizations.of(context);
 
-      if (l10n != null) {
-        showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: Text(l10n.duplicateBookTitle),
-              content: Text(l10n.duplicateBookMessage),
-              actions: [
-                TextButton(
-                  onPressed: () async {
-                    Navigator.of(context).pop();
-                    await Future.delayed(Duration.zero);
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(context.l10n.duplicateBookTitle),
+            content: Text(context.l10n.duplicateBookMessage),
+            actions: [
+              TextButton(
+                onPressed: () async {
+                  Navigator.of(context).pop();
+                  await Future.delayed(Duration.zero);
 
-                    if (!context.mounted) return;
-                    context.pushReplacement('/book_detail', extra: existingBook);
-                  },
-                  child: Text(l10n.accept),
-                ),
-              ],
-            );
-          },
-        );
-      }
+                  if (!context.mounted) return;
+                  context.pushReplacement('/book_detail', extra: existingBook);
+                },
+                child: Text(context.l10n.accept),
+              ),
+            ],
+          );
+        },
+      );
       return;
     }
     context.push('/search_detail', extra: book);
   }
 
-  Future<void> _handleBarcodeDetected(String rawIsbn, AppLocalizations l10n) async {
+  Future<void> _handleBarcodeDetected(String rawIsbn) async {
     if (_isProcessing) return;
     setState(() => _isProcessing = true);
 
@@ -110,11 +105,11 @@ class _BarcodeScannerScreenState extends ConsumerState<SearchScannerScreen> with
       if (books.isNotEmpty) {
         _checkDuplicateIsbn(books.first);
       } else {
-        _navigateToSearchFallback(rawIsbn, l10n);
+        _navigateToSearchFallback(rawIsbn);
       }
     } catch (_) {
       if (!mounted) return;
-       _navigateToSearchFallback(rawIsbn, l10n);
+       _navigateToSearchFallback(rawIsbn);
     } finally {
       if (mounted) {
         setState(() => _isProcessing = false);
@@ -122,12 +117,12 @@ class _BarcodeScannerScreenState extends ConsumerState<SearchScannerScreen> with
     }
   }
 
-  void _navigateToSearchFallback(String query, AppLocalizations l10n) {
+  void _navigateToSearchFallback(String query) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text("No se encontro el libro"),
-        content: Text("Deseas buscarlo por nombre?"),
+        title: Text(context.l10n.bookNotFoundTitle),
+        content: Text(context.l10n.searchByNamePrompt),
         actions: [
           TextButton(
             onPressed: () async {
@@ -140,13 +135,13 @@ class _BarcodeScannerScreenState extends ConsumerState<SearchScannerScreen> with
                 context.go('/');
               }
             },
-            child: Text(l10n.cancel),
+            child: Text(context.l10n.cancel),
           ),
           TextButton(
             onPressed: () async {
               context.pushReplacement('/search');
             },
-            child: Text(l10n.deleteAction, style: const TextStyle(color: Colors.red)),
+            child: Text(context.l10n.deleteAction, style: const TextStyle(color: Colors.red)),
           ),
         ],
       ),
@@ -156,9 +151,6 @@ class _BarcodeScannerScreenState extends ConsumerState<SearchScannerScreen> with
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
     final screenSize = MediaQuery.of(context).size;
     final scanAreaWidth = screenSize.width * 0.75;
     final scanAreaHeight = scanAreaWidth * 0.6;
@@ -171,7 +163,7 @@ class _BarcodeScannerScreenState extends ConsumerState<SearchScannerScreen> with
 
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: _buildTitle(l10n, context, colorScheme),
+      appBar: _buildTitle(),
       body: Stack(
         children: [
           MobileScanner(
@@ -184,21 +176,21 @@ class _BarcodeScannerScreenState extends ConsumerState<SearchScannerScreen> with
                   children: [
                     const Icon(Icons.videocam_off, color: Colors.white, size: 48),
                     const SizedBox(height: 12),
-                    const Text(
-                      'Error al iniciar la cámara',
+                    Text(
+                      context.l10n.cameraAccessError,
                       style: TextStyle(color: Colors.white),
                     ),
                     const SizedBox(height: 12),
                     ElevatedButton(
                       onPressed: () => _cameraController.start(),
-                      child: const Text('Reintentar'),
+                      child: Text(context.l10n.retry),
                     ),
                   ],
                 ),
               );
             },
             overlayBuilder: (context, constraints) {
-              return _buildScannerOverlay(constraints, l10n);
+              return _buildScannerOverlay(constraints);
             },
             onDetect: (capture) {
               if (_isProcessing) return;
@@ -223,7 +215,7 @@ class _BarcodeScannerScreenState extends ConsumerState<SearchScannerScreen> with
                   if (_consecutiveDetections >= 2) {
                     _consecutiveDetections = 0;
                     _lastScannedCode = null;
-                    _handleBarcodeDetected(cleanCode, l10n);
+                    _handleBarcodeDetected(cleanCode);
                   }
                   break;
                 }
@@ -231,22 +223,22 @@ class _BarcodeScannerScreenState extends ConsumerState<SearchScannerScreen> with
             },
           ),
 
-          if (_isProcessing) _buildLoadingOverlay(l10n),
+          if (_isProcessing) _buildLoadingOverlay(),
         ],
       ),
     );
   }
 
-  AppBar _buildTitle(AppLocalizations l10n, BuildContext context, ColorScheme colorScheme) {
+  AppBar _buildTitle() {
     return AppBar(
       centerTitle: true,
-      title: Text(l10n.scanIsbnTitle, style: Theme.of(context).textTheme.titleLarge),
-      backgroundColor: colorScheme.surface,
+      title: Text(context.l10n.scanIsbnTitle, style: context.theme.textTheme.titleLarge),
+      backgroundColor: context.colorScheme.surface,
       elevation: 0,
       leading: IconButton(
         icon: Icon(
           AppIcons.back,
-          color: colorScheme.onSurface,
+          color: context.colorScheme.onSurface,
         ),
         onPressed: () {
           FocusScope.of(context).unfocus();
@@ -260,7 +252,7 @@ class _BarcodeScannerScreenState extends ConsumerState<SearchScannerScreen> with
             builder: (context, state, child) {
               return Icon(
                 state.torchState == TorchState.on ? Icons.flash_on : Icons.flash_off,
-                color: colorScheme.onSurface,
+                color: context.colorScheme.onSurface,
               );
             },
           ),
@@ -271,9 +263,8 @@ class _BarcodeScannerScreenState extends ConsumerState<SearchScannerScreen> with
   }
 
   // Máscara oscura con recuadro centrado
-  Widget _buildScannerOverlay(BoxConstraints constraints, AppLocalizations l10n) {
+  Widget _buildScannerOverlay(BoxConstraints constraints) {
     final scanAreaSize = constraints.maxWidth * 0.75;
-    final cozy = Theme.of(context).extension<CozyColors>()!;
 
     return Stack(
       children: [
@@ -295,7 +286,7 @@ class _BarcodeScannerScreenState extends ConsumerState<SearchScannerScreen> with
                   width: scanAreaSize,
                   height: scanAreaSize * 0.6,
                   decoration: BoxDecoration(
-                    color: cozy.inkColor!.withValues(alpha: 0.8),
+                    color: context.cozy.inkColor!.withValues(alpha: 0.8),
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
@@ -310,7 +301,7 @@ class _BarcodeScannerScreenState extends ConsumerState<SearchScannerScreen> with
             height: scanAreaSize * 0.6,
             decoration: BoxDecoration(
               border: Border.all(
-                color: cozy.inkColor!.withValues(alpha: 0.8),
+                color: context.cozy.inkColor!.withValues(alpha: 0.8),
                 width: 2.5,
               ),
               borderRadius: BorderRadius.circular(16),
@@ -320,7 +311,7 @@ class _BarcodeScannerScreenState extends ConsumerState<SearchScannerScreen> with
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  l10n.scanIsbnInstruction,
+                  context.l10n.scanIsbnInstruction,
                   style: TextStyle(
                     color: Colors.white.withValues(alpha: 0.8),
                     fontSize: 14,
@@ -335,7 +326,7 @@ class _BarcodeScannerScreenState extends ConsumerState<SearchScannerScreen> with
   }
 
   // Capa superpuesta durante el consumo de API
-  Widget _buildLoadingOverlay(AppLocalizations l10n) {
+  Widget _buildLoadingOverlay() {
     return Container(
       color: Colors.black.withValues(alpha: 0.75),
       child: Center(
@@ -345,7 +336,7 @@ class _BarcodeScannerScreenState extends ConsumerState<SearchScannerScreen> with
             const BookLoader(),
             const SizedBox(height: 16),
             Text(
-              l10n.scanIsbnLoading,
+              context.l10n.scanIsbnLoading,
               style: TextStyle(
                 color: Colors.white.withValues(alpha: 0.9),
                 fontSize: 16,

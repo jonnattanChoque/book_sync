@@ -1,0 +1,79 @@
+{
+  "@@locale": "es",
+  "libraryTitle": "Mi Biblioteca",
+  "@libraryTitle": {
+    "description": "Título principal de la sección de biblioteca"
+  },
+  "noBooksRegistered": "No hay libros registrados",
+  "@noBooksRegistered": {
+    "description": "Texto indicativo para listas de biblioteca sin elementos"
+  },
+  "noBooksTitle": "Tu mesa de noche está vacía",
+  "@noBooksTitle": {
+    "description": "Título del estado vacío de la biblioteca principal"
+  },
+  "noBooksSubtitle": "¿Qué historia empezaremos hoy?",
+  "@noBooksSubtitle": {
+    "description": "Mensaje motivacional cuando no hay libros registrados"
+  },
+  "libraryCount": "{count} Libros",
+  "@libraryCount": {
+    "description": "Contador del total de libros guardados",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "12"
+      }
+    }
+  },
+  "libraryOneCount": "{count} Libro",
+  "@libraryOneCount": {
+    "description": "Contador del total de libros guardados",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "tabLibraryReading": "Leyendo",
+  "@tabLibraryReading": {
+    "description": "Pestaña de libros en proceso de lectura"
+  },
+  "tabLibraryToRead": "Por leer",
+  "@tabLibraryToRead": {
+    "description": "Pestaña de libros pendientes de lectura"
+  },
+  "tabLibraryRead": "Leídos",
+  "@tabLibraryRead": {
+    "description": "Pestaña de libros terminados"
+  },
+  "tabLibraryDropped": "Abandonados",
+  "@tabLibraryDropped": {
+    "description": "Pestaña de libros abandonados"
+  },
+  "tabLibraryPaused": "Pausados",
+  "@tabLibraryPaused": {
+    "description": "Pestaña de libros pausados"
+  },
+  "emptyReading": "No hay libros en lectura",
+  "@emptyReading": {
+    "description": "Estado vacío de la pestaña leyendo"
+  },
+  "emptyToRead": "No hay libros por leer",
+  "@emptyToRead": {
+    "description": "Estado vacío de la pestaña por leer"
+  },
+  "emptyFinished": "No hay libros leídos aún",
+  "@emptyFinished": {
+    "description": "Estado vacío de la pestaña leídos"
+  },
+  "emptyDropped": "No hay libros abandonados aún",
+  "@emptyDropped": {
+    "description": "Estado vacío de la pestaña abandonados"
+  },
+  "errorLoadLibrary": "Error al cargar la biblioteca",
+  "@errorLoadLibrary": {
+    "description": "Error al cargar la biblioteca"
+  }
+}

@@ -1,11 +1,10 @@
 import 'package:book_sync/core/constants/app_icons.dart';
-import 'package:book_sync/core/theme/cozy_colors.dart';
+import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/widgets/book_loader.dart';
 import 'package:book_sync/src/features/search/data/image_search_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:book_sync/core/theme/app_colors.dart';
 import 'package:book_sync/core/widgets/background_paper_texture.dart';
-import 'package:book_sync/l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -29,16 +28,16 @@ class _SearchImageScreenState extends ConsumerState<SearchImageScreen> {
     super.dispose();
   }
 
-  void _showConfirmDialog(BuildContext context, AppLocalizations l10n, String selectedUrl) {
+  void _showConfirmDialog(String selectedUrl) {
     showDialog(
       context: context,
       builder: (BuildContext dialogContext) {
         return AlertDialog(
-          title: Text(l10n.confirmChangeCoverTitle),
+          title: Text(context.l10n.confirmChangeCoverTitle),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(l10n.confirmChangeCoverMessage),
+              Text(context.l10n.confirmChangeCoverMessage),
               const SizedBox(height: 16),
               SizedBox(
                 height: 120,
@@ -52,14 +51,14 @@ class _SearchImageScreenState extends ConsumerState<SearchImageScreen> {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(dialogContext).pop(),
-              child: Text(l10n.actionCancel),
+              child: Text(context.l10n.actionCancel),
             ),
             ElevatedButton(
               onPressed: () {
                 Navigator.of(dialogContext).pop(); // Cierra el modal de alerta
                 context.pop(selectedUrl); // Devuelve la URL a la pantalla de detalle
               },
-              child: Text(l10n.actionConfirm),
+              child: Text(context.l10n.actionConfirm),
             ),
           ],
         );
@@ -69,8 +68,6 @@ class _SearchImageScreenState extends ConsumerState<SearchImageScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-    final cozy = Theme.of(context).extension<CozyColors>()!;
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
@@ -84,16 +81,16 @@ class _SearchImageScreenState extends ConsumerState<SearchImageScreen> {
               child: Column(
                 children: [
                   // 1. Encabezado
-                  _buildTitlte(context, l10n),
+                  _buildTitlte(),
 
                   // 2. Caja de búsqueda estilizada
-                  _buildSearchBox(l10n, cozy, context),
+                  _buildSearchBox(),
 
                   // 3. Área de resultados / Estado inicial
                   Expanded(
                     child: _searchController.text.isEmpty
-                      ? _buildInitialState(l10n)
-                      : _buildSearchResultsList(l10n, cozy),
+                    ? _buildInitialState()
+                    : _buildSearchResultsList(),
                   ),
                 ],
               ),
@@ -104,14 +101,14 @@ class _SearchImageScreenState extends ConsumerState<SearchImageScreen> {
     );
   }
 
-  Padding _buildTitlte(BuildContext context, AppLocalizations l10n) {
+  Padding _buildTitlte() {
     
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
       child: Row(
         children: [
           IconButton(
-            icon: Icon(AppIcons.back, color: Theme.of(context).colorScheme.onSurface),
+            icon: Icon(AppIcons.back, color: context.theme.colorScheme.onSurface),
             onPressed: () {
               FocusScope.of(context).unfocus();
               ref.read(imageSearchQueryProvider.notifier).clearSearch();
@@ -120,9 +117,9 @@ class _SearchImageScreenState extends ConsumerState<SearchImageScreen> {
           ),
           Expanded(
             child: Text(
-              l10n.searchImageTitle,
+              context.l10n.searchImageTitle,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleLarge,
+              style: context.theme.textTheme.titleLarge,
             ),
           ),
           const SizedBox(width: 48),
@@ -131,7 +128,7 @@ class _SearchImageScreenState extends ConsumerState<SearchImageScreen> {
     );
   }
 
-  Row _buildSearchBox(AppLocalizations l10n, CozyColors cozy, BuildContext context) {
+  Row _buildSearchBox() {
     
     return Row(
       children: [
@@ -140,7 +137,7 @@ class _SearchImageScreenState extends ConsumerState<SearchImageScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(color: cozy.inkColor!.withValues(alpha: 0.5), width: 2),
+                border: Border.all(color: context.cozy.inkColor!.withValues(alpha: 0.5), width: 2),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: TextField(
@@ -149,28 +146,28 @@ class _SearchImageScreenState extends ConsumerState<SearchImageScreen> {
                 textInputAction: TextInputAction.search,
                 autofocus: true,
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurface,
+                  color: context.theme.colorScheme.onSurface,
                   fontSize: 16,
                 ),
                 decoration: InputDecoration(
-                  hintText: l10n.searchPlaceholder,
+                  hintText: context.l10n.searchPlaceholder,
                   hintStyle: TextStyle(
-                    color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.5),
+                    color: context.theme.colorScheme.onSurface.withValues(alpha: 0.5),
                   ),
                   prefixIcon: Icon(
                     Icons.search,
-                    color: cozy.inkColor!.withValues(alpha: 0.8),
+                    color: context.cozy.inkColor!.withValues(alpha: 0.8),
                   ),
                   suffixIcon: _searchController.text.isNotEmpty
-                    ? IconButton(
-                        icon: Icon(Icons.clear, color: cozy.inkColor!.withValues(alpha: 0.8)),
-                        onPressed: () {
-                          _searchController.clear();
-                          ref.read(imageSearchQueryProvider.notifier).submitQuery('');
-                          setState(() {});
-                        },
-                      )
-                    : null,
+                  ? IconButton(
+                      icon: Icon(Icons.clear, color: context.cozy.inkColor!.withValues(alpha: 0.8)),
+                      onPressed: () {
+                        _searchController.clear();
+                        ref.read(imageSearchQueryProvider.notifier).submitQuery('');
+                        setState(() {});
+                      },
+                    )
+                  : null,
                   border: InputBorder.none,
                   contentPadding: const EdgeInsets.symmetric(
                     horizontal: 16,
@@ -196,8 +193,8 @@ class _SearchImageScreenState extends ConsumerState<SearchImageScreen> {
           padding: const EdgeInsets.only(right: 20.0),
           child: TextButton(
             style: TextButton.styleFrom(
-              backgroundColor: cozy.bookmarkColor!.withValues(alpha: 0.1),
-              foregroundColor: Theme.of(context).colorScheme.onPrimary,
+              backgroundColor: context.cozy.bookmarkColor!.withValues(alpha: 0.1),
+              foregroundColor: context.theme.colorScheme.onPrimary,
               padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
@@ -211,10 +208,10 @@ class _SearchImageScreenState extends ConsumerState<SearchImageScreen> {
               }
             },
             child: Text(
-              l10n.searchButton,
-              style: Theme.of(context).textTheme.labelLarge?.copyWith(
+              context.l10n.searchButton,
+              style: context.theme.textTheme.labelLarge?.copyWith(
                 fontWeight: FontWeight.bold,
-                color: cozy.bookmarkColor!.withValues(alpha: 0.6),
+                color: context.cozy.bookmarkColor!.withValues(alpha: 0.6),
               ),
             ),
           ),
@@ -223,7 +220,7 @@ class _SearchImageScreenState extends ConsumerState<SearchImageScreen> {
     );
   }
 
-  Widget _buildInitialState(AppLocalizations l10n) {
+  Widget _buildInitialState() {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -231,19 +228,19 @@ class _SearchImageScreenState extends ConsumerState<SearchImageScreen> {
           Icon(
             Icons.menu_book_rounded,
             size: 64,
-            color: Theme.of(context).colorScheme.onSurface,
+            color: context.theme.colorScheme.onSurface,
           ),
           const SizedBox(height: 16),
           Text(
-            l10n.searchImageHint,
-            style: Theme.of(context).textTheme.labelLarge
+            context.l10n.searchImageHint,
+            style: context.theme.textTheme.labelLarge
           ),
         ],
       ),
     );
   }
 
-  Widget _buildSearchResultsList(AppLocalizations l10n, CozyColors cozy) {
+  Widget _buildSearchResultsList() {
     final searchResultAsync = ref.watch(searchImageCoversProvider);
 
     return searchResultAsync.when(
@@ -251,8 +248,8 @@ class _SearchImageScreenState extends ConsumerState<SearchImageScreen> {
         if (urls.isEmpty) {
           return Center(
             child: Text(
-              l10n.noSearchResults,
-              style: Theme.of(context).textTheme.labelLarge,
+              context.l10n.noSearchResults,
+              style: context.theme.textTheme.labelLarge,
             ),
           );
         }
@@ -270,7 +267,7 @@ class _SearchImageScreenState extends ConsumerState<SearchImageScreen> {
             final imageUrl = urls[index];
 
             return GestureDetector(
-              onTap: () => _showConfirmDialog(context, l10n, imageUrl),
+              onTap: () => _showConfirmDialog(imageUrl),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: Image.network(
@@ -289,7 +286,7 @@ class _SearchImageScreenState extends ConsumerState<SearchImageScreen> {
       ),
       error: (error, stack) => Center(
         child: Text(
-          l10n.noSearchResults,
+          context.l10n.noSearchResults,
           style: TextStyle(
             color: AppColors.inkCharcoal.withValues(alpha: 0.6),
           ),

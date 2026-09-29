@@ -24,11 +24,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get currentlyReading => 'Leyendo ahora';
 
   @override
-  String progressLabel(String percentage) {
-    return '$percentage% completado';
-  }
-
-  @override
   String get createBookTitle => 'Agrega un libro a tu mesa de noche';
 
   @override
@@ -47,7 +42,85 @@ class AppLocalizationsEs extends AppLocalizations {
   String get addByManual => 'Agregar manualmente';
 
   @override
+  String get cameraAccessError => 'Error al acceder a la cámara';
+
+  @override
+  String get retry => 'Reintentar';
+
+  @override
+  String get actionCancel => 'Cancelar';
+
+  @override
+  String get actionConfirm => 'Confirmar';
+
+  @override
+  String get accept => 'Aceptar';
+
+  @override
+  String get cancel => 'Cancelar';
+
+  @override
+  String get save => 'Guardar';
+
+  @override
+  String errorLoadingBooks(String error) {
+    return 'Error al cargar libros: $error';
+  }
+
+  @override
+  String progressLabel(String percentage) {
+    return '$percentage% completado';
+  }
+
+  @override
+  String startDateWith(String date) {
+    return 'Inicio: $date';
+  }
+
+  @override
+  String remainingTime(String time) {
+    return 'Restante: $time';
+  }
+
+  @override
+  String pageProgress(int currentPage, int totalPages) {
+    return 'Pág. $currentPage / $totalPages';
+  }
+
+  @override
+  String currentPageFormat(int currentPage) {
+    return 'Pág. $currentPage';
+  }
+
+  @override
+  String get progressInfo => 'Información de progreso';
+
+  @override
+  String get startDate => 'Inicio';
+
+  @override
+  String get day => 'Día';
+
+  @override
+  String get remaining => 'Restante';
+
+  @override
+  String get progress => 'Progreso';
+
+  @override
+  String get pagesAbbr => 'págs';
+
+  @override
+  String get pageAbbr => 'Pág';
+
+  @override
+  String get minutesAbbr => 'min';
+
+  @override
   String get libraryTitle => 'Mi Biblioteca';
+
+  @override
+  String get noBooksRegistered => 'No hay libros registrados';
 
   @override
   String libraryCount(int count) {
@@ -55,7 +128,9 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get noBooksRegistered => 'No hay libros registrados';
+  String libraryOneCount(int count) {
+    return '$count Libro';
+  }
 
   @override
   String get tabLibraryReading => 'Leyendo';
@@ -85,6 +160,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get emptyDropped => 'No hay libros abandonados aún';
 
   @override
+  String get errorLoadLibrary => 'Error al cargar la biblioteca';
+
+  @override
   String get searchTitle => 'Buscar Libro';
 
   @override
@@ -97,58 +175,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get searchInitialHint => 'Escribe para buscar libros en la red';
 
   @override
-  String get addManualBook => 'Agregar libro';
-
-  @override
   String get noSearchResults => 'No se encontraron resultados';
-
-  @override
-  String get addBookTitle => 'Agregar libro';
-
-  @override
-  String get sectionInfo => 'Información';
-
-  @override
-  String get sectionSelected => 'Seleccione el estado de lectura';
-
-  @override
-  String get sectionDescription => 'Descripción';
-
-  @override
-  String get sectionPublisher => 'Editorial';
-
-  @override
-  String get sectionOther => 'Otros';
-
-  @override
-  String get fieldTitle => 'Título';
-
-  @override
-  String get fieldAuthors => 'Autor(es)';
-
-  @override
-  String get fieldIsbn => 'ISBN';
-
-  @override
-  String get fieldLanguage => 'Idioma';
-
-  @override
-  String get fieldPages => 'Páginas';
-
-  @override
-  String get fieldPublisher => 'Editorial';
-
-  @override
-  String get fieldPublishedDate => 'Fecha de publicación';
-
-  @override
-  String get fieldCategories => 'Categorías';
-
-  @override
-  String get fieldRating => 'Valoración';
-
-  @override
-  String get btnSaveToLibrary => 'Guardar en la biblioteca';
 
   @override
   String get scanIsbnTitle => 'Escanear Código ISBN';
@@ -160,23 +187,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get scanIsbnLoading => 'Buscando libro por ISBN...';
 
   @override
-  String get searchImageTitle => 'Buscar imagen';
+  String get bookNotFoundTitle => 'No se encontró el libro';
 
   @override
-  String get searchImageHint => 'Escribe para buscar imágenes en la red';
-
-  @override
-  String get confirmChangeCoverTitle => 'Cambiar portada';
-
-  @override
-  String get confirmChangeCoverMessage =>
-      '¿Deseas reemplazar la portada actual por esta imagen?';
-
-  @override
-  String get actionCancel => 'Cancelar';
-
-  @override
-  String get actionConfirm => 'Confirmar';
+  String get searchByNamePrompt => '¿Deseas buscarlo por nombre?';
 
   @override
   String get duplicateBookTitle => 'Libro Duplicado';
@@ -185,37 +199,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get duplicateBookMessage => 'Ya existe este libro en tu biblioteca.';
 
   @override
-  String get accept => 'Aceptar';
-
-  @override
-  String get yourBookTitle => 'Tu libro';
-
-  @override
-  String get isbn => 'ISBN';
-
-  @override
-  String get deleteAction => 'Borrar';
-
-  @override
-  String get editionInfo => 'Información de Edición';
-
-  @override
-  String get publisher => 'Editorial';
-
-  @override
-  String get language => 'Idioma';
-
-  @override
-  String get publicationDate => 'Publicación';
-
-  @override
-  String get synopsis => 'Sinopsis';
-
-  @override
   String get addNote => 'Nota';
-
-  @override
-  String get newSession => 'Leer';
 
   @override
   String get readingNotes => 'Notas de Lectura';
@@ -224,117 +208,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get noNotesRegistered => 'No hay notas registradas en este libro.';
 
   @override
-  String get readingHistory => 'Historial de Lectura';
-
-  @override
-  String get noSessionsRegistered =>
-      'Aún no has registrado sesiones de lectura.';
-
-  @override
-  String get progressInfo => 'Información de progreso';
-
-  @override
-  String get startDate => 'Inicio';
-
-  @override
-  String get day => 'Día';
-
-  @override
-  String get remaining => 'Restante';
-
-  @override
-  String get progress => 'Progreso';
-
-  @override
-  String get pagesAbbr => 'págs';
-
-  @override
-  String get pageAbbr => 'Pág';
-
-  @override
-  String get minutesAbbr => 'min';
-
-  @override
-  String get readingStatusTitle => 'Estado de Lectura';
-
-  @override
-  String get readingStatusMessage =>
-      'Selecciona el estado actual de este libro';
-
-  @override
-  String get statusReading => 'Leyendo';
-
-  @override
-  String get statusToRead => 'Por leer';
-
-  @override
-  String get statusPaused => 'Pausado';
-
-  @override
-  String get statusDropped => 'Abandonado';
-
-  @override
-  String get statusFinished => 'Terminado';
-
-  @override
-  String get cancel => 'Cancelar';
-
-  @override
-  String get save => 'Guardar';
-
-  @override
   String get newReadingNote => 'Nueva Nota de Lectura';
 
   @override
   String get addNoteHint => 'Escribe tu reflexión o cita del libro...';
 
   @override
-  String get deleteBookDialogTitle => 'Eliminar libro';
-
-  @override
-  String deleteBookDialogMessage(String bookTitle) {
-    return '¿Estás seguro de que deseas eliminar \"$bookTitle\"? Esta acción no se puede deshacer.';
-  }
-
-  @override
-  String get addedToFavorites => 'Agregado a favoritos';
-
-  @override
-  String get removedFromFavorites => 'Quitado de favoritos';
-
-  @override
-  String get bookStatusUpdated => 'Estado del libro actualizado';
-
-  @override
-  String pagesRange(int startPage, int endPage) {
-    return 'Páginas $startPage a $endPage';
-  }
-
-  @override
-  String upToPage(int endPage) {
-    return 'Hasta página $endPage';
-  }
-
-  @override
-  String get readingSessionTitle => 'Sesión de Lectura';
-
-  @override
-  String get timerStart => 'Iniciar';
-
-  @override
-  String get timerResume => 'Continuar';
-
-  @override
-  String get timerPause => 'Pausar';
-
-  @override
   String get viewNotes => 'Ver notas';
 
   @override
   String get hideNotes => 'Ocultar notas';
-
-  @override
-  String get finishSession => 'Finalizar';
 
   @override
   String get noNotesYet => 'Aún no tienes notas registradas para este libro.';
@@ -393,6 +276,182 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get errorEmptyNote => 'Escribe un contenido para la nota';
+
+  @override
+  String get bookNotesTitle => 'Notas del libro';
+
+  @override
+  String errorLoadingNotes(String error) {
+    return 'Error al cargar las notas: $error';
+  }
+
+  @override
+  String get emptyNotesMessage => 'No hay notas guardadas para este libro';
+
+  @override
+  String get yourBookTitle => 'Tu libro';
+
+  @override
+  String get isbn => 'ISBN';
+
+  @override
+  String get deleteAction => 'Borrar';
+
+  @override
+  String get editionInfo => 'Información de Edición';
+
+  @override
+  String get publisher => 'Editorial';
+
+  @override
+  String get language => 'Idioma';
+
+  @override
+  String get publicationDate => 'Publicación';
+
+  @override
+  String get synopsis => 'Sinopsis';
+
+  @override
+  String get readingStatusTitle => 'Estado de Lectura';
+
+  @override
+  String get readingStatusMessage =>
+      'Selecciona el estado actual de este libro';
+
+  @override
+  String get statusReading => 'Leyendo';
+
+  @override
+  String get statusToRead => 'Por leer';
+
+  @override
+  String get statusPaused => 'Pausado';
+
+  @override
+  String get statusDropped => 'Abandonado';
+
+  @override
+  String get statusFinished => 'Terminado';
+
+  @override
+  String get deleteBookDialogTitle => 'Eliminar libro';
+
+  @override
+  String deleteBookDialogMessage(String bookTitle) {
+    return '¿Estás seguro de que deseas eliminar \"$bookTitle\"? Esta acción no se puede deshacer.';
+  }
+
+  @override
+  String get addedToFavorites => 'Agregado a favoritos';
+
+  @override
+  String get removedFromFavorites => 'Quitado de favoritos';
+
+  @override
+  String get bookStatusUpdated => 'Estado del libro actualizado';
+
+  @override
+  String get addManualBook => 'Agregar libro';
+
+  @override
+  String get addBookTitle => 'Agregar libro';
+
+  @override
+  String get sectionInfo => 'Información';
+
+  @override
+  String get sectionSelected => 'Seleccione el estado de lectura';
+
+  @override
+  String get sectionDescription => 'Descripción';
+
+  @override
+  String get sectionPublisher => 'Editorial';
+
+  @override
+  String get sectionOther => 'Otros';
+
+  @override
+  String get fieldTitle => 'Título';
+
+  @override
+  String get fieldAuthors => 'Autor(es)';
+
+  @override
+  String get fieldIsbn => 'ISBN';
+
+  @override
+  String get fieldLanguage => 'Idioma';
+
+  @override
+  String get fieldPages => 'Páginas';
+
+  @override
+  String get fieldPublisher => 'Editorial';
+
+  @override
+  String get fieldPublishedDate => 'Fecha de publicación';
+
+  @override
+  String get fieldCategories => 'Categorías';
+
+  @override
+  String get fieldRating => 'Valoración';
+
+  @override
+  String get btnSaveToLibrary => 'Guardar en la biblioteca';
+
+  @override
+  String get searchImageTitle => 'Buscar imagen';
+
+  @override
+  String get searchImageHint => 'Escribe para buscar imágenes en la red';
+
+  @override
+  String get validationTitleRequired => 'El título es requerido';
+
+  @override
+  String get confirmChangeCoverTitle => 'Cambiar portada';
+
+  @override
+  String get confirmChangeCoverMessage =>
+      '¿Deseas reemplazar la portada actual por esta imagen?';
+
+  @override
+  String get newSession => 'Leer';
+
+  @override
+  String get readingHistory => 'Historial de Lectura';
+
+  @override
+  String get noSessionsRegistered =>
+      'Aún no has registrado sesiones de lectura.';
+
+  @override
+  String pagesRange(int startPage, int endPage) {
+    return 'Páginas $startPage a $endPage';
+  }
+
+  @override
+  String upToPage(int endPage) {
+    return 'Hasta página $endPage';
+  }
+
+  @override
+  String get readingSessionTitle => 'Sesión de Lectura';
+
+  @override
+  String get timerStart => 'Iniciar';
+
+  @override
+  String get timerResume => 'Continuar';
+
+  @override
+  String get timerPause => 'Pausar';
+
+  @override
+  String get finishSession => 'Finalizar';
 
   @override
   String get finishReadingTitle => 'Finalizar lectura';

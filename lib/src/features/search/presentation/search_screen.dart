@@ -1,5 +1,5 @@
 import 'package:book_sync/core/constants/app_icons.dart';
-import 'package:book_sync/core/theme/cozy_colors.dart';
+import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/widgets/book_loader.dart';
 import 'package:book_sync/core/widgets/primary_outlined_button.dart';
 import 'package:book_sync/src/features/reading_slider/presentation/providers/books_provider.dart';
@@ -37,37 +37,32 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
 
     if (!mounted) return;
     if (existingBook != null) {
-      final l10n = AppLocalizations.of(context);
 
-      if (l10n != null) {
-        showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: Text(l10n.duplicateBookTitle),
-              content: Text(l10n.duplicateBookMessage),
-              actions: [
-                TextButton(
-                  onPressed: () => {
-                    Navigator.of(context).pop(),
-                    context.pushReplacement('/book_detail', extra: existingBook)
-                  },
-                  child: Text(l10n.accept),
-                ),
-              ],
-            );
-          },
-        );
-      }
-      return;
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(context.l10n.duplicateBookTitle),
+            content: Text(context.l10n.duplicateBookMessage),
+            actions: [
+              TextButton(
+                onPressed: () => {
+                  Navigator.of(context).pop(),
+                  context.pushReplacement('/book_detail', extra: existingBook)
+                },
+                child: Text(context.l10n.accept),
+              ),
+            ],
+          );
+        },
+      );
+          return;
     }
     context.push('/search_detail', extra: book);
   }
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-    final cozy = Theme.of(context).extension<CozyColors>()!;
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
@@ -81,16 +76,16 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
               child: Column(
                 children: [
                   // 1. Encabezado
-                  _buildTitlte(context, l10n),
+                  _buildTitlte(),
 
                   // 2. Caja de búsqueda estilizada
-                  _buildSearchBox(l10n, cozy, context),
+                  _buildSearchBox(),
 
                   // 3. Área de resultados / Estado inicial
                   Expanded(
                     child: _searchController.text.isEmpty
-                      ? _buildInitialState(l10n)
-                      : _buildSearchResultsList(l10n, cozy),
+                      ? _buildInitialState()
+                      : _buildSearchResultsList(),
                   ),
                 ],
               ),
@@ -101,13 +96,13 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     );
   }
 
-  Padding _buildTitlte(BuildContext context, AppLocalizations l10n) {
+  Padding _buildTitlte() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
       child: Row(
         children: [
           IconButton(
-            icon: Icon(AppIcons.back, color: Theme.of(context).colorScheme.onSurface),
+            icon: Icon(AppIcons.back, color: context.theme.colorScheme.onSurface),
             onPressed: () {
               FocusScope.of(context).unfocus();
               ref.read(searchQueryProvider.notifier).clearSearch();
@@ -116,9 +111,9 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
           ),
           Expanded(
             child: Text(
-              l10n.searchTitle,
+              context.l10n.searchTitle,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleLarge,
+              style: context.theme.textTheme.titleLarge,
             ),
           ),
           const SizedBox(width: 48),
@@ -127,7 +122,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     );
   }
 
-  Row _buildSearchBox(AppLocalizations l10n, CozyColors cozy, BuildContext context) {
+  Row _buildSearchBox() {
     return Row(
       children: [
         Expanded(
@@ -136,7 +131,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(color: cozy.inkColor!.withValues(alpha: 0.5), width: 2),
+                border: Border.all(color: context.cozy.inkColor!.withValues(alpha: 0.5), width: 2),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: TextField(
@@ -144,17 +139,17 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                 focusNode: _focusNode,
                 autofocus: true,
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurface,
+                  color: context.theme.colorScheme.onSurface,
                   fontSize: 16,
                 ),
                 decoration: InputDecoration(
-                  hintText: l10n.searchPlaceholder,
+                  hintText: context.l10n.searchPlaceholder,
                   hintStyle: TextStyle(
-                    color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.5),
+                    color: context.theme.colorScheme.onSurface.withValues(alpha: 0.5),
                   ),
                   suffixIcon: _searchController.text.isNotEmpty
                     ? IconButton(
-                        icon: Icon(Icons.clear, color: cozy.inkColor!.withValues(alpha: 0.8)),
+                        icon: Icon(Icons.clear, color: context.cozy.inkColor!.withValues(alpha: 0.8)),
                         onPressed: () {
                           _searchController.clear();
                           ref.read(searchQueryProvider.notifier).submitQuery('');
@@ -195,7 +190,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                   ref.read(searchQueryProvider.notifier).submitQuery(query);
                 }
               },
-              label: l10n.searchButton,
+              label: context.l10n.searchButton,
               icon: Icons.search_sharp
             ),
           ),
@@ -204,7 +199,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     );
   }
 
-  Widget _buildInitialState(AppLocalizations l10n) {
+  Widget _buildInitialState() {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -212,19 +207,19 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
           Icon(
             Icons.menu_book_rounded,
             size: 64,
-            color: Theme.of(context).colorScheme.onSurface,
+            color: context.theme.colorScheme.onSurface,
           ),
           const SizedBox(height: 16),
           Text(
-            l10n.searchInitialHint,
-            style: Theme.of(context).textTheme.labelLarge
+            context.l10n.searchInitialHint,
+            style: context.theme.textTheme.labelLarge
           ),
         ],
       ),
     );
   }
 
-  Widget _buildSearchResultsList(AppLocalizations l10n, CozyColors cozy) {
+  Widget _buildSearchResultsList() {
     final searchResultAsync = ref.watch(searchBooksProvider);
     final currentQuery = ref.watch(searchQueryProvider);
 
@@ -239,8 +234,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
               child: books.isEmpty
                 ? Center(
                     child: Text(
-                      l10n.noSearchResults,
-                      style: Theme.of(context).textTheme.labelLarge,
+                      context.l10n.noSearchResults,
+                      style: context.theme.textTheme.labelLarge,
                     ),
                   )
                 : ListView.builder(
@@ -248,11 +243,9 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                     itemCount: books.length,
                     itemBuilder: (context, index) {
                       final book = books[index];
-                      final theme = Theme.of(context);
-                      final colorScheme = theme.colorScheme;
                       
                       return Card(
-                        color: theme.cardColor.withValues(alpha: 0.8),
+                        color: context.theme.cardColor.withValues(alpha: 0.8),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
@@ -271,17 +264,17 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                   height: 70,
                                   fit: BoxFit.cover,
                                   errorBuilder: (context, error, stackTrace) =>
-                                      _buildPlaceholderCover(context),
+                                      _buildPlaceholderCover(),
                                 )
-                              : _buildPlaceholderCover(context),
+                              : _buildPlaceholderCover(),
                           ),
                           title: Text(
                             book.title,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                            style: theme.textTheme.titleMedium?.copyWith(
+                            style: context.theme.textTheme.titleMedium?.copyWith(
                               fontWeight: FontWeight.bold,
-                              color: colorScheme.onSurface,
+                              color: context.theme.colorScheme.onSurface,
                             ),
                           ),
                           subtitle: Padding(
@@ -290,8 +283,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                               book.authors.isNotEmpty ? book.authors.join(', ') : '---',
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: theme.textTheme.bodyMedium?.copyWith(
-                                color: colorScheme.onSurface.withValues(alpha: 0.7),
+                              style: context.theme.textTheme.bodyMedium?.copyWith(
+                                color: context.theme.colorScheme.onSurface.withValues(alpha: 0.7),
                               ),
                             ),
                           ),
@@ -309,7 +302,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: PrimaryOutlinedButton(
-                  label: l10n.addByManual,
+                  label: context.l10n.addByManual,
                   icon: AppIcons.addManual,
                   onPressed: () {
                     context.push('/search_detail');
@@ -325,7 +318,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
       ),
       error: (error, stack) => Center(
         child: Text(
-          l10n.noSearchResults,
+          context.l10n.noSearchResults,
           style: TextStyle(
             color: AppColors.inkCharcoal.withValues(alpha: 0.6),
           ),
@@ -334,7 +327,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     );
   }
 
-  Widget _buildPlaceholderCover(BuildContext context) {
+  Widget _buildPlaceholderCover() {
     return Container(
       width: 48,
       height: 70,

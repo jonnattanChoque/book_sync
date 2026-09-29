@@ -2,23 +2,85 @@
   "@@locale": "en",
   "welcomeTitle": "Hello,",
   "@welcomeTitle": {
-    "description": "Greeting title on the main dashboard"
+    "description": "Greeting on the home screen"
   },
-  "welcomeMessage": "Stories reader",
+  "welcomeMessage": "Book lover",
   "@welcomeMessage": {
-    "description": "Subtitle greeting on the main dashboard"
+    "description": "Subtitle on the home screen"
   },
-  "userName": "Story Reader",
+  "userName": "Book Lover",
   "@userName": {
-    "description": "Default user display name"
+    "description": "Default user name"
   },
   "addBook": "Add book",
   "@addBook": {
-    "description": "General action or button text to add a book"
+    "description": "General action text for adding a book"
   },
-  "currentlyReading": "Currently reading",
+  "currentlyReading": "Reading now",
   "@currentlyReading": {
-    "description": "Section header for the book currently being read"
+    "description": "Header for the currently reading section"
+  },
+  "createBookTitle": "Add a book to your nightstand",
+  "@createBookTitle": {
+    "description": "Title in book addition dialog"
+  },
+  "noBooksTitle": "Your nightstand is empty",
+  "@noBooksTitle": {
+    "description": "Empty state title for main library"
+  },
+  "noBooksSubtitle": "What story shall we start today?",
+  "@noBooksSubtitle": {
+    "description": "Motivational message when no books exist"
+  },
+  "addBySearch": "Add by search",
+  "@addBySearch": {
+    "description": "Option to add a book by API search"
+  },
+  "addByScan": "Add by scan (ISBN)",
+  "@addByScan": {
+    "description": "Option to add a book by scanning ISBN barcode"
+  },
+  "addByManual": "Add manually",
+  "@addByManual": {
+    "description": "Option to add a book with manual form"
+  },
+  "cameraAccessError": "Error accessing camera",
+  "@cameraAccessError": {
+    "description": "Error message shown when camera fails to start"
+  },
+  "retry": "Retry",
+  "@retry": {
+    "description": "Text for retrying a failed action"
+  },
+  "actionCancel": "Cancel",
+  "@actionCancel": {
+    "description": "Label for cancelling an action"
+  },
+  "actionConfirm": "Confirm",
+  "@actionConfirm": {
+    "description": "Label for confirming cover change"
+  },
+  "accept": "Accept",
+  "@accept": {
+    "description": "Text for closing or confirming an alert dialog"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Generic cancel text"
+  },
+  "save": "Save",
+  "@save": {
+    "description": "Generic save text"
+  },
+  "errorLoadingBooks": "Error loading books: {error}",
+  "@errorLoadingBooks": {
+    "description": "Message shown when fetching books fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "SocketException"
+      }
+    }
   },
   "progressLabel": "{percentage}% completed",
   "@progressLabel": {
@@ -30,37 +92,93 @@
       }
     }
   },
-  "createBookTitle": "Add a book to your nightstand",
-  "@createBookTitle": {
-    "description": "Modal/Screen header for adding a book"
+  "startDateWith": "Start: {date}",
+  "@startDateWith": {
+    "description": "Shows book reading start date",
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "example": "Jan 12, 2024"
+      }
+    }
   },
-  "noBooksTitle": "Your nightstand is empty",
-  "@noBooksTitle": {
-    "description": "Title shown when the library is empty"
+  "remainingTime": "Remaining: {time}",
+  "@remainingTime": {
+    "description": "Estimated time remaining to finish book",
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "2h 15m"
+      }
+    }
   },
-  "noBooksSubtitle": "What story will we start today?",
-  "@noBooksSubtitle": {
-    "description": "Motivational message for an empty library"
+  "pageProgress": "Page {currentPage} / {totalPages}",
+  "@pageProgress": {
+    "description": "Reading progress showing current and total pages",
+    "placeholders": {
+      "currentPage": {
+        "type": "int",
+        "example": "45"
+      },
+      "totalPages": {
+        "type": "int",
+        "example": "300"
+      }
+    }
   },
-  "addBySearch": "Add by search",
-  "@addBySearch": {
-    "description": "Option to add a book by online search"
+  "currentPageFormat": "Page {currentPage}",
+  "@currentPageFormat": {
+    "description": "Format showing current reached page",
+    "placeholders": {
+      "currentPage": {
+        "type": "int",
+        "example": "45"
+      }
+    }
   },
-  "addByScan": "Add by scan (ISBN)",
-  "@addByScan": {
-    "description": "Option to add a book by scanning its ISBN barcode"
+  "progressInfo": "Progress Information",
+  "@progressInfo": {
+    "description": "Title for progress and time card"
   },
-  "addByManual": "Add manually",
-  "@addByManual": {
-    "description": "Option to add a book manually"
+  "startDate": "Start",
+  "@startDate": {
+    "description": "Label for start reading date"
+  },
+  "day": "Day",
+  "@day": {
+    "description": "Label for current or elapsed reading day"
+  },
+  "remaining": "Remaining",
+  "@remaining": {
+    "description": "Label for estimated remaining time"
+  },
+  "progress": "Progress",
+  "@progress": {
+    "description": "Text preceding progress percentage"
+  },
+  "pagesAbbr": "pages",
+  "@pagesAbbr": {
+    "description": "Abbreviation or short form for pages"
+  },
+  "pageAbbr": "Pg",
+  "@pageAbbr": {
+    "description": "Singular abbreviation for page"
+  },
+  "minutesAbbr": "min",
+  "@minutesAbbr": {
+    "description": "Abbreviation for minutes"
   },
   "libraryTitle": "My Library",
   "@libraryTitle": {
-    "description": "Header for the main library section"
+    "description": "Main title of library section"
+  },
+  "noBooksRegistered": "No books registered",
+  "@noBooksRegistered": {
+    "description": "Empty state text for empty library lists"
   },
   "libraryCount": "{count} Books",
   "@libraryCount": {
-    "description": "Total book count indicator",
+    "description": "Count of total saved books",
     "placeholders": {
       "count": {
         "type": "int",
@@ -68,9 +186,15 @@
       }
     }
   },
-  "noBooksRegistered": "No books registered",
-  "@noBooksRegistered": {
-    "description": "Text when no books are registered in a list"
+  "libraryOneCount": "{count} Books",
+  "@libraryOneCount": {
+    "description": "Count of total saved books",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
   },
   "tabLibraryReading": "Reading",
   "@tabLibraryReading": {
@@ -78,7 +202,7 @@
   },
   "tabLibraryToRead": "To Read",
   "@tabLibraryToRead": {
-    "description": "Tab for books queued to read"
+    "description": "Tab for pending books"
   },
   "tabLibraryRead": "Read",
   "@tabLibraryRead": {
@@ -88,73 +212,319 @@
   "@tabLibraryDropped": {
     "description": "Tab for dropped books"
   },
-  "tabLibraryPaused": "Dropped",
+  "tabLibraryPaused": "Paused",
   "@tabLibraryPaused": {
     "description": "Tab for paused books"
   },
   "emptyReading": "No books are currently being read",
   "@emptyReading": {
-    "description": "Empty state for the Reading tab"
+    "description": "Empty state for reading tab"
   },
   "emptyToRead": "No books to read",
   "@emptyToRead": {
-    "description": "Empty state for the To Read tab"
+    "description": "Empty state for to-read tab"
   },
   "emptyFinished": "No books finished yet",
   "@emptyFinished": {
-    "description": "Empty state for the Finished tab"
+    "description": "Empty state for read tab"
   },
   "emptyDropped": "No books dropped yet",
   "@emptyDropped": {
-    "description": "Empty state for the dropped tab"
+    "description": "Empty state for dropped tab"
+  },
+  "errorLoadLibrary": "Error loading library",
+  "@errorLoadLibrary": {
+    "description": "Error message when fetching library fails"
   },
   "searchTitle": "Search Book",
   "@searchTitle": {
-    "description": "AppBar title on the online search screen"
+    "description": "Title of AppBar in online search screen"
   },
   "searchButton": "Search",
   "@searchButton": {
-    "description": "Text for the search action button"
+    "description": "Search button text"
   },
   "searchPlaceholder": "Title or author...",
   "@searchPlaceholder": {
-    "description": "Placeholder hint inside the search text field"
+    "description": "Hint text in search textfield"
   },
   "searchInitialHint": "Type to search books online",
   "@searchInitialHint": {
-    "description": "Initial hint displayed before searching"
+    "description": "Informational message before searching"
   },
-  "addManualBook": "Add book",
+  "noSearchResults": "No results found",
+  "@noSearchResults": {
+    "description": "Message when search has no matches"
+  },
+  "scanIsbnTitle": "Scan ISBN Code",
+  "@scanIsbnTitle": {
+    "description": "Title for barcode scanner screen"
+  },
+  "scanIsbnInstruction": "Align barcode within frame",
+  "@scanIsbnInstruction": {
+    "description": "Instruction text for barcode framing"
+  },
+  "scanIsbnLoading": "Searching book by ISBN...",
+  "@scanIsbnLoading": {
+    "description": "Loading message while querying API"
+  },
+  "bookNotFoundTitle": "Book not found",
+  "@bookNotFoundTitle": {
+    "description": "Title when search returns no results"
+  },
+  "searchByNamePrompt": "Would you like to search by title?",
+  "@searchByNamePrompt": {
+    "description": "Prompt suggesting to search by name/title"
+  },
+  "duplicateBookTitle": "Duplicate Book",
+  "@duplicateBookTitle": {
+    "description": "Dialog title warning that book is already in library"
+  },
+  "duplicateBookMessage": "This book is already in your library.",
+  "@duplicateBookMessage": {
+    "description": "Explanatory message for duplicate ISBN"
+  },
+  "addNote": "Note",
+  "@addNote": {
+    "description": "Button text to add a quick note"
+  },
+  "readingNotes": "Reading Notes",
+  "@readingNotes": {
+    "description": "Header for collapsible notes section"
+  },
+  "noNotesRegistered": "No notes recorded for this book.",
+  "@noNotesRegistered": {
+    "description": "Message when no notes have been created"
+  },
+  "newReadingNote": "New Reading Note",
+  "@newReadingNote": {
+    "description": "Modal title for adding a note"
+  },
+  "addNoteHint": "Write your thought or quote from the book...",
+  "@addNoteHint": {
+    "description": "Placeholder for note text field"
+  },
+  "viewNotes": "View notes",
+  "@viewNotes": {
+    "description": "Button to expand notes list in reading view"
+  },
+  "hideNotes": "Hide notes",
+  "@hideNotes": {
+    "description": "Button text when notes list is visible"
+  },
+  "noNotesYet": "You don't have any notes recorded for this book yet.",
+  "@noNotesYet": {
+    "description": "Informational message when no notes exist"
+  },
+  "addNoteTitle": "Add Note",
+  "@addNoteTitle": {
+    "description": "Title for creating a new note modal"
+  },
+  "categoryLabel": "Category",
+  "@categoryLabel": {
+    "description": "Label for category selection"
+  },
+  "categoryQuote": "Quote",
+  "@categoryQuote": {
+    "description": "Category for quotes"
+  },
+  "categorySummary": "Summary",
+  "@categorySummary": {
+    "description": "Category for summaries"
+  },
+  "categoryQuestion": "Question",
+  "@categoryQuestion": {
+    "description": "Category for questions"
+  },
+  "categoryReflection": "Reflection",
+  "@categoryReflection": {
+    "description": "Category for personal reflections"
+  },
+  "categoryIdea": "Idea",
+  "@categoryIdea": {
+    "description": "Category for ideas"
+  },
+  "categoryOther": "Other",
+  "@categoryOther": {
+    "description": "General category"
+  },
+  "dateLabel": "Date",
+  "@dateLabel": {
+    "description": "Label for date field"
+  },
+  "pageLabel": "Page",
+  "@pageLabel": {
+    "description": "Label for page field"
+  },
+  "pageOption": "Page {page}",
+  "@pageOption": {
+    "description": "Dropdown option for page number",
+    "placeholders": {
+      "page": {
+        "type": "int"
+      }
+    }
+  },
+  "noteLabel": "Note",
+  "@noteLabel": {
+    "description": "Label for note text field"
+  },
+  "noteInputHint": "Type your quote, summary, or reflection...",
+  "@noteInputHint": {
+    "description": "Hint text for note text field"
+  },
+  "saveNoteButton": "Save Note",
+  "@saveNoteButton": {
+    "description": "Button to confirm and save note"
+  },
+  "errorEmptyPage": "Please enter a valid page number",
+  "@errorEmptyPage": {
+    "description": "Error message when page field is invalid"
+  },
+  "errorInvalidPageRange": "Page number cannot exceed {totalPages}",
+  "@errorInvalidPageRange": {
+    "description": "Error message when page exceeds book total",
+    "placeholders": {
+      "totalPages": {
+        "type": "int"
+      }
+    }
+  },
+  "errorEmptyNote": "Please enter content for the note",
+  "@errorEmptyNote": {
+    "description": "Error message when note content is empty"
+  },
+  "bookNotesTitle": "Book notes",
+  "@bookNotesTitle": {
+    "description": "Title for notes section associated with a book"
+  },
+  "errorLoadingNotes": "Error loading notes: {error}",
+  "@errorLoadingNotes": {
+    "description": "Error message when fetching notes fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "DatabaseException"
+      }
+    }
+  },
+  "emptyNotesMessage": "No notes saved for this book",
+  "@emptyNotesMessage": {
+    "description": "Empty state message when no notes are saved"
+  },
+  "yourBookTitle": "Your Book",
+  "@yourBookTitle": {
+    "description": "AppBar title in book detail screen"
+  },
+  "isbn": "ISBN",
+  "@isbn": {
+    "description": "Label for ISBN code"
+  },
+  "deleteAction": "Delete",
+  "@deleteAction": {
+    "description": "Button text to delete book"
+  },
+  "editionInfo": "Edition Information",
+  "@editionInfo": {
+    "description": "Title for edition information card"
+  },
+  "publisher": "Publisher",
+  "@publisher": {
+    "description": "Label for book publisher"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "Label for book language"
+  },
+  "publicationDate": "Publication",
+  "@publicationDate": {
+    "description": "Label for publication date"
+  },
+  "synopsis": "Synopsis",
+  "@synopsis": {
+    "description": "Title for synopsis section"
+  },
+  "readingStatusTitle": "Reading Status",
+  "@readingStatusTitle": {
+    "description": "Dropdown title for selecting reading status"
+  },
+  "readingStatusMessage": "Select current status for this book",
+  "@readingStatusMessage": {
+    "description": "Instruction message for status selection"
+  },
+  "statusReading": "Reading",
+  "@statusReading": {
+    "description": "Status: Reading"
+  },
+  "statusToRead": "To Read",
+  "@statusToRead": {
+    "description": "Status: To Read"
+  },
+  "statusPaused": "Paused",
+  "@statusPaused": {
+    "description": "Status: Paused"
+  },
+  "statusDropped": "Dropped",
+  "@statusDropped": {
+    "description": "Status: Dropped"
+  },
+  "statusFinished": "Finished",
+  "@statusFinished": {
+    "description": "Status: Finished"
+  },
+  "deleteBookDialogTitle": "Delete book",
+  "@deleteBookDialogTitle": {
+    "description": "Modal title for book deletion confirmation"
+  },
+  "deleteBookDialogMessage": "Are you sure you want to delete \"{bookTitle}\"? This action cannot be undone.",
+  "@deleteBookDialogMessage": {
+    "description": "Deletion confirmation message with book title",
+    "placeholders": {
+      "bookTitle": {
+        "type": "String",
+        "example": "One Hundred Years of Solitude"
+      }
+    }
+  },
+  "addedToFavorites": "Added to favorites",
+  "@addedToFavorites": {
+    "description": "Confirmation message when book is favorited"
+  },
+  "removedFromFavorites": "Removed from favorites",
+  "@removedFromFavorites": {
+    "description": "Confirmation message when book is unfavorited"
+  },
+  "bookStatusUpdated": "Book status updated",
+  "@bookStatusUpdated": {
+    "description": "Confirmation message after changing reading status"
+  },
+  "addManualBook": "Add book manually",
   "@addManualBook": {
     "description": "Title for manual entry flow"
   },
-  "noSearchResults": "No search results found",
-  "@noSearchResults": {
-    "description": "Message displayed when a search returns no items"
-  },
   "addBookTitle": "Add book",
   "@addBookTitle": {
-    "description": "AppBar title on the book detail confirmation screen"
+    "description": "AppBar title in book detail screen"
   },
   "sectionInfo": "Information",
   "@sectionInfo": {
-    "description": "Section header for general book information"
+    "description": "Header for general data section"
   },
-  "sectionSelected": "Select Reading Status",
+  "sectionSelected": "Select reading status",
   "@sectionSelected": {
-    "description": "Section header for selecting the book's reading status"
+    "description": "Header for reading status selection"
   },
   "sectionDescription": "Description",
   "@sectionDescription": {
-    "description": "Section header for the book description or synopsis"
+    "description": "Header for synopsis section"
   },
   "sectionPublisher": "Publisher",
   "@sectionPublisher": {
-    "description": "Section header for publishing details"
+    "description": "Header for publication section"
   },
-  "sectionOther": "Others",
+  "sectionOther": "Other",
   "@sectionOther": {
-    "description": "Section header for additional metadata like categories or ratings"
+    "description": "Header for categories or extra info"
   },
   "fieldTitle": "Title",
   "@fieldTitle": {
@@ -166,245 +536,71 @@
   },
   "fieldIsbn": "ISBN",
   "@fieldIsbn": {
-    "description": "Label for ISBN code field"
+    "description": "Label for ISBN code"
   },
   "fieldLanguage": "Language",
   "@fieldLanguage": {
-    "description": "Label for language field"
+    "description": "Label for book language"
   },
   "fieldPages": "Pages",
   "@fieldPages": {
-    "description": "Label for page count field"
+    "description": "Label for page count"
   },
   "fieldPublisher": "Publisher",
   "@fieldPublisher": {
-    "description": "Label for publisher field"
+    "description": "Label for publisher name"
   },
-  "fieldPublishedDate": "Publication date",
+  "fieldPublishedDate": "Publication Date",
   "@fieldPublishedDate": {
-    "description": "Label for publication date field"
+    "description": "Label for release date"
   },
   "fieldCategories": "Categories",
   "@fieldCategories": {
-    "description": "Label for book categories or genres"
+    "description": "Label for genres or categories"
   },
   "fieldRating": "Rating",
   "@fieldRating": {
-    "description": "Label for rating or score"
+    "description": "Label for book rating"
   },
   "btnSaveToLibrary": "Save to library",
   "@btnSaveToLibrary": {
-    "description": "Primary action button to save the book into the database"
+    "description": "Button text to save book to database"
   },
-  "scanIsbnTitle": "Scan ISBN Code",
-  "@scanIsbnTitle": {
-    "description": "Main title for the ISBN barcode scanner screen."
-  },
-  "scanIsbnInstruction": "Align barcode here",
-  "@scanIsbnInstruction": {
-    "description": "Instruction text guiding the user to frame the barcode within the camera view."
-  },
-  "scanIsbnLoading": "Searching book by ISBN...",
-  "@scanIsbnLoading": {
-    "description": "Loading message displayed while querying the book via API."
-  },
-  "searchImageTitle": "Search image",
+  "searchImageTitle": "Search Cover Image",
   "@searchImageTitle": {
-    "description": "Title of the screen or modal for searching book covers."
+    "description": "Title for cover image search modal"
   },
-  "searchImageHint": "Type to search images on the web",
+  "searchImageHint": "Type to search images online",
   "@searchImageHint": {
-    "description": "Placeholder text for the search input field."
+    "description": "Placeholder for image search field"
   },
-  "confirmChangeCoverTitle": "Change cover",
+  "validationTitleRequired": "Title is required",
+  "@validationTitleRequired": {
+    "description": "Validation error when title field is empty"
+  },
+  "confirmChangeCoverTitle": "Change Cover",
   "@confirmChangeCoverTitle": {
-    "description": "Title of the confirmation dialog to replace the book cover."
+    "description": "Confirmation dialog title for cover replacement"
   },
   "confirmChangeCoverMessage": "Do you want to replace the current cover with this image?",
   "@confirmChangeCoverMessage": {
-    "description": "Main body message of the confirmation dialog."
-  },
-  "actionCancel": "Cancel",
-  "@actionCancel": {
-    "description": "Label for the cancel button."
-  },
-  "actionConfirm": "Confirm",
-  "@actionConfirm": {
-    "description": "Label for the confirm/accept button."
-  },
-  "duplicateBookTitle": "Duplicate Book",
-  "@duplicateBookTitle": {
-    "description": "Title of the dialog warning that a book is already in the library."
-  },
-  "duplicateBookMessage": "This book is already in your library.",
-  "@duplicateBookMessage": {
-    "description": "Explanatory message informing the user that the entered ISBN is already registered."
-  },
-  "accept": "Accept",
-  "@accept": {
-    "description": "Text for the primary button to close or confirm an alert dialog."
-  },
-  "yourBookTitle": "Your book",
-  "@yourBookTitle": {
-    "description": "Main title in the AppBar of the book details screen"
-  },
-  "isbn": "ISBN",
-  "@isbn": {
-    "description": "Label for the book ISBN"
-  },
-  "deleteAction": "Delete",
-  "@deleteAction": {
-    "description": "Text for the delete button or action"
-  },
-  "editionInfo": "Edition Information",
-  "@editionInfo": {
-    "description": "Title of the publisher/edition info card"
-  },
-  "publisher": "Publisher",
-  "@publisher": {
-    "description": "Label for the book publisher"
-  },
-  "language": "Language",
-  "@language": {
-    "description": "Label for the book language"
-  },
-  "publicationDate": "Published",
-  "@publicationDate": {
-    "description": "Label for the book publication date"
-  },
-  "synopsis": "Synopsis",
-  "@synopsis": {
-    "description": "Title of the synopsis or description section"
-  },
-  "addNote": "Note",
-  "@addNote": {
-    "description": "Button text for adding a quick note"
+    "description": "Main message for cover change confirmation"
   },
   "newSession": "Read",
   "@newSession": {
-    "description": "Button text for starting a new reading session"
-  },
-  "readingNotes": "Reading Notes",
-  "@readingNotes": {
-    "description": "Title of the expandable notes section"
-  },
-  "noNotesRegistered": "No notes recorded for this book.",
-  "@noNotesRegistered": {
-    "description": "Message when no notes have been created for the book"
+    "description": "Button text to start a new reading session"
   },
   "readingHistory": "Reading History",
   "@readingHistory": {
-    "description": "Title of the expandable session history section"
+    "description": "Header for reading sessions history section"
   },
   "noSessionsRegistered": "You haven't recorded any reading sessions yet.",
   "@noSessionsRegistered": {
-    "description": "Message when no sessions are recorded"
-  },
-  "progressInfo": "Progress Information",
-  "@progressInfo": {
-    "description": "Title of the progress and reading time card"
-  },
-  "startDate": "Start",
-  "@startDate": {
-    "description": "Label for the reading start date"
-  },
-  "day": "Day",
-  "@day": {
-    "description": "Label for the current or elapsed reading day"
-  },
-  "remaining": "Remaining",
-  "@remaining": {
-    "description": "Label for the estimated remaining reading time"
-  },
-  "progress": "Progress",
-  "@progress": {
-    "description": "Text preceding the progress percentage"
-  },
-  "pagesAbbr": "pages",
-  "@pagesAbbr": {
-    "description": "Abbreviation for pages"
-  },
-  "pageAbbr": "Page",
-  "@pageAbbr": {
-    "description": "Singular abbreviation for page"
-  },
-  "minutesAbbr": "min",
-  "@minutesAbbr": {
-    "description": "Abbreviation for minutes"
-  },
-  "readingStatusTitle": "Reading Status",
-  "@readingStatusTitle": {
-    "description": "Title for the status selection sheet"
-  },
-  "readingStatusMessage": "Select the current status for this book",
-  "@readingStatusMessage": {
-    "description": "Instruction message for the status menu"
-  },
-  "statusReading": "Reading",
-  "@statusReading": {
-    "description": "Status: Reading"
-  },
-  "statusToRead": "To Read",
-  "@statusToRead": {
-    "description": "Status: To Read"
-  },
-  "statusPaused": "On Hold",
-  "@statusPaused": {
-    "description": "Status: On Hold"
-  },
-  "statusDropped": "Dropped",
-  "@statusDropped": {
-    "description": "Status: Dropped"
-  },
-  "statusFinished": "Finished",
-  "@statusFinished": {
-    "description": "Status: Finished"
-  },
-  "cancel": "Cancel",
-  "@cancel": {
-    "description": "Generic text to cancel dialogs or actions"
-  },
-  "save": "Save",
-  "@save": {
-    "description": "Generic text to save changes"
-  },
-  "newReadingNote": "New Reading Note",
-  "@newReadingNote": {
-    "description": "Title of the add note modal"
-  },
-  "addNoteHint": "Write your reflection or quote from the book...",
-  "@addNoteHint": {
-    "description": "Placeholder inside the note text field"
-  },
-  "deleteBookDialogTitle": "Delete book",
-  "@deleteBookDialogTitle": {
-    "description": "Title of the delete confirmation modal"
-  },
-  "deleteBookDialogMessage": "Are you sure you want to delete \"{bookTitle}\"? This action cannot be undone.",
-  "@deleteBookDialogMessage": {
-    "description": "Confirmation message to delete a book specifying its title",
-    "placeholders": {
-      "bookTitle": {
-        "type": "String",
-        "example": "One Hundred Years of Solitude"
-      }
-    }
-  },
-  "addedToFavorites": "Added to favorites",
-  "@addedToFavorites": {
-    "description": "Confirmation message when a book is added to favorites."
-  },
-  "removedFromFavorites": "Removed from favorites",
-  "@removedFromFavorites": {
-    "description": "Confirmation message when a book is removed from favorites."
-  },
-  "bookStatusUpdated": "Book status updated",
-  "@bookStatusUpdated": {
-    "description": "Confirmation message after changing a book's reading status."
+    "description": "Message when no sessions are saved"
   },
   "pagesRange": "Pages {startPage} to {endPage}",
   "@pagesRange": {
-    "description": "Text for the range of pages read in a session",
+    "description": "Range of read pages in a session",
     "placeholders": {
       "startPage": {
         "type": "int",
@@ -418,7 +614,7 @@
   },
   "upToPage": "Up to page {endPage}",
   "@upToPage": {
-    "description": "Text indicating the end page when no start page is recorded",
+    "description": "Text indicating end page when start page is missing",
     "placeholders": {
       "endPage": {
         "type": "int",
@@ -428,137 +624,47 @@
   },
   "readingSessionTitle": "Reading Session",
   "@readingSessionTitle": {
-    "description": "Main title of the active reading session screen or modal."
+    "description": "Main title for active reading session screen"
   },
   "timerStart": "Start",
   "@timerStart": {
-    "description": "Button label to start the reading timer for the first time."
+    "description": "Button label to start timer for the first time"
   },
   "timerResume": "Resume",
   "@timerResume": {
-    "description": "Button label to resume the reading timer after being paused."
+    "description": "Button label to resume paused timer"
   },
   "timerPause": "Pause",
   "@timerPause": {
-    "description": "Button label to temporarily pause the reading timer."
-  },
-  "viewNotes": "View notes",
-  "@viewNotes": {
-    "description": "Button to expand the notes list inside the reading view."
-  },
-  "hideNotes": "Hide notes",
-  "@hideNotes": {
-    "description": "Button text when the notes list is currently expanded."
+    "description": "Button label to pause timer"
   },
   "finishSession": "Finish",
   "@finishSession": {
-    "description": "Primary button to stop the timer and log reading progress."
+    "description": "Button to stop timer and record reading progress"
   },
-  "noNotesYet": "No notes registered for this book yet.",
-  "@noNotesYet": {
-    "description": "Informational message when the book has no notes."
-  },
-  "addNoteTitle": "Add Note",
-  "@addNoteTitle": {
-    "description": "Main title of the modal for creating a new note."
-  },
-  "categoryLabel": "Category",
-  "@categoryLabel": {
-    "description": "Label for the category selection section."
-  },
-  "categoryQuote": "Quote",
-  "@categoryQuote": {
-    "description": "Category for book quotes."
-  },
-  "categorySummary": "Summary",
-  "@categorySummary": {
-    "description": "Category for summaries."
-  },
-  "categoryQuestion": "Question",
-  "@categoryQuestion": {
-    "description": "Category for questions or doubts."
-  },
-  "categoryReflection": "Reflection",
-  "@categoryReflection": {
-    "description": "Category for personal reflections."
-  },
-  "categoryIdea": "Idea",
-  "@categoryIdea": {
-    "description": "Category for ideas."
-  },
-  "categoryOther": "Other",
-  "@categoryOther": {
-    "description": "General category."
-  },
-  "dateLabel": "Date",
-  "@dateLabel": {
-    "description": "Label for the date field."
-  },
-  "pageLabel": "Page",
-  "@pageLabel": {
-    "description": "Label for the page field."
-  },
-  "pageOption": "Page {page}",
-  "@pageOption": {
-    "description": "Dropdown option indicating page number.",
-    "placeholders": {
-      "page": {
-        "type": "int"
-      }
-    }
-  },
-  "noteLabel": "Note",
-  "@noteLabel": {
-    "description": "Label for the note text input field."
-  },
-  "noteInputHint": "Write your quote, summary, or reflection...",
-  "@noteInputHint": {
-    "description": "Placeholder text inside the note text area."
-  },
-  "saveNoteButton": "Save Note",
-  "@saveNoteButton": {
-    "description": "Button to confirm and save the note."
-  },
-  "errorEmptyPage": "Enter a valid page",
-  "@errorEmptyPage": {
-    "description": "Error message when the page field is empty or not a number."
-  },
-  "errorInvalidPageRange": "Page cannot exceed {totalPages}",
-  "@errorInvalidPageRange": {
-    "description": "Error message when page number exceeds total book pages.",
-    "placeholders": {
-      "totalPages": {
-        "type": "int"
-      }
-    }
-  },
-  "errorEmptyNote": "Please enter note content",
-  "@errorEmptyNote": {
-    "description": "Error message when note text field is empty."
-  },
-  "finishReadingTitle": "Finish reading",
+  "finishReadingTitle": "Finish Reading",
   "@finishReadingTitle": {
-    "description": "Main title of the modal when ending a reading session."
+    "description": "Modal title when ending a reading session"
   },
-  "timeReadLabel": "Time read",
+  "timeReadLabel": "Time Read",
   "@timeReadLabel": {
-    "description": "Label for the total duration of the session."
+    "description": "Label displaying total session duration"
   },
   "minutesShort": "min",
   "@minutesShort": {
-    "description": "Abbreviation for minutes."
+    "description": "Short form for minutes"
   },
   "secondsShort": "s",
   "@secondsShort": {
-    "description": "Abbreviation for seconds."
+    "description": "Short form for seconds"
   },
   "whatPageDidYouReach": "What page did you reach?",
   "@whatPageDidYouReach": {
-    "description": "Label for the input where the user enters the reached page."
+    "description": "Field label for entering last read page"
   },
   "currentPageHint": "Current page (e.g. {page})",
   "@currentPageHint": {
-    "description": "Hint text for the page input field.",
+    "description": "Hint text in current page field",
     "placeholders": {
       "page": {
         "type": "int",
@@ -566,21 +672,21 @@
       }
     }
   },
-  "saveSessionButton": "Save session",
+  "saveSessionButton": "Save Session",
   "@saveSessionButton": {
-    "description": "Text for the main button to save the reading entry."
+    "description": "Main button to save reading entry"
   },
-  "validationEnterEndPage": "Please enter the end page",
+  "validationEnterEndPage": "Enter the final page",
   "@validationEnterEndPage": {
-    "description": "Error message when the page field is empty."
+    "description": "Error message when page field is empty"
   },
-  "validationInvalidNumber": "Please enter a valid number",
+  "validationInvalidNumber": "Enter a valid number",
   "@validationInvalidNumber": {
-    "description": "Error message when the input value is not a valid integer."
+    "description": "Error message when input is not a valid integer"
   },
-  "validationPageLowerThanCurrent": "Cannot be lower than the previous page ({currentPage})",
+  "validationPageLowerThanCurrent": "Cannot be lower than previous page ({currentPage})",
   "@validationPageLowerThanCurrent": {
-    "description": "Error message when the end page is lower than the starting page.",
+    "description": "Error message when final page is less than starting page",
     "placeholders": {
       "currentPage": {
         "type": "int",
@@ -588,9 +694,9 @@
       }
     }
   },
-  "validationPageExceedsTotal": "Cannot exceed total pages ({totalPages})",
+  "validationPageExceedsTotal": "Cannot exceed total book pages ({totalPages})",
   "@validationPageExceedsTotal": {
-    "description": "Error message when the entered page exceeds total book pages.",
+    "description": "Error message when page exceeds total book pages",
     "placeholders": {
       "totalPages": {
         "type": "int",
@@ -600,19 +706,19 @@
   },
   "sessionSummaryTitle": "Summary",
   "@sessionSummaryTitle": {
-    "description": "Main title for session summary page."
+    "description": "Top title for summary screen"
   },
   "pagesReadLabel": "Pages read",
   "@pagesReadLabel": {
-    "description": "Label for amount of pages read."
+    "description": "Label for total pages read in session"
   },
   "readingSpeedLabel": "Reading speed",
   "@readingSpeedLabel": {
-    "description": "Label for reading speed in pages per minute."
+    "description": "Label for speed in pages per minute"
   },
   "pagesPerMinute": "{speed} pages/min",
   "@pagesPerMinute": {
-    "description": "Format for reading speed.",
+    "description": "Format for reading speed",
     "placeholders": {
       "speed": {
         "type": "String",
@@ -622,19 +728,19 @@
   },
   "estimatedTimeRemaining": "Est. time remaining",
   "@estimatedTimeRemaining": {
-    "description": "Label for estimated time left to finish the book."
+    "description": "Label for remaining time estimation"
   },
   "doneButton": "Done",
   "@doneButton": {
-    "description": "Main button to save and go back home."
+    "description": "Main button to save and return home"
   },
   "sessionResultTitle": "Reading Session Result",
   "@sessionResultTitle": {
-    "description": "Main title of the summary view when done reading."
+    "description": "Main title of summary screen after reading"
   },
   "readSummaryInfo": "You read {pages} pages in {duration}.",
   "@readSummaryInfo": {
-    "description": "Informs how many pages the user read and the session duration.",
+    "description": "Summary text showing pages read and duration",
     "placeholders": {
       "pages": {
         "type": "int",
@@ -648,7 +754,7 @@
   },
   "readingSpeedInfo": "This is your average reading speed: {pagesPerHour} pages per hour.",
   "@readingSpeedInfo": {
-    "description": "Displays average reading speed per hour.",
+    "description": "Shows average reading speed per hour",
     "placeholders": {
       "pagesPerHour": {
         "type": "String",
@@ -656,9 +762,9 @@
       }
     }
   },
-  "timeRemainingInfo": "Time left to finish is {timeRemaining}.",
+  "timeRemainingInfo": "Estimated time left to finish is {timeRemaining}.",
   "@timeRemainingInfo": {
-    "description": "Displays estimated time left to complete the book.",
+    "description": "Displays time remaining to finish book",
     "placeholders": {
       "timeRemaining": {
         "type": "String",
@@ -668,7 +774,7 @@
   },
   "pagesRemainingInfo": "There are {pagesRemaining} pages left to finish your book.",
   "@pagesRemainingInfo": {
-    "description": "Indicates how many pages remain to complete the book.",
+    "description": "Indicates remaining pages to complete book",
     "placeholders": {
       "pagesRemaining": {
         "type": "int",
