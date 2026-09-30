@@ -173,4 +173,27 @@ class BookRepository {
 
     return (book: updatedBook!, session: session);
   }
+
+  Future<void> updateBookRatingAndConclusions({
+    required int bookId,
+    required double rating,
+    required String conclusions,
+  }) async {
+    await isar.writeTxn(() async {
+      final book = await isar.books.get(bookId);
+      if (book != null) {
+        book.rating = rating;
+        book.conclusions = conclusions;
+        await isar.books.put(book);
+      }
+    });
+  }
+
+  Future<List<Book>> getUnratedFinishedBooks() async {
+    return await isar.books
+    .filter()
+    .statusEqualTo(BookStatus.finished)
+    .group((q) => q.ratingIsNull().or().ratingEqualTo(0))
+    .findAll();
+  }
 }

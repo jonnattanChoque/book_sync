@@ -212,6 +212,72 @@ abstract class AppLocalizations {
   /// **'Error al cargar libros: {error}'**
   String errorLoadingBooks(String error);
 
+  /// Mensaje de advertencia en SnackBar cuando el usuario intenta salir del resumen de un libro terminado sin haberlo calificado.
+  ///
+  /// In es, this message translates to:
+  /// **'Por favor, ingresa tu valoración del libro para finalizar.'**
+  String get ratingRequiredMessage;
+
+  /// Título principal en el modal de valoración de un libro completado.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Felicidades por terminarlo!'**
+  String get congratulationsFinishedTitle;
+
+  /// Texto de sugerencia en el campo para redactar la reseña o conclusiones finales del libro.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe tus conclusiones o reseña final...'**
+  String get conclusionsHint;
+
+  /// Botón principal para guardar la calificación y las conclusiones finales.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardar y Concluir'**
+  String get saveAndFinishButton;
+
+  /// Texto del botón secundario para omitir la valoración del libro en el modal.
+  ///
+  /// In es, this message translates to:
+  /// **'No valorar por ahora'**
+  String get skipRatingButton;
+
+  /// Texto del botón en la pantalla de resumen para reabrir el modal de valoración si el usuario lo cerró.
+  ///
+  /// In es, this message translates to:
+  /// **'Valorar este libro'**
+  String get rateThisBookAction;
+
+  /// No description provided for @streakIncreased.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Racha Aumentada!'**
+  String get streakIncreased;
+
+  /// No description provided for @streakCurrent.
+  ///
+  /// In es, this message translates to:
+  /// **'Racha Actual'**
+  String get streakCurrent;
+
+  /// No description provided for @streakDaysCount.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{1 día seguido} other{{count} días seguidos}}'**
+  String streakDaysCount(num count);
+
+  /// No description provided for @streakTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Racha de lectura'**
+  String get streakTitle;
+
+  /// No description provided for @bestStreakLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Mejor racha: {count} días'**
+  String bestStreakLabel(Object count);
+
   /// Porcentaje de avance en la lectura de un libro
   ///
   /// In es, this message translates to:
@@ -614,6 +680,48 @@ abstract class AppLocalizations {
   /// **'No hay notas guardadas para este libro'**
   String get emptyNotesMessage;
 
+  /// No description provided for @profileTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Perfil de lector'**
+  String get profileTitle;
+
+  /// No description provided for @defaultUserName.
+  ///
+  /// In es, this message translates to:
+  /// **'Usuario'**
+  String get defaultUserName;
+
+  /// No description provided for @readerLevelDefault.
+  ///
+  /// In es, this message translates to:
+  /// **'Lector Voraz'**
+  String get readerLevelDefault;
+
+  /// Etiqueta para la pestaña Home en la barra de navegación principal.
+  ///
+  /// In es, this message translates to:
+  /// **'Inicio'**
+  String get navHome;
+
+  /// Etiqueta para la pestaña Biblioteca en la barra de navegación principal.
+  ///
+  /// In es, this message translates to:
+  /// **'Biblioteca'**
+  String get navLibrary;
+
+  /// Etiqueta para la pestaña Racha y Gráficos en la barra de navegación principal.
+  ///
+  /// In es, this message translates to:
+  /// **'Estadísticas'**
+  String get navStats;
+
+  /// Etiqueta para la pestaña Perfil en la barra de navegación principal.
+  ///
+  /// In es, this message translates to:
+  /// **'Perfil'**
+  String get navProfile;
+
   /// Título principal en el AppBar de la pantalla de detalles del libro
   ///
   /// In es, this message translates to:
@@ -733,6 +841,30 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Estado del libro actualizado'**
   String get bookStatusUpdated;
+
+  /// Texto para expandir un texto largo de conclusiones
+  ///
+  /// In es, this message translates to:
+  /// **'Ver más'**
+  String get showMore;
+
+  /// Texto para retraer un texto largo de conclusiones
+  ///
+  /// In es, this message translates to:
+  /// **'Ver menos'**
+  String get showLess;
+
+  /// Título principal para la tarjeta de estadísticas en el HomeScreen
+  ///
+  /// In es, this message translates to:
+  /// **'Estadísticas'**
+  String get statsTitle;
+
+  /// Texto descriptivo o llamado a la acción secundario en la tarjeta de estadísticas
+  ///
+  /// In es, this message translates to:
+  /// **'Mira aquí tus estadísticas'**
+  String get statsDescription;
 
   /// Título para el flujo de adición manual
   ///
@@ -959,8 +1091,8 @@ abstract class AppLocalizations {
   /// Texto de sugerencia en el campo de texto de página actual.
   ///
   /// In es, this message translates to:
-  /// **'Página actual (ej. {page})'**
-  String currentPageHint(int page);
+  /// **'Página actual ({page}/{lastPage})'**
+  String currentPageHint(int page, int lastPage);
 
   /// Texto del botón principal para guardar el registro de lectura.
   ///

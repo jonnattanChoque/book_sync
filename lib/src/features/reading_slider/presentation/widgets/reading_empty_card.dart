@@ -1,6 +1,5 @@
 import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/widgets/hand_drawn_border_painter.dart';
-import 'package:book_sync/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class ReadingEmptyCard extends StatelessWidget {

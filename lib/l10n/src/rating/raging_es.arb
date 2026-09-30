@@ -1,0 +1,27 @@
+{
+  "@@locale": "es",
+  "ratingRequiredMessage": "Por favor, ingresa tu valoración del libro para finalizar.",
+  "@ratingRequiredMessage": {
+    "description": "Mensaje de advertencia en SnackBar cuando el usuario intenta salir del resumen de un libro terminado sin haberlo calificado."
+  },
+  "congratulationsFinishedTitle": "¡Felicidades por terminarlo!",
+  "@congratulationsFinishedTitle": {
+    "description": "Título principal en el modal de valoración de un libro completado."
+  },
+  "conclusionsHint": "Escribe tus conclusiones o reseña final...",
+  "@conclusionsHint": {
+    "description": "Texto de sugerencia en el campo para redactar la reseña o conclusiones finales del libro."
+  },
+  "saveAndFinishButton": "Guardar y Concluir",
+  "@saveAndFinishButton": {
+    "description": "Botón principal para guardar la calificación y las conclusiones finales."
+  },
+  "skipRatingButton": "No valorar por ahora",
+  "@skipRatingButton": {
+    "description": "Texto del botón secundario para omitir la valoración del libro en el modal."
+  },
+  "rateThisBookAction": "Valorar este libro",
+  "@rateThisBookAction": {
+    "description": "Texto del botón en la pantalla de resumen para reabrir el modal de valoración si el usuario lo cerró."
+  }
+}

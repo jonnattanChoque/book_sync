@@ -1,12 +1,15 @@
 // lib/src/features/reading/presentation/widgets/finish_reading_modal.dart
 
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/widgets/primary_outlined_button.dart';
 import 'package:book_sync/src/domain/book.dart';
-import 'package:book_sync/src/features/reader_session/presentation/summary_screen.dart';
 import 'package:book_sync/src/features/reading_slider/presentation/providers/books_provider.dart';
+import 'package:book_sync/src/features/streak/presentation/providers/streak_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class FinishReadingModal extends ConsumerStatefulWidget {
   final Book book;
@@ -51,7 +54,7 @@ class _FinishReadingModalState extends ConsumerState<FinishReadingModal> {
   void initState() {
     super.initState();
     _endPageController = TextEditingController(
-      text: widget.book.currentPage > 0 ? widget.book.currentPage.toString() : '',
+      text: '',
     );
   }
 
@@ -83,14 +86,9 @@ class _FinishReadingModalState extends ConsumerState<FinishReadingModal> {
       );
 
       if (result != null && mounted) {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (_) => SessionSummaryPage(
-              book: result.book,
-              session: result.session,
-            ),
-          ),
-        );
+        final registerStreak = ref.read(registerReadingDayProvider);
+        await registerStreak();
+        context.pushReplacement('/summary', extra: {'book': result.book, 'session': result.session});
       }
     }
   }
@@ -187,13 +185,14 @@ class _FinishReadingModalState extends ConsumerState<FinishReadingModal> {
         ),
         const SizedBox(height: 8),
         TextFormField(
+          autofocus: true,
           controller: _endPageController,
           keyboardType: TextInputType.number,
           style: context.theme.textTheme.bodyMedium?.copyWith(
             color: context.colorScheme.onSurface,
           ),
           decoration: InputDecoration(
-            hintText: context.l10n.currentPageHint(widget.book.currentPage),
+            hintText: context.l10n.currentPageHint(widget.book.currentPage, widget.book.totalPages ?? 0),
             hintStyle: context.theme.textTheme.bodyMedium?.copyWith(
               color: context.colorScheme.onSurface.withValues(alpha: 0.4),
             ),

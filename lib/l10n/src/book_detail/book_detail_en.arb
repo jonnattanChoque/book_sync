@@ -85,5 +85,13 @@
   "bookStatusUpdated": "Book status updated",
   "@bookStatusUpdated": {
     "description": "Confirmation message after changing reading status"
+  },
+  "showMore": "Show more",
+  "@showMore": {
+    "description": "Text to expand long conclusions"
+  },
+  "showLess": "Show less",
+  "@showLess": {
+    "description": "Text to collapse long conclusions"
   }
 }

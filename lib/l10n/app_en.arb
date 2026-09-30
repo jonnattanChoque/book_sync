@@ -82,6 +82,38 @@
       }
     }
   },
+  "ratingRequiredMessage": "Please rate the book before finishing.",
+  "@ratingRequiredMessage": {
+    "description": "Warning SnackBar message when the user attempts to exit the summary of a finished book without rating it."
+  },
+  "congratulationsFinishedTitle": "Congratulations on finishing!",
+  "@congratulationsFinishedTitle": {
+    "description": "Main heading in the rating modal for a finished book."
+  },
+  "conclusionsHint": "Write your final thoughts or review...",
+  "@conclusionsHint": {
+    "description": "Hint text for the input field to enter final thoughts or book review."
+  },
+  "saveAndFinishButton": "Save and Finish",
+  "@saveAndFinishButton": {
+    "description": "Primary button to submit the rating and final conclusions."
+  },
+  "skipRatingButton": "Skip rating for now",
+  "@skipRatingButton": {
+    "description": "Text for the secondary button to skip rating the book in the modal."
+  },
+  "rateThisBookAction": "Rate this book",
+  "@rateThisBookAction": {
+    "description": "Text for the button on the summary screen to reopen the rating modal if dismissed."
+  },
+  "streakIncreased": "Streak Increased!",
+  "@streakIncreased": {},
+  "streakCurrent": "Current Streak",
+  "@streakCurrent": {},
+  "streakDaysCount": "{count, plural, =1{1 day streak} other{{count} days streak}}",
+  "@streakDaysCount": {},
+  "streakTitle": "Reading Streak",
+  "bestStreakLabel": "Best streak: {count} days",
   "progressLabel": "{percentage}% completed",
   "@progressLabel": {
     "description": "Reading progress percentage",
@@ -412,6 +444,25 @@
   "@emptyNotesMessage": {
     "description": "Empty state message when no notes are saved"
   },
+  "profileTitle": "Reader Profile",
+  "defaultUserName": "User",
+  "readerLevelDefault": "Voracious Reader",
+  "navHome": "Home",
+  "@navHome": {
+    "description": "Label for the Home tab in the main bottom navigation bar."
+  },
+  "navLibrary": "Library",
+  "@navLibrary": {
+    "description": "Label for the Library tab in the main bottom navigation bar."
+  },
+  "navStats": "Stats",
+  "@navStats": {
+    "description": "Label for the Streak and Charts tab in the main bottom navigation bar."
+  },
+  "navProfile": "Profile",
+  "@navProfile": {
+    "description": "Label for the Profile tab in the main bottom navigation bar."
+  },
   "yourBookTitle": "Your Book",
   "@yourBookTitle": {
     "description": "AppBar title in book detail screen"
@@ -497,6 +548,22 @@
   "bookStatusUpdated": "Book status updated",
   "@bookStatusUpdated": {
     "description": "Confirmation message after changing reading status"
+  },
+  "showMore": "Show more",
+  "@showMore": {
+    "description": "Text to expand long conclusions"
+  },
+  "showLess": "Show less",
+  "@showLess": {
+    "description": "Text to collapse long conclusions"
+  },
+  "statsTitle": "Statistics",
+  "@statsTitle": {
+    "description": "Main title for the statistics card on the HomeScreen"
+  },
+  "statsDescription": "Check your statistics here",
+  "@statsDescription": {
+    "description": "Descriptive text or secondary call-to-action on the statistics card"
   },
   "addManualBook": "Add book manually",
   "@addManualBook": {
@@ -662,11 +729,15 @@
   "@whatPageDidYouReach": {
     "description": "Field label for entering last read page"
   },
-  "currentPageHint": "Current page (e.g. {page})",
+  "currentPageHint": "Current page ({page}/{lastPage})",
   "@currentPageHint": {
     "description": "Hint text in current page field",
     "placeholders": {
       "page": {
+        "type": "int",
+        "example": "45"
+      },
+      "lastPage": {
         "type": "int",
         "example": "45"
       }

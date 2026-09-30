@@ -1,0 +1,11 @@
+{
+  "@@locale": "en",
+  "statsTitle": "Estadísticas",
+  "@statsTitle": {
+    "description": "Título principal para la tarjeta de estadísticas en el HomeScreen"
+  },
+  "statsDescription": "Mira aquí tus estadísticas",
+  "@statsDescription": {
+    "description": "Texto descriptivo o llamado a la acción secundario en la tarjeta de estadísticas"
+  }
+}

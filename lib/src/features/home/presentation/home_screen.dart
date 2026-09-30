@@ -1,5 +1,8 @@
 // ignore: depend_on_referenced_packages
-import 'package:book_sync/src/features/library/presentation/widgets/home_library_card.dart';
+import 'package:book_sync/src/features/home/presentation/widgets/home_library_card.dart';
+import 'package:book_sync/src/features/home/presentation/widgets/home_profile_card.dart';
+import 'package:book_sync/src/features/home/presentation/widgets/home_stats_card.dart';
+import 'package:book_sync/src/features/home/presentation/widgets/home_streak_card.dart';
 import 'package:book_sync/src/features/reading_slider/presentation/widgets/reading_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:book_sync/core/widgets/background_paper_texture.dart';
@@ -29,6 +32,27 @@ class HomeScreen extends ConsumerWidget {
               ),
               const SliverToBoxAdapter(
                 child: HomeLibraryCard(),
+              ),
+              const SliverToBoxAdapter(
+                child: SizedBox(height: 16),
+              ),
+              const SliverToBoxAdapter(
+                child: HomeStreakCard(),
+              ),
+              const SliverToBoxAdapter(
+                child: SizedBox(height: 16),
+              ),
+              const SliverToBoxAdapter(
+                child: StatsCard(),
+              ),
+              const SliverToBoxAdapter(
+                child: SizedBox(height: 16),
+              ),
+              const SliverToBoxAdapter(
+                child: HomeProfileCard(),
+              ),
+              const SliverToBoxAdapter(
+                child: SizedBox(height: 24),
               ),
             ],
           ),

@@ -1,0 +1,27 @@
+{
+  "@@locale": "en",
+  "ratingRequiredMessage": "Please rate the book before finishing.",
+  "@ratingRequiredMessage": {
+    "description": "Warning SnackBar message when the user attempts to exit the summary of a finished book without rating it."
+  },
+  "congratulationsFinishedTitle": "Congratulations on finishing!",
+  "@congratulationsFinishedTitle": {
+    "description": "Main heading in the rating modal for a finished book."
+  },
+  "conclusionsHint": "Write your final thoughts or review...",
+  "@conclusionsHint": {
+    "description": "Hint text for the input field to enter final thoughts or book review."
+  },
+  "saveAndFinishButton": "Save and Finish",
+  "@saveAndFinishButton": {
+    "description": "Primary button to submit the rating and final conclusions."
+  },
+  "skipRatingButton": "Skip rating for now",
+  "@skipRatingButton": {
+    "description": "Text for the secondary button to skip rating the book in the modal."
+  },
+  "rateThisBookAction": "Rate this book",
+  "@rateThisBookAction": {
+    "description": "Text for the button on the summary screen to reopen the rating modal if dismissed."
+  }
+}

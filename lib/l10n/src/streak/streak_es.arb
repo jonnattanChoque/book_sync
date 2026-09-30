@@ -1,0 +1,12 @@
+{
+  "@@locale": "es",
+  "streakIncreased": "¡Racha Aumentada!",
+  "@streakIncreased": {},
+  "streakCurrent": "Racha Actual",
+  "@streakCurrent": {},
+  "streakDaysCount": "{count, plural, =1{1 Día seguido} other{{count} Días seguidos}}",
+  "@streakDaysCount": {},
+  "streakTitle": "Racha de lectura",
+  "streakDaysCount": "{count, plural, =1{1 día seguido} other{{count} días seguidos}}",
+  "bestStreakLabel": "Mejor racha: {count} días"
+}

@@ -3,12 +3,27 @@
 import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/theme/cozy_colors.dart';
 import 'package:book_sync/core/utils/date_formatter.dart';
-import 'package:book_sync/l10n/app_localizations.dart';
+import 'package:book_sync/src/features/streak/presentation/providers/streak_providers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomeHeader extends StatelessWidget {
+class HomeHeader extends ConsumerStatefulWidget {
   const HomeHeader({super.key});
+
+  @override
+  ConsumerState<HomeHeader> createState() => _HomeHeaderState();
+}
+
+class _HomeHeaderState extends ConsumerState<HomeHeader> {
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(checkStreakInactivityProvider)();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

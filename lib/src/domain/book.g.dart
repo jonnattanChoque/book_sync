@@ -27,74 +27,84 @@ const BookSchema = CollectionSchema(
       name: r'categories',
       type: IsarType.stringList,
     ),
-    r'coverPath': PropertySchema(
+    r'conclusions': PropertySchema(
       id: 2,
+      name: r'conclusions',
+      type: IsarType.string,
+    ),
+    r'coverPath': PropertySchema(
+      id: 3,
       name: r'coverPath',
       type: IsarType.string,
     ),
     r'currentPage': PropertySchema(
-      id: 3,
+      id: 4,
       name: r'currentPage',
       type: IsarType.long,
     ),
     r'description': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'description',
       type: IsarType.string,
     ),
     r'isFavorite': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'isFavorite',
       type: IsarType.bool,
     ),
     r'isbn': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'isbn',
       type: IsarType.string,
     ),
     r'language': PropertySchema(
-      id: 7,
+      id: 8,
       name: r'language',
       type: IsarType.string,
     ),
     r'notesCount': PropertySchema(
-      id: 8,
+      id: 9,
       name: r'notesCount',
       type: IsarType.long,
     ),
     r'progress': PropertySchema(
-      id: 9,
+      id: 10,
       name: r'progress',
       type: IsarType.double,
     ),
     r'publishedDate': PropertySchema(
-      id: 10,
+      id: 11,
       name: r'publishedDate',
       type: IsarType.string,
     ),
     r'publisher': PropertySchema(
-      id: 11,
+      id: 12,
       name: r'publisher',
       type: IsarType.string,
     ),
+    r'rating': PropertySchema(
+      id: 13,
+      name: r'rating',
+      type: IsarType.double,
+    ),
     r'startedAt': PropertySchema(
-      id: 12,
+      id: 14,
       name: r'startedAt',
       type: IsarType.dateTime,
     ),
     r'status': PropertySchema(
-      id: 13,
+      id: 15,
       name: r'status',
       type: IsarType.byte,
       enumMap: _BookstatusEnumValueMap,
     ),
     r'title': PropertySchema(
-      id: 14,
+      id: 16,
       name: r'title',
       type: IsarType.string,
     ),
     r'totalPages': PropertySchema(
-      id: 15,
+      id: 17,
       name: r'totalPages',
       type: IsarType.long,
     )
@@ -137,6 +147,12 @@ int _bookEstimateSize(
           bytesCount += value.length * 3;
         }
       }
+    }
+  }
+  {
+    final value = object.conclusions;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
     }
   }
   {
@@ -187,20 +203,22 @@ void _bookSerialize(
 ) {
   writer.writeString(offsets[0], object.author);
   writer.writeStringList(offsets[1], object.categories);
-  writer.writeString(offsets[2], object.coverPath);
-  writer.writeLong(offsets[3], object.currentPage);
-  writer.writeString(offsets[4], object.description);
-  writer.writeBool(offsets[5], object.isFavorite);
-  writer.writeString(offsets[6], object.isbn);
-  writer.writeString(offsets[7], object.language);
-  writer.writeLong(offsets[8], object.notesCount);
-  writer.writeDouble(offsets[9], object.progress);
-  writer.writeString(offsets[10], object.publishedDate);
-  writer.writeString(offsets[11], object.publisher);
-  writer.writeDateTime(offsets[12], object.startedAt);
-  writer.writeByte(offsets[13], object.status.index);
-  writer.writeString(offsets[14], object.title);
-  writer.writeLong(offsets[15], object.totalPages);
+  writer.writeString(offsets[2], object.conclusions);
+  writer.writeString(offsets[3], object.coverPath);
+  writer.writeLong(offsets[4], object.currentPage);
+  writer.writeString(offsets[5], object.description);
+  writer.writeBool(offsets[6], object.isFavorite);
+  writer.writeString(offsets[7], object.isbn);
+  writer.writeString(offsets[8], object.language);
+  writer.writeLong(offsets[9], object.notesCount);
+  writer.writeDouble(offsets[10], object.progress);
+  writer.writeString(offsets[11], object.publishedDate);
+  writer.writeString(offsets[12], object.publisher);
+  writer.writeDouble(offsets[13], object.rating);
+  writer.writeDateTime(offsets[14], object.startedAt);
+  writer.writeByte(offsets[15], object.status.index);
+  writer.writeString(offsets[16], object.title);
+  writer.writeLong(offsets[17], object.totalPages);
 }
 
 Book _bookDeserialize(
@@ -212,21 +230,23 @@ Book _bookDeserialize(
   final object = Book(
     author: reader.readStringOrNull(offsets[0]) ?? '',
     categories: reader.readStringList(offsets[1]),
-    coverPath: reader.readStringOrNull(offsets[2]),
-    currentPage: reader.readLongOrNull(offsets[3]) ?? 0,
-    description: reader.readStringOrNull(offsets[4]),
-    isFavorite: reader.readBoolOrNull(offsets[5]),
-    isbn: reader.readStringOrNull(offsets[6]),
-    language: reader.readStringOrNull(offsets[7]),
-    notesCount: reader.readLongOrNull(offsets[8]),
-    progress: reader.readDoubleOrNull(offsets[9]) ?? 0.0,
-    publishedDate: reader.readStringOrNull(offsets[10]),
-    publisher: reader.readStringOrNull(offsets[11]),
-    startedAt: reader.readDateTimeOrNull(offsets[12]),
-    status: _BookstatusValueEnumMap[reader.readByteOrNull(offsets[13])] ??
+    conclusions: reader.readStringOrNull(offsets[2]),
+    coverPath: reader.readStringOrNull(offsets[3]),
+    currentPage: reader.readLongOrNull(offsets[4]) ?? 0,
+    description: reader.readStringOrNull(offsets[5]),
+    isFavorite: reader.readBoolOrNull(offsets[6]),
+    isbn: reader.readStringOrNull(offsets[7]),
+    language: reader.readStringOrNull(offsets[8]),
+    notesCount: reader.readLongOrNull(offsets[9]),
+    progress: reader.readDoubleOrNull(offsets[10]) ?? 0.0,
+    publishedDate: reader.readStringOrNull(offsets[11]),
+    publisher: reader.readStringOrNull(offsets[12]),
+    rating: reader.readDoubleOrNull(offsets[13]),
+    startedAt: reader.readDateTimeOrNull(offsets[14]),
+    status: _BookstatusValueEnumMap[reader.readByteOrNull(offsets[15])] ??
         BookStatus.toRead,
-    title: reader.readStringOrNull(offsets[14]) ?? '',
-    totalPages: reader.readLongOrNull(offsets[15]),
+    title: reader.readStringOrNull(offsets[16]) ?? '',
+    totalPages: reader.readLongOrNull(offsets[17]),
   );
   object.id = id;
   return object;
@@ -246,31 +266,35 @@ P _bookDeserializeProp<P>(
     case 2:
       return (reader.readStringOrNull(offset)) as P;
     case 3:
-      return (reader.readLongOrNull(offset) ?? 0) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 4:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readLongOrNull(offset) ?? 0) as P;
     case 5:
-      return (reader.readBoolOrNull(offset)) as P;
-    case 6:
       return (reader.readStringOrNull(offset)) as P;
+    case 6:
+      return (reader.readBoolOrNull(offset)) as P;
     case 7:
       return (reader.readStringOrNull(offset)) as P;
     case 8:
-      return (reader.readLongOrNull(offset)) as P;
-    case 9:
-      return (reader.readDoubleOrNull(offset) ?? 0.0) as P;
-    case 10:
       return (reader.readStringOrNull(offset)) as P;
+    case 9:
+      return (reader.readLongOrNull(offset)) as P;
+    case 10:
+      return (reader.readDoubleOrNull(offset) ?? 0.0) as P;
     case 11:
       return (reader.readStringOrNull(offset)) as P;
     case 12:
-      return (reader.readDateTimeOrNull(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 13:
+      return (reader.readDoubleOrNull(offset)) as P;
+    case 14:
+      return (reader.readDateTimeOrNull(offset)) as P;
+    case 15:
       return (_BookstatusValueEnumMap[reader.readByteOrNull(offset)] ??
           BookStatus.toRead) as P;
-    case 14:
+    case 16:
       return (reader.readStringOrNull(offset) ?? '') as P;
-    case 15:
+    case 17:
       return (reader.readLongOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -736,6 +760,152 @@ extension BookQueryFilter on QueryBuilder<Book, Book, QFilterCondition> {
         upper,
         includeUpper,
       );
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterFilterCondition> conclusionsIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'conclusions',
+      ));
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterFilterCondition> conclusionsIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'conclusions',
+      ));
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterFilterCondition> conclusionsEqualTo(
+    String? value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'conclusions',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterFilterCondition> conclusionsGreaterThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'conclusions',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterFilterCondition> conclusionsLessThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'conclusions',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterFilterCondition> conclusionsBetween(
+    String? lower,
+    String? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'conclusions',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterFilterCondition> conclusionsStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'conclusions',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterFilterCondition> conclusionsEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'conclusions',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterFilterCondition> conclusionsContains(
+      String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'conclusions',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterFilterCondition> conclusionsMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'conclusions',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterFilterCondition> conclusionsIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'conclusions',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterFilterCondition> conclusionsIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'conclusions',
+        value: '',
+      ));
     });
   }
 
@@ -1874,6 +2044,84 @@ extension BookQueryFilter on QueryBuilder<Book, Book, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Book, Book, QAfterFilterCondition> ratingIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'rating',
+      ));
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterFilterCondition> ratingIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'rating',
+      ));
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterFilterCondition> ratingEqualTo(
+    double? value, {
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'rating',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterFilterCondition> ratingGreaterThan(
+    double? value, {
+    bool include = false,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'rating',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterFilterCondition> ratingLessThan(
+    double? value, {
+    bool include = false,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'rating',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterFilterCondition> ratingBetween(
+    double? lower,
+    double? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'rating',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
   QueryBuilder<Book, Book, QAfterFilterCondition> startedAtIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -2267,6 +2515,18 @@ extension BookQuerySortBy on QueryBuilder<Book, Book, QSortBy> {
     });
   }
 
+  QueryBuilder<Book, Book, QAfterSortBy> sortByConclusions() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'conclusions', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterSortBy> sortByConclusionsDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'conclusions', Sort.desc);
+    });
+  }
+
   QueryBuilder<Book, Book, QAfterSortBy> sortByCoverPath() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'coverPath', Sort.asc);
@@ -2387,6 +2647,18 @@ extension BookQuerySortBy on QueryBuilder<Book, Book, QSortBy> {
     });
   }
 
+  QueryBuilder<Book, Book, QAfterSortBy> sortByRating() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'rating', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterSortBy> sortByRatingDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'rating', Sort.desc);
+    });
+  }
+
   QueryBuilder<Book, Book, QAfterSortBy> sortByStartedAt() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'startedAt', Sort.asc);
@@ -2446,6 +2718,18 @@ extension BookQuerySortThenBy on QueryBuilder<Book, Book, QSortThenBy> {
   QueryBuilder<Book, Book, QAfterSortBy> thenByAuthorDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'author', Sort.desc);
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterSortBy> thenByConclusions() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'conclusions', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterSortBy> thenByConclusionsDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'conclusions', Sort.desc);
     });
   }
 
@@ -2581,6 +2865,18 @@ extension BookQuerySortThenBy on QueryBuilder<Book, Book, QSortThenBy> {
     });
   }
 
+  QueryBuilder<Book, Book, QAfterSortBy> thenByRating() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'rating', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterSortBy> thenByRatingDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'rating', Sort.desc);
+    });
+  }
+
   QueryBuilder<Book, Book, QAfterSortBy> thenByStartedAt() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'startedAt', Sort.asc);
@@ -2641,6 +2937,13 @@ extension BookQueryWhereDistinct on QueryBuilder<Book, Book, QDistinct> {
   QueryBuilder<Book, Book, QDistinct> distinctByCategories() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'categories');
+    });
+  }
+
+  QueryBuilder<Book, Book, QDistinct> distinctByConclusions(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'conclusions', caseSensitive: caseSensitive);
     });
   }
 
@@ -2711,6 +3014,12 @@ extension BookQueryWhereDistinct on QueryBuilder<Book, Book, QDistinct> {
     });
   }
 
+  QueryBuilder<Book, Book, QDistinct> distinctByRating() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'rating');
+    });
+  }
+
   QueryBuilder<Book, Book, QDistinct> distinctByStartedAt() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'startedAt');
@@ -2753,6 +3062,12 @@ extension BookQueryProperty on QueryBuilder<Book, Book, QQueryProperty> {
   QueryBuilder<Book, List<String>?, QQueryOperations> categoriesProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'categories');
+    });
+  }
+
+  QueryBuilder<Book, String?, QQueryOperations> conclusionsProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'conclusions');
     });
   }
 
@@ -2813,6 +3128,12 @@ extension BookQueryProperty on QueryBuilder<Book, Book, QQueryProperty> {
   QueryBuilder<Book, String?, QQueryOperations> publisherProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'publisher');
+    });
+  }
+
+  QueryBuilder<Book, double?, QQueryOperations> ratingProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'rating');
     });
   }
 

@@ -76,11 +76,15 @@
   "@whatPageDidYouReach": {
     "description": "Etiqueta del campo donde el usuario ingresa la página alcanzada."
   },
-  "currentPageHint": "Página actual (ej. {page})",
+  "currentPageHint": "Página actual ({page}/{lastPage})",
   "@currentPageHint": {
     "description": "Texto de sugerencia en el campo de texto de página actual.",
     "placeholders": {
       "page": {
+        "type": "int",
+        "example": "45"
+      },
+      "lastPage": {
         "type": "int",
         "example": "45"
       }

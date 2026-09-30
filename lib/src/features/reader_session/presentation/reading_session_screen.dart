@@ -81,11 +81,11 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
   }
 
   String _getTimerButtonLabel() {
-  if (_secondsElapsed == 0) {
-    return context.l10n.timerStart;
+    if (_secondsElapsed == 0) {
+      return context.l10n.timerStart;
+    }
+    return _isPaused ? context.l10n.timerResume : context.l10n.timerPause;
   }
-  return _isPaused ? context.l10n.timerResume : context.l10n.timerPause;
-}
 
   String get _formattedTime {
     final hours = _secondsElapsed ~/ 3600;
@@ -241,6 +241,7 @@ class _ReadingSessionScreenState extends ConsumerState<ReadingSessionScreen> {
                   ),
                   label: Text(
                     _getTimerButtonLabel(),
+                    key: ValueKey<String>(_getTimerButtonLabel()),
                     style: context.theme.textTheme.labelLarge?.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,

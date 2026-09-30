@@ -1,0 +1,12 @@
+{
+  "@@locale": "en",
+  "streakIncreased": "Streak Increased!",
+  "@streakIncreased": {},
+  "streakCurrent": "Current Streak",
+  "@streakCurrent": {},
+  "streakDaysCount": "{count, plural, =1{1 Day streak} other{{count} Days streak}}",
+  "@streakDaysCount": {},
+  "streakTitle": "Reading Streak",
+  "streakDaysCount": "{count, plural, =1{1 day streak} other{{count} days streak}}",
+  "bestStreakLabel": "Best streak: {count} days"
+}

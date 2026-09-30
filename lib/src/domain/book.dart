@@ -23,6 +23,8 @@ class Book {
   String? publishedDate;
   List<String>? categories;
   bool? isFavorite;
+  double? rating;
+  String? conclusions;
 
   @enumerated
   BookStatus status = BookStatus.toRead;
@@ -45,7 +47,9 @@ class Book {
     this.publisher,
     this.publishedDate,
     this.categories,
-    this.isFavorite
+    this.isFavorite,
+    this.rating,
+    this.conclusions
   });
 
   Book.empty(); 

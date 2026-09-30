@@ -68,6 +68,49 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get ratingRequiredMessage => 'Please rate the book before finishing.';
+
+  @override
+  String get congratulationsFinishedTitle => 'Congratulations on finishing!';
+
+  @override
+  String get conclusionsHint => 'Write your final thoughts or review...';
+
+  @override
+  String get saveAndFinishButton => 'Save and Finish';
+
+  @override
+  String get skipRatingButton => 'Skip rating for now';
+
+  @override
+  String get rateThisBookAction => 'Rate this book';
+
+  @override
+  String get streakIncreased => 'Streak Increased!';
+
+  @override
+  String get streakCurrent => 'Current Streak';
+
+  @override
+  String streakDaysCount(num count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days streak',
+      one: '1 day streak',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get streakTitle => 'Reading Streak';
+
+  @override
+  String bestStreakLabel(Object count) {
+    return 'Best streak: $count days';
+  }
+
+  @override
   String progressLabel(String percentage) {
     return '$percentage% completed';
   }
@@ -290,6 +333,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get emptyNotesMessage => 'No notes saved for this book';
 
   @override
+  String get profileTitle => 'Reader Profile';
+
+  @override
+  String get defaultUserName => 'User';
+
+  @override
+  String get readerLevelDefault => 'Voracious Reader';
+
+  @override
+  String get navHome => 'Home';
+
+  @override
+  String get navLibrary => 'Library';
+
+  @override
+  String get navStats => 'Stats';
+
+  @override
+  String get navProfile => 'Profile';
+
+  @override
   String get yourBookTitle => 'Your Book';
 
   @override
@@ -350,6 +414,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get bookStatusUpdated => 'Book status updated';
+
+  @override
+  String get showMore => 'Show more';
+
+  @override
+  String get showLess => 'Show less';
+
+  @override
+  String get statsTitle => 'Statistics';
+
+  @override
+  String get statsDescription => 'Check your statistics here';
 
   @override
   String get addManualBook => 'Add book manually';
@@ -469,8 +545,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get whatPageDidYouReach => 'What page did you reach?';
 
   @override
-  String currentPageHint(int page) {
-    return 'Current page (e.g. $page)';
+  String currentPageHint(int page, int lastPage) {
+    return 'Current page ($page/$lastPage)';
   }
 
   @override

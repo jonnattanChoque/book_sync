@@ -1,0 +1,19 @@
+{
+  "@@locale": "en",
+  "navHome": "Home",
+  "@navHome": {
+    "description": "Label for the Home tab in the main bottom navigation bar."
+  },
+  "navLibrary": "Library",
+  "@navLibrary": {
+    "description": "Label for the Library tab in the main bottom navigation bar."
+  },
+  "navStats": "Stats",
+  "@navStats": {
+    "description": "Label for the Streak and Charts tab in the main bottom navigation bar."
+  },
+  "navProfile": "Profile",
+  "@navProfile": {
+    "description": "Label for the Profile tab in the main bottom navigation bar."
+  }
+}

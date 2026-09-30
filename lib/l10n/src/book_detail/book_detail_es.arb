@@ -85,5 +85,13 @@
   "bookStatusUpdated": "Estado del libro actualizado",
   "@bookStatusUpdated": {
     "description": "Mensaje de confirmación tras cambiar el estado de lectura de un libro (ej. Por leer, Leyendo, Terminado)."
+  },
+  "showMore": "Ver más",
+  "@showMore": {
+    "description": "Texto para expandir un texto largo de conclusiones"
+  },
+  "showLess": "Ver menos",
+  "@showLess": {
+    "description": "Texto para retraer un texto largo de conclusiones"
   }
 }

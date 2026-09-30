@@ -4,6 +4,7 @@ import 'package:book_sync/core/theme/app_theme.dart';
 import 'package:book_sync/l10n/app_localizations.dart';
 import 'package:book_sync/src/domain/book.dart';
 import 'package:book_sync/src/domain/note.dart';
+import 'package:book_sync/src/domain/user_streak.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:isar/isar.dart';
@@ -20,7 +21,8 @@ void main() async {
       AppConfigSchema,
       BookSchema,
       NoteSchema,
-      ReadingSessionSchema
+      ReadingSessionSchema,
+      UserStreakSchema
     ],
     directory: dir.path,
   );
@@ -46,7 +48,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Book Sync',
       darkTheme: darkTheme,
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.light,
       theme: lightTheme,
       routerConfig: appRouter,
       localizationsDelegates: AppLocalizations.localizationsDelegates,

@@ -1,0 +1,19 @@
+{
+  "@@locale": "es",
+  "navHome": "Inicio",
+  "@navHome": {
+    "description": "Etiqueta para la pestaña Home en la barra de navegación principal."
+  },
+  "navLibrary": "Biblioteca",
+  "@navLibrary": {
+    "description": "Etiqueta para la pestaña Biblioteca en la barra de navegación principal."
+  },
+  "navStats": "Estadísticas",
+  "@navStats": {
+    "description": "Etiqueta para la pestaña Racha y Gráficos en la barra de navegación principal."
+  },
+  "navProfile": "Perfil",
+  "@navProfile": {
+    "description": "Etiqueta para la pestaña Perfil en la barra de navegación principal."
+  }
+}

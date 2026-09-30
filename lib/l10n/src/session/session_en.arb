@@ -76,11 +76,15 @@
   "@whatPageDidYouReach": {
     "description": "Field label for entering last read page"
   },
-  "currentPageHint": "Current page (e.g. {page})",
+  "currentPageHint": "Current page ({page}/{lastPage})",
   "@currentPageHint": {
     "description": "Hint text in current page field",
     "placeholders": {
       "page": {
+        "type": "int",
+        "example": "45"
+      },
+      "lastPage": {
         "type": "int",
         "example": "45"
       }

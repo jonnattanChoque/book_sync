@@ -132,7 +132,7 @@ class ReadingCard extends StatelessWidget {
       children: [
         Text(
           context.l10n.progressLabel((book.progress * 100).toStringAsFixed(1)),
-          style: context.theme.textTheme.titleMedium?.copyWith(
+          style: context.theme.textTheme.titleSmall?.copyWith(
             color: context.cozy.textColor?.withValues(alpha: 0.7),
           ),
         ),
@@ -140,7 +140,7 @@ class ReadingCard extends StatelessWidget {
           book.totalPages != null
             ? context.l10n.pageProgress(book.currentPage, book.totalPages ?? 0)
             : context.l10n.currentPageFormat(book.currentPage),
-          style: context.theme.textTheme.titleMedium?.copyWith(
+          style: context.theme.textTheme.titleSmall?.copyWith(
             color: context.cozy.textColor?.withValues(alpha: 0.7),
           ),
         ),

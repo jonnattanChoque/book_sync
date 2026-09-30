@@ -8,7 +8,6 @@ import 'package:book_sync/src/features/search/domain/book_search_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:book_sync/core/theme/app_colors.dart';
 import 'package:book_sync/core/widgets/background_paper_texture.dart';
-import 'package:book_sync/l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 

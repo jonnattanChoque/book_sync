@@ -1,8 +1,8 @@
 import 'package:book_sync/core/constants/app_icons.dart';
 import 'package:book_sync/core/extensions/build_context_ext.dart';
+import 'package:book_sync/core/utils/book_serted_helper.dart';
 import 'package:book_sync/core/widgets/background_paper_texture.dart';
 import 'package:book_sync/core/widgets/book_loader.dart';
-import 'package:book_sync/l10n/app_localizations.dart';
 import 'package:book_sync/src/domain/book.dart';
 import 'package:book_sync/src/features/reading_slider/presentation/providers/books_provider.dart';
 import 'package:flutter/material.dart';
@@ -55,17 +55,17 @@ class LibrarySectionScreen extends ConsumerWidget {
               Tab(text: context.l10n.tabLibraryReading),
               Tab(text: context.l10n.tabLibraryToRead), 
               Tab(text: context.l10n.tabLibraryRead),
-              Tab(text: context.l10n.tabLibraryDropped),
-              Tab(text: context.l10n.tabLibraryPaused),
+              Tab(text: context.l10n.tabLibraryDropped)
             ],
           ),
         ),
         body: allBooksAsync.when(
           data: (books) {
-            final readingBooks = books.where((b) => b.status == BookStatus.reading).toList();
-            final toReadBooks = books.where((b) => b.status == BookStatus.toRead).toList();
-            final finishedBooks = books.where((b) => b.status == BookStatus.finished).toList();
-            final forggotenBooks = books.where((b) => b.status == BookStatus.dropped).toList();
+            final bookSorted = sortBooksByLastAdded(books);
+            final readingBooks = bookSorted.where((b) => b.status == BookStatus.reading).toList();
+            final toReadBooks = bookSorted.where((b) => b.status == BookStatus.toRead).toList();
+            final finishedBooks = bookSorted.where((b) => b.status == BookStatus.finished).toList();
+            final forggotenBooks = bookSorted.where((b) => b.status == BookStatus.dropped).toList();
     
             return TabBarView(
               children: [
@@ -99,7 +99,7 @@ class _BookListSection extends StatelessWidget {
       return Center(
         child: Text(
           emptyMessage,
-          style: context.theme.textTheme.labelLarge
+          style: context.theme.textTheme.labelLarge,
         ),
       );
     }
@@ -111,6 +111,8 @@ class _BookListSection extends StatelessWidget {
         itemCount: books.length,
         itemBuilder: (context, index) {
           final book = books[index];
+          final bool isFinished = book.status == BookStatus.finished || book.progress >= 1.0;
+
           return Card(
             color: context.theme.cardColor.withValues(alpha: 0.8),
             shape: RoundedRectangleBorder(
@@ -122,8 +124,33 @@ class _BookListSection extends StatelessWidget {
                 context.push('/book_detail', extra: book);
               },
               child: ListTile(
-                title: Text(book.title, style: const TextStyle(fontWeight: FontWeight.bold)),
-                subtitle: Text(book.author),
+                title: Text(
+                  book.title, 
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(book.author),
+                    if (isFinished) ...[
+                      const SizedBox(height: 4),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: List.generate(5, (starIndex) {
+                          final starValue = starIndex + 1.0;
+                          return Icon(
+                            (book.rating ?? 0) >= starValue
+                                ? Icons.star_rounded
+                                : Icons.star_outline_rounded,
+                            color: Colors.amber,
+                            size: 16,
+                          );
+                        }),
+                      ),
+                    ],
+                  ],
+                ),
                 trailing: Text("${(book.progress * 100).toStringAsFixed(1)}%"),
               ),
             ),

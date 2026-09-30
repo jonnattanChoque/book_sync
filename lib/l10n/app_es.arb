@@ -82,6 +82,38 @@
       }
     }
   },
+  "ratingRequiredMessage": "Por favor, ingresa tu valoración del libro para finalizar.",
+  "@ratingRequiredMessage": {
+    "description": "Mensaje de advertencia en SnackBar cuando el usuario intenta salir del resumen de un libro terminado sin haberlo calificado."
+  },
+  "congratulationsFinishedTitle": "¡Felicidades por terminarlo!",
+  "@congratulationsFinishedTitle": {
+    "description": "Título principal en el modal de valoración de un libro completado."
+  },
+  "conclusionsHint": "Escribe tus conclusiones o reseña final...",
+  "@conclusionsHint": {
+    "description": "Texto de sugerencia en el campo para redactar la reseña o conclusiones finales del libro."
+  },
+  "saveAndFinishButton": "Guardar y Concluir",
+  "@saveAndFinishButton": {
+    "description": "Botón principal para guardar la calificación y las conclusiones finales."
+  },
+  "skipRatingButton": "No valorar por ahora",
+  "@skipRatingButton": {
+    "description": "Texto del botón secundario para omitir la valoración del libro en el modal."
+  },
+  "rateThisBookAction": "Valorar este libro",
+  "@rateThisBookAction": {
+    "description": "Texto del botón en la pantalla de resumen para reabrir el modal de valoración si el usuario lo cerró."
+  },
+  "streakIncreased": "¡Racha Aumentada!",
+  "@streakIncreased": {},
+  "streakCurrent": "Racha Actual",
+  "@streakCurrent": {},
+  "streakDaysCount": "{count, plural, =1{1 día seguido} other{{count} días seguidos}}",
+  "@streakDaysCount": {},
+  "streakTitle": "Racha de lectura",
+  "bestStreakLabel": "Mejor racha: {count} días",
   "progressLabel": "{percentage}% completado",
   "@progressLabel": {
     "description": "Porcentaje de avance en la lectura de un libro",
@@ -412,6 +444,25 @@
   "@emptyNotesMessage": {
     "description": "Mensaje en estado vacío indicando que el libro no posee notas registradas."
   },
+  "profileTitle": "Perfil de lector",
+  "defaultUserName": "Usuario",
+  "readerLevelDefault": "Lector Voraz",
+  "navHome": "Inicio",
+  "@navHome": {
+    "description": "Etiqueta para la pestaña Home en la barra de navegación principal."
+  },
+  "navLibrary": "Biblioteca",
+  "@navLibrary": {
+    "description": "Etiqueta para la pestaña Biblioteca en la barra de navegación principal."
+  },
+  "navStats": "Estadísticas",
+  "@navStats": {
+    "description": "Etiqueta para la pestaña Racha y Gráficos en la barra de navegación principal."
+  },
+  "navProfile": "Perfil",
+  "@navProfile": {
+    "description": "Etiqueta para la pestaña Perfil en la barra de navegación principal."
+  },
   "yourBookTitle": "Tu libro",
   "@yourBookTitle": {
     "description": "Título principal en el AppBar de la pantalla de detalles del libro"
@@ -497,6 +548,22 @@
   "bookStatusUpdated": "Estado del libro actualizado",
   "@bookStatusUpdated": {
     "description": "Mensaje de confirmación tras cambiar el estado de lectura de un libro (ej. Por leer, Leyendo, Terminado)."
+  },
+  "showMore": "Ver más",
+  "@showMore": {
+    "description": "Texto para expandir un texto largo de conclusiones"
+  },
+  "showLess": "Ver menos",
+  "@showLess": {
+    "description": "Texto para retraer un texto largo de conclusiones"
+  },
+  "statsTitle": "Estadísticas",
+  "@statsTitle": {
+    "description": "Título principal para la tarjeta de estadísticas en el HomeScreen"
+  },
+  "statsDescription": "Mira aquí tus estadísticas",
+  "@statsDescription": {
+    "description": "Texto descriptivo o llamado a la acción secundario en la tarjeta de estadísticas"
   },
   "addManualBook": "Agregar libro",
   "@addManualBook": {
@@ -662,11 +729,15 @@
   "@whatPageDidYouReach": {
     "description": "Etiqueta del campo donde el usuario ingresa la página alcanzada."
   },
-  "currentPageHint": "Página actual (ej. {page})",
+  "currentPageHint": "Página actual ({page}/{lastPage})",
   "@currentPageHint": {
     "description": "Texto de sugerencia en el campo de texto de página actual.",
     "placeholders": {
       "page": {
+        "type": "int",
+        "example": "45"
+      },
+      "lastPage": {
         "type": "int",
         "example": "45"
       }

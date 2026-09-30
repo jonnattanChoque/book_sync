@@ -7,6 +7,7 @@ import 'package:book_sync/core/utils/categories_helper.dart';
 import 'package:book_sync/core/widgets/add_note_modal.dart';
 import 'package:book_sync/core/widgets/background_paper_texture.dart';
 import 'package:book_sync/core/widgets/book_loader.dart';
+import 'package:book_sync/core/widgets/book_rating_modal.dart';
 import 'package:book_sync/core/widgets/cozy_toast.dart';
 import 'package:book_sync/core/widgets/primary_outlined_button.dart';
 import 'package:book_sync/src/domain/note.dart';
@@ -31,6 +32,7 @@ class BookDetailScreen extends ConsumerStatefulWidget {
 class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
   bool _isNotesExpanded = false;
   bool _isHistoryExpanded = false;
+  bool _isConclusionsExpanded = false;
   late bool _isFavorite = widget.book.isFavorite ?? false;
 
   @override
@@ -75,7 +77,7 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
             isDefaultAction: status == BookStatus.finished || status == BookStatus.reading,
             child: Text(_getStatusLabel(status)),
             onPressed: () {
-               Navigator.pop(context);
+              Navigator.pop(context);
               _updateBookStatus(status);
             },
           );
@@ -266,6 +268,10 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
   }
 
   Row _buildBookHeader(Book book) {
+    final bool isFinished = book.status == BookStatus.finished && book.progress >= 1.0;
+    final bool hasRating = book.rating != null && book.rating! > 0;
+    final bool hasConclusions = book.conclusions != null && book.conclusions!.trim().isNotEmpty;
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -298,32 +304,105 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                 ),
               ),
               const SizedBox(height: 12),
-              InkWell(
-                onTap: () => _showStatusActionSheet(book.status),
-                borderRadius: BorderRadius.circular(20),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: context.colorScheme.onSurface.withValues(alpha: 0.8), width: 1.2),
+              if (!isFinished)
+                InkWell(
+                  onTap: () => _showStatusActionSheet(book.status),
+                  borderRadius: BorderRadius.circular(20),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: context.colorScheme.onSurface.withValues(alpha: 0.8), width: 1.2),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          _getStatusLabel(book.status),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: context.cozy.inkColor,
+                            fontSize: 13,
+                          ),
+                        ),
+                        const SizedBox(width: 4),
+                        Icon(Icons.keyboard_arrow_down, size: 18, color: context.cozy.inkColor),
+                      ],
+                    ),
                   ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        _getStatusLabel(book.status),
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: context.cozy.inkColor,
-                          fontSize: 13,
+                )
+              else ...[
+                if (hasRating || hasConclusions) ...[
+                  if (hasRating)
+                    Row(
+                      children: List.generate(5, (index) {
+                        final starValue = index + 1.0;
+                        return Icon(
+                          (book.rating ?? 0) >= starValue
+                              ? Icons.star_rounded
+                              : Icons.star_outline_rounded,
+                          color: Colors.amber,
+                          size: 20,
+                        );
+                      }),
+                    ),
+                  if (hasRating && hasConclusions) const SizedBox(height: 6),
+                  if (hasConclusions)
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          _isConclusionsExpanded = !_isConclusionsExpanded;
+                        });
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            book.conclusions!,
+                            maxLines: _isConclusionsExpanded ? null : 1,
+                            overflow: _isConclusionsExpanded
+                                ? TextOverflow.visible
+                                : TextOverflow.ellipsis,
+                            style: context.theme.textTheme.bodyMedium?.copyWith(
+                              fontStyle: FontStyle.italic,
+                              color: context.cozy.inkColor?.withValues(alpha: 0.8),
+                            ),
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            _isConclusionsExpanded ? context.l10n.showLess : context.l10n.showMore,
+                            style: context.theme.textTheme.labelSmall?.copyWith(
+                              color: context.theme.colorScheme.primary,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                ] else
+                  SizedBox(
+                    width: double.infinity,
+                    child: OutlinedButton.icon(
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      const SizedBox(width: 4),
-                      Icon(Icons.keyboard_arrow_down, size: 18, color: context.cozy.inkColor),
-                    ],
+                      icon: const Icon(Icons.star_outline_rounded, color: Colors.amber, size: 18),
+                      label: Text(context.l10n.rateThisBookAction),
+                      onPressed: () async {
+                        final updated = await BookRatingModal.show(context, book);
+                        if (updated == true && mounted) {
+                          setState(() {
+                            widget.book.rating = book.rating;
+                            widget.book.conclusions = book.conclusions;
+                          });
+                        }
+                      },
+                    ),
                   ),
-                ),
-              ),
+              ],
             ],
           ),
         ),
@@ -368,7 +447,6 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
   }
 
   Widget _buildNoteCard(Note note) {
-
     return Container(
       margin: const EdgeInsets.only(bottom: 8.0),
       padding: const EdgeInsets.all(12),
