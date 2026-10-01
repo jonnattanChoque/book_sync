@@ -1,5 +1,15 @@
 {
   "@@locale": "en",
+  "readingDayText": "Day {days}",
+  "@readingDayText": {
+    "description": "Indicates the current day count in reading session or streak",
+    "placeholders": {
+      "days": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
   "progressLabel": "{percentage}% completed",
   "@progressLabel": {
     "description": "Reading progress percentage",

@@ -2,16 +2,14 @@
 
 import 'package:book_sync/core/constants/app_icons.dart';
 import 'package:book_sync/core/extensions/build_context_ext.dart';
-import 'package:book_sync/core/theme/app_colors.dart';
-import 'package:book_sync/core/utils/categories_helper.dart';
 import 'package:book_sync/core/widgets/add_note_modal.dart';
 import 'package:book_sync/core/widgets/background_paper_texture.dart';
 import 'package:book_sync/core/widgets/book_loader.dart';
 import 'package:book_sync/core/widgets/book_rating_modal.dart';
 import 'package:book_sync/core/widgets/cozy_toast.dart';
 import 'package:book_sync/core/widgets/primary_outlined_button.dart';
-import 'package:book_sync/src/domain/note.dart';
 import 'package:book_sync/src/features/reader_session/presentation/providers/notes_provider.dart';
+import 'package:book_sync/src/features/reader_session/presentation/widgets/detail_note_item.dart';
 import 'package:book_sync/src/features/reading_slider/presentation/providers/books_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -209,7 +207,7 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: notesList.length,
                           itemBuilder: (context, index) {
-                            return _buildNoteCard(notesList[index]);
+                            return DetailNoteItem(note: notesList[index]);
                           },
                         );
                       },
@@ -446,69 +444,6 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
     );
   }
 
-  Widget _buildNoteCard(Note note) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 8.0),
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: context.theme.cardColor.withValues(alpha: 0.8),
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: context.cozy.inkColor!.withValues(alpha: 0.2),
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                    decoration: BoxDecoration(
-                      color: AppColors.oliveGreen.withValues(alpha: 0.15),
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: Text(
-                      context.l10n.pageOption(note.page),
-                      style: context.theme.textTheme.labelSmall?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.oliveGreen,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    NoteCategoryHelper.getLabelById(note.category, context.l10n),
-                    style: context.theme.textTheme.labelSmall?.copyWith(
-                      color: context.colorScheme.onSurface.withValues(alpha: 0.6),
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-              Text(
-                '${note.createdAt.day}/${note.createdAt.month}/${note.createdAt.year}',
-                style: context.theme.textTheme.labelSmall?.copyWith(
-                  color: context.colorScheme.onSurface.withValues(alpha: 0.5),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Text(
-            note.content,
-            style: context.theme.textTheme.bodyMedium?.copyWith(
-              color: context.colorScheme.onSurface,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   CustomPaint _buildEditorialDetailsCard(Book book) {
     return CustomPaint(
       painter: HandDrawnBorderPainter(color: context.cozy.inkColor!.withValues(alpha: 0.3)),
@@ -597,7 +532,7 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 _buildMetricItem(context.l10n.startDate, book.startDateText),
-                _buildMetricItem(context.l10n.day, book.readingDayText.isEmpty ? '-' : book.readingDayText),
+                _buildMetricItem(context.l10n.day, book.elapsedDays > 0 ? context.l10n.readingDayText(book.elapsedDays) : '-'),
                 _buildMetricItem(context.l10n.remaining, book.remainingTimeText),
               ],
             ),

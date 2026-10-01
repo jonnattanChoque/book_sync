@@ -110,10 +110,85 @@
   "@streakIncreased": {},
   "streakCurrent": "Current Streak",
   "@streakCurrent": {},
-  "streakDaysCount": "{count, plural, =1{1 day streak} other{{count} days streak}}",
-  "@streakDaysCount": {},
   "streakTitle": "Reading Streak",
+  "@streakTitle": {},
   "bestStreakLabel": "Best streak: {count} days",
+  "@bestStreakLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "currentStreakTitle": "Current Streak",
+  "@currentStreakTitle": {
+    "description": "Title for the card displaying the active daily reading streak."
+  },
+  "bestStreakTitle": "Best Streak",
+  "@bestStreakTitle": {
+    "description": "Title for the card displaying the all-time highest reading streak."
+  },
+  "streakDaysCount": "{count, plural, =1{1 day} other{{count} days}}",
+  "@streakDaysCount": {
+    "description": "Formatted number of streak days.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "streakDateRange": "{startDate} - {endDate}",
+  "@streakDateRange": {
+    "description": "Date range showing start and end of a streak.",
+    "placeholders": {
+      "startDate": {
+        "type": "String",
+        "example": "Sep 12"
+      },
+      "endDate": {
+        "type": "String",
+        "example": "Sep 18"
+      }
+    }
+  },
+  "noActiveStreak": "No active streak",
+  "@noActiveStreak": {
+    "description": "Text displayed when the user has no active streak."
+  },
+  "readingCalendarTitle": "Reading Calendar",
+  "@readingCalendarTitle": {
+    "description": "Main title for the reading calendar section."
+  },
+  "booksReadOnDate": "Readings for the day ({count})",
+  "@booksReadOnDate": {
+    "description": "Header for the list of books read on a selected day.",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "noReadingOnDate": "No reading sessions recorded for this day",
+  "@noReadingOnDate": {
+    "description": "Message when no reading sessions occurred on the selected date."
+  },
+  "pagesReadCount": "{count, plural, =1{1 page read} other{{count} pages read}}",
+  "@pagesReadCount": {
+    "description": "Total count of pages read on the selected date.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "readingDayText": "Day {days}",
+  "@readingDayText": {
+    "description": "Indicates the current day count in reading session or streak",
+    "placeholders": {
+      "days": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
   "progressLabel": "{percentage}% completed",
   "@progressLabel": {
     "description": "Reading progress percentage",
@@ -267,6 +342,10 @@
   "errorLoadLibrary": "Error loading library",
   "@errorLoadLibrary": {
     "description": "Error message when fetching library fails"
+  },
+  "favoritesFilterLabel": "All your favorites",
+  "@favoritesFilterLabel": {
+    "description": "Label for the favorites filter button below library tabs"
   },
   "searchTitle": "Search Book",
   "@searchTitle": {
@@ -445,8 +524,11 @@
     "description": "Empty state message when no notes are saved"
   },
   "profileTitle": "Reader Profile",
+  "@profileTitle": {},
   "defaultUserName": "User",
+  "@defaultUserName": {},
   "readerLevelDefault": "Voracious Reader",
+  "@readerLevelDefault": {},
   "navHome": "Home",
   "@navHome": {
     "description": "Label for the Home tab in the main bottom navigation bar."
@@ -652,6 +734,14 @@
   "confirmChangeCoverMessage": "Do you want to replace the current cover with this image?",
   "@confirmChangeCoverMessage": {
     "description": "Main message for cover change confirmation"
+  },
+  "validationTotalPagesRequired": "Total pages is required",
+  "@validationTotalPagesRequired": {
+    "description": "Error message when total pages field is left empty"
+  },
+  "validationTotalPagesInvalid": "Enter a valid number of pages greater than 0",
+  "@validationTotalPagesInvalid": {
+    "description": "Error message when total pages is less than or equal to zero"
   },
   "newSession": "Read",
   "@newSession": {

@@ -68,11 +68,16 @@ class Book {
 
   /// Retorna el día transcurrido a partir de la fecha de inicio (ej: "Día 1")
   @ignore
-  String get readingDayText {
+  int get elapsedDays {
     final date = _effectiveStartDate;
-    if (date == null) return '';
-    final days = DateTime.now().difference(date).inDays + 1;
-    return 'Día $days';
+    if (date == null) return 0;
+    
+    final now = DateTime.now();
+    // Normalizamos las fechas a medianoche (year, month, day) para comparar días calendario exactos
+    final startOfDay = DateTime(date.year, date.month, date.day);
+    final today = DateTime(now.year, now.month, now.day);
+    
+    return today.difference(startOfDay).inDays + 1;
   }
 
   /// Helper privado para resolver la fecha real

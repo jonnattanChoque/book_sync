@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:flutter/foundation.dart';
 
 void main() async {
   final l10nDir = Directory('lib/l10n/src');
@@ -33,7 +32,7 @@ Future<void> mergeLocales(String locale, Directory srcDir) async {
           }
         });
       } catch (e) {
-        debugPrint('Error al procesar el archivo ${file.path}: $e');
+        print('Error al procesar el archivo ${file.path}: $e');
       }
     }
   }
@@ -41,5 +40,5 @@ Future<void> mergeLocales(String locale, Directory srcDir) async {
   final outputFile = File('lib/l10n/app_$locale.arb');
   const encoder = JsonEncoder.withIndent('  ');
   await outputFile.writeAsString(encoder.convert(mergedMap));
-  debugPrint('Generado exitosamente: ${outputFile.path}');
+  print('Generado exitosamente: ${outputFile.path}');
 }

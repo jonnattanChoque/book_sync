@@ -21,7 +21,7 @@ class HomeStreakCard extends ConsumerWidget {
         final bestStreak = userStreak?.bestStreak ?? 0;
 
         return HomeBaseCard(
-          onTap: () => context.push('/stats'),
+          onTap: () => context.push('/streak'),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

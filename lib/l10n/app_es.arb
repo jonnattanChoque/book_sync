@@ -110,10 +110,85 @@
   "@streakIncreased": {},
   "streakCurrent": "Racha Actual",
   "@streakCurrent": {},
-  "streakDaysCount": "{count, plural, =1{1 día seguido} other{{count} días seguidos}}",
-  "@streakDaysCount": {},
   "streakTitle": "Racha de lectura",
+  "@streakTitle": {},
   "bestStreakLabel": "Mejor racha: {count} días",
+  "@bestStreakLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "currentStreakTitle": "Racha actual",
+  "@currentStreakTitle": {
+    "description": "Título de la tarjeta para la racha actual de días consecutivos."
+  },
+  "bestStreakTitle": "Mejor racha",
+  "@bestStreakTitle": {
+    "description": "Título de la tarjeta para el récord histórico de racha de lectura."
+  },
+  "streakDaysCount": "{count, plural, =1{1 día} other{{count} días}}",
+  "@streakDaysCount": {
+    "description": "Cantidad de días de racha.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "streakDateRange": "{startDate} - {endDate}",
+  "@streakDateRange": {
+    "description": "Rango de fechas de la racha.",
+    "placeholders": {
+      "startDate": {
+        "type": "String",
+        "example": "12 Sep"
+      },
+      "endDate": {
+        "type": "String",
+        "example": "18 Sep"
+      }
+    }
+  },
+  "noActiveStreak": "Sin racha activa",
+  "@noActiveStreak": {
+    "description": "Texto desplegado cuando no hay una racha activa."
+  },
+  "readingCalendarTitle": "Calendario de lectura",
+  "@readingCalendarTitle": {
+    "description": "Título de la sección del calendario de lecturas."
+  },
+  "booksReadOnDate": "Lecturas del día ({count})",
+  "@booksReadOnDate": {
+    "description": "Encabezado para los libros leídos en la fecha seleccionada.",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "noReadingOnDate": "No registraste lecturas este día",
+  "@noReadingOnDate": {
+    "description": "Mensaje cuando no hay registros de lectura en la fecha seleccionada."
+  },
+  "pagesReadCount": "{count, plural, =1{1 página leída} other{{count} páginas leídas}}",
+  "@pagesReadCount": {
+    "description": "Conteo total de páginas leídas en el día.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "readingDayText": "Día {days}",
+  "@readingDayText": {
+    "description": "Indica el número de día transcurrido en el reto o racha de lectura",
+    "placeholders": {
+      "days": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
   "progressLabel": "{percentage}% completado",
   "@progressLabel": {
     "description": "Porcentaje de avance en la lectura de un libro",
@@ -267,6 +342,10 @@
   "errorLoadLibrary": "Error al cargar la biblioteca",
   "@errorLoadLibrary": {
     "description": "Error al cargar la biblioteca"
+  },
+  "favoritesFilterLabel": "Todos tus favoritos",
+  "@favoritesFilterLabel": {
+    "description": "Texto para el botón de filtro de libros favoritos debajo de los tabs de la biblioteca"
   },
   "searchTitle": "Buscar Libro",
   "@searchTitle": {
@@ -445,8 +524,11 @@
     "description": "Mensaje en estado vacío indicando que el libro no posee notas registradas."
   },
   "profileTitle": "Perfil de lector",
+  "@profileTitle": {},
   "defaultUserName": "Usuario",
+  "@defaultUserName": {},
   "readerLevelDefault": "Lector Voraz",
+  "@readerLevelDefault": {},
   "navHome": "Inicio",
   "@navHome": {
     "description": "Etiqueta para la pestaña Home en la barra de navegación principal."
@@ -652,6 +734,14 @@
   "confirmChangeCoverMessage": "¿Deseas reemplazar la portada actual por esta imagen?",
   "@confirmChangeCoverMessage": {
     "description": "Mensaje principal del cuadro de diálogo de confirmación."
+  },
+  "validationTotalPagesRequired": "El número total de páginas es obligatorio",
+  "@validationTotalPagesRequired": {
+    "description": "Mensaje de error cuando el usuario no ingresa el total de páginas al crear/editar un libro"
+  },
+  "validationTotalPagesInvalid": "Ingresa un número de páginas válido mayor a 0",
+  "@validationTotalPagesInvalid": {
+    "description": "Mensaje de error cuando el total de páginas es menor o igual a cero"
   },
   "newSession": "Leer",
   "@newSession": {

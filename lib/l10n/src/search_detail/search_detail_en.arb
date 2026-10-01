@@ -91,5 +91,13 @@
   "confirmChangeCoverMessage": "Do you want to replace the current cover with this image?",
   "@confirmChangeCoverMessage": {
     "description": "Main message for cover change confirmation"
+  },
+  "validationTotalPagesRequired": "Total pages is required",
+  "@validationTotalPagesRequired": {
+    "description": "Error message when total pages field is left empty"
+  },
+  "validationTotalPagesInvalid": "Enter a valid number of pages greater than 0",
+  "@validationTotalPagesInvalid": {
+    "description": "Error message when total pages is less than or equal to zero"
   }
 }

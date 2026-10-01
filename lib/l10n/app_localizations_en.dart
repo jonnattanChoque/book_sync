@@ -92,22 +92,63 @@ class AppLocalizationsEn extends AppLocalizations {
   String get streakCurrent => 'Current Streak';
 
   @override
-  String streakDaysCount(num count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count days streak',
-      one: '1 day streak',
-    );
-    return '$_temp0';
-  }
-
-  @override
   String get streakTitle => 'Reading Streak';
 
   @override
   String bestStreakLabel(Object count) {
     return 'Best streak: $count days';
+  }
+
+  @override
+  String get currentStreakTitle => 'Current Streak';
+
+  @override
+  String get bestStreakTitle => 'Best Streak';
+
+  @override
+  String streakDaysCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days',
+      one: '1 day',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String streakDateRange(String startDate, String endDate) {
+    return '$startDate - $endDate';
+  }
+
+  @override
+  String get noActiveStreak => 'No active streak';
+
+  @override
+  String get readingCalendarTitle => 'Reading Calendar';
+
+  @override
+  String booksReadOnDate(Object count) {
+    return 'Readings for the day ($count)';
+  }
+
+  @override
+  String get noReadingOnDate => 'No reading sessions recorded for this day';
+
+  @override
+  String pagesReadCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count pages read',
+      one: '1 page read',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String readingDayText(int days) {
+    return 'Day $days';
   }
 
   @override
@@ -204,6 +245,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errorLoadLibrary => 'Error loading library';
+
+  @override
+  String get favoritesFilterLabel => 'All your favorites';
 
   @override
   String get searchTitle => 'Search Book';
@@ -493,6 +537,13 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get confirmChangeCoverMessage =>
       'Do you want to replace the current cover with this image?';
+
+  @override
+  String get validationTotalPagesRequired => 'Total pages is required';
+
+  @override
+  String get validationTotalPagesInvalid =>
+      'Enter a valid number of pages greater than 0';
 
   @override
   String get newSession => 'Read';

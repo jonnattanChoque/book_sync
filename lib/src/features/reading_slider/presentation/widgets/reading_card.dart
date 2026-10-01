@@ -103,6 +103,9 @@ class ReadingCard extends StatelessWidget {
   }
 
   Positioned _buildDaysRead(BuildContext context) {
+    final days = book.elapsedDays;
+    final dayText = days > 0 ? context.l10n.readingDayText(days) : '';
+
     return Positioned(
       top: 0,
       right: 16,
@@ -116,7 +119,7 @@ class ReadingCard extends StatelessWidget {
           ),
         ),
         child: Text(
-          book.readingDayText,
+          dayText,
           style: context.theme.textTheme.labelSmall?.copyWith(
             color: Colors.white,
             fontWeight: FontWeight.bold,

@@ -1,4 +1,5 @@
 import 'package:book_sync/src/features/reader_session/presentation/summary_screen.dart';
+import 'package:book_sync/src/features/streak/presentation/screens/streak_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:book_sync/core/router/page_turn_transition.dart';
@@ -174,6 +175,18 @@ final appRouter = GoRouter(
         return CustomTransitionPage(
           key: state.pageKey,
           child: SessionSummaryPage(book: book, session: session),
+          transitionsBuilder: buildPageTurnTransition,
+          transitionDuration: const Duration(milliseconds: 700),
+          reverseTransitionDuration: const Duration(milliseconds: 500),
+        );
+      },
+    ),
+    GoRoute(
+      path: '/streak',
+      pageBuilder: (context, state) {
+        return CustomTransitionPage(
+          key: state.pageKey,
+          child: StreakScreen(),
           transitionsBuilder: buildPageTurnTransition,
           transitionDuration: const Duration(milliseconds: 700),
           reverseTransitionDuration: const Duration(milliseconds: 500),

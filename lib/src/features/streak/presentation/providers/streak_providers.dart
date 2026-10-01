@@ -1,5 +1,6 @@
 // lib/src/features/streak/presentation/providers/streak_providers.dart
 import 'package:book_sync/core/persistence/isar_provider.dart';
+import 'package:book_sync/src/domain/book_reading_summary.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:book_sync/src/domain/user_streak.dart';
 import 'package:book_sync/src/features/streak/data/streak_repository.dart';
@@ -30,4 +31,16 @@ final checkStreakInactivityProvider = Provider((ref) {
   return () async {
     await repository.checkAndResetStreakIfInactive();
   };
+});
+
+final selectedCalendarDateProvider = StateProvider<DateTime>((ref) {
+  final now = DateTime.now();
+  return DateTime(now.year, now.month, now.day);
+});
+
+// Lecturas y páginas leídas en la fecha seleccionada del calendario
+final selectedDateReadingsProvider = FutureProvider<List<BookReadingSummary>>((ref) async {
+  final repository = ref.watch(streakRepositoryProvider);
+  final selectedDate = ref.watch(selectedCalendarDateProvider);
+  return repository.getReadingsForDate(selectedDate);
 });

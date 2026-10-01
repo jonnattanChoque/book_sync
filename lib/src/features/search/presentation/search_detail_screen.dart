@@ -2,7 +2,6 @@ import 'package:book_sync/core/constants/app_icons.dart';
 import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/widgets/background_paper_texture.dart';
 import 'package:book_sync/core/widgets/primary_outlined_button.dart';
-import 'package:book_sync/l10n/app_localizations.dart';
 import 'package:book_sync/src/domain/book.dart';
 import 'package:book_sync/src/features/reading_slider/presentation/providers/books_provider.dart';
 import 'package:book_sync/src/features/search/domain/book_search_dto.dart';
@@ -235,6 +234,16 @@ class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen>
                 label: context.l10n.fieldPages,
                 controller: _pagesController,
                 keyboardType: TextInputType.number,
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return context.l10n.validationTotalPagesRequired;
+                  }
+                  final pages = int.tryParse(value.trim());
+                  if (pages == null || pages <= 0) {
+                    return context.l10n.validationTotalPagesInvalid;
+                  }
+                  return null; // Válido
+                },
               ),
             ],
           ),
@@ -469,6 +478,8 @@ class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen>
               ),
               decoration: InputDecoration(
                 isDense: true,
+                errorMaxLines: 2,
+                helperMaxLines: 2,
                 contentPadding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
                 hintText: '---',
                 hintStyle: context.theme.textTheme.bodyMedium?.copyWith(

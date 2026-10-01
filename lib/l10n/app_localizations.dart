@@ -260,12 +260,6 @@ abstract class AppLocalizations {
   /// **'Racha Actual'**
   String get streakCurrent;
 
-  /// No description provided for @streakDaysCount.
-  ///
-  /// In es, this message translates to:
-  /// **'{count, plural, =1{1 día seguido} other{{count} días seguidos}}'**
-  String streakDaysCount(num count);
-
   /// No description provided for @streakTitle.
   ///
   /// In es, this message translates to:
@@ -277,6 +271,66 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Mejor racha: {count} días'**
   String bestStreakLabel(Object count);
+
+  /// Título de la tarjeta para la racha actual de días consecutivos.
+  ///
+  /// In es, this message translates to:
+  /// **'Racha actual'**
+  String get currentStreakTitle;
+
+  /// Título de la tarjeta para el récord histórico de racha de lectura.
+  ///
+  /// In es, this message translates to:
+  /// **'Mejor racha'**
+  String get bestStreakTitle;
+
+  /// Cantidad de días de racha.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{1 día} other{{count} días}}'**
+  String streakDaysCount(int count);
+
+  /// Rango de fechas de la racha.
+  ///
+  /// In es, this message translates to:
+  /// **'{startDate} - {endDate}'**
+  String streakDateRange(String startDate, String endDate);
+
+  /// Texto desplegado cuando no hay una racha activa.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin racha activa'**
+  String get noActiveStreak;
+
+  /// Título de la sección del calendario de lecturas.
+  ///
+  /// In es, this message translates to:
+  /// **'Calendario de lectura'**
+  String get readingCalendarTitle;
+
+  /// Encabezado para los libros leídos en la fecha seleccionada.
+  ///
+  /// In es, this message translates to:
+  /// **'Lecturas del día ({count})'**
+  String booksReadOnDate(Object count);
+
+  /// Mensaje cuando no hay registros de lectura en la fecha seleccionada.
+  ///
+  /// In es, this message translates to:
+  /// **'No registraste lecturas este día'**
+  String get noReadingOnDate;
+
+  /// Conteo total de páginas leídas en el día.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{1 página leída} other{{count} páginas leídas}}'**
+  String pagesReadCount(int count);
+
+  /// Indica el número de día transcurrido en el reto o racha de lectura
+  ///
+  /// In es, this message translates to:
+  /// **'Día {days}'**
+  String readingDayText(int days);
 
   /// Porcentaje de avance en la lectura de un libro
   ///
@@ -439,6 +493,12 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Error al cargar la biblioteca'**
   String get errorLoadLibrary;
+
+  /// Texto para el botón de filtro de libros favoritos debajo de los tabs de la biblioteca
+  ///
+  /// In es, this message translates to:
+  /// **'Todos tus favoritos'**
+  String get favoritesFilterLabel;
 
   /// Título del AppBar en la pantalla de búsqueda online
   ///
@@ -997,6 +1057,18 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'¿Deseas reemplazar la portada actual por esta imagen?'**
   String get confirmChangeCoverMessage;
+
+  /// Mensaje de error cuando el usuario no ingresa el total de páginas al crear/editar un libro
+  ///
+  /// In es, this message translates to:
+  /// **'El número total de páginas es obligatorio'**
+  String get validationTotalPagesRequired;
+
+  /// Mensaje de error cuando el total de páginas es menor o igual a cero
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresa un número de páginas válido mayor a 0'**
+  String get validationTotalPagesInvalid;
 
   /// Texto del botón para iniciar una nueva sesión de lectura
   ///

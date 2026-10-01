@@ -93,22 +93,63 @@ class AppLocalizationsEs extends AppLocalizations {
   String get streakCurrent => 'Racha Actual';
 
   @override
-  String streakDaysCount(num count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count días seguidos',
-      one: '1 día seguido',
-    );
-    return '$_temp0';
-  }
-
-  @override
   String get streakTitle => 'Racha de lectura';
 
   @override
   String bestStreakLabel(Object count) {
     return 'Mejor racha: $count días';
+  }
+
+  @override
+  String get currentStreakTitle => 'Racha actual';
+
+  @override
+  String get bestStreakTitle => 'Mejor racha';
+
+  @override
+  String streakDaysCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count días',
+      one: '1 día',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String streakDateRange(String startDate, String endDate) {
+    return '$startDate - $endDate';
+  }
+
+  @override
+  String get noActiveStreak => 'Sin racha activa';
+
+  @override
+  String get readingCalendarTitle => 'Calendario de lectura';
+
+  @override
+  String booksReadOnDate(Object count) {
+    return 'Lecturas del día ($count)';
+  }
+
+  @override
+  String get noReadingOnDate => 'No registraste lecturas este día';
+
+  @override
+  String pagesReadCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count páginas leídas',
+      one: '1 página leída',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String readingDayText(int days) {
+    return 'Día $days';
   }
 
   @override
@@ -205,6 +246,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get errorLoadLibrary => 'Error al cargar la biblioteca';
+
+  @override
+  String get favoritesFilterLabel => 'Todos tus favoritos';
 
   @override
   String get searchTitle => 'Buscar Libro';
@@ -494,6 +538,14 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get confirmChangeCoverMessage =>
       '¿Deseas reemplazar la portada actual por esta imagen?';
+
+  @override
+  String get validationTotalPagesRequired =>
+      'El número total de páginas es obligatorio';
+
+  @override
+  String get validationTotalPagesInvalid =>
+      'Ingresa un número de páginas válido mayor a 0';
 
   @override
   String get newSession => 'Leer';

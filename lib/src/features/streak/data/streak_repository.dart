@@ -1,4 +1,6 @@
 // lib/src/features/streak/data/streak_repository.dart
+import 'package:book_sync/src/domain/book.dart';
+import 'package:book_sync/src/domain/book_reading_summary.dart';
 import 'package:isar/isar.dart';
 import 'package:book_sync/src/domain/user_streak.dart';
 
@@ -94,5 +96,46 @@ class StreakRepository {
         await isar.userStreaks.put(streak); // Conserva bestStreak e historial intactos
       }
     });
+  }
+
+  /// Obtiene el desglose de libros leídos y páginas en una fecha específica
+  Future<List<BookReadingSummary>> getReadingsForDate(DateTime date) async {
+    final startOfDay = DateTime(date.year, date.month, date.day, 0, 0, 0);
+    final endOfDay = DateTime(date.year, date.month, date.day, 23, 59, 59);
+
+    // Consulta directa en la colección de sesiones de Isar
+    final sessionsOfDay = await isar.readingSessions
+        .filter()
+        .startTimeBetween(startOfDay, endOfDay)
+        .findAll();
+
+    if (sessionsOfDay.isEmpty) return [];
+
+    // Agrupar sesiones por bookId
+    final Map<int, List<ReadingSession>> grouped = {};
+    for (final session in sessionsOfDay) {
+      grouped.putIfAbsent(session.bookId, () => []).add(session);
+    }
+
+    final List<BookReadingSummary> summaries = [];
+
+    for (final entry in grouped.entries) {
+      final bookId = entry.key;
+      final sessions = entry.value;
+
+      final book = await isar.books.get(bookId);
+      if (book != null) {
+        final totalPages = sessions.fold<int>(0, (sum, s) => sum + s.pagesRead);
+        final totalDuration = sessions.fold<int>(0, (sum, s) => sum + s.durationSeconds);
+
+        summaries.add(BookReadingSummary(
+          book: book,
+          totalPagesRead: totalPages,
+          totalDurationSeconds: totalDuration,
+        ));
+      }
+    }
+
+    return summaries;
   }
 }

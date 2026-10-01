@@ -4,16 +4,23 @@ import 'package:book_sync/core/utils/book_serted_helper.dart';
 import 'package:book_sync/core/widgets/background_paper_texture.dart';
 import 'package:book_sync/core/widgets/book_loader.dart';
 import 'package:book_sync/src/domain/book.dart';
+import 'package:book_sync/src/features/library/presentation/widgets/library_card_item.dart';
 import 'package:book_sync/src/features/reading_slider/presentation/providers/books_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
-class LibrarySectionScreen extends ConsumerWidget {
+class LibrarySectionScreen extends ConsumerStatefulWidget {
   const LibrarySectionScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<LibrarySectionScreen> createState() => _LibrarySectionScreenState();
+}
+
+class _LibrarySectionScreenState extends ConsumerState<LibrarySectionScreen> {
+  bool _showOnlyFavorites = false;
+
+  @override
+  Widget build(BuildContext context) {
     final allBooksAsync = ref.watch(allBooksProvider);
 
     return Scaffold(
@@ -21,12 +28,12 @@ class LibrarySectionScreen extends ConsumerWidget {
         children: [
           const BackgroundPaperTexture(),
           _buildLibraryContent(context, allBooksAsync),
-        ]
-      )
+        ],
+      ),
     );
   }
 
-  DefaultTabController _buildLibraryContent(BuildContext context, AsyncValue<List<Book>> allBooksAsync) {
+  Widget _buildLibraryContent(BuildContext context, AsyncValue<List<Book>> allBooksAsync) {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
@@ -47,42 +54,125 @@ class LibrarySectionScreen extends ConsumerWidget {
             },
           ),
           title: Text(context.l10n.libraryTitle, style: context.theme.textTheme.titleLarge),
-          bottom: TabBar(
-            labelColor: context.cozy.bookmarkColor!,
-            unselectedLabelColor: context.cozy.inkColor!.withValues(alpha: 0.5),
-            indicatorColor: context.cozy.bookmarkColor!.withValues(alpha: 1),
-            tabs: [
-              Tab(text: context.l10n.tabLibraryReading),
-              Tab(text: context.l10n.tabLibraryToRead), 
-              Tab(text: context.l10n.tabLibraryRead),
-              Tab(text: context.l10n.tabLibraryDropped)
-            ],
+          bottom: _LibraryHeaderBottom(
+            tabBar: TabBar(
+              tabAlignment: TabAlignment.fill,
+              labelPadding: const EdgeInsets.symmetric(horizontal: 12),
+              labelColor: context.cozy.bookmarkColor!,
+              unselectedLabelColor: context.cozy.inkColor!.withValues(alpha: 0.5),
+              indicatorColor: context.cozy.bookmarkColor!.withValues(alpha: 1),
+              tabs: [
+                Tab(text: context.l10n.tabLibraryReading),
+                Tab(text: context.l10n.tabLibraryToRead), 
+                Tab(text: context.l10n.tabLibraryRead),
+                Tab(text: context.l10n.tabLibraryDropped),
+              ],
+            ),
+            isFavoritesOnly: _showOnlyFavorites,
+            onFavoritesToggled: () {
+              setState(() {
+                _showOnlyFavorites = !_showOnlyFavorites;
+              });
+            },
           ),
         ),
         body: allBooksAsync.when(
           data: (books) {
             final bookSorted = sortBooksByLastAdded(books);
+
+            if (_showOnlyFavorites) {
+              final favoriteBooks = bookSorted.where((b) => b.isFavorite == true).toList();
+              return _BookListSection(
+                books: favoriteBooks,
+                emptyMessage: context.l10n.noSearchResults,
+              );
+            }
+
             final readingBooks = bookSorted.where((b) => b.status == BookStatus.reading).toList();
             final toReadBooks = bookSorted.where((b) => b.status == BookStatus.toRead).toList();
             final finishedBooks = bookSorted.where((b) => b.status == BookStatus.finished).toList();
-            final forggotenBooks = bookSorted.where((b) => b.status == BookStatus.dropped).toList();
-    
+            final forgottenBooks = bookSorted.where((b) => b.status == BookStatus.dropped).toList();
+
             return TabBarView(
               children: [
                 _BookListSection(books: readingBooks, emptyMessage: context.l10n.emptyReading),
                 _BookListSection(books: toReadBooks, emptyMessage: context.l10n.emptyToRead),
                 _BookListSection(books: finishedBooks, emptyMessage: context.l10n.emptyFinished),
-                _BookListSection(books: forggotenBooks, emptyMessage: context.l10n.emptyDropped),
+                _BookListSection(books: forgottenBooks, emptyMessage: context.l10n.emptyDropped),
               ],
             );
           },
           loading: () => const Center(child: BookLoader()),
           error: (err, stack) => Center(
-            child: Text("Error al cargar la biblioteca: $err"),
+            child: Text(context.l10n.errorLoadLibrary),
           ),
         ),
       ),
     );
+  }
+}
+
+/// Header inferior que combina el TabBar y la barra del filtro de Favoritos
+class _LibraryHeaderBottom extends StatelessWidget implements PreferredSizeWidget {
+  final TabBar tabBar;
+  final bool isFavoritesOnly;
+  final VoidCallback onFavoritesToggled;
+
+  const _LibraryHeaderBottom({
+    required this.tabBar,
+    required this.isFavoritesOnly,
+    required this.onFavoritesToggled,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildFavoritesButton(context),
+        tabBar
+      ],
+    );
+  }
+
+  @override
+  Size get preferredSize => Size.fromHeight(tabBar.preferredSize.height + 44);
+
+  Padding _buildFavoritesButton(BuildContext context) {
+    return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 1),
+        child: FilterChip(
+          selected: isFavoritesOnly,
+          label: Text(
+            context.l10n.favoritesFilterLabel,
+            style: TextStyle(
+              fontSize: 12,
+              color: isFavoritesOnly 
+                ? Colors.red.shade700 
+                : context.cozy.inkColor?.withValues(alpha: 0.8),
+            ),
+          ),
+          avatar: Icon(
+            isFavoritesOnly ? Icons.favorite_rounded : Icons.favorite_outline_rounded,
+            size: 16,
+            color: isFavoritesOnly ? Colors.red : context.cozy.inkColor?.withValues(alpha: 0.6),
+          ),
+          onSelected: (_) => onFavoritesToggled(),
+          backgroundColor: Colors.transparent,
+          selectedColor: Colors.red.withValues(alpha: 0.15),
+          checkmarkColor: Colors.red,
+          side: BorderSide(
+            color: isFavoritesOnly 
+                ? Colors.red.withValues(alpha: 0.4) 
+                : context.cozy.bookmarkColor!.withValues(alpha: 0.2),
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          visualDensity: VisualDensity.compact,
+        ),
+      );
   }
 }
 
@@ -112,49 +202,7 @@ class _BookListSection extends StatelessWidget {
         itemBuilder: (context, index) {
           final book = books[index];
           final bool isFinished = book.status == BookStatus.finished || book.progress >= 1.0;
-
-          return Card(
-            color: context.theme.cardColor.withValues(alpha: 0.8),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            margin: const EdgeInsets.only(bottom: 12),
-            child: GestureDetector(
-              onTap: () {
-                context.push('/book_detail', extra: book);
-              },
-              child: ListTile(
-                title: Text(
-                  book.title, 
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(book.author),
-                    if (isFinished) ...[
-                      const SizedBox(height: 4),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: List.generate(5, (starIndex) {
-                          final starValue = starIndex + 1.0;
-                          return Icon(
-                            (book.rating ?? 0) >= starValue
-                                ? Icons.star_rounded
-                                : Icons.star_outline_rounded,
-                            color: Colors.amber,
-                            size: 16,
-                          );
-                        }),
-                      ),
-                    ],
-                  ],
-                ),
-                trailing: Text("${(book.progress * 100).toStringAsFixed(1)}%"),
-              ),
-            ),
-          );
+          return LibraryCardItem(book: book, isFinished: isFinished);          
         },
       ),
     );

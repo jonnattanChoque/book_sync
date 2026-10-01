@@ -1,5 +1,15 @@
 {
   "@@locale": "es",
+  "readingDayText": "Día {days}",
+  "@readingDayText": {
+    "description": "Indica el número de día transcurrido en el reto o racha de lectura",
+    "placeholders": {
+      "days": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
   "progressLabel": "{percentage}% completado",
   "@progressLabel": {
     "description": "Porcentaje de avance en la lectura de un libro",

@@ -91,5 +91,13 @@
   "confirmChangeCoverMessage": "¿Deseas reemplazar la portada actual por esta imagen?",
   "@confirmChangeCoverMessage": {
     "description": "Mensaje principal del cuadro de diálogo de confirmación."
+  },
+  "validationTotalPagesRequired": "El número total de páginas es obligatorio",
+  "@validationTotalPagesRequired": {
+    "description": "Mensaje de error cuando el usuario no ingresa el total de páginas al crear/editar un libro"
+  },
+  "validationTotalPagesInvalid": "Ingresa un número de páginas válido mayor a 0",
+  "@validationTotalPagesInvalid": {
+    "description": "Mensaje de error cuando el total de páginas es menor o igual a cero"
   }
 }

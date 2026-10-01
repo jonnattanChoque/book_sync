@@ -11,9 +11,13 @@ import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:book_sync/src/domain/app_config.dart';
 import 'package:toastification/toastification.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await initializeDateFormatting('es', null);
+  await initializeDateFormatting('en', null);
   
   final dir = await getApplicationDocumentsDirectory();
   final isar = await Isar.open(
@@ -48,12 +52,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Book Sync',
       darkTheme: darkTheme,
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
       theme: lightTheme,
       routerConfig: appRouter,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      locale: const Locale('es'),
+      locale: const Locale('en'),
     );
   }
 }

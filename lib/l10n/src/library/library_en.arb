@@ -75,5 +75,9 @@
   "errorLoadLibrary": "Error loading library",
   "@errorLoadLibrary": {
     "description": "Error message when fetching library fails"
+  },
+  "favoritesFilterLabel": "All your favorites",
+  "@favoritesFilterLabel": {
+    "description": "Label for the favorites filter button below library tabs"
   }
 }

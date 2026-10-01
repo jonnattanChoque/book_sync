@@ -4,9 +4,73 @@
   "@streakIncreased": {},
   "streakCurrent": "Current Streak",
   "@streakCurrent": {},
-  "streakDaysCount": "{count, plural, =1{1 Day streak} other{{count} Days streak}}",
-  "@streakDaysCount": {},
   "streakTitle": "Reading Streak",
-  "streakDaysCount": "{count, plural, =1{1 day streak} other{{count} days streak}}",
-  "bestStreakLabel": "Best streak: {count} days"
+  "@streakTitle": {},
+  "bestStreakLabel": "Best streak: {count} days",
+  "@bestStreakLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "currentStreakTitle": "Current Streak",
+  "@currentStreakTitle": {
+    "description": "Title for the card displaying the active daily reading streak."
+  },
+  "bestStreakTitle": "Best Streak",
+  "@bestStreakTitle": {
+    "description": "Title for the card displaying the all-time highest reading streak."
+  },
+  "streakDaysCount": "{count, plural, =1{1 day} other{{count} days}}",
+  "@streakDaysCount": {
+    "description": "Formatted number of streak days.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "streakDateRange": "{startDate} - {endDate}",
+  "@streakDateRange": {
+    "description": "Date range showing start and end of a streak.",
+    "placeholders": {
+      "startDate": {
+        "type": "String",
+        "example": "Sep 12"
+      },
+      "endDate": {
+        "type": "String",
+        "example": "Sep 18"
+      }
+    }
+  },
+  "noActiveStreak": "No active streak",
+  "@noActiveStreak": {
+    "description": "Text displayed when the user has no active streak."
+  },
+  "readingCalendarTitle": "Reading Calendar",
+  "@readingCalendarTitle": {
+    "description": "Main title for the reading calendar section."
+  },
+  "booksReadOnDate": "Readings for the day ({count})",
+  "@booksReadOnDate": {
+    "description": "Header for the list of books read on a selected day.",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "noReadingOnDate": "No reading sessions recorded for this day",
+  "@noReadingOnDate": {
+    "description": "Message when no reading sessions occurred on the selected date."
+  },
+  "pagesReadCount": "{count, plural, =1{1 page read} other{{count} pages read}}",
+  "@pagesReadCount": {
+    "description": "Total count of pages read on the selected date.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  }
 }

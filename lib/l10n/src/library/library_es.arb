@@ -75,5 +75,9 @@
   "errorLoadLibrary": "Error al cargar la biblioteca",
   "@errorLoadLibrary": {
     "description": "Error al cargar la biblioteca"
+  },
+  "favoritesFilterLabel": "Todos tus favoritos",
+  "@favoritesFilterLabel": {
+    "description": "Texto para el botón de filtro de libros favoritos debajo de los tabs de la biblioteca"
   }
 }
