@@ -164,5 +164,20 @@
         "type": "String"
       }
     }
+  },
+  "statsWeeklyHoursGoalTitle": "Objetivo Semanal",
+  "@statsWeeklyHoursGoalTitle": {
+    "description": "Título de la tarjeta de meta semanal en las estadísticas"
+  },
+  "statsWeeklyHoursGoalSub": "{hours} horas de {goals}",
+  "@statsWeeklyHoursGoalSub": {
+    "description": "Subtítulo que muestra la cantidad de horas semanales configurada como meta",
+    "placeholders": {
+      "hours": {
+        "type": "String",
+        "example": "5"
+      },
+      "goals": {}
+    }
   }
 }

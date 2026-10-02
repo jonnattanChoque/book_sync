@@ -1,6 +1,133 @@
 {
   "@@locale": "en",
-  "profileTitle": "Perfil de lector",
-  "defaultUserName": "Usuario",
-  "readerLevelDefault": "Lector Voraz"
+  "profileTitle": "Perfil",
+  "@profileTitle": {
+    "description": "Título principal de la pantalla de perfil de usuario."
+  },
+  "userDataSection": "Datos de Usuario",
+  "@userDataSection": {
+    "description": "Título del bloque o sección de datos personales modificables del usuario."
+  },
+  "nameLabel": "Nombre",
+  "@nameLabel": {
+    "description": "Etiqueta para el campo de texto del nombre de usuario."
+  },
+  "emailLabel": "Correo electrónico",
+  "@emailLabel": {
+    "description": "Etiqueta para el campo de texto del correo electrónico."
+  },
+  "saveButton": "Guardar cambios",
+  "@saveButton": {
+    "description": "Texto para el botón de confirmar y guardar los datos modificados."
+  },
+  "settingsSection": "Ajustes de la Aplicación",
+  "@settingsSection": {
+    "description": "Título de la sección de configuraciones generales de la app."
+  },
+  "themeTitle": "Tema de la aplicación",
+  "@themeTitle": {
+    "description": "Título del selector del tema o apariencia visual."
+  },
+  "themeLight": "Claro",
+  "@themeLight": {
+    "description": "Opción de tema claro."
+  },
+  "themeDark": "Oscuro",
+  "@themeDark": {
+    "description": "Opción de tema oscuro."
+  },
+  "themeSystem": "Sistema",
+  "@themeSystem": {
+    "description": "Opción de tema adaptado a la configuración predeterminada del sistema operativo."
+  },
+  "languageTitle": "Idioma",
+  "@languageTitle": {
+    "description": "Título de la opción para seleccionar el idioma de la aplicación."
+  },
+  "languageEs": "Español",
+  "@languageEs": {
+    "description": "Opción del idioma español."
+  },
+  "languageEn": "Inglés",
+  "@languageEn": {
+    "description": "Opción del idioma inglés."
+  },
+  "remindersSection": "Recordatorios",
+  "@remindersSection": {
+    "description": "Título de la sección de recordatorios y alarmas."
+  },
+  "readingAlarmTitle": "Alarma para leer",
+  "@readingAlarmTitle": {
+    "description": "Título del switch para activar la alarma diaria de lectura."
+  },
+  "readingAlarmSubtitle": "Configura una notificación diaria para mantener tu racha",
+  "@readingAlarmSubtitle": {
+    "description": "Texto explicativo debajo del título de la alarma de lectura."
+  },
+  "goalsSection": "Objetivos de Lectura",
+  "@goalsSection": {
+    "description": "Encabezado de la sección de metas y objetivos cuantitativos."
+  },
+  "dailyGoal": "Objetivo diario (minutos)",
+  "@dailyGoal": {
+    "description": "Etiqueta para definir la meta de lectura diaria en minutos."
+  },
+  "weeklyGoal": "Objetivo semanal (libros)",
+  "@weeklyGoal": {
+    "description": "Etiqueta para definir la meta de lectura semanal en cantidad de libros."
+  },
+  "monthlyGoal": "Objetivo mensual (libros)",
+  "@monthlyGoal": {
+    "description": "Etiqueta para definir la meta de lectura mensual en cantidad de libros."
+  },
+  "yearlyGoal": "Objetivo anual (libros)",
+  "@yearlyGoal": {
+    "description": "Etiqueta para definir la meta de lectura anual en cantidad de libros."
+  },
+  "weeklyHoursGoal": "Objetivo semanal (horas)",
+  "@weeklyHoursGoal": {
+    "description": "Etiqueta para definir la meta de lectura semanal expresada en horas."
+  },
+  "goalsSaved": "¡Objetivos guardados!",
+  "@goalsSaved": {
+    "description": "Mensaje de confirmación cuando los objetivos de lectura se guardan correctamente."
+  },
+  "notificationChannelName": "Recordatorio de Lectura",
+  "@notificationChannelName": {},
+  "notificationChannelDescription": "Notificaciones diarias para recordar tu sesión de lectura",
+  "@notificationChannelDescription": {},
+  "notificationTitle": "¡Hora de leer! 📚",
+  "@notificationTitle": {},
+  "notificationBody": "Mantén tu racha diaria y avanza en tu meta de lectura.",
+  "@notificationBody": {},
+  "notificationSaved": "Alarma programada con éxito!",
+  "@notificationSaved": {
+    "description": "Mensaje de confirmación cuando la alarma de lectura se programa correctamente."
+  },
+  "imageSelectionError": "Error al seleccionar la imagen: {error}",
+  "@imageSelectionError": {
+    "description": "Mensaje de error cuando falla la selección de imagen",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Permission denied"
+      }
+    }
+  },
+  "chooseFromGallery": "Elegir de la Galería",
+  "@chooseFromGallery": {
+    "description": "Opción del modal para seleccionar foto de perfil desde la galería"
+  },
+  "takePhotoWithCamera": "Tomar Foto con Cámara",
+  "@takePhotoWithCamera": {
+    "description": "Opción del modal para tomar foto de perfil con la cámara"
+  },
+  "nameSavedSuccess": "¡Nombre guardado con éxito!",
+  "@nameSavedSuccess": {
+    "description": "Notificación flotante cuando el nombre de usuario se actualiza correctamente"
+  },
+  "imageSavedSuccess": "¡Imagen guardada con éxito!",
+  "@imageSavedSuccess": {
+    "description": "Notificación flotante cuando la foto de perfil se actualiza correctamente"
+  }
 }

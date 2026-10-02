@@ -164,5 +164,20 @@
         "type": "String"
       }
     }
+  },
+  "statsWeeklyHoursGoalTitle": "Weekly Goal",
+  "@statsWeeklyHoursGoalTitle": {
+    "description": "Title of the weekly goal card in the statistics screen"
+  },
+  "statsWeeklyHoursGoalSub": "{hours} hours of {goals}",
+  "@statsWeeklyHoursGoalSub": {
+    "description": "Subtitle showing the configured weekly reading hours goal",
+    "placeholders": {
+      "hours": {
+        "type": "String",
+        "example": "5"
+      },
+      "goals": {}
+    }
   }
 }

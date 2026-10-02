@@ -1,4 +1,5 @@
 import 'package:book_sync/core/extensions/build_context_ext.dart';
+import 'package:book_sync/core/widgets/custom_info_card.dart';
 import 'package:flutter/material.dart';
 
 class StatsSummaryGrid extends StatelessWidget {
@@ -8,6 +9,8 @@ class StatsSummaryGrid extends StatelessWidget {
   final int totalPagesReadYear;
   final int finishedBooksYear;
   final int annualGoal;
+  final double weeklyHoursGoal;
+  final double weeklyHoursRead;
 
   const StatsSummaryGrid({
     super.key,
@@ -17,82 +20,162 @@ class StatsSummaryGrid extends StatelessWidget {
     required this.totalPagesReadYear, 
     required this.finishedBooksYear, 
     required this.annualGoal,
+    required this.weeklyHoursGoal,
+    this.weeklyHoursRead = 0.0,
   });
 
   @override
   Widget build(BuildContext context) {
 
-    double goalProgress = finishedBooksYear / annualGoal;
+    final double goalProgress = annualGoal > 0 
+      ? (finishedBooksYear / annualGoal).clamp(0.0, 1.0) 
+      : 0.0;
+
+    final weeklyGoalProgress = (weeklyHoursGoal > 0)
+      ? (weeklyHoursRead / weeklyHoursGoal).clamp(0.0, 1.0)
+      : 0.0;
+
+    // Formateo para las horas semanales
+    final weeklyReadText = (weeklyHoursRead.truncateToDouble() == weeklyHoursRead)
+      ? weeklyHoursRead.toInt().toString()
+      : weeklyHoursRead.toStringAsFixed(1);
+
+  // Formateo para la meta de horas
+    final weeklyGoalText = (weeklyHoursGoal.truncateToDouble() == weeklyHoursGoal)
+      ? weeklyHoursGoal.toInt().toString()
+      : weeklyHoursGoal.toStringAsFixed(1);
 
     final hours = totalMinutesReadYear ~/ 60;
     final minutes = totalMinutesReadYear % 60;
 
-    return GridView.count(
-      crossAxisCount: 2,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      crossAxisSpacing: 12,
-      mainAxisSpacing: 12,
-      childAspectRatio: 1.35,
+    return Column(
       children: [
-        _SummaryCard(
-          title: context.l10n.statsYearlyGoalTitle,
-          icon: Icons.calendar_month_outlined,
-          content: Row(
-            children: [
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  SizedBox(
-                    width: 44,
-                    height: 44,
-                    child: CircularProgressIndicator(
-                      value: goalProgress,
-                      strokeWidth: 5,
-                      backgroundColor: context.cozy.inkColor?.withValues(alpha: 0.1),
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        context.cozy.bookmarkColor ?? context.theme.primaryColor,
+        // Fila 1: Meta Anual y Meta Semanal
+        Row(
+          children: [
+            Expanded(
+              child: _SummaryCard(
+                title: context.l10n.statsYearlyGoalTitle,
+                icon: Icons.calendar_month_outlined,
+                content: Row(
+                  children: [
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        SizedBox(
+                          width: 44,
+                          height: 44,
+                          child: CircularProgressIndicator(
+                            value: goalProgress,
+                            strokeWidth: 5,
+                            backgroundColor: context.cozy.inkColor?.withValues(alpha: 0.1),
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              context.cozy.bookmarkColor ?? context.theme.primaryColor,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          '${(goalProgress * 100).toInt()}%',
+                          style: context.theme.textTheme.labelSmall?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        context.l10n.statsYearlyGoalSub(finishedBooksYear, annualGoal),
+                        style: context.theme.textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: context.theme.colorScheme.onSurface,
+                        ),
                       ),
                     ),
-                  ),
-                  Text(
-                    '${(goalProgress * 100).toInt()}%',
-                    style: context.theme.textTheme.labelSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  context.l10n.statsYearlyGoalSub(finishedBooksYear, annualGoal),
-                  style: context.theme.textTheme.bodyMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: context.theme.colorScheme.onSurface
-                  ),
+                  ],
                 ),
               ),
-            ],
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: _SummaryCard(
+                title: context.l10n.statsWeeklyHoursGoalTitle,
+                icon: Icons.access_time_outlined,
+                content: Row(
+                  children: [
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        SizedBox(
+                          width: 44,
+                          height: 44,
+                          child: CircularProgressIndicator(
+                            value: weeklyGoalProgress,
+                            strokeWidth: 5,
+                            backgroundColor: context.cozy.inkColor?.withValues(alpha: 0.1),
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              context.cozy.bookmarkColor ?? context.theme.primaryColor,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          '${(weeklyGoalProgress * 100).toInt()}%',
+                          style: context.theme.textTheme.labelSmall?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        context.l10n.statsWeeklyHoursGoalSub(weeklyReadText, weeklyGoalText),
+                        style: context.theme.textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: context.theme.colorScheme.onSurface,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+
+        const SizedBox(height: 12),
+
+        // Fila 2: Promedio mensual y Velocidad de lectura
+        Row(
+          children: [
+            Expanded(
+              child: _SummaryCard(
+                title: context.l10n.statsMonthlyBooksAvg,
+                value: monthlyBooksAvg.toStringAsFixed(1),
+                icon: Icons.auto_stories_outlined,
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: _SummaryCard(
+                title: context.l10n.statsReadingSpeed,
+                value: context.l10n.statsPagesPerHour(pagesPerHour.toStringAsFixed(1)),
+                icon: Icons.speed_outlined,
+              ),
+            ),
+          ],
+        ),
+
+        const SizedBox(height: 12),
+
+        // Fila 3: Tarjeta de ancho completo
+        SizedBox(
+          width: double.infinity,
+          child: _SummaryCard(
+            title: context.l10n.statsTotalYearlySummary,
+            value: context.l10n.statsTotalReadFormat(hours, minutes, totalPagesReadYear),
+            icon: Icons.access_time_outlined,
           ),
-        ),
-
-        _SummaryCard(
-          title: context.l10n.statsMonthlyBooksAvg,
-          value: monthlyBooksAvg.toStringAsFixed(1),
-          icon: Icons.auto_stories_outlined,
-        ),
-
-        _SummaryCard(
-          title: context.l10n.statsReadingSpeed,
-          value: context.l10n.statsPagesPerHour(pagesPerHour.toStringAsFixed(1)),
-          icon: Icons.speed_outlined,
-        ),
-
-        _SummaryCard(
-          title: context.l10n.statsTotalYearlySummary,
-          value: context.l10n.statsTotalReadFormat(hours, minutes, totalPagesReadYear),
-          icon: Icons.access_time_outlined,
         ),
       ],
     );
@@ -114,15 +197,8 @@ class _SummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return CustomInfoCardContainer(
       padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: context.theme.cardColor.withValues(alpha: 0.4),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: context.cozy.inkColor?.withValues(alpha: 0.08) ?? Colors.grey.shade300,
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -158,7 +234,7 @@ class _SummaryCard extends StatelessWidget {
               ),
             ),
         ],
-      ),
+      ) 
     );
   }
 }

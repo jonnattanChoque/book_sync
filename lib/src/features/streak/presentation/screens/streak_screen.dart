@@ -328,7 +328,7 @@ class _BookSummaryTile extends StatelessWidget {
         ),
       ),
       child: ListTile(
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6), 
         leading: Container(
           width: 40,
           height: 55,

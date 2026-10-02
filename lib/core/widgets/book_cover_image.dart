@@ -46,7 +46,7 @@ class BookCoverImage extends StatelessWidget {
         fit: fit,
         loadingBuilder: (context, child, loadingProgress) {
           if (loadingProgress == null) return child;
-          if (customLoader != null) return customLoader!;
+          if (customLoader != null) return customLoader!; 
 
           return Center(
             child: CircularProgressIndicator(

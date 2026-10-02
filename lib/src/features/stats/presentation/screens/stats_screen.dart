@@ -116,6 +116,8 @@ class StatsScreen extends ConsumerWidget {
                 totalPagesReadYear: statsState.totalPagesReadYear, 
                 finishedBooksYear: statsState.finishedBooksYear,
                 annualGoal: statsState.annualGoal,
+                weeklyHoursGoal: statsState.weeklyHoursGoal,
+                weeklyHoursRead: statsState.weeklyHoursRead,
               ),
               const SizedBox(height: 36),
 

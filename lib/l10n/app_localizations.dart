@@ -740,23 +740,203 @@ abstract class AppLocalizations {
   /// **'No hay notas guardadas para este libro'**
   String get emptyNotesMessage;
 
-  /// No description provided for @profileTitle.
+  /// Título principal de la pantalla de perfil de usuario.
   ///
   /// In es, this message translates to:
-  /// **'Perfil de lector'**
+  /// **'Perfil'**
   String get profileTitle;
 
-  /// No description provided for @defaultUserName.
+  /// Título del bloque o sección de datos personales modificables del usuario.
   ///
   /// In es, this message translates to:
-  /// **'Usuario'**
-  String get defaultUserName;
+  /// **'Datos de Usuario'**
+  String get userDataSection;
 
-  /// No description provided for @readerLevelDefault.
+  /// Etiqueta para el campo de texto del nombre de usuario.
   ///
   /// In es, this message translates to:
-  /// **'Lector Voraz'**
-  String get readerLevelDefault;
+  /// **'Nombre'**
+  String get nameLabel;
+
+  /// Etiqueta para el campo de texto del correo electrónico.
+  ///
+  /// In es, this message translates to:
+  /// **'Correo electrónico'**
+  String get emailLabel;
+
+  /// Texto para el botón de confirmar y guardar los datos modificados.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardar cambios'**
+  String get saveButton;
+
+  /// Título de la sección de configuraciones generales de la app.
+  ///
+  /// In es, this message translates to:
+  /// **'Ajustes de la Aplicación'**
+  String get settingsSection;
+
+  /// Título del selector del tema o apariencia visual.
+  ///
+  /// In es, this message translates to:
+  /// **'Tema de la aplicación'**
+  String get themeTitle;
+
+  /// Opción de tema claro.
+  ///
+  /// In es, this message translates to:
+  /// **'Claro'**
+  String get themeLight;
+
+  /// Opción de tema oscuro.
+  ///
+  /// In es, this message translates to:
+  /// **'Oscuro'**
+  String get themeDark;
+
+  /// Opción de tema adaptado a la configuración predeterminada del sistema operativo.
+  ///
+  /// In es, this message translates to:
+  /// **'Sistema'**
+  String get themeSystem;
+
+  /// Título de la opción para seleccionar el idioma de la aplicación.
+  ///
+  /// In es, this message translates to:
+  /// **'Idioma'**
+  String get languageTitle;
+
+  /// Opción del idioma español.
+  ///
+  /// In es, this message translates to:
+  /// **'Español'**
+  String get languageEs;
+
+  /// Opción del idioma inglés.
+  ///
+  /// In es, this message translates to:
+  /// **'Inglés'**
+  String get languageEn;
+
+  /// Título de la sección de recordatorios y alarmas.
+  ///
+  /// In es, this message translates to:
+  /// **'Recordatorios'**
+  String get remindersSection;
+
+  /// Título del switch para activar la alarma diaria de lectura.
+  ///
+  /// In es, this message translates to:
+  /// **'Alarma para leer'**
+  String get readingAlarmTitle;
+
+  /// Texto explicativo debajo del título de la alarma de lectura.
+  ///
+  /// In es, this message translates to:
+  /// **'Configura una notificación diaria para mantener tu racha'**
+  String get readingAlarmSubtitle;
+
+  /// Encabezado de la sección de metas y objetivos cuantitativos.
+  ///
+  /// In es, this message translates to:
+  /// **'Objetivos de Lectura'**
+  String get goalsSection;
+
+  /// Etiqueta para definir la meta de lectura diaria en minutos.
+  ///
+  /// In es, this message translates to:
+  /// **'Objetivo diario (minutos)'**
+  String get dailyGoal;
+
+  /// Etiqueta para definir la meta de lectura semanal en cantidad de libros.
+  ///
+  /// In es, this message translates to:
+  /// **'Objetivo semanal (libros)'**
+  String get weeklyGoal;
+
+  /// Etiqueta para definir la meta de lectura mensual en cantidad de libros.
+  ///
+  /// In es, this message translates to:
+  /// **'Objetivo mensual (libros)'**
+  String get monthlyGoal;
+
+  /// Etiqueta para definir la meta de lectura anual en cantidad de libros.
+  ///
+  /// In es, this message translates to:
+  /// **'Objetivo anual (libros)'**
+  String get yearlyGoal;
+
+  /// Etiqueta para definir la meta de lectura semanal expresada en horas.
+  ///
+  /// In es, this message translates to:
+  /// **'Objetivo semanal (horas)'**
+  String get weeklyHoursGoal;
+
+  /// Mensaje de confirmación cuando los objetivos de lectura se guardan correctamente.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Objetivos guardados!'**
+  String get goalsSaved;
+
+  /// No description provided for @notificationChannelName.
+  ///
+  /// In es, this message translates to:
+  /// **'Recordatorio de Lectura'**
+  String get notificationChannelName;
+
+  /// No description provided for @notificationChannelDescription.
+  ///
+  /// In es, this message translates to:
+  /// **'Notificaciones diarias para recordar tu sesión de lectura'**
+  String get notificationChannelDescription;
+
+  /// No description provided for @notificationTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Hora de leer! 📚'**
+  String get notificationTitle;
+
+  /// No description provided for @notificationBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Mantén tu racha diaria y avanza en tu meta de lectura.'**
+  String get notificationBody;
+
+  /// Mensaje de confirmación cuando la alarma de lectura se programa correctamente.
+  ///
+  /// In es, this message translates to:
+  /// **'Alarma programada con éxito!'**
+  String get notificationSaved;
+
+  /// Mensaje de error cuando falla la selección de imagen
+  ///
+  /// In es, this message translates to:
+  /// **'Error al seleccionar la imagen: {error}'**
+  String imageSelectionError(String error);
+
+  /// Opción del modal para seleccionar foto de perfil desde la galería
+  ///
+  /// In es, this message translates to:
+  /// **'Elegir de la Galería'**
+  String get chooseFromGallery;
+
+  /// Opción del modal para tomar foto de perfil con la cámara
+  ///
+  /// In es, this message translates to:
+  /// **'Tomar Foto con Cámara'**
+  String get takePhotoWithCamera;
+
+  /// Notificación flotante cuando el nombre de usuario se actualiza correctamente
+  ///
+  /// In es, this message translates to:
+  /// **'¡Nombre guardado con éxito!'**
+  String get nameSavedSuccess;
+
+  /// Notificación flotante cuando la foto de perfil se actualiza correctamente
+  ///
+  /// In es, this message translates to:
+  /// **'¡Imagen guardada con éxito!'**
+  String get imageSavedSuccess;
 
   /// Etiqueta para la pestaña Home en la barra de navegación principal.
   ///
@@ -1093,6 +1273,18 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Libros en {category}:'**
   String statsBooksInCategory(String category);
+
+  /// Título de la tarjeta de meta semanal en las estadísticas
+  ///
+  /// In es, this message translates to:
+  /// **'Objetivo Semanal'**
+  String get statsWeeklyHoursGoalTitle;
+
+  /// Subtítulo que muestra la cantidad de horas semanales configurada como meta
+  ///
+  /// In es, this message translates to:
+  /// **'{hours} horas de {goals}'**
+  String statsWeeklyHoursGoalSub(String hours, Object goals);
 
   /// Título para el flujo de adición manual
   ///

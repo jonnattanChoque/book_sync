@@ -1,3 +1,4 @@
+import 'package:book_sync/src/features/profile/presentation/screens/profile_screen.dart';
 import 'package:book_sync/src/features/reader_session/presentation/summary_screen.dart';
 import 'package:book_sync/src/features/stats/presentation/screens/stats_screen.dart';
 import 'package:book_sync/src/features/streak/presentation/screens/streak_screen.dart';
@@ -80,9 +81,15 @@ final appRouter = GoRouter(
           routes: [
             GoRoute(
               path: '/profile',
-              builder: (context, state) => const Scaffold(
-                body: Center(child: Text('Perfil')),
-              ),
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                  key: state.pageKey,
+                  child: const ProfileScreen(),
+                  transitionsBuilder: buildPageTurnTransition,
+                  transitionDuration: const Duration(milliseconds: 900),
+                  reverseTransitionDuration: const Duration(milliseconds: 700),
+                );
+              },
             ),
           ],
         ),

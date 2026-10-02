@@ -61,7 +61,7 @@ class BookSearchDto {
       if (rawCover.startsWith('http://')) {
         rawCover = rawCover.replaceFirst('http://', 'https://');
       }
-    } 
+    }
     // 3. Si viene nula o vacía, armar la URL usando el id del volumen de Google Books
     else if (json['id'] != null && (json['id'] as String).isNotEmpty) {
       rawCover = 'https://covers.openlibrary.org/b/isbn/$extractedIsbn-L.jpg?default=false';
@@ -71,8 +71,8 @@ class BookSearchDto {
       id: json['id'] as String? ?? '',
       title: volumeInfo['title'] as String? ?? 'Sin título',
       authors: (volumeInfo['authors'] as List<dynamic>?)
-              ?.map((e) => e.toString())
-              .toList() ??
+          ?.map((e) => e.toString())
+          .toList() ??
           [],
       coverUrl: rawCover,
       description: volumeInfo['description'] as String?,

@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:book_sync/core/domain/entities/app_settings_stat.dart';
+import 'package:book_sync/core/providers/app_settings_provider.dart';
 import 'package:book_sync/src/data/book_repository.dart';
 import 'package:book_sync/src/domain/book.dart';
 import 'package:book_sync/src/features/reading_slider/presentation/providers/books_provider.dart';
@@ -10,10 +12,11 @@ import 'package:book_sync/src/features/stats/domain/models/stats_stat.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class StatsNotifier extends StateNotifier<StatsState> {
+  final Ref _ref;
   final BookRepository _repository;
   StreamSubscription<List<Book>>? _booksSubscription;
 
-  StatsNotifier(this._repository) : super(StatsState()) {
+  StatsNotifier(this._ref, this._repository) : super(StatsState()) {
     _initSubscription();
   }
 
@@ -22,6 +25,23 @@ class StatsNotifier extends StateNotifier<StatsState> {
 
     _booksSubscription = _repository.watchAllBooks().listen((books) async {
       await _calculateStats(books);
+    });
+
+    _ref.listen<AppSettings>(appSettingsProvider, (previous, next) {
+      if (previous?.yearlyGoalBooks != next.yearlyGoalBooks ||
+          previous?.weeklyGoalHours != next.weeklyGoalHours) {
+        
+        final annualGoal = next.yearlyGoalBooks;
+        final progress = annualGoal > 0
+            ? (state.finishedBooksYear / annualGoal).clamp(0.0, 1.0)
+            : 0.0;
+
+        state = state.copyWith(
+          annualGoal: annualGoal,
+          weeklyHoursGoal: next.weeklyGoalHours,
+          goalProgressPercentage: progress,
+        );
+      }
     });
   }
 
@@ -37,9 +57,15 @@ class StatsNotifier extends StateNotifier<StatsState> {
     final now = DateTime.now();
     final currentSelectedYear = state.selectedYear;
 
-    // 2. Extraer datos mediante funciones con responsabilidad única
+    // 2. Leer las configuraciones globales actuales de objetivos
+    final settings = _ref.read(appSettingsProvider);
+    final annualGoal = settings.yearlyGoalBooks;
+    final weeklyHoursGoal = settings.weeklyGoalHours;
+
+    // 3. Extraer datos mediante funciones con responsabilidad única
     final availableYears = _getAvailableYears(books, now.year);
     final yearMetrics = _calculateYearlyMetrics(books, currentSelectedYear);
+    final weeklyHoursRead = 2.0;//_calculateCurrentWeeklyHours(books);
 
     final int monthsToDivide = (currentSelectedYear == now.year) ? now.month : 12;
     final double monthlyBooksAvg = yearMetrics.finishedBooks / monthsToDivide;
@@ -47,9 +73,6 @@ class StatsNotifier extends StateNotifier<StatsState> {
     final double yearlyHours = yearMetrics.totalSeconds / 3600.0;
     final double pagesPerHour = yearlyHours > 0 ? (yearMetrics.totalPages / yearlyHours) : 0.0;
 
-    final double goalProgressPercentage = kDefaultAnnualBookGoal > 0 
-        ? (yearMetrics.finishedBooks / kDefaultAnnualBookGoal).clamp(0.0, 1.0) 
-        : 0.0;
     await Future.delayed(const Duration(seconds: 1));
 
     state = state.copyWith(
@@ -59,8 +82,9 @@ class StatsNotifier extends StateNotifier<StatsState> {
       totalMinutesReadYear: (yearMetrics.totalSeconds / 60).round(),
       totalPagesReadYear: yearMetrics.totalPages,
       finishedBooksYear: yearMetrics.finishedBooks,
-      annualGoal: kDefaultAnnualBookGoal,
-      goalProgressPercentage: goalProgressPercentage,
+      weeklyHoursRead: weeklyHoursRead,
+      annualGoal: annualGoal,
+      weeklyHoursGoal: weeklyHoursGoal,
       monthlyBooksChartData: _calculateMonthlyBooks(books, currentSelectedYear),
       monthlyReadingTimeChartData: _calculateMonthlyReadingTime(books, currentSelectedYear),
       starRatingChartData: _calculateStarRatings(books, currentSelectedYear),
@@ -136,6 +160,30 @@ class StatsNotifier extends StateNotifier<StatsState> {
     );
   }
 
+  /// Calcula las horas leídas en la semana en curso (de domingo a sábado)
+  double _calculateCurrentWeeklyHours(List<Book> books) {
+    final now = DateTime.now();
+    
+    // En Dart, weekday es 1 (lunes) a 7 (domingo). 
+    // Calculamos la fecha del domingo de inicio de esta semana:
+    final daysSinceSunday = now.weekday % 7;
+    final startOfWeek = DateTime(now.year, now.month, now.day)
+        .subtract(Duration(days: daysSinceSunday));
+    final endOfWeek = startOfWeek.add(const Duration(days: 7));
+
+    int totalSecondsThisWeek = 0;
+
+    for (final book in books) {
+      for (final session in book.sessions) {
+        final sessionDate = session.startTime;
+        if (sessionDate.isAfter(startOfWeek) && sessionDate.isBefore(endOfWeek)) {
+          totalSecondsThisWeek += session.durationSeconds;
+        }
+      }
+    }
+
+    return totalSecondsThisWeek / 3600.0;
+  }
   List<MonthlyBookStat> _calculateMonthlyBooks(List<Book> books, int currentYear) {
     // Inicializamos los 12 meses en 0
     final List<int> monthCounts = List.filled(12, 0);
@@ -287,7 +335,6 @@ class StatsNotifier extends StateNotifier<StatsState> {
     final books = await _repository.watchAllBooks().first;
     await _calculateStats(books);
   }
-
   
   @override
   void dispose() {
@@ -298,5 +345,5 @@ class StatsNotifier extends StateNotifier<StatsState> {
 
 final statsProvider = StateNotifierProvider<StatsNotifier, StatsState>((ref) {
   final repository = ref.watch(bookRepositoryProvider);
-  return StatsNotifier(repository);
+  return StatsNotifier(ref, repository);
 });

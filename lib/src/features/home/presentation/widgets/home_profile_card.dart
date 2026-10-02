@@ -12,8 +12,8 @@ class HomeProfileCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // Cuando se implemente la feature de Perfil, aquí se consumirá su Provider.
-    final userName = context.l10n.defaultUserName;
-    final readerLevel = context.l10n.readerLevelDefault;
+    final userName = "";//context.l10n.defaultUserName;
+    final readerLevel = "";//context.l10n.readerLevelDefault;
 
     return HomeBaseCard(
       onTap: () => context.push('/profile'),

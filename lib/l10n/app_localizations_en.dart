@@ -377,13 +377,108 @@ class AppLocalizationsEn extends AppLocalizations {
   String get emptyNotesMessage => 'No notes saved for this book';
 
   @override
-  String get profileTitle => 'Reader Profile';
+  String get profileTitle => 'Profile';
 
   @override
-  String get defaultUserName => 'User';
+  String get userDataSection => 'User Data';
 
   @override
-  String get readerLevelDefault => 'Voracious Reader';
+  String get nameLabel => 'Name';
+
+  @override
+  String get emailLabel => 'Email';
+
+  @override
+  String get saveButton => 'Save changes';
+
+  @override
+  String get settingsSection => 'App Settings';
+
+  @override
+  String get themeTitle => 'App Theme';
+
+  @override
+  String get themeLight => 'Light';
+
+  @override
+  String get themeDark => 'Dark';
+
+  @override
+  String get themeSystem => 'System';
+
+  @override
+  String get languageTitle => 'Language';
+
+  @override
+  String get languageEs => 'Spanish';
+
+  @override
+  String get languageEn => 'English';
+
+  @override
+  String get remindersSection => 'Reminders';
+
+  @override
+  String get readingAlarmTitle => 'Reading Alarm';
+
+  @override
+  String get readingAlarmSubtitle =>
+      'Set a daily notification to keep your streak going';
+
+  @override
+  String get goalsSection => 'Reading Goals';
+
+  @override
+  String get dailyGoal => 'Daily goal (minutes)';
+
+  @override
+  String get weeklyGoal => 'Weekly goal (books)';
+
+  @override
+  String get monthlyGoal => 'Monthly goal (books)';
+
+  @override
+  String get yearlyGoal => 'Yearly goal (books)';
+
+  @override
+  String get weeklyHoursGoal => 'Weekly goal (hours)';
+
+  @override
+  String get goalsSaved => 'Goals saved!';
+
+  @override
+  String get notificationChannelName => 'Reading Reminder';
+
+  @override
+  String get notificationChannelDescription =>
+      'Daily notifications to remind you of your reading session';
+
+  @override
+  String get notificationTitle => 'Time to read! 📚';
+
+  @override
+  String get notificationBody =>
+      'Keep up your daily streak and progress towards your reading goal.';
+
+  @override
+  String get notificationSaved => 'Alarm scheduled successfully!';
+
+  @override
+  String imageSelectionError(String error) {
+    return 'Error selecting image: $error';
+  }
+
+  @override
+  String get chooseFromGallery => 'Choose from Gallery';
+
+  @override
+  String get takePhotoWithCamera => 'Take Photo with Camera';
+
+  @override
+  String get nameSavedSuccess => 'Name saved successfully!';
+
+  @override
+  String get imageSavedSuccess => 'Image saved successfully!';
 
   @override
   String get navHome => 'Home';
@@ -572,6 +667,14 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String statsBooksInCategory(String category) {
     return 'Books in $category:';
+  }
+
+  @override
+  String get statsWeeklyHoursGoalTitle => 'Weekly Goal';
+
+  @override
+  String statsWeeklyHoursGoalSub(String hours, Object goals) {
+    return '$hours hours of $goals';
   }
 
   @override

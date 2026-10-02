@@ -4,6 +4,7 @@ import 'package:book_sync/src/features/stats/domain/models/monthly_reading_time_
 import 'package:book_sync/src/features/stats/domain/models/star_rating_stat.dart';
 
 const int kDefaultAnnualBookGoal = 12;
+const double kDefaultWeeklyHoursGoal = 5.0;
 
 class StatsState {
   final int selectedYear;
@@ -18,6 +19,8 @@ class StatsState {
   final List<CategoryStat> categoryChartData;
   final int finishedBooksYear;
   final int annualGoal;
+  final double weeklyHoursRead;
+  final double weeklyHoursGoal;
   final double goalProgressPercentage;
   final bool isLoading;
 
@@ -33,7 +36,9 @@ class StatsState {
     this.starRatingChartData = const [],
     this.categoryChartData = const [],
     this.finishedBooksYear = 0,
+    this.weeklyHoursRead = 0.0,
     this.annualGoal = kDefaultAnnualBookGoal,
+    this.weeklyHoursGoal = kDefaultWeeklyHoursGoal,
     this.goalProgressPercentage = 0.0,
     this.isLoading = true,
   }) : selectedYear = selectedYear ?? DateTime.now().year;
@@ -51,6 +56,8 @@ class StatsState {
     List<CategoryStat>? categoryChartData,
     int? finishedBooksYear,
     int? annualGoal,
+    double? weeklyHoursRead,
+    double? weeklyHoursGoal,
     double? goalProgressPercentage,
     bool? isLoading,
   }) {
@@ -67,6 +74,8 @@ class StatsState {
       categoryChartData: categoryChartData ?? this.categoryChartData,
       finishedBooksYear: finishedBooksYear ?? this.finishedBooksYear,
       annualGoal: annualGoal ?? this.annualGoal,
+      weeklyHoursRead: weeklyHoursRead ?? this.weeklyHoursRead,
+      weeklyHoursGoal: weeklyHoursGoal ?? this.weeklyHoursGoal,
       goalProgressPercentage: goalProgressPercentage ?? this.goalProgressPercentage,
       isLoading: isLoading ?? this.isLoading,
     );

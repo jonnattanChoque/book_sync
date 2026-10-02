@@ -63,6 +63,14 @@ dependencies:
   table_calendar: ^3.1.2
   fl_chart: ^1.2.0
 
+  # Notificaciones locales
+  flutter_local_notifications: ^17.2.2
+
+  # Manejo de zonas horarias para programar la alarma diaria a una hora exacta
+  timezone: ^0.9.4
+  flutter_timezone: ^5.1.0
+  image_picker: ^1.2.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

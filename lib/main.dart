@@ -1,5 +1,8 @@
+import 'package:book_sync/core/data/datasources/app_config_datasource.dart';
 import 'package:book_sync/core/persistence/isar_provider.dart';
+import 'package:book_sync/core/providers/app_settings_provider.dart';
 import 'package:book_sync/core/router/app_router.dart';
+import 'package:book_sync/core/services/notification_service.dart';
 import 'package:book_sync/core/theme/app_theme.dart';
 import 'package:book_sync/l10n/app_localizations.dart';
 import 'package:book_sync/src/domain/book.dart';
@@ -31,10 +34,18 @@ void main() async {
     directory: dir.path,
   );
 
+  final datasource = AppConfigDatasource(isar);
+  final initialSettings = await datasource.getOrInitSettings();
+
+  await NotificationService.init();
+
   runApp(
     ProviderScope(
       overrides: [
         isarProvider.overrideWithValue(isar),
+        appSettingsProvider.overrideWith(
+          (ref) => AppSettingsNotifier(initialSettings, datasource),
+        ),
       ],
       child: const ToastificationWrapper(
         child: MyApp(),
@@ -43,21 +54,23 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final settings = ref.watch(appSettingsProvider);
+
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Book Sync',
-      darkTheme: darkTheme,
-      themeMode: ThemeMode.dark,
       theme: lightTheme,
+      darkTheme: darkTheme,
+      themeMode: settings.themeMode,
       routerConfig: appRouter,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      locale: const Locale('es'),
+      locale: settings.locale,
     );
   }
 }

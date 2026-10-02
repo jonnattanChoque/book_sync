@@ -40,5 +40,4 @@ Future<void> mergeLocales(String locale, Directory srcDir) async {
   final outputFile = File('lib/l10n/app_$locale.arb');
   const encoder = JsonEncoder.withIndent('  ');
   await outputFile.writeAsString(encoder.convert(mergedMap));
-  print('Generado exitosamente: ${outputFile.path}');
 }

@@ -1,6 +1,131 @@
 {
   "@@locale": "en",
-  "profileTitle": "Reader Profile",
-  "defaultUserName": "User",
-  "readerLevelDefault": "Voracious Reader"
+  "profileTitle": "Profile",
+  "@profileTitle": {
+    "description": "Main title of the user profile screen."
+  },
+  "userDataSection": "User Data",
+  "@userDataSection": {
+    "description": "Header for the editable user personal data section."
+  },
+  "nameLabel": "Name",
+  "@nameLabel": {
+    "description": "Label for the user name input field."
+  },
+  "emailLabel": "Email",
+  "@emailLabel": {
+    "description": "Label for the email input field."
+  },
+  "saveButton": "Save changes",
+  "@saveButton": {
+    "description": "Button text to submit and save modified profile changes."
+  },
+  "settingsSection": "App Settings",
+  "@settingsSection": {
+    "description": "Header for general application settings."
+  },
+  "themeTitle": "App Theme",
+  "@themeTitle": {
+    "description": "Title for selecting the theme/visual appearance."
+  },
+  "themeLight": "Light",
+  "@themeLight": {
+    "description": "Light theme option."
+  },
+  "themeDark": "Dark",
+  "@themeDark": {
+    "description": "Dark theme option."
+  },
+  "themeSystem": "System",
+  "@themeSystem": {
+    "description": "Option to inherit system default theme."
+  },
+  "languageTitle": "Language",
+  "@languageTitle": {
+    "description": "Title for selecting the application language."
+  },
+  "languageEs": "Spanish",
+  "@languageEs": {
+    "description": "Spanish language option."
+  },
+  "languageEn": "English",
+  "@languageEn": {
+    "description": "English language option."
+  },
+  "remindersSection": "Reminders",
+  "@remindersSection": {
+    "description": "Header for reminders and alarms section."
+  },
+  "readingAlarmTitle": "Reading Alarm",
+  "@readingAlarmTitle": {
+    "description": "Title for the daily reading notification toggle."
+  },
+  "readingAlarmSubtitle": "Set a daily notification to keep your streak going",
+  "@readingAlarmSubtitle": {
+    "description": "Subtitle explaining the reading alarm notification feature."
+  },
+  "goalsSection": "Reading Goals",
+  "@goalsSection": {
+    "description": "Header for reading goals and targets."
+  },
+  "dailyGoal": "Daily goal (minutes)",
+  "@dailyGoal": {
+    "description": "Label for setting daily reading target in minutes."
+  },
+  "weeklyGoal": "Weekly goal (books)",
+  "@weeklyGoal": {
+    "description": "Label for setting weekly reading target in number of books."
+  },
+  "monthlyGoal": "Monthly goal (books)",
+  "@monthlyGoal": {
+    "description": "Label for setting monthly reading target in number of books."
+  },
+  "yearlyGoal": "Yearly goal (books)",
+  "@yearlyGoal": {
+    "description": "Label for setting yearly reading target in number of books."
+  },
+  "weeklyHoursGoal": "Weekly goal (hours)",
+  "@weeklyHoursGoal": {
+    "description": "Label for setting weekly reading target in hours."
+  },
+  "goalsSaved": "Goals saved!",
+  "@goalsSaved": {
+    "description": "Confirmation message when reading goals are successfully saved."
+  },
+  "notificationChannelName": "Reading Reminder",
+  "notificationChannelDescription": "Daily notifications to remind you of your reading session",
+  "notificationTitle": "Time to read! 📚",
+  "notificationBody": "Keep up your daily streak and progress towards your reading goal.",
+  "notificationSaved": "Alarm scheduled successfully!",
+  "@notificationChannelName": {},
+  "@notificationChannelDescription": {},
+  "@notificationTitle": {},
+  "@notificationBody": {},
+  "@notificationSaved": {},
+  "imageSelectionError": "Error selecting image: {error}",
+  "@imageSelectionError": {
+    "description": "Error message when image selection fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Permission denied"
+      }
+    }
+  },
+  "chooseFromGallery": "Choose from Gallery",
+  "@chooseFromGallery": {
+    "description": "Modal option to pick profile photo from gallery"
+  },
+  "takePhotoWithCamera": "Take Photo with Camera",
+  "@takePhotoWithCamera": {
+    "description": "Modal option to take profile photo using camera"
+  },
+  "nameSavedSuccess": "Name saved successfully!",
+  "@nameSavedSuccess": {
+    "description": "Toast notification when username is updated successfully"
+  },
+  "imageSavedSuccess": "Image saved successfully!",
+  "@imageSavedSuccess": {
+    "description": "Toast notification when profile image is updated successfully"
+  }
 }
