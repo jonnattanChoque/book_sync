@@ -8,6 +8,7 @@ import 'package:book_sync/src/features/library/presentation/widgets/library_card
 import 'package:book_sync/src/features/reading_slider/presentation/providers/books_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class LibrarySectionScreen extends ConsumerStatefulWidget {
   const LibrarySectionScreen({super.key});
@@ -43,16 +44,15 @@ class _LibrarySectionScreenState extends ConsumerState<LibrarySectionScreen> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           scrolledUnderElevation: 0,
-          leading: IconButton(
+          leading: (context.canPop()) ? IconButton(
             icon: Icon(
               AppIcons.back,
               color: context.theme.colorScheme.onSurface,
             ),
             onPressed: () {
-              FocusScope.of(context).unfocus();
-              Navigator.of(context).pop();
+              context.pop();
             },
-          ),
+          ) : null,
           title: Text(context.l10n.libraryTitle, style: context.theme.textTheme.titleLarge),
           bottom: _LibraryHeaderBottom(
             tabBar: TabBar(

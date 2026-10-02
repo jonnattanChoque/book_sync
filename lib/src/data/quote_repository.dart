@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:book_sync/core/constants/app_assets.dart';
 import 'package:flutter/services.dart';
-import '../domain/quote.dart';
+import '../features/quotes/domain/models/quote.dart';
 
 class QuoteRepository {
   Future<Quote> getRandomQuote() async {

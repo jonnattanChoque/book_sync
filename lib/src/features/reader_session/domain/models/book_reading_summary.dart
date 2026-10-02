@@ -1,4 +1,3 @@
-// lib/src/domain/book_reading_summary.dart
 import 'package:book_sync/src/domain/book.dart';
 
 class BookReadingSummary {

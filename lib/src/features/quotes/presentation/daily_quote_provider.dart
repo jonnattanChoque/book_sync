@@ -1,5 +1,5 @@
 import 'package:book_sync/src/data/quote_repository.dart';
-import 'package:book_sync/src/domain/quote.dart';
+import 'package:book_sync/src/features/quotes/domain/models/quote.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final quoteRepositoryProvider = Provider((ref) => QuoteRepository());

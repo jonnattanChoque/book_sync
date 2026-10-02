@@ -1,6 +1,6 @@
 // lib/src/features/streak/data/streak_repository.dart
 import 'package:book_sync/src/domain/book.dart';
-import 'package:book_sync/src/domain/book_reading_summary.dart';
+import 'package:book_sync/src/features/reader_session/domain/models/book_reading_summary.dart';
 import 'package:isar/isar.dart';
 import 'package:book_sync/src/domain/user_streak.dart';
 

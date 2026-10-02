@@ -9,7 +9,7 @@ import 'package:book_sync/core/constants/app_icons.dart';
 import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/widgets/background_paper_texture.dart';
 import 'package:book_sync/core/widgets/book_loader.dart';
-import 'package:book_sync/src/domain/book_reading_summary.dart';
+import 'package:book_sync/src/features/reader_session/domain/models/book_reading_summary.dart';
 import 'package:book_sync/src/features/streak/presentation/providers/streak_providers.dart';
 
 class StreakScreen extends ConsumerWidget {
@@ -25,35 +25,13 @@ class StreakScreen extends ConsumerWidget {
       color: context.theme.scaffoldBackgroundColor,
       child: Stack(
         children: [
-          // Textura de fondo persistente
           const Positioned.fill(
             child: BackgroundPaperTexture(),
           ),
 
           Scaffold(
             backgroundColor: Colors.transparent,
-            appBar: AppBar(
-              centerTitle: true,
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              leading: IconButton(
-                icon: Icon(
-                  AppIcons.back,
-                  color: context.theme.colorScheme.onSurface,
-                ),
-                onPressed: () {
-                  FocusScope.of(context).unfocus();
-                  Navigator.of(context).pop();
-                },
-              ),
-              title: Text(
-                context.l10n.streakTitle,
-                style: context.theme.textTheme.titleLarge?.copyWith(
-                  color: context.theme.colorScheme.onSurface,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+            appBar: _buildNav(context),
             body: streakAsync.when(
               loading: () => const Center(child: BookLoader()),
               error: (_, _) => const SizedBox.shrink(),
@@ -69,113 +47,11 @@ class StreakScreen extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       // --- 3.3.1 y 3.3.2: Tarjetas Racha Actual y Mejor Racha ---
-                      Row(
-                        children: [
-                          Expanded(
-                            child: _StreakMetricCard(
-                              title: context.l10n.currentStreakTitle,
-                              count: currentStreak,
-                              icon: Icons.local_fire_department_rounded,
-                              accentColor: Colors.orange,
-                            ),
-                          ),
-                          const SizedBox(width: 16),
-                          Expanded(
-                            child: _StreakMetricCard(
-                              title: context.l10n.bestStreakTitle,
-                              count: bestStreak,
-                              icon: Icons.emoji_events_rounded,
-                              accentColor: context.cozy.inkColor ?? context.theme.colorScheme.secondary,
-                            ),
-                          ),
-                        ],
-                      ),
-
+                      _buildMetrics(context, currentStreak, bestStreak),
                       const SizedBox(height: 24),
-
                       // --- 3.3.3: Calendario de Lecturas ---
-                      Card(
-                        elevation: 0,
-                        color: context.theme.cardColor.withValues(alpha: 0.8),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                          side: BorderSide(
-                            color: context.cozy.inkColor?.withValues(alpha: 0.1) ?? Colors.grey.withValues(alpha: 0.2),
-                          ),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: TableCalendar(
-                            locale: currentLanguage,
-                            firstDay: DateTime.utc(2020, 1, 1),
-                            lastDay: DateTime.utc(2030, 12, 31),
-                            focusedDay: selectedDate,
-                            currentDay: DateTime.now(),
-                            selectedDayPredicate: (day) => isSameDay(selectedDate, day),
-                            headerStyle: HeaderStyle(
-                              formatButtonVisible: false,
-                              titleCentered: true,
-                              titleTextFormatter: (date, locale) {
-                                // 'MMMM yyyy' genera por ejemplo: "octubre 2026"
-                                final rawFormatted = DateFormat('MMMM yyyy', locale ?? 'es').format(date);
-                                
-                                // Capitalizar la primera letra para que quede "Octubre 2026"
-                                if (rawFormatted.isNotEmpty) {
-                                  return rawFormatted[0].toUpperCase() + rawFormatted.substring(1);
-                                }
-                                return rawFormatted;
-                              },
-                              titleTextStyle: context.theme.textTheme.titleMedium!.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: context.theme.colorScheme.onSurface,
-                              ),
-                            ),
-                            calendarStyle: CalendarStyle(
-                              selectedDecoration: BoxDecoration(
-                                color: Colors.orange.withValues(alpha: 0.25),
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: Colors.orange,
-                                  width: 2,
-                                ),
-                              ),
-                              todayDecoration: BoxDecoration(
-                                color: context.theme.colorScheme.primary.withValues(alpha: 0.15),
-                                shape: BoxShape.circle,
-                              ),
-                            ),
-                            onDaySelected: (selected, focused) {
-                              ref.read(selectedCalendarDateProvider.notifier).state = DateTime(
-                                selected.year,
-                                selected.month,
-                                selected.day,
-                              );
-                            },
-                            calendarBuilders: CalendarBuilders(
-                              markerBuilder: (context, date, events) {
-                                final hasRead = readingDays.any((d) => isSameDay(d, date));
-                                if (hasRead) {
-                                  return Positioned(
-                                    bottom: 6,
-                                    child: Container(
-                                      width: 6,
-                                      height: 6,
-                                      decoration: const BoxDecoration(
-                                        color: Colors.orange,
-                                        shape: BoxShape.circle,
-                                      ),
-                                    ),
-                                  );
-                                }
-                                return null;
-                              },
-                            ),
-                          ),
-                        ),
-                      ),
-
+                      _buildCalendar(context, currentLanguage, selectedDate, ref, readingDays),
                       const SizedBox(height: 24),
-
                       // --- Detalle de libros leídos en la fecha seleccionada ---
                       readingsAsync.when(
                         data: (summaries) {
@@ -240,6 +116,137 @@ class StreakScreen extends ConsumerWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  AppBar _buildNav(BuildContext context) {
+    return AppBar(
+      centerTitle: true,
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      leading: IconButton(
+        icon: Icon(
+          AppIcons.back,
+          color: context.theme.colorScheme.onSurface,
+        ),
+        onPressed: () {
+          FocusScope.of(context).unfocus();
+          Navigator.of(context).pop();
+        },
+      ),
+      title: Text(
+        context.l10n.streakTitle,
+        style: context.theme.textTheme.titleLarge?.copyWith(
+          color: context.theme.colorScheme.onSurface,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+
+  Row _buildMetrics(BuildContext context, int currentStreak, int bestStreak) {
+    return Row(
+      children: [
+        Expanded(
+          child: _StreakMetricCard(
+            title: context.l10n.currentStreakTitle,
+            count: currentStreak,
+            icon: Icons.local_fire_department_rounded,
+            accentColor: Colors.orange,
+          ),
+        ),
+        const SizedBox(width: 16),
+        Expanded(
+          child: _StreakMetricCard(
+            title: context.l10n.bestStreakTitle,
+            count: bestStreak,
+            icon: Icons.emoji_events_rounded,
+            accentColor: context.cozy.inkColor ?? context.theme.colorScheme.secondary,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Card _buildCalendar(BuildContext context, String currentLanguage, DateTime selectedDate, WidgetRef ref, List<DateTime> readingDays) {
+    return Card(
+      elevation: 0,
+      color: context.theme.cardColor.withValues(alpha: 0.8),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+        side: BorderSide(
+          color: context.cozy.inkColor?.withValues(alpha: 0.1) ?? Colors.grey.withValues(alpha: 0.2),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: TableCalendar(
+          locale: currentLanguage,
+          firstDay: DateTime.utc(2020, 1, 1),
+          lastDay: DateTime.utc(2030, 12, 31),
+          focusedDay: selectedDate,
+          currentDay: DateTime.now(),
+          selectedDayPredicate: (day) => isSameDay(selectedDate, day),
+          headerStyle: HeaderStyle(
+            formatButtonVisible: false,
+            titleCentered: true,
+            titleTextFormatter: (date, locale) {
+              // 'MMMM yyyy' genera por ejemplo: "octubre 2026"
+              final rawFormatted = DateFormat('MMMM yyyy', locale ?? 'es').format(date);
+              
+              // Capitalizar la primera letra para que quede "Octubre 2026"
+              if (rawFormatted.isNotEmpty) {
+                return rawFormatted[0].toUpperCase() + rawFormatted.substring(1);
+              }
+              return rawFormatted;
+            },
+            titleTextStyle: context.theme.textTheme.titleMedium!.copyWith(
+              fontWeight: FontWeight.bold,
+              color: context.theme.colorScheme.onSurface,
+            ),
+          ),
+          calendarStyle: CalendarStyle(
+            selectedDecoration: BoxDecoration(
+              color: Colors.orange.withValues(alpha: 0.25),
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: Colors.orange,
+                width: 2,
+              ),
+            ),
+            todayDecoration: BoxDecoration(
+              color: context.theme.colorScheme.primary.withValues(alpha: 0.15),
+              shape: BoxShape.circle,
+            ),
+          ),
+          onDaySelected: (selected, focused) {
+            ref.read(selectedCalendarDateProvider.notifier).state = DateTime(
+              selected.year,
+              selected.month,
+              selected.day,
+            );
+          },
+          calendarBuilders: CalendarBuilders(
+            markerBuilder: (context, date, events) {
+              final hasRead = readingDays.any((d) => isSameDay(d, date));
+              if (hasRead) {
+                return Positioned(
+                  bottom: 6,
+                  child: Container(
+                    width: 6,
+                    height: 6,
+                    decoration: const BoxDecoration(
+                      color: Colors.orange,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                );
+              }
+              return null;
+            },
+          ),
+        ),
       ),
     );
   }

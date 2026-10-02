@@ -1,6 +1,6 @@
 // lib/src/features/streak/presentation/providers/streak_providers.dart
 import 'package:book_sync/core/persistence/isar_provider.dart';
-import 'package:book_sync/src/domain/book_reading_summary.dart';
+import 'package:book_sync/src/features/reader_session/domain/models/book_reading_summary.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:book_sync/src/domain/user_streak.dart';
 import 'package:book_sync/src/features/streak/data/streak_repository.dart';

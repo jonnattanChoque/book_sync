@@ -23,62 +23,7 @@ class HomeLibraryCard extends ConsumerWidget {
 
         return HomeBaseCard(
           onTap: () => context.push('/library'),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    context.l10n.libraryTitle,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 4,
-                    ),
-                    decoration: BoxDecoration(
-                      color: context.cozy.bookmarkColor!.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Text(
-                      books.length == 1
-                          ? context.l10n.libraryOneCount(1)
-                          : context.l10n.libraryCount(books.length),
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: context.cozy.bookmarkColor!.withValues(alpha: 0.6),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              if (previewBooks.isEmpty)
-                Text(
-                  context.l10n.noBooksRegistered,
-                  style: const TextStyle(fontSize: 13, color: Colors.grey),
-                )
-              else
-                SizedBox(
-                  height: 60,
-                  child: Stack(
-                    children: previewBooks.asMap().entries.map((entry) {
-                      int index = entry.key;
-                      return Positioned(
-                        left: index * 45.0,
-                        child: _buildBookAvatar(entry.value),
-                      );
-                    }).toList(),
-                  ),
-                ),
-            ],
-          ),
+          child: _buildHomeCardContent(context, books, previewBooks),
         );
       },
       loading: () => const HomeBaseCard(
@@ -93,6 +38,65 @@ class HomeLibraryCard extends ConsumerWidget {
           style: const TextStyle(color: Colors.red),
         ),
       ),
+    );
+  }
+
+  Column _buildHomeCardContent(BuildContext context, List<Book> books, List<Book> previewBooks) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              context.l10n.libraryTitle,
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10,
+                vertical: 4,
+              ),
+              decoration: BoxDecoration(
+                color: context.cozy.bookmarkColor!.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Text(
+                books.length == 1
+                    ? context.l10n.libraryOneCount(1)
+                    : context.l10n.libraryCount(books.length),
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  color: context.cozy.bookmarkColor!.withValues(alpha: 0.6),
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 16),
+        if (previewBooks.isEmpty)
+          Text(
+            context.l10n.noBooksRegistered,
+            style: const TextStyle(fontSize: 13, color: Colors.grey),
+          )
+        else
+          SizedBox(
+            height: 60,
+            child: Stack(
+              children: previewBooks.asMap().entries.map((entry) {
+                int index = entry.key;
+                return Positioned(
+                  left: index * 45.0,
+                  child: _buildBookAvatar(entry.value),
+                );
+              }).toList(),
+            ),
+          ),
+      ],
     );
   }
 

@@ -8,7 +8,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class DetailNoteItem extends ConsumerWidget {
   final Note note;
 
-  const DetailNoteItem({super.key, 
+  const DetailNoteItem({
+    super.key, 
     required this.note,
   });
 
@@ -18,10 +19,10 @@ class DetailNoteItem extends ConsumerWidget {
       margin: const EdgeInsets.only(bottom: 8.0),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: context.theme.cardColor.withValues(alpha: 0.8),
+        color: context.theme.cardColor.withValues(alpha: 0.4), // Fondo atenuado
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: context.cozy.inkColor!.withValues(alpha: 0.2),
+          color: context.cozy.inkColor?.withValues(alpha: 0.08) ?? Colors.grey.shade300, // Borde sutil
         ),
       ),
       child: Column(

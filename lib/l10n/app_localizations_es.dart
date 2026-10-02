@@ -473,6 +473,109 @@ class AppLocalizationsEs extends AppLocalizations {
   String get statsDescription => 'Mira aquí tus estadísticas';
 
   @override
+  String get statsYearlyGoalTitle => 'Objetivo Anual';
+
+  @override
+  String statsYearlyGoalSub(int read, int target) {
+    return '$read de $target libros';
+  }
+
+  @override
+  String get statsMonthlyBooksAvg => 'Promedio Libros/Mes';
+
+  @override
+  String get statsReadingSpeed => 'Velocidad de Lectura';
+
+  @override
+  String statsPagesPerHour(String pages) {
+    return '$pages pág/h';
+  }
+
+  @override
+  String get statsTotalYearlySummary => 'Total del Año';
+
+  @override
+  String statsTotalReadFormat(int hours, int minutes, int pages) {
+    return '${hours}h ${minutes}m • $pages págs';
+  }
+
+  @override
+  String get statsBarChartTitle => 'Actividad de Lectura';
+
+  @override
+  String get statsFilterMonthly => 'Mes';
+
+  @override
+  String get statsFilterYearly => 'Año';
+
+  @override
+  String get statsPagesReadLabel => 'Páginas leídas';
+
+  @override
+  String get statsHoursReadLabel => 'Horas leídas';
+
+  @override
+  String get statsMonthlyBooksSubtitle => 'Libros leídos por mes este año';
+
+  @override
+  String get statsBookCountSingular => 'libro';
+
+  @override
+  String get statsBookCountPlural => 'libros';
+
+  @override
+  String get statsYearFilterTooltip => 'Seleccionar año';
+
+  @override
+  String get statsSelectYearTitle => 'Seleccionar Año';
+
+  @override
+  String get statsNoDataForYearTitle => 'Sin registros de lectura';
+
+  @override
+  String get statsNoDataForYearSubtitle => 'No terminaste libros en este año';
+
+  @override
+  String get statsReadingTimeChartTitle => 'Tiempo de lectura por mes';
+
+  @override
+  String get statsNoReadingTimeForYearTitle =>
+      'Sin tiempo de lectura registrado';
+
+  @override
+  String statsPagesCount(int count) {
+    return '$count págs';
+  }
+
+  @override
+  String get statsRatingsChartTitle => 'Distribución por valoración';
+
+  @override
+  String get statsNoRatingsForYearTitle => 'Sin valoraciones en este año';
+
+  @override
+  String statsBooksCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count libros',
+      one: '1 libro',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statsCategoriesChartTitle => 'Distribución por categorías';
+
+  @override
+  String get statsNoCategoriesForYearTitle => 'Sin categorías en este año';
+
+  @override
+  String statsBooksInCategory(String category) {
+    return 'Libros en $category:';
+  }
+
+  @override
   String get addManualBook => 'Agregar libro';
 
   @override

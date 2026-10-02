@@ -524,11 +524,8 @@
     "description": "Empty state message when no notes are saved"
   },
   "profileTitle": "Reader Profile",
-  "@profileTitle": {},
   "defaultUserName": "User",
-  "@defaultUserName": {},
   "readerLevelDefault": "Voracious Reader",
-  "@readerLevelDefault": {},
   "navHome": "Home",
   "@navHome": {
     "description": "Label for the Home tab in the main bottom navigation bar."
@@ -646,6 +643,163 @@
   "statsDescription": "Check your statistics here",
   "@statsDescription": {
     "description": "Descriptive text or secondary call-to-action on the statistics card"
+  },
+  "statsYearlyGoalTitle": "Yearly Goal",
+  "@statsYearlyGoalTitle": {
+    "description": "Title for the yearly reading goal card"
+  },
+  "statsYearlyGoalSub": "{read} of {target} books",
+  "@statsYearlyGoalSub": {
+    "description": "Subtitle indicating progress on the books read goal",
+    "placeholders": {
+      "read": {
+        "type": "int",
+        "example": "5"
+      },
+      "target": {
+        "type": "int",
+        "example": "12"
+      }
+    }
+  },
+  "statsMonthlyBooksAvg": "Monthly Books Avg",
+  "@statsMonthlyBooksAvg": {
+    "description": "Title for monthly average books read card"
+  },
+  "statsReadingSpeed": "Reading Speed",
+  "@statsReadingSpeed": {
+    "description": "Title for reading speed card"
+  },
+  "statsPagesPerHour": "{pages} pages/h",
+  "@statsPagesPerHour": {
+    "description": "Format for pages read per hour",
+    "placeholders": {
+      "pages": {
+        "type": "String",
+        "example": "35.5"
+      }
+    }
+  },
+  "statsTotalYearlySummary": "Yearly Totals",
+  "@statsTotalYearlySummary": {
+    "description": "Title for current year totals summary card"
+  },
+  "statsTotalReadFormat": "{hours}h {minutes}m • {pages} pages",
+  "@statsTotalReadFormat": {
+    "description": "Format for yearly total read time and pages count",
+    "placeholders": {
+      "hours": {
+        "type": "int",
+        "example": "12"
+      },
+      "minutes": {
+        "type": "int",
+        "example": "45"
+      },
+      "pages": {
+        "type": "int",
+        "example": "1250"
+      }
+    }
+  },
+  "statsBarChartTitle": "Reading Activity",
+  "@statsBarChartTitle": {
+    "description": "Title for the reading activity bar chart section"
+  },
+  "statsFilterMonthly": "Month",
+  "@statsFilterMonthly": {
+    "description": "Label for monthly filter in charts"
+  },
+  "statsFilterYearly": "Year",
+  "@statsFilterYearly": {
+    "description": "Label for yearly filter in charts"
+  },
+  "statsPagesReadLabel": "Pages read",
+  "@statsPagesReadLabel": {
+    "description": "Label for pages read in charts"
+  },
+  "statsHoursReadLabel": "Hours read",
+  "@statsHoursReadLabel": {
+    "description": "Label for hours read in charts"
+  },
+  "statsMonthlyBooksSubtitle": "Books read per month this year",
+  "@statsMonthlyBooksSubtitle": {
+    "description": "Descriptive subtitle for the monthly bar chart"
+  },
+  "statsBookCountSingular": "book",
+  "@statsBookCountSingular": {
+    "description": "Singular word for book in tooltips"
+  },
+  "statsBookCountPlural": "books",
+  "@statsBookCountPlural": {
+    "description": "Plural word for books in tooltips"
+  },
+  "statsYearFilterTooltip": "Seleccionar año",
+  "@statsYearFilterTooltip": {
+    "description": "Tooltip para el filtro de año del gráfico"
+  },
+  "statsSelectYearTitle": "Seleccionar Año",
+  "@statsSelectYearTitle": {
+    "description": "Título del modal para el selector Cupertino de año"
+  },
+  "statsNoDataForYearTitle": "No reading records",
+  "@statsNoDataForYearTitle": {
+    "description": "Main message when a year has no finished books"
+  },
+  "statsNoDataForYearSubtitle": "You didn't finish any books this year",
+  "@statsNoDataForYearSubtitle": {
+    "description": "Subtitle when there are no records in the bar chart"
+  },
+  "statsReadingTimeChartTitle": "Reading time per month",
+  "@statsReadingTimeChartTitle": {
+    "description": "Title for monthly reading time bar chart"
+  },
+  "statsNoReadingTimeForYearTitle": "No reading time recorded",
+  "@statsNoReadingTimeForYearTitle": {
+    "description": "Message if no reading sessions are recorded for the year"
+  },
+  "statsPagesCount": "{count} pgs",
+  "@statsPagesCount": {
+    "description": "Format for abbreviated pages read in tooltip",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "statsRatingsChartTitle": "Rating distribution",
+  "@statsRatingsChartTitle": {
+    "description": "Title for star rating distribution chart"
+  },
+  "statsNoRatingsForYearTitle": "No ratings for this year",
+  "@statsNoRatingsForYearTitle": {
+    "description": "Message if no rated books exist for the selected year"
+  },
+  "statsBooksCount": "{count, plural, =1{1 book} other{{count} books}}",
+  "@statsBooksCount": {
+    "description": "Format for book count in star rating tooltip",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "statsCategoriesChartTitle": "Category distribution",
+  "@statsCategoriesChartTitle": {
+    "description": "Title for book categories pie chart"
+  },
+  "statsNoCategoriesForYearTitle": "No categories for this year",
+  "@statsNoCategoriesForYearTitle": {
+    "description": "Message if no categorized books exist for the selected year"
+  },
+  "statsBooksInCategory": "Books in {category}:",
+  "@statsBooksInCategory": {
+    "description": "Header for tooltip when selecting a category",
+    "placeholders": {
+      "category": {
+        "type": "String"
+      }
+    }
   },
   "addManualBook": "Add book manually",
   "@addManualBook": {

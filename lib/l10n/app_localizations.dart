@@ -926,6 +926,174 @@ abstract class AppLocalizations {
   /// **'Mira aquí tus estadísticas'**
   String get statsDescription;
 
+  /// Título de la tarjeta del objetivo anual de lectura
+  ///
+  /// In es, this message translates to:
+  /// **'Objetivo Anual'**
+  String get statsYearlyGoalTitle;
+
+  /// Subtítulo que indica el progreso del objetivo de libros leídos
+  ///
+  /// In es, this message translates to:
+  /// **'{read} de {target} libros'**
+  String statsYearlyGoalSub(int read, int target);
+
+  /// Título de la tarjeta de promedio mensual de libros leídos
+  ///
+  /// In es, this message translates to:
+  /// **'Promedio Libros/Mes'**
+  String get statsMonthlyBooksAvg;
+
+  /// Título de la tarjeta para la velocidad de lectura
+  ///
+  /// In es, this message translates to:
+  /// **'Velocidad de Lectura'**
+  String get statsReadingSpeed;
+
+  /// Formato para la cantidad de páginas leídas por hora
+  ///
+  /// In es, this message translates to:
+  /// **'{pages} pág/h'**
+  String statsPagesPerHour(String pages);
+
+  /// Título de la tarjeta de resumen acumulado del año actual
+  ///
+  /// In es, this message translates to:
+  /// **'Total del Año'**
+  String get statsTotalYearlySummary;
+
+  /// Formato para mostrar el tiempo total y total de páginas del año
+  ///
+  /// In es, this message translates to:
+  /// **'{hours}h {minutes}m • {pages} págs'**
+  String statsTotalReadFormat(int hours, int minutes, int pages);
+
+  /// Título de la sección del gráfico de barras de lectura
+  ///
+  /// In es, this message translates to:
+  /// **'Actividad de Lectura'**
+  String get statsBarChartTitle;
+
+  /// Etiqueta del filtro mensual en gráficos
+  ///
+  /// In es, this message translates to:
+  /// **'Mes'**
+  String get statsFilterMonthly;
+
+  /// Etiqueta del filtro anual en gráficos
+  ///
+  /// In es, this message translates to:
+  /// **'Año'**
+  String get statsFilterYearly;
+
+  /// Etiqueta para las páginas leídas en el gráfico
+  ///
+  /// In es, this message translates to:
+  /// **'Páginas leídas'**
+  String get statsPagesReadLabel;
+
+  /// Etiqueta para las horas leídas en el gráfico
+  ///
+  /// In es, this message translates to:
+  /// **'Horas leídas'**
+  String get statsHoursReadLabel;
+
+  /// Subtítulo descriptivo para el gráfico de barras mensual
+  ///
+  /// In es, this message translates to:
+  /// **'Libros leídos por mes este año'**
+  String get statsMonthlyBooksSubtitle;
+
+  /// Palabra singular para libro en tooltips
+  ///
+  /// In es, this message translates to:
+  /// **'libro'**
+  String get statsBookCountSingular;
+
+  /// Palabra plural para libros en tooltips
+  ///
+  /// In es, this message translates to:
+  /// **'libros'**
+  String get statsBookCountPlural;
+
+  /// Tooltip para el filtro de año del gráfico
+  ///
+  /// In es, this message translates to:
+  /// **'Seleccionar año'**
+  String get statsYearFilterTooltip;
+
+  /// Título del modal para el selector Cupertino de año
+  ///
+  /// In es, this message translates to:
+  /// **'Seleccionar Año'**
+  String get statsSelectYearTitle;
+
+  /// Mensaje principal cuando un año no tiene libros leídos
+  ///
+  /// In es, this message translates to:
+  /// **'Sin registros de lectura'**
+  String get statsNoDataForYearTitle;
+
+  /// Subtítulo explicativo cuando no hay datos en el gráfico de barras
+  ///
+  /// In es, this message translates to:
+  /// **'No terminaste libros en este año'**
+  String get statsNoDataForYearSubtitle;
+
+  /// Título para el gráfico de barras de tiempo de lectura mensual
+  ///
+  /// In es, this message translates to:
+  /// **'Tiempo de lectura por mes'**
+  String get statsReadingTimeChartTitle;
+
+  /// Mensaje si no hay sesiones de lectura registradas en el año
+  ///
+  /// In es, this message translates to:
+  /// **'Sin tiempo de lectura registrado'**
+  String get statsNoReadingTimeForYearTitle;
+
+  /// Formato para abreviar páginas leídas en el tooltip
+  ///
+  /// In es, this message translates to:
+  /// **'{count} págs'**
+  String statsPagesCount(int count);
+
+  /// Título para el gráfico de barras de valoración por estrellas
+  ///
+  /// In es, this message translates to:
+  /// **'Distribución por valoración'**
+  String get statsRatingsChartTitle;
+
+  /// Mensaje si no hay libros valorados en el año seleccionado
+  ///
+  /// In es, this message translates to:
+  /// **'Sin valoraciones en este año'**
+  String get statsNoRatingsForYearTitle;
+
+  /// Formato para la cantidad de libros en el tooltip de estrellas
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{1 libro} other{{count} libros}}'**
+  String statsBooksCount(int count);
+
+  /// Título para el gráfico de torta de categorías de libros
+  ///
+  /// In es, this message translates to:
+  /// **'Distribución por categorías'**
+  String get statsCategoriesChartTitle;
+
+  /// Mensaje si no hay libros categorizados en el año seleccionado
+  ///
+  /// In es, this message translates to:
+  /// **'Sin categorías en este año'**
+  String get statsNoCategoriesForYearTitle;
+
+  /// Encabezado del tooltip al seleccionar una categoría
+  ///
+  /// In es, this message translates to:
+  /// **'Libros en {category}:'**
+  String statsBooksInCategory(String category);
+
   /// Título para el flujo de adición manual
   ///
   /// In es, this message translates to:
