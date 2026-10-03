@@ -1145,7 +1145,7 @@ abstract class AppLocalizations {
   /// Formato para mostrar el tiempo total y total de páginas del año
   ///
   /// In es, this message translates to:
-  /// **'{hours}h {minutes}m • {pages} págs'**
+  /// **'{hours}h {minutes}m \n{pages} págs'**
   String statsTotalReadFormat(int hours, int minutes, int pages);
 
   /// Título de la sección del gráfico de barras de lectura
@@ -1285,6 +1285,42 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'{hours} horas de {goals}'**
   String statsWeeklyHoursGoalSub(String hours, Object goals);
+
+  /// Título para la tarjeta del Top 3 de géneros leídos.
+  ///
+  /// In es, this message translates to:
+  /// **'Top 3 Géneros'**
+  String get statsTopGenresTitle;
+
+  /// Título para la tarjeta de días de racha actual.
+  ///
+  /// In es, this message translates to:
+  /// **'Racha Actual'**
+  String get statsCurrentStreakTitle;
+
+  /// Título para la tarjeta del récord de lectura (día o mes con más lectura).
+  ///
+  /// In es, this message translates to:
+  /// **'Récord de Lectura'**
+  String get statsReadingRecordTitle;
+
+  /// Formato para la racha de días consecutivos.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{1 día seguido} other{{count} días seguidos}}'**
+  String statsStreakDaysFormat(int count);
+
+  /// Texto por defecto cuando no hay métricas registradas aún.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin datos aún'**
+  String get statsNoData;
+
+  /// Cantidad de páginas leídas en el récord.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{1 página} other{{count} páginas}}'**
+  String statsPagesReadCount(int count);
 
   /// Título para el flujo de adición manual
   ///

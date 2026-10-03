@@ -48,7 +48,7 @@
   "@statsTotalYearlySummary": {
     "description": "Title for current year totals summary card"
   },
-  "statsTotalReadFormat": "{hours}h {minutes}m • {pages} pages",
+  "statsTotalReadFormat": "{hours}h {minutes}m \n{pages} pages",
   "@statsTotalReadFormat": {
     "description": "Format for yearly total read time and pages count",
     "placeholders": {
@@ -178,6 +178,42 @@
         "example": "5"
       },
       "goals": {}
+    }
+  },
+  "statsTopGenresTitle": "Top 3 Genres",
+  "@statsTopGenresTitle": {
+    "description": "Title for the Top 3 read genres card."
+  },
+  "statsCurrentStreakTitle": "Current Streak",
+  "@statsCurrentStreakTitle": {
+    "description": "Title for the current streak card."
+  },
+  "statsReadingRecordTitle": "Reading Record",
+  "@statsReadingRecordTitle": {
+    "description": "Title for the reading record card."
+  },
+  "statsStreakDaysFormat": "{count, plural, =1{1 day streak} other{{count} days streak}}",
+  "@statsStreakDaysFormat": {
+    "description": "Format for consecutive reading days.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "7"
+      }
+    }
+  },
+  "statsNoData": "No data yet",
+  "@statsNoData": {
+    "description": "Default text when no metrics are available."
+  },
+  "statsPagesReadCount": "{count, plural, =1{1 page} other{{count} pages}}",
+  "@statsPagesReadCount": {
+    "description": "Number of pages read in the record.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "120"
+      }
     }
   }
 }

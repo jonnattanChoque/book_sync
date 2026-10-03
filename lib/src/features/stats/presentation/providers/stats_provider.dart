@@ -7,6 +7,7 @@ import 'package:book_sync/src/features/reading_slider/presentation/providers/boo
 import 'package:book_sync/src/features/stats/domain/models/category_stat.dart';
 import 'package:book_sync/src/features/stats/domain/models/monthly_book_stat.dart';
 import 'package:book_sync/src/features/stats/domain/models/monthly_reading_time_stat.dart';
+import 'package:book_sync/src/features/stats/domain/models/reading_stat.dart';
 import 'package:book_sync/src/features/stats/domain/models/star_rating_stat.dart';
 import 'package:book_sync/src/features/stats/domain/models/stats_stat.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -65,13 +66,15 @@ class StatsNotifier extends StateNotifier<StatsState> {
     // 3. Extraer datos mediante funciones con responsabilidad única
     final availableYears = _getAvailableYears(books, now.year);
     final yearMetrics = _calculateYearlyMetrics(books, currentSelectedYear);
-    final weeklyHoursRead = 2.0;//_calculateCurrentWeeklyHours(books);
+    final weeklyHoursRead = _calculateCurrentWeeklyHours(books);
 
     final int monthsToDivide = (currentSelectedYear == now.year) ? now.month : 12;
     final double monthlyBooksAvg = yearMetrics.finishedBooks / monthsToDivide;
 
     final double yearlyHours = yearMetrics.totalSeconds / 3600.0;
     final double pagesPerHour = yearlyHours > 0 ? (yearMetrics.totalPages / yearlyHours) : 0.0;
+
+    final ReadingRecordData? bestDayHours = _calculateBestReadingDayRecord(books);
 
     await Future.delayed(const Duration(seconds: 1));
 
@@ -89,6 +92,7 @@ class StatsNotifier extends StateNotifier<StatsState> {
       monthlyReadingTimeChartData: _calculateMonthlyReadingTime(books, currentSelectedYear),
       starRatingChartData: _calculateStarRatings(books, currentSelectedYear),
       categoryChartData: _calculateCategoryStats(books, currentSelectedYear),
+      bestDayHours: bestDayHours,
       isLoading: false,
     );
   }
@@ -184,6 +188,41 @@ class StatsNotifier extends StateNotifier<StatsState> {
 
     return totalSecondsThisWeek / 3600.0;
   }
+
+  /// Obtiene el mejor récord histórico de lectura en un solo día
+  ReadingRecordData? _calculateBestReadingDayRecord(List<Book> books) {
+    // Guardamos un acumulador de páginas y tiempo por cada día ("YYYY-MM-DD")
+    final Map<String, ({int pages, int seconds, DateTime date})> dayStats = {};
+
+    for (final book in books) {
+      for (final session in book.sessions) {
+        final date = session.startTime;
+        final dateKey = "${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
+
+        final current = dayStats[dateKey] ?? (pages: 0, seconds: 0, date: date);
+
+        dayStats[dateKey] = (
+          pages: current.pages + session.pagesRead,
+          seconds: current.seconds + session.durationSeconds,
+          date: date,
+        );
+      }
+    }
+
+    if (dayStats.isEmpty) return null;
+
+    // Encontrar el día con la mayor cantidad de páginas leídas
+    final bestEntry = dayStats.entries.reduce(
+      (a, b) => a.value.pages > b.value.pages ? a : b,
+    );
+
+    return ReadingRecordData(
+      totalPages: bestEntry.value.pages,
+      totalSeconds: bestEntry.value.seconds,
+      date: bestEntry.value.date,
+    );
+  }
+
   List<MonthlyBookStat> _calculateMonthlyBooks(List<Book> books, int currentYear) {
     // Inicializamos los 12 meses en 0
     final List<int> monthCounts = List.filled(12, 0);

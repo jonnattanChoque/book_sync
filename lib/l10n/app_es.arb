@@ -811,7 +811,7 @@
   "@statsTotalYearlySummary": {
     "description": "Título de la tarjeta de resumen acumulado del año actual"
   },
-  "statsTotalReadFormat": "{hours}h {minutes}m • {pages} págs",
+  "statsTotalReadFormat": "{hours}h {minutes}m \n{pages} págs",
   "@statsTotalReadFormat": {
     "description": "Formato para mostrar el tiempo total y total de páginas del año",
     "placeholders": {
@@ -941,6 +941,42 @@
         "example": "5"
       },
       "goals": {}
+    }
+  },
+  "statsTopGenresTitle": "Top 3 Géneros",
+  "@statsTopGenresTitle": {
+    "description": "Título para la tarjeta del Top 3 de géneros leídos."
+  },
+  "statsCurrentStreakTitle": "Racha Actual",
+  "@statsCurrentStreakTitle": {
+    "description": "Título para la tarjeta de días de racha actual."
+  },
+  "statsReadingRecordTitle": "Récord de Lectura",
+  "@statsReadingRecordTitle": {
+    "description": "Título para la tarjeta del récord de lectura (día o mes con más lectura)."
+  },
+  "statsStreakDaysFormat": "{count, plural, =1{1 día seguido} other{{count} días seguidos}}",
+  "@statsStreakDaysFormat": {
+    "description": "Formato para la racha de días consecutivos.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "7"
+      }
+    }
+  },
+  "statsNoData": "Sin datos aún",
+  "@statsNoData": {
+    "description": "Texto por defecto cuando no hay métricas registradas aún."
+  },
+  "statsPagesReadCount": "{count, plural, =1{1 página} other{{count} páginas}}",
+  "@statsPagesReadCount": {
+    "description": "Cantidad de páginas leídas en el récord.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "120"
+      }
     }
   },
   "addManualBook": "Agregar libro",

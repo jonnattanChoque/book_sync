@@ -339,12 +339,12 @@ class _BookSummaryTile extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(6),
             child: summary.book.coverPath != null && summary.book.coverPath!.isNotEmpty
-                ? Image.network(
-                    summary.book.coverPath!,
-                    fit: BoxFit.cover,
-                    errorBuilder: (_, _, _) => const Icon(Icons.book),
-                  )
-                : const Icon(Icons.book),
+            ? Image.network(
+                summary.book.coverPath!,
+                fit: BoxFit.cover,
+                errorBuilder: (_, _, _) => const Icon(Icons.book),
+              )
+            : const Icon(Icons.book),
           ),
         ),
         title: Text(

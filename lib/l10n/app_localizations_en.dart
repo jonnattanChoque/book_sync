@@ -590,7 +590,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String statsTotalReadFormat(int hours, int minutes, int pages) {
-    return '${hours}h ${minutes}m • $pages pages';
+    return '${hours}h ${minutes}m \n$pages pages';
   }
 
   @override
@@ -675,6 +675,40 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String statsWeeklyHoursGoalSub(String hours, Object goals) {
     return '$hours hours of $goals';
+  }
+
+  @override
+  String get statsTopGenresTitle => 'Top 3 Genres';
+
+  @override
+  String get statsCurrentStreakTitle => 'Current Streak';
+
+  @override
+  String get statsReadingRecordTitle => 'Reading Record';
+
+  @override
+  String statsStreakDaysFormat(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days streak',
+      one: '1 day streak',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statsNoData => 'No data yet';
+
+  @override
+  String statsPagesReadCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count pages',
+      one: '1 page',
+    );
+    return '$_temp0';
   }
 
   @override

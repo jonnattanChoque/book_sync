@@ -1,6 +1,7 @@
 import 'package:book_sync/src/features/stats/domain/models/category_stat.dart';
 import 'package:book_sync/src/features/stats/domain/models/monthly_book_stat.dart';
 import 'package:book_sync/src/features/stats/domain/models/monthly_reading_time_stat.dart';
+import 'package:book_sync/src/features/stats/domain/models/reading_stat.dart';
 import 'package:book_sync/src/features/stats/domain/models/star_rating_stat.dart';
 
 const int kDefaultAnnualBookGoal = 12;
@@ -22,6 +23,7 @@ class StatsState {
   final double weeklyHoursRead;
   final double weeklyHoursGoal;
   final double goalProgressPercentage;
+  final ReadingRecordData? bestDayHours;
   final bool isLoading;
 
   StatsState({
@@ -40,6 +42,7 @@ class StatsState {
     this.annualGoal = kDefaultAnnualBookGoal,
     this.weeklyHoursGoal = kDefaultWeeklyHoursGoal,
     this.goalProgressPercentage = 0.0,
+    this.bestDayHours,
     this.isLoading = true,
   }) : selectedYear = selectedYear ?? DateTime.now().year;
 
@@ -59,6 +62,7 @@ class StatsState {
     double? weeklyHoursRead,
     double? weeklyHoursGoal,
     double? goalProgressPercentage,
+    ReadingRecordData? bestDayHours,
     bool? isLoading,
   }) {
     return StatsState(
@@ -77,6 +81,7 @@ class StatsState {
       weeklyHoursRead: weeklyHoursRead ?? this.weeklyHoursRead,
       weeklyHoursGoal: weeklyHoursGoal ?? this.weeklyHoursGoal,
       goalProgressPercentage: goalProgressPercentage ?? this.goalProgressPercentage,
+      bestDayHours: bestDayHours ?? this.bestDayHours,
       isLoading: isLoading ?? this.isLoading,
     );
   }

@@ -10,6 +10,7 @@ import 'package:book_sync/src/features/stats/presentation/widgets/monthly_books_
 import 'package:book_sync/src/features/stats/presentation/widgets/monthly_reading_time_bar_chart.dart';
 import 'package:book_sync/src/features/stats/presentation/widgets/star_rating_pie_chart.dart';
 import 'package:book_sync/src/features/stats/presentation/widgets/year_picker_button.dart';
+import 'package:book_sync/src/features/streak/presentation/providers/streak_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -76,6 +77,14 @@ class StatsScreen extends ConsumerWidget {
   }
 
   Widget _buildStatsContent(BuildContext context, StatsState statsState, WidgetRef ref) {
+    final userStreakAsync = ref.watch(userStreakStreamProvider);
+
+    final currentStreakDays = userStreakAsync.when(
+      data: (streak) => streak?.currentStreak ?? 0,
+      loading: () => 0,
+      error: (_, _) => 0,
+    );
+
     return statsState.isLoading
       ? BookLoader()
       : RefreshIndicator(
@@ -107,7 +116,7 @@ class StatsScreen extends ConsumerWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 16),
 
               StatsSummaryGrid(
                 monthlyBooksAvg: statsState.monthlyBooksAvg,
@@ -118,8 +127,11 @@ class StatsScreen extends ConsumerWidget {
                 annualGoal: statsState.annualGoal,
                 weeklyHoursGoal: statsState.weeklyHoursGoal,
                 weeklyHoursRead: statsState.weeklyHoursRead,
+                categoryChartData: statsState.categoryChartData,
+                currentStreakDays: currentStreakDays,
+                bestRecord: statsState.bestDayHours,
               ),
-              const SizedBox(height: 36),
+              const SizedBox(height: 24),
 
               Text(
                 context.l10n.statsMonthlyBooksSubtitle,

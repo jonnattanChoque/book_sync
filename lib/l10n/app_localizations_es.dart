@@ -591,7 +591,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String statsTotalReadFormat(int hours, int minutes, int pages) {
-    return '${hours}h ${minutes}m • $pages págs';
+    return '${hours}h ${minutes}m \n$pages págs';
   }
 
   @override
@@ -676,6 +676,40 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String statsWeeklyHoursGoalSub(String hours, Object goals) {
     return '$hours horas de $goals';
+  }
+
+  @override
+  String get statsTopGenresTitle => 'Top 3 Géneros';
+
+  @override
+  String get statsCurrentStreakTitle => 'Racha Actual';
+
+  @override
+  String get statsReadingRecordTitle => 'Récord de Lectura';
+
+  @override
+  String statsStreakDaysFormat(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count días seguidos',
+      one: '1 día seguido',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statsNoData => 'Sin datos aún';
+
+  @override
+  String statsPagesReadCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count páginas',
+      one: '1 página',
+    );
+    return '$_temp0';
   }
 
   @override
