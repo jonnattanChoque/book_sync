@@ -1007,4 +1007,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get selectBookWarning => 'Por favor selecciona un libro';
+
+  @override
+  String get selectDateLabel => 'Reading date';
+
+  @override
+  String get todayLabel => 'Today';
 }

@@ -10,6 +10,7 @@ import 'package:book_sync/core/widgets/cozy_toast.dart';
 import 'package:book_sync/core/widgets/primary_outlined_button.dart';
 import 'package:book_sync/src/features/reader_session/presentation/providers/notes_provider.dart';
 import 'package:book_sync/src/features/reader_session/presentation/widgets/detail_note_item.dart';
+import 'package:book_sync/src/features/reader_session/presentation/widgets/finish_reading_modal.dart';
 import 'package:book_sync/src/features/reading_slider/presentation/providers/books_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -607,76 +608,95 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
     );
   }
 
-  ListView _buildTimelineHistory(List<ReadingSession> sessions) {
-    final sorted = List<ReadingSession>.from(sessions)
-      ..sort((a, b) => b.startTime.compareTo(a.startTime));
+  Column _buildTimelineHistory(List<ReadingSession> sessions) {
+    final sortedSessions = sessions.toList()
+  ..sort((a, b) => b.endPage.compareTo(a.endPage));
 
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: sorted.length,
-      itemBuilder: (context, index) {
-        final session = sorted[index];
-        final isLast = index == sorted.length - 1;
-        final minutesRead = (session.durationSeconds / 60).round();
+    return Column(
+      children: [
+        PrimaryOutlinedButton(
+          icon: Icons.add_task_rounded,
+          label: context.l10n.registerReadingTitle,
+          onPressed: () async {
+            final result = await FinishReadingModal.show(
+              context,
+              book: widget.book,
+            );
 
-        return IntrinsicHeight(
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: 24,
-                child: Column(
-                  children: [
-                    Container(
-                      width: 12,
-                      height: 12,
-                      decoration: BoxDecoration(
-                        color: context.cozy.bookmarkColor,
-                        shape: BoxShape.circle,
+            if (result != null && context.mounted) {
+              context.push('/summary', extra: result);
+            }
+          },
+        ),
+        const SizedBox(height: 16),
+        ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: sortedSessions.length,
+          itemBuilder: (context, index) {
+            final session = sortedSessions[index];
+            final isLast = index == sortedSessions.length - 1;
+            final minutesRead = (session.durationSeconds / 60).round();
+        
+            return IntrinsicHeight(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: 24,
+                    child: Column(
+                      children: [
+                        Container(
+                          width: 12,
+                          height: 12,
+                          decoration: BoxDecoration(
+                            color: context.cozy.bookmarkColor,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                        if (!isLast)
+                          Expanded(
+                            child: Container(
+                              width: 2,
+                              color: context.cozy.inkColor?.withValues(alpha: 0.2),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '${session.startTime.day}/${session.startTime.month}/${session.startTime.year} - $minutesRead ${context.l10n.minutesAbbr}',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: context.cozy.inkColor,
+                            ),
+                          ),
+                          Text(
+                            session.startPage > 0
+                            ? context.l10n.pagesRange(session.startPage, session.endPage)
+                            : context.l10n.upToPage(session.endPage),
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: context.cozy.inkColor?.withValues(alpha: 0.7),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    if (!isLast)
-                      Expanded(
-                        child: Container(
-                          width: 2,
-                          color: context.cozy.inkColor?.withValues(alpha: 0.2),
-                        ),
-                      ),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '${session.startTime.day}/${session.startTime.month}/${session.startTime.year} - $minutesRead ${context.l10n.minutesAbbr}',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          color: context.cozy.inkColor,
-                        ),
-                      ),
-                      Text(
-                        session.startPage > 0
-                        ? context.l10n.pagesRange(session.startPage, session.endPage)
-                        : context.l10n.upToPage(session.endPage),
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: context.cozy.inkColor?.withValues(alpha: 0.7),
-                        ),
-                      ),
-                    ],
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
-        );
-      },
+            );
+          },
+        ),
+      ],
     );
   }
 

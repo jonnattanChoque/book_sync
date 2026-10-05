@@ -209,5 +209,9 @@
   "noBooksCurrentlyReading": "No tienes libros en curso actualmente.",
   "@noBooksCurrentlyReading": {},
   "selectBookWarning": "Por favor selecciona un libro",
-  "@selectBookWarning": {}
+  "@selectBookWarning": {},
+  "selectDateLabel": "Fecha de lectura",
+  "@selectDateLabel": {},
+  "todayLabel": "Hoy",
+  "@todayLabel": {}
 }

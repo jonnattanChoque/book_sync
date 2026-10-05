@@ -1819,6 +1819,18 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Por favor selecciona un libro'**
   String get selectBookWarning;
+
+  /// No description provided for @selectDateLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Fecha de lectura'**
+  String get selectDateLabel;
+
+  /// No description provided for @todayLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Hoy'**
+  String get todayLabel;
 }
 
 class _AppLocalizationsDelegate

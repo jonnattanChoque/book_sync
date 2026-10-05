@@ -1,5 +1,3 @@
-// lib/src/features/reading/presentation/widgets/finish_reading_modal.dart
-
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:book_sync/core/extensions/build_context_ext.dart';
@@ -10,21 +8,22 @@ import 'package:book_sync/src/features/streak/presentation/providers/streak_prov
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter/cupertino.dart';
 
 class FinishReadingModal extends ConsumerStatefulWidget {
   final Book book;
-  final Duration elapsedDuration;
+  final Duration? elapsedDuration;
 
   const FinishReadingModal({
     super.key,
     required this.book,
-    required this.elapsedDuration,
+    this.elapsedDuration,
   });
 
   static Future<Map<String, dynamic>?> show(
     BuildContext context, {
     required Book book,
-    required Duration elapsedDuration,
+    Duration? elapsedDuration,
   }) {
     
     return showModalBottomSheet(
@@ -50,18 +49,36 @@ class _FinishReadingModalState extends ConsumerState<FinishReadingModal> {
   late TextEditingController _endPageController;
   final _formKey = GlobalKey<FormState>();
 
+  late DateTime _selectedDate;
+
+  int _selectedHours = 0;
+  int _selectedMinutes = 15;
+  int _selectedSeconds = 0;
+
   @override
   void initState() {
     super.initState();
     _endPageController = TextEditingController(
       text: '',
     );
+    _selectedDate = DateTime.now();
   }
 
   @override
   void dispose() {
     _endPageController.dispose();
     super.dispose();
+  }
+
+  Duration get _effectiveDuration {
+    if (widget.elapsedDuration != null) {
+      return widget.elapsedDuration!;
+    }
+    return Duration(
+      hours: _selectedHours,
+      minutes: _selectedMinutes,
+      seconds: _selectedSeconds,
+    );
   }
 
   String _formatDuration(Duration duration) {
@@ -73,21 +90,51 @@ class _FinishReadingModalState extends ConsumerState<FinishReadingModal> {
     return '$seconds ${context.l10n.secondsShort}';
   }
 
+  Future<void> _pickDate() async {
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: _selectedDate,
+      firstDate: DateTime(2020),
+      lastDate: DateTime.now(), // No permitir fechas futuras
+    );
+
+    if (picked != null) {
+      setState(() {
+        _selectedDate = picked;
+      });
+    }
+  }
+
   void _onSubmit() async {
     if (_formKey.currentState?.validate() ?? false) {
+      final now = DateTime.now();
       final endPage = int.parse(_endPageController.text.trim());
       final repository = ref.read(bookRepositoryProvider);
+      final sessionTime = widget.elapsedDuration == null
+        ? DateTime(
+            _selectedDate.year,
+            _selectedDate.month,
+            _selectedDate.day,
+            now.hour,
+            now.minute,
+            now.second,
+          )
+        : now;
 
       final result = await repository.saveReadingSession(
         bookId: widget.book.id,
         startPage: widget.book.currentPage,
         endPage: endPage,
-        duration: widget.elapsedDuration,
+        duration: _effectiveDuration,
+        startTime: sessionTime,
       );
 
       if (result != null && mounted) {
         final registerStreak = ref.read(registerReadingDayProvider);
         await registerStreak();
+
+        ref.invalidate(userStreakStreamProvider);
+        ref.invalidate(selectedDateReadingsProvider);
         context.pushReplacement('/summary', extra: {'book': result.book, 'session': result.session});
       }
     }
@@ -96,35 +143,68 @@ class _FinishReadingModalState extends ConsumerState<FinishReadingModal> {
   @override
   Widget build(BuildContext context) {
     final bottomInset = MediaQuery.of(context).viewInsets.bottom;
+    final isManual = widget.elapsedDuration == null;
 
-    return Container(
-      padding: EdgeInsets.only(
-        left: 20,
-        right: 20,
-        top: 20,
-        bottom: bottomInset + 20,
-      ),
-      child: Form(
-        key: _formKey,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Header
-            _buildTitle(),
-            const SizedBox(height: 12),
-
-            // Time summary
-            _buildTimeInfo(),
-            const SizedBox(height: 20),
-
-            // End page input
-            _buildTextFieldPage(),
-            const SizedBox(height: 24),
-
-            // Save button
-            _buildButton()
-          ],
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      behavior: HitTestBehavior.opaque,
+      child: Padding(
+        padding: EdgeInsets.only(bottom: bottomInset),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            padding: EdgeInsets.only(
+              left: 20,
+              right: 20,
+              top: 20,
+              bottom: bottomInset + 20,
+            ),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Header
+                  _buildTitle(),
+                  const SizedBox(height: 12),
+          
+                  if (isManual) ...[
+                    Text(
+                      context.l10n.selectDateLabel,
+                      style: context.theme.textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    _buildDateSelector(),
+                    const SizedBox(height: 20),
+                  ],
+          
+                  if (!isManual) ...[
+                    _buildTimeInfo(),
+                  ] else ...[
+                    Text(
+                      context.l10n.readingTimeLabel,
+                      style: context.theme.textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    _buildTimePicker(),
+                  ],
+                  const SizedBox(height: 20),
+          
+                  // End page input
+                  _buildTextFieldPage(isManual),
+                  const SizedBox(height: 24),
+          
+                  // Save button
+                  _buildButton()
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );
@@ -149,6 +229,50 @@ class _FinishReadingModalState extends ConsumerState<FinishReadingModal> {
     );
   }
 
+  Widget _buildDateSelector() {
+    final isToday = DateUtils.isSameDay(_selectedDate, DateTime.now());
+    final dateString = isToday
+    ? context.l10n.todayLabel
+    : '${_selectedDate.day}/${_selectedDate.month}/${_selectedDate.year}';
+
+    return InkWell(
+      onTap: _pickDate,
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        decoration: BoxDecoration(
+          color: context.theme.cardColor,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: context.cozy.inkColor!.withValues(alpha: 0.2),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  Icons.calendar_today_rounded,
+                  size: 18,
+                  color: context.colorScheme.primary,
+                ),
+                const SizedBox(width: 12),
+                Text(
+                  dateString,
+                  style: context.theme.textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+            const Icon(Icons.arrow_drop_down),
+          ],
+        ),
+      ),
+    );
+  }
+
   Container _buildTimeInfo() {
     return Container(
       padding: const EdgeInsets.all(12),
@@ -160,7 +284,7 @@ class _FinishReadingModalState extends ConsumerState<FinishReadingModal> {
           const Icon(Icons.timer_outlined, color: Colors.blueAccent),
           const SizedBox(width: 10),
           Text(
-            '${context.l10n.timeReadLabel}: ${_formatDuration(widget.elapsedDuration)}',
+            '${context.l10n.timeReadLabel}: ${_formatDuration(widget.elapsedDuration!)}',
             style: const TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 15,
@@ -171,7 +295,71 @@ class _FinishReadingModalState extends ConsumerState<FinishReadingModal> {
     );
   }
 
-  Column _buildTextFieldPage() {
+  Widget _buildTimePicker() {
+    return Container(
+      height: 130,
+      decoration: BoxDecoration(
+        color: context.theme.cardColor,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: context.cozy.inkColor!.withValues(alpha: 0.1),
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _buildPickerColumn(
+            maxValue: 23,
+            initialValue: _selectedHours,
+            label: 'h',
+            onChanged: (val) => setState(() => _selectedHours = val),
+          ),
+          Text(':', style: context.theme.textTheme.titleLarge),
+          _buildPickerColumn(
+            maxValue: 59,
+            initialValue: _selectedMinutes,
+            label: context.l10n.minutesShort,
+            onChanged: (val) => setState(() => _selectedMinutes = val),
+          ),
+          Text(':', style: context.theme.textTheme.titleLarge),
+          _buildPickerColumn(
+            maxValue: 59,
+            initialValue: _selectedSeconds,
+            label: context.l10n.secondsShort,
+            onChanged: (val) => setState(() => _selectedSeconds = val),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPickerColumn({
+    required int maxValue,
+    required int initialValue,
+    required String label,
+    required ValueChanged<int> onChanged
+  }) {
+    return SizedBox(
+      width: 70,
+      child: CupertinoPicker(
+        itemExtent: 36,
+        scrollController: FixedExtentScrollController(initialItem: initialValue),
+        onSelectedItemChanged: onChanged,
+        children: List.generate(maxValue + 1, (index) {
+          return Center(
+            child: Text(
+              '${index.toString().padLeft(2, '0')} $label',
+              style: context.theme.textTheme.bodyLarge?.copyWith(
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          );
+        }),
+      ),
+    );
+  }
+
+  Column _buildTextFieldPage(bool isManual) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -185,8 +373,10 @@ class _FinishReadingModalState extends ConsumerState<FinishReadingModal> {
         ),
         const SizedBox(height: 8),
         TextFormField(
-          autofocus: true,
+          autofocus: !isManual,
           controller: _endPageController,
+          textInputAction: TextInputAction.done,
+          onFieldSubmitted: (_) => _onSubmit(),
           keyboardType: TextInputType.number,
           style: context.theme.textTheme.bodyMedium?.copyWith(
             color: context.colorScheme.onSurface,
