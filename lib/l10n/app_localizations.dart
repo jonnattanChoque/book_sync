@@ -248,6 +248,48 @@ abstract class AppLocalizations {
   /// **'Valorar este libro'**
   String get rateThisBookAction;
 
+  /// Título principal en el AppBar de la pantalla del calendario.
+  ///
+  /// In es, this message translates to:
+  /// **'Calendario de Lectura'**
+  String get calendarTitle;
+
+  /// Texto o tooltip del botón para exportar la vista mensual como imagen.
+  ///
+  /// In es, this message translates to:
+  /// **'Exportar Mes'**
+  String get exportMonthButton;
+
+  /// Encabezado de la lista de libros o sesiones leídas en el día seleccionado.
+  ///
+  /// In es, this message translates to:
+  /// **'Lecturas del día'**
+  String get readingsForDateHeader;
+
+  /// Mensaje desplegado cuando el día seleccionado no tiene registros.
+  ///
+  /// In es, this message translates to:
+  /// **'No registrases lecturas este día'**
+  String get noReadingsOnDate;
+
+  /// Texto del botón para añadir una lectura pasada o manual a la fecha seleccionada.
+  ///
+  /// In es, this message translates to:
+  /// **'Agregar registro'**
+  String get addManualReading;
+
+  /// Resumen de páginas y duración leídas en un libro.
+  ///
+  /// In es, this message translates to:
+  /// **'{pages, plural, =1{1 página} other{{pages} páginas}} • {duration}'**
+  String pagesAndDurationSummary(int pages, String duration);
+
+  /// Resumen acumulado de todas las lecturas del día seleccionado.
+  ///
+  /// In es, this message translates to:
+  /// **'Total del día: {pages} • {duration}'**
+  String dayTotalSummary(String pages, String duration);
+
   /// No description provided for @streakIncreased.
   ///
   /// In es, this message translates to:
@@ -1010,6 +1052,24 @@ abstract class AppLocalizations {
   /// **'por {author}'**
   String exportNoteBy(String author);
 
+  /// Texto predeterminado al compartir una nota de lectura en redes sociales.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Una nota de mi lectura con {appName}! 📖✨'**
+  String exportNoteShareText(String appName);
+
+  /// Texto predeterminado al compartir el calendario mensual de lectura.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Mi calendario y resumen de lectura del mes con {appName}! 📅📚'**
+  String exportCalendarShareText(String appName);
+
+  /// Texto predeterminado al compartir la racha de lectura acumulada.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Mi racha de días leyéndome sin parar en {appName}! 🔥📖'**
+  String exportStreakShareText(String appName);
+
   /// Etiqueta para la pestaña Home en la barra de navegación principal.
   ///
   /// In es, this message translates to:
@@ -1729,6 +1789,36 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Quedan {pagesRemaining} páginas para terminar tu libro.'**
   String pagesRemainingInfo(int pagesRemaining);
+
+  /// No description provided for @registerReadingTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Registrar Lectura'**
+  String get registerReadingTitle;
+
+  /// No description provided for @selectBookLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Selecciona el libro'**
+  String get selectBookLabel;
+
+  /// No description provided for @readingTimeLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Tiempo de lectura'**
+  String get readingTimeLabel;
+
+  /// No description provided for @noBooksCurrentlyReading.
+  ///
+  /// In es, this message translates to:
+  /// **'No tienes libros en curso actualmente.'**
+  String get noBooksCurrentlyReading;
+
+  /// No description provided for @selectBookWarning.
+  ///
+  /// In es, this message translates to:
+  /// **'Por favor selecciona un libro'**
+  String get selectBookWarning;
 }
 
 class _AppLocalizationsDelegate

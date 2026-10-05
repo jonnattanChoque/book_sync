@@ -1,0 +1,51 @@
+{
+  "@@locale": "es",
+  "calendarTitle": "Calendario de Lectura",
+  "@calendarTitle": {
+    "description": "Título principal en el AppBar de la pantalla del calendario."
+  },
+  "exportMonthButton": "Exportar Mes",
+  "@exportMonthButton": {
+    "description": "Texto o tooltip del botón para exportar la vista mensual como imagen."
+  },
+  "readingsForDateHeader": "Lecturas del día",
+  "@readingsForDateHeader": {
+    "description": "Encabezado de la lista de libros o sesiones leídas en el día seleccionado."
+  },
+  "noReadingsOnDate": "No registrases lecturas este día",
+  "@noReadingsOnDate": {
+    "description": "Mensaje desplegado cuando el día seleccionado no tiene registros."
+  },
+  "addManualReading": "Agregar registro",
+  "@addManualReading": {
+    "description": "Texto del botón para añadir una lectura pasada o manual a la fecha seleccionada."
+  },
+  "pagesAndDurationSummary": "{pages, plural, =1{1 página} other{{pages} páginas}} • {duration}",
+  "@pagesAndDurationSummary": {
+    "description": "Resumen de páginas y duración leídas en un libro.",
+    "placeholders": {
+      "pages": {
+        "type": "int",
+        "example": "35"
+      },
+      "duration": {
+        "type": "String",
+        "example": "40m"
+      }
+    }
+  },
+  "dayTotalSummary": "Total del día: {pages} • {duration}",
+  "@dayTotalSummary": {
+    "description": "Resumen acumulado de todas las lecturas del día seleccionado.",
+    "placeholders": {
+      "pages": {
+        "type": "String",
+        "example": "45 páginas"
+      },
+      "duration": {
+        "type": "String",
+        "example": "1h 10m"
+      }
+    }
+  }
+}

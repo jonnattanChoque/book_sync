@@ -16,4 +16,17 @@ class BookReadingSummary {
     final minutes = (totalDurationSeconds / 60).round();
     return '${minutes}m';
   }
+
+  String get formattedDurationTwo => formatSeconds(totalDurationSeconds);
+
+  /// Método estático reutilizable sin necesitar un objeto `Book`
+  static String formatSeconds(int totalSeconds) {
+    final minutes = (totalSeconds / 60).round();
+    if (minutes < 60) {
+      return '${minutes}m';
+    }
+    final hours = minutes ~/ 60;
+    final remainingMinutes = minutes % 60;
+    return remainingMinutes > 0 ? '${hours}h ${remainingMinutes}m' : '${hours}h';
+  }
 }

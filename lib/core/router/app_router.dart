@@ -1,3 +1,4 @@
+import 'package:book_sync/src/features/calendar_export/presentation/screens/reading_calendar_screen.dart';
 import 'package:book_sync/src/features/profile/presentation/screens/profile_screen.dart';
 import 'package:book_sync/src/features/reader_session/presentation/summary_screen.dart';
 import 'package:book_sync/src/features/stats/presentation/screens/stats_screen.dart';
@@ -201,6 +202,18 @@ final appRouter = GoRouter(
         return CustomTransitionPage(
           key: state.pageKey,
           child: StreakScreen(),
+          transitionsBuilder: buildPageTurnTransition,
+          transitionDuration: const Duration(milliseconds: 700),
+          reverseTransitionDuration: const Duration(milliseconds: 500),
+        );
+      },
+    ),
+    GoRoute(
+      path: '/calendar',
+      pageBuilder: (context, state) {
+        return CustomTransitionPage(
+          key: state.pageKey,
+          child: ReadingCalendarScreen(),
           transitionsBuilder: buildPageTurnTransition,
           transitionDuration: const Duration(milliseconds: 700),
           reverseTransitionDuration: const Duration(milliseconds: 500),

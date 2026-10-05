@@ -199,5 +199,15 @@
         "example": "254"
       }
     }
-  }
+  },
+  "registerReadingTitle": "Registrar Lectura",
+  "@registerReadingTitle": {},
+  "selectBookLabel": "Selecciona el libro",
+  "@selectBookLabel": {},
+  "readingTimeLabel": "Tiempo de lectura",
+  "@readingTimeLabel": {},
+  "noBooksCurrentlyReading": "No tienes libros en curso actualmente.",
+  "@noBooksCurrentlyReading": {},
+  "selectBookWarning": "Por favor selecciona un libro",
+  "@selectBookWarning": {}
 }

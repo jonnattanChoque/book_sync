@@ -86,6 +86,37 @@ class AppLocalizationsEn extends AppLocalizations {
   String get rateThisBookAction => 'Rate this book';
 
   @override
+  String get calendarTitle => 'Reading Calendar';
+
+  @override
+  String get exportMonthButton => 'Export Month';
+
+  @override
+  String get readingsForDateHeader => 'Day\'s Readings';
+
+  @override
+  String get noReadingsOnDate => 'No reading recorded for this day';
+
+  @override
+  String get addManualReading => 'Add log';
+
+  @override
+  String pagesAndDurationSummary(int pages, String duration) {
+    String _temp0 = intl.Intl.pluralLogic(
+      pages,
+      locale: localeName,
+      other: '$pages pages',
+      one: '1 page',
+    );
+    return '$_temp0 • $duration';
+  }
+
+  @override
+  String dayTotalSummary(String pages, String duration) {
+    return 'Day Total: $pages • $duration';
+  }
+
+  @override
   String get streakIncreased => 'Streak Increased!';
 
   @override
@@ -523,6 +554,21 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String exportNoteShareText(String appName) {
+    return 'A reading note from my current book with $appName! 📖✨';
+  }
+
+  @override
+  String exportCalendarShareText(String appName) {
+    return 'My monthly reading calendar summary with $appName! 📅📚';
+  }
+
+  @override
+  String exportStreakShareText(String appName) {
+    return 'My current reading streak on $appName! 🔥📖';
+  }
+
+  @override
   String get navHome => 'Home';
 
   @override
@@ -945,4 +991,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String pagesRemainingInfo(int pagesRemaining) {
     return 'There are $pagesRemaining pages left to finish your book.';
   }
+
+  @override
+  String get registerReadingTitle => 'Registrar Lectura';
+
+  @override
+  String get selectBookLabel => 'Selecciona el libro';
+
+  @override
+  String get readingTimeLabel => 'Tiempo de lectura';
+
+  @override
+  String get noBooksCurrentlyReading =>
+      'No tienes libros en curso actualmente.';
+
+  @override
+  String get selectBookWarning => 'Por favor selecciona un libro';
 }

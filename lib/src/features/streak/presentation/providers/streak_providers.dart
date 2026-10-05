@@ -20,8 +20,8 @@ final userStreakStreamProvider = StreamProvider<UserStreak?>((ref) {
 // Caso de uso: Registrar lectura
 final registerReadingDayProvider = Provider((ref) {
   final repository = ref.watch(streakRepositoryProvider);
-  return () async {
-    await repository.registerReadingDay();
+  return ([DateTime? date]) async {
+    await repository.registerReadingDay(date);
   };
 });
 

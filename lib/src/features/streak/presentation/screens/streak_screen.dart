@@ -1,5 +1,7 @@
 // lib/src/features/streak/presentation/screens/streak_screen.dart
 
+import 'package:book_sync/src/features/export/presentation/export_preview_sheet.dart';
+import 'package:book_sync/src/features/streak/presentation/widgets/streak_export_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -15,47 +17,72 @@ import 'package:book_sync/src/features/streak/presentation/providers/streak_prov
 class StreakScreen extends ConsumerWidget {
   const StreakScreen({super.key});
 
+  void _openExportSheet({
+    required BuildContext context,
+    required WidgetRef ref,
+    required int currentStreak,
+    required int bestStreak,
+    required DateTime selectedDate,
+    required List<DateTime> readingDays,
+    required String currentLanguage,
+  }) {
+
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) => ExportPreviewSheet(
+        shareText: context.l10n.exportStreakShareText('BookSync'),
+        exportContent: StreakExportCard(
+          currentStreak: currentStreak,
+          bestStreak: bestStreak,
+          selectedDate: selectedDate,
+          readingDays: readingDays,
+          currentLanguage: currentLanguage,
+        ),
+      ),
+    );
+  }
+
+  @override
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final streakAsync = ref.watch(userStreakStreamProvider);
     final selectedDate = ref.watch(selectedCalendarDateProvider);
     final readingsAsync = ref.watch(selectedDateReadingsProvider);
+    final currentLanguage = Localizations.localeOf(context).languageCode;
+    final userStreak = streakAsync.value;
+    final currentStreak = userStreak?.currentStreak ?? 0;
+    final bestStreak = userStreak?.bestStreak ?? 0;
+    final readingDays = userStreak?.readingDays ?? [];
 
     return ColoredBox(
       color: context.theme.scaffoldBackgroundColor,
       child: Stack(
         children: [
-          const Positioned.fill(
-            child: BackgroundPaperTexture(),
-          ),
-
+          const Positioned.fill(child: BackgroundPaperTexture()),
           Scaffold(
             backgroundColor: Colors.transparent,
-            appBar: _buildNav(context),
+            // 1. Ahora podemos pasar los datos directamente al AppBar o a _buildNav
+            appBar: _buildNav(context, ref, currentStreak, currentLanguage, bestStreak, selectedDate, readingDays),
             body: streakAsync.when(
               loading: () => const Center(child: BookLoader()),
               error: (_, _) => const SizedBox.shrink(),
-              data: (userStreak) {
-                final currentStreak = userStreak?.currentStreak ?? 0;
-                final bestStreak = userStreak?.bestStreak ?? 0;
-                final readingDays = userStreak?.readingDays ?? [];
-                final currentLanguage = Localizations.localeOf(context).languageCode;
-
+              data: (_) {
                 return SingleChildScrollView(
                   padding: const EdgeInsets.all(20.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      // --- 3.3.1 y 3.3.2: Tarjetas Racha Actual y Mejor Racha ---
                       _buildMetrics(context, currentStreak, bestStreak),
                       const SizedBox(height: 24),
-                      // --- 3.3.3: Calendario de Lecturas ---
                       _buildCalendar(context, currentLanguage, selectedDate, ref, readingDays),
                       const SizedBox(height: 24),
-                      // --- Detalle de libros leídos en la fecha seleccionada ---
+                      
+                      // Detalle de lecturas...
                       readingsAsync.when(
                         data: (summaries) {
-                          return Column(
+                         return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               // Fila de encabezado con badge de cantidad
@@ -103,10 +130,7 @@ class StreakScreen extends ConsumerWidget {
                             ],
                           );
                         },
-                        loading: () => const Padding(
-                          padding: EdgeInsets.symmetric(vertical: 20),
-                          child: Center(child: BookLoader()),
-                        ),
+                        loading: () => const Center(child: BookLoader()),
                         error: (_, _) => const SizedBox.shrink(),
                       ),
                     ],
@@ -120,7 +144,7 @@ class StreakScreen extends ConsumerWidget {
     );
   }
 
-  AppBar _buildNav(BuildContext context) {
+  AppBar _buildNav(BuildContext context, WidgetRef ref, int currentStreak, String currentLanguage, int bestStreak, DateTime selectedDate, List<DateTime> readingDays) {
     return AppBar(
       centerTitle: true,
       backgroundColor: Colors.transparent,
@@ -138,10 +162,27 @@ class StreakScreen extends ConsumerWidget {
       title: Text(
         context.l10n.streakTitle,
         style: context.theme.textTheme.titleLarge?.copyWith(
-          color: context.theme.colorScheme.onSurface,
           fontWeight: FontWeight.bold,
         ),
       ),
+      actions: [
+        IconButton(
+          tooltip: context.l10n.exportMonthButton,
+          icon: const Icon(Icons.ios_share_rounded),
+          onPressed: () {
+
+            _openExportSheet(
+              context: context,
+              ref: ref,
+              currentStreak: currentStreak,
+              bestStreak: bestStreak,
+              selectedDate: selectedDate,
+              readingDays: readingDays,
+              currentLanguage: currentLanguage,
+            );
+          },
+        ),
+      ]
     );
   }
 
@@ -236,8 +277,8 @@ class StreakScreen extends ConsumerWidget {
                   child: Container(
                     width: 6,
                     height: 6,
-                    decoration: const BoxDecoration(
-                      color: Colors.orange,
+                    decoration: BoxDecoration(
+                      color: context.theme.colorScheme.primary,
                       shape: BoxShape.circle,
                     ),
                   ),

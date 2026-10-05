@@ -67,7 +67,7 @@ class _ReadingGoalsSectionState extends ConsumerState<ReadingGoalsSection> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = context.theme;
     final colorScheme = theme.colorScheme;
     final cozy = context.cozy;
 

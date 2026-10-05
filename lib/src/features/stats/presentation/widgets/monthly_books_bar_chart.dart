@@ -15,7 +15,7 @@ class MonthlyBooksBarChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = context.theme;
     
     // Calculamos el total de libros en todo el año
     final totalBooksYear = statsData.fold<int>(0, (sum, item) => sum + item.bookCount);

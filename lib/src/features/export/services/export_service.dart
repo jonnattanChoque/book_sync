@@ -30,9 +30,11 @@ class ExportService {
     final file = await File('${tempDir.path}/shared_reading_export_${DateTime.now().millisecondsSinceEpoch}.png').create();
     await file.writeAsBytes(imageBytes);
 
+    final shareText = (text.trim().isNotEmpty) ? text.trim() : null;
+
     await Share.shareXFiles(
       [XFile(file.path)],
-      text: text,
+      text: shareText,
     );
   }
 }

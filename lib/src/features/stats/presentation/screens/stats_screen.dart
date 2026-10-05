@@ -31,7 +31,7 @@ class StatsScreen extends ConsumerWidget {
     final currentStreakDays = userStreakAsync.when(
       data: (streak) => streak?.currentStreak ?? 0,
       loading: () => 0,
-      error: (_, __) => 0,
+      error: (_, _) => 0,
     );
 
     return ColoredBox(

@@ -22,7 +22,7 @@ class _CategoryPieChartState extends State<CategoryPieChart> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = context.theme;
     final totalBooks = widget.statsData.fold<int>(0, (sum, item) => sum + item.bookCount);
     final hasData = totalBooks > 0;
 

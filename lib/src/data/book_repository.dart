@@ -127,9 +127,16 @@ class BookRepository {
     required int startPage,
     required int endPage,
     required Duration duration,
+     DateTime? startTime,
   }) async {
-    final now = DateTime.now();
     final pagesRead = endPage > startPage ? endPage - startPage : 0;
+
+    final sessionTime = DateTime(
+      startTime?.year ?? DateTime.now().year,
+      startTime?.month ?? DateTime.now().month,
+      startTime?.day ?? DateTime.now().day,
+      12, 0, 0,
+    );
 
     final session = ReadingSession()
       ..bookId = bookId
@@ -137,7 +144,7 @@ class BookRepository {
       ..endPage = endPage
       ..pagesRead = pagesRead
       ..durationSeconds = duration.inSeconds
-      ..startTime = now;
+      ..startTime = sessionTime;
 
     Book? updatedBook;
 

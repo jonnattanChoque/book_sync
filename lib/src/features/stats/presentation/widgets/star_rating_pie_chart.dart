@@ -23,14 +23,14 @@ class _StarRatingPieChartState extends State<StarRatingPieChart> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = context.theme;
     final totalRatedBooks =
         widget.statsData.fold<int>(0, (sum, item) => sum + item.bookCount);
     final hasData = totalRatedBooks > 0;
 
     final selectedStat = (touchedIndex >= 0 && touchedIndex < widget.statsData.length)
-        ? widget.statsData[touchedIndex]
-        : null;
+    ? widget.statsData[touchedIndex]
+    : null;
 
     return Container(
       padding: const EdgeInsets.all(16),

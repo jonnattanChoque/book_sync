@@ -52,5 +52,35 @@
         "type": "String"
       }
     }
+  },
+  "exportNoteShareText": "A reading note from my current book with {appName}! 📖✨",
+  "@exportNoteShareText": {
+    "description": "Default text when sharing a reading note.",
+    "placeholders": {
+      "appName": {
+        "type": "String",
+        "example": "BookSync"
+      }
+    }
+  },
+  "exportCalendarShareText": "My monthly reading calendar summary with {appName}! 📅📚",
+  "@exportCalendarShareText": {
+    "description": "Default text when sharing the monthly reading calendar.",
+    "placeholders": {
+      "appName": {
+        "type": "String",
+        "example": "BookSync"
+      }
+    }
+  },
+  "exportStreakShareText": "My current reading streak on {appName}! 🔥📖",
+  "@exportStreakShareText": {
+    "description": "Default text when sharing the reading streak.",
+    "placeholders": {
+      "appName": {
+        "type": "String",
+        "example": "BookSync"
+      }
+    }
   }
 }

@@ -6,6 +6,7 @@ import 'package:book_sync/core/utils/date_formatter.dart';
 import 'package:book_sync/src/features/streak/presentation/providers/streak_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeHeader extends ConsumerStatefulWidget {
@@ -87,7 +88,7 @@ class _CalendarStampState extends State<_calendarStamp> {
       onTapUp: (_) => setState(() => _isPressed = false),
       onTapCancel: () => setState(() => _isPressed = false),
       onTap: () {
-        // TODO: ('Abrir Calendario');
+        context.push('/calendar');
       },
       child: AnimatedScale(
         scale: _isPressed ? 0.92 : 1.0,

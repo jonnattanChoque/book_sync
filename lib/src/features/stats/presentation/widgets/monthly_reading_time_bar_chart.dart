@@ -25,7 +25,7 @@ class MonthlyReadingTimeBarChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = context.theme;
 
     final totalMinutesYear =
         statsData.fold<int>(0, (sum, item) => sum + item.totalMinutes);

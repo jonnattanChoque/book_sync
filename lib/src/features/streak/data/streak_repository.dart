@@ -28,11 +28,17 @@ class StreakRepository {
   }
 
   /// Registra la lectura del día y actualiza racha actual y mejor racha
-  Future<void> registerReadingDay() async {
+  Future<void> registerReadingDay([DateTime? customDate]) async {
     await isar.writeTxn(() async {
       final streak = await isar.userStreaks.get(1) ?? UserStreak();
-      final now = DateTime.now();
-      final today = DateTime(now.year, now.month, now.day);
+      
+      // Si viene una fecha personalizada (ej: 2 de octubre), la usamos; si no, usará hoy.
+      final targetDate = customDate != null
+          ? DateTime(customDate.year, customDate.month, customDate.day)
+          : () {
+              final now = DateTime.now();
+              return DateTime(now.year, now.month, now.day);
+            }();
 
       if (streak.lastReadingDate == null) {
         // Primera lectura registrada
@@ -44,7 +50,7 @@ class StreakRepository {
           streak.lastReadingDate!.day,
         );
 
-        final difference = today.difference(lastDate).inDays;
+        final difference = targetDate.difference(lastDate).inDays;
 
         if (difference == 1) {
           // Leyó el día anterior consecutivamente
@@ -53,7 +59,7 @@ class StreakRepository {
           // Se rompió la racha por inactividad
           streak.currentStreak = 1;
         }
-        // Si difference == 0 (ya leyó hoy), conserva la racha actual sin duplicar conteo
+        // Si difference == 0 (ya leyó en este día), conserva la racha sin duplicar
       }
 
       // Actualizar récord histórico de mejor racha
@@ -61,13 +67,19 @@ class StreakRepository {
         streak.bestStreak = streak.currentStreak;
       }
 
-      streak.lastReadingDate = today;
+      // Si la lectura es más reciente que la última registrada, actualizamos lastReadingDate
+      if (streak.lastReadingDate == null || targetDate.isAfter(streak.lastReadingDate!)) {
+        streak.lastReadingDate = targetDate;
+      }
 
-      // Guardar la fecha en el historial del calendario si no estaba agregada
-      final hasReadToday = streak.readingDays.any((d) =>
-          d.year == today.year && d.month == today.month && d.day == today.day);
-      if (!hasReadToday) {
-        streak.readingDays.add(today);
+      // Guardar la fecha en el historial del calendario para que aparezca el punto
+      final hasReadOnTargetDate = streak.readingDays.any((d) =>
+          d.year == targetDate.year &&
+          d.month == targetDate.month &&
+          d.day == targetDate.day);
+
+      if (!hasReadOnTargetDate) {
+        streak.readingDays.add(targetDate);
       }
 
       await isar.userStreaks.put(streak);
@@ -137,5 +149,13 @@ class StreakRepository {
     }
 
     return summaries;
+  }
+
+  /// Obtiene todas las sesiones de lectura dentro de un rango de fechas especificado
+  Future<List<ReadingSession>> getSessionsInDateRange(DateTime start, DateTime end) async {
+    return await isar.readingSessions
+        .filter()
+        .startTimeBetween(start, end)
+        .findAll();
   }
 }

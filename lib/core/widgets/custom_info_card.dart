@@ -13,7 +13,7 @@ class CustomInfoCardContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = context.theme;
     final cozy = context.cozy;
 
     return Container(

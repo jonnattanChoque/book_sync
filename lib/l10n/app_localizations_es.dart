@@ -87,6 +87,37 @@ class AppLocalizationsEs extends AppLocalizations {
   String get rateThisBookAction => 'Valorar este libro';
 
   @override
+  String get calendarTitle => 'Calendario de Lectura';
+
+  @override
+  String get exportMonthButton => 'Exportar Mes';
+
+  @override
+  String get readingsForDateHeader => 'Lecturas del día';
+
+  @override
+  String get noReadingsOnDate => 'No registrases lecturas este día';
+
+  @override
+  String get addManualReading => 'Agregar registro';
+
+  @override
+  String pagesAndDurationSummary(int pages, String duration) {
+    String _temp0 = intl.Intl.pluralLogic(
+      pages,
+      locale: localeName,
+      other: '$pages páginas',
+      one: '1 página',
+    );
+    return '$_temp0 • $duration';
+  }
+
+  @override
+  String dayTotalSummary(String pages, String duration) {
+    return 'Total del día: $pages • $duration';
+  }
+
+  @override
   String get streakIncreased => '¡Racha Aumentada!';
 
   @override
@@ -523,6 +554,21 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String exportNoteShareText(String appName) {
+    return '¡Una nota de mi lectura con $appName! 📖✨';
+  }
+
+  @override
+  String exportCalendarShareText(String appName) {
+    return '¡Mi calendario y resumen de lectura del mes con $appName! 📅📚';
+  }
+
+  @override
+  String exportStreakShareText(String appName) {
+    return '¡Mi racha de días leyéndome sin parar en $appName! 🔥📖';
+  }
+
+  @override
   String get navHome => 'Inicio';
 
   @override
@@ -947,4 +993,20 @@ class AppLocalizationsEs extends AppLocalizations {
   String pagesRemainingInfo(int pagesRemaining) {
     return 'Quedan $pagesRemaining páginas para terminar tu libro.';
   }
+
+  @override
+  String get registerReadingTitle => 'Registrar Lectura';
+
+  @override
+  String get selectBookLabel => 'Selecciona el libro';
+
+  @override
+  String get readingTimeLabel => 'Tiempo de lectura';
+
+  @override
+  String get noBooksCurrentlyReading =>
+      'No tienes libros en curso actualmente.';
+
+  @override
+  String get selectBookWarning => 'Por favor selecciona un libro';
 }

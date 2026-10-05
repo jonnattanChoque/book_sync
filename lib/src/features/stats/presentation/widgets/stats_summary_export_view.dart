@@ -65,7 +65,7 @@ class StatsSummaryExportView extends StatelessWidget {
         const SizedBox(width: 8),
         Text(
           context.l10n.statsTitle(DateTime.now().year.toString()),
-          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+          style: context.theme.textTheme.titleSmall?.copyWith(
             fontWeight: FontWeight.bold,
             letterSpacing: 0.5,
           ),

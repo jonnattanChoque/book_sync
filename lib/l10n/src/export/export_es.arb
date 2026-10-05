@@ -52,5 +52,35 @@
         "type": "String"
       }
     }
+  },
+  "exportNoteShareText": "¡Una nota de mi lectura con {appName}! 📖✨",
+  "@exportNoteShareText": {
+    "description": "Texto predeterminado al compartir una nota de lectura en redes sociales.",
+    "placeholders": {
+      "appName": {
+        "type": "String",
+        "example": "BookSync"
+      }
+    }
+  },
+  "exportCalendarShareText": "¡Mi calendario y resumen de lectura del mes con {appName}! 📅📚",
+  "@exportCalendarShareText": {
+    "description": "Texto predeterminado al compartir el calendario mensual de lectura.",
+    "placeholders": {
+      "appName": {
+        "type": "String",
+        "example": "BookSync"
+      }
+    }
+  },
+  "exportStreakShareText": "¡Mi racha de días leyéndome sin parar en {appName}! 🔥📖",
+  "@exportStreakShareText": {
+    "description": "Texto predeterminado al compartir la racha de lectura acumulada.",
+    "placeholders": {
+      "appName": {
+        "type": "String",
+        "example": "BookSync"
+      }
+    }
   }
 }

@@ -25,7 +25,7 @@ class NotesExportView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = context.theme;
 
     return Container(
       width: 320,
@@ -110,7 +110,7 @@ class NotesExportView extends StatelessWidget {
                     width: 38,
                     height: 56,
                     fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => Container(
+                    errorBuilder: (_, _, _) => Container(
                       width: 38,
                       height: 56,
                       color: theme.colorScheme.surfaceContainerHighest,

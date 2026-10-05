@@ -50,7 +50,7 @@ class _ExportPreviewSheetState extends ConsumerState<ExportPreviewSheet> {
             Expanded(
               child: Text(
                 context.l10n.exportPremiumTitle,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                style: context.theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -107,7 +107,7 @@ class _ExportPreviewSheetState extends ConsumerState<ExportPreviewSheet> {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
       decoration: BoxDecoration(
-        color: Theme.of(context).scaffoldBackgroundColor,
+        color: context.theme.scaffoldBackgroundColor,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
       ),
       child: SingleChildScrollView(
@@ -122,7 +122,7 @@ class _ExportPreviewSheetState extends ConsumerState<ExportPreviewSheet> {
               children: [
                 Text(
                   context.l10n.exportPreviewTitle,
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  style: context.theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -148,7 +148,7 @@ class _ExportPreviewSheetState extends ConsumerState<ExportPreviewSheet> {
             if (widget.cardToggles != null && widget.onToggleChanged != null) ...[
               Text(
                 context.l10n.exportContentToInclude,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                style: context.theme.textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -173,7 +173,7 @@ class _ExportPreviewSheetState extends ConsumerState<ExportPreviewSheet> {
             // --- Selector de Fondos ---
             Text(
               context.l10n.exportBackgroundStyle,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              style: context.theme.textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -210,7 +210,7 @@ class _ExportPreviewSheetState extends ConsumerState<ExportPreviewSheet> {
               decoration: bg.decoration.copyWith(
                 border: Border.all(
                   color: isSelected
-                  ? Theme.of(context).primaryColor
+                  ? context.theme.primaryColor
                   : Colors.transparent,
                   width: 3,
                 ),

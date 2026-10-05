@@ -1,0 +1,51 @@
+{
+  "@@locale": "en",
+  "calendarTitle": "Reading Calendar",
+  "@calendarTitle": {
+    "description": "Main title in the AppBar of the calendar screen."
+  },
+  "exportMonthButton": "Export Month",
+  "@exportMonthButton": {
+    "description": "Tooltip or button text for exporting the monthly view as an image."
+  },
+  "readingsForDateHeader": "Day's Readings",
+  "@readingsForDateHeader": {
+    "description": "Header for the list of books/sessions read on the selected date."
+  },
+  "noReadingsOnDate": "No reading recorded for this day",
+  "@noReadingsOnDate": {
+    "description": "Message shown when the selected date has no reading logs."
+  },
+  "addManualReading": "Add log",
+  "@addManualReading": {
+    "description": "Button text to add a manual/past reading log for the selected date."
+  },
+  "pagesAndDurationSummary": "{pages, plural, =1{1 page} other{{pages} pages}} • {duration}",
+  "@pagesAndDurationSummary": {
+    "description": "Summary of pages and duration read for a specific book.",
+    "placeholders": {
+      "pages": {
+        "type": "int",
+        "example": "35"
+      },
+      "duration": {
+        "type": "String",
+        "example": "40m"
+      }
+    }
+  },
+  "dayTotalSummary": "Day Total: {pages} • {duration}",
+  "@dayTotalSummary": {
+    "description": "Total summary for all reading sessions on the selected day.",
+    "placeholders": {
+      "pages": {
+        "type": "String",
+        "example": "45 pages"
+      },
+      "duration": {
+        "type": "String",
+        "example": "1h 10m"
+      }
+    }
+  }
+}

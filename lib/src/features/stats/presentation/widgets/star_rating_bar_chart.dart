@@ -13,7 +13,7 @@ class StarRatingBarChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = context.theme;
 
     final totalRatedBooks =
         statsData.fold<int>(0, (sum, item) => sum + item.bookCount);
@@ -31,8 +31,8 @@ class StarRatingBarChart extends StatelessWidget {
         ),
       ),
       child: hasData
-          ? _buildBarChart(context, theme)
-          : _buildEmptyState(context, theme),
+      ? _buildBarChart(context, theme)
+      : _buildEmptyState(context, theme),
     );
   }
 

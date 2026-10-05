@@ -1,3 +1,4 @@
+import 'package:book_sync/core/constants/app_constants.dart';
 import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/theme/app_colors.dart';
 import 'package:book_sync/core/utils/categories_helper.dart';
@@ -33,7 +34,7 @@ class DetailNoteItem extends ConsumerWidget {
             pageNumber: note.page.toString(),
             category: note.category,
           ),
-          shareText: '"${note.content}" - ${book.title}'
+          shareText: context.l10n.exportNoteShareText(AppConstants.appName),
         );
       },
     );
