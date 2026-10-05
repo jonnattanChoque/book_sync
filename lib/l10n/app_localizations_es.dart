@@ -481,6 +481,48 @@ class AppLocalizationsEs extends AppLocalizations {
   String get imageSavedSuccess => '¡Imagen guardada con éxito!';
 
   @override
+  String get exportPreviewTitle => 'Exportar Resumen';
+
+  @override
+  String get exportContentToInclude => 'Contenido a incluir';
+
+  @override
+  String get exportBackgroundStyle => 'Estilo de Fondo';
+
+  @override
+  String get exportGenerating => 'Generando...';
+
+  @override
+  String get exportShareButton => 'Compartir Imagen';
+
+  @override
+  String exportDefaultShareText(Object appName) {
+    return '¡Mis estadísticas de lectura con $appName!';
+  }
+
+  @override
+  String get exportPremiumTitle => 'Característica Premium';
+
+  @override
+  String exportPremiumDescription(Object appName) {
+    return 'Este fondo exclusivo es parte de $appName Premium. Desbloquea todos los gradientes, texturas y la personalización completa para tus imágenes.';
+  }
+
+  @override
+  String get exportUpgradeButton => 'Obtener Premium';
+
+  @override
+  String get exportCancelButton => 'Quizás luego';
+
+  @override
+  String get exportNoteTooltip => 'Exportar nota como imagen';
+
+  @override
+  String exportNoteBy(String author) {
+    return 'por $author';
+  }
+
+  @override
   String get navHome => 'Inicio';
 
   @override
@@ -562,7 +604,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get showLess => 'Ver menos';
 
   @override
-  String get statsTitle => 'Estadísticas';
+  String statsTitle(Object date) {
+    return 'Estadísticas $date';
+  }
 
   @override
   String get statsDescription => 'Mira aquí tus estadísticas';

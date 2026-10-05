@@ -207,7 +207,7 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: notesList.length,
                           itemBuilder: (context, index) {
-                            return DetailNoteItem(note: notesList[index]);
+                            return DetailNoteItem(note: notesList[index], book: book);
                           },
                         );
                       },

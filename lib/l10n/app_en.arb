@@ -651,6 +651,59 @@
   "@imageSavedSuccess": {
     "description": "Toast notification when profile image is updated successfully"
   },
+  "exportPreviewTitle": "Export Summary",
+  "@exportPreviewTitle": {
+    "description": "Title for the export preview sheet."
+  },
+  "exportContentToInclude": "Content to include",
+  "@exportContentToInclude": {
+    "description": "Label for the card selection section."
+  },
+  "exportBackgroundStyle": "Background Style",
+  "@exportBackgroundStyle": {
+    "description": "Label for the background selection section."
+  },
+  "exportGenerating": "Generating...",
+  "@exportGenerating": {
+    "description": "Button text while processing the snapshot."
+  },
+  "exportShareButton": "Share Image",
+  "@exportShareButton": {
+    "description": "Main button text to share the generated image."
+  },
+  "exportDefaultShareText": "My reading statistics with {appName}!",
+  "@exportDefaultShareText": {
+    "description": "Default text when sharing to apps."
+  },
+  "exportPremiumTitle": "Premium Feature",
+  "@exportPremiumTitle": {
+    "description": "Title of the modal inviting users to purchase Premium."
+  },
+  "exportPremiumDescription": "This exclusive background is part of {appName} Premium. Unlock all gradients, textures, and full customization for your shared images.",
+  "@exportPremiumDescription": {
+    "description": "Description of Premium benefits in the export modal."
+  },
+  "exportUpgradeButton": "Get Premium",
+  "@exportUpgradeButton": {
+    "description": "Button text to navigate to the purchase/subscription screen."
+  },
+  "exportCancelButton": "Maybe later",
+  "@exportCancelButton": {
+    "description": "Button text to dismiss the promotional modal."
+  },
+  "exportNoteTooltip": "Export note as image",
+  "@exportNoteTooltip": {
+    "description": "Tooltip for the note export button."
+  },
+  "exportNoteBy": "by {author}",
+  "@exportNoteBy": {
+    "description": "Indicates the book author in the note export card.",
+    "placeholders": {
+      "author": {
+        "type": "String"
+      }
+    }
+  },
   "navHome": "Home",
   "@navHome": {
     "description": "Label for the Home tab in the main bottom navigation bar."
@@ -761,7 +814,7 @@
   "@showLess": {
     "description": "Text to collapse long conclusions"
   },
-  "statsTitle": "Statistics",
+  "statsTitle": "Statistics {date}",
   "@statsTitle": {
     "description": "Main title for the statistics card on the HomeScreen"
   },

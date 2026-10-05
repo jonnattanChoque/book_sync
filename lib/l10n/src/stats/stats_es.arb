@@ -1,6 +1,6 @@
 {
   "@@locale": "en",
-  "statsTitle": "Estadísticas",
+  "statsTitle": "Estadísticas {date}",
   "@statsTitle": {
     "description": "Título principal para la tarjeta de estadísticas en el HomeScreen"
   },

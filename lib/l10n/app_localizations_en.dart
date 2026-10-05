@@ -481,6 +481,48 @@ class AppLocalizationsEn extends AppLocalizations {
   String get imageSavedSuccess => 'Image saved successfully!';
 
   @override
+  String get exportPreviewTitle => 'Export Summary';
+
+  @override
+  String get exportContentToInclude => 'Content to include';
+
+  @override
+  String get exportBackgroundStyle => 'Background Style';
+
+  @override
+  String get exportGenerating => 'Generating...';
+
+  @override
+  String get exportShareButton => 'Share Image';
+
+  @override
+  String exportDefaultShareText(Object appName) {
+    return 'My reading statistics with $appName!';
+  }
+
+  @override
+  String get exportPremiumTitle => 'Premium Feature';
+
+  @override
+  String exportPremiumDescription(Object appName) {
+    return 'This exclusive background is part of $appName Premium. Unlock all gradients, textures, and full customization for your shared images.';
+  }
+
+  @override
+  String get exportUpgradeButton => 'Get Premium';
+
+  @override
+  String get exportCancelButton => 'Maybe later';
+
+  @override
+  String get exportNoteTooltip => 'Export note as image';
+
+  @override
+  String exportNoteBy(String author) {
+    return 'by $author';
+  }
+
+  @override
   String get navHome => 'Home';
 
   @override
@@ -561,7 +603,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get showLess => 'Show less';
 
   @override
-  String get statsTitle => 'Statistics';
+  String statsTitle(Object date) {
+    return 'Statistics $date';
+  }
 
   @override
   String get statsDescription => 'Check your statistics here';

@@ -20,7 +20,7 @@ class StatsCard extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                context.l10n.statsTitle,
+                context.l10n.statsTitle(DateTime.now().year.toString()),
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,

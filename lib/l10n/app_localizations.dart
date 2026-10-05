@@ -938,6 +938,78 @@ abstract class AppLocalizations {
   /// **'¡Imagen guardada con éxito!'**
   String get imageSavedSuccess;
 
+  /// Título de la hoja de previsualización de exportación.
+  ///
+  /// In es, this message translates to:
+  /// **'Exportar Resumen'**
+  String get exportPreviewTitle;
+
+  /// Etiqueta para la sección de selección de tarjetas a exportar.
+  ///
+  /// In es, this message translates to:
+  /// **'Contenido a incluir'**
+  String get exportContentToInclude;
+
+  /// Etiqueta para la sección de selección de fondos.
+  ///
+  /// In es, this message translates to:
+  /// **'Estilo de Fondo'**
+  String get exportBackgroundStyle;
+
+  /// Texto del botón mientras se procesa la captura de pantalla.
+  ///
+  /// In es, this message translates to:
+  /// **'Generando...'**
+  String get exportGenerating;
+
+  /// Texto del botón principal para compartir la imagen generada.
+  ///
+  /// In es, this message translates to:
+  /// **'Compartir Imagen'**
+  String get exportShareButton;
+
+  /// Texto predeterminado al compartir en redes o aplicaciones.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Mis estadísticas de lectura con {appName}!'**
+  String exportDefaultShareText(Object appName);
+
+  /// Título del modal que invita a adquirir la versión Premium.
+  ///
+  /// In es, this message translates to:
+  /// **'Característica Premium'**
+  String get exportPremiumTitle;
+
+  /// Descripción de los beneficios Premium en el modal de exportación.
+  ///
+  /// In es, this message translates to:
+  /// **'Este fondo exclusivo es parte de {appName} Premium. Desbloquea todos los gradientes, texturas y la personalización completa para tus imágenes.'**
+  String exportPremiumDescription(Object appName);
+
+  /// Texto del botón para ir a la pantalla de compra/suscripción.
+  ///
+  /// In es, this message translates to:
+  /// **'Obtener Premium'**
+  String get exportUpgradeButton;
+
+  /// Texto del botón para cerrar el modal promocional.
+  ///
+  /// In es, this message translates to:
+  /// **'Quizás luego'**
+  String get exportCancelButton;
+
+  /// Tooltip para el botón de exportar nota.
+  ///
+  /// In es, this message translates to:
+  /// **'Exportar nota como imagen'**
+  String get exportNoteTooltip;
+
+  /// Indica el autor del libro en la tarjeta de exportación de notas.
+  ///
+  /// In es, this message translates to:
+  /// **'por {author}'**
+  String exportNoteBy(String author);
+
   /// Etiqueta para la pestaña Home en la barra de navegación principal.
   ///
   /// In es, this message translates to:
@@ -1097,8 +1169,8 @@ abstract class AppLocalizations {
   /// Título principal para la tarjeta de estadísticas en el HomeScreen
   ///
   /// In es, this message translates to:
-  /// **'Estadísticas'**
-  String get statsTitle;
+  /// **'Estadísticas {date}'**
+  String statsTitle(Object date);
 
   /// Texto descriptivo o llamado a la acción secundario en la tarjeta de estadísticas
   ///

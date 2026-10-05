@@ -1,14 +1,17 @@
 // lib/src/features/stats/presentation/screens/stats_screen.dart
 
+import 'package:book_sync/core/constants/app_constants.dart';
 import 'package:book_sync/core/constants/app_icons.dart';
 import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/widgets/background_paper_texture.dart';
 import 'package:book_sync/core/widgets/book_loader.dart';
+import 'package:book_sync/src/features/export/presentation/export_preview_sheet.dart';
 import 'package:book_sync/src/features/stats/domain/models/stats_stat.dart';
 import 'package:book_sync/src/features/stats/presentation/widgets/category_pie_chart.dart';
 import 'package:book_sync/src/features/stats/presentation/widgets/monthly_books_bar_chart.dart';
 import 'package:book_sync/src/features/stats/presentation/widgets/monthly_reading_time_bar_chart.dart';
 import 'package:book_sync/src/features/stats/presentation/widgets/star_rating_pie_chart.dart';
+import 'package:book_sync/src/features/stats/presentation/widgets/stats_summary_export_view.dart';
 import 'package:book_sync/src/features/stats/presentation/widgets/year_picker_button.dart';
 import 'package:book_sync/src/features/streak/presentation/providers/streak_providers.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +26,13 @@ class StatsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final statsState = ref.watch(statsProvider);
+    final userStreakAsync = ref.watch(userStreakStreamProvider);
+
+    final currentStreakDays = userStreakAsync.when(
+      data: (streak) => streak?.currentStreak ?? 0,
+      loading: () => 0,
+      error: (_, __) => 0,
+    );
 
     return ColoredBox(
       color: context.theme.scaffoldBackgroundColor,
@@ -35,7 +45,7 @@ class StatsScreen extends ConsumerWidget {
 
           Scaffold(
             backgroundColor: Colors.transparent,
-            appBar: _buildNavBar(context),
+            appBar: _buildNavBar(context, ref, currentStreakDays),
             body: _buildStatsContent(context, statsState, ref),
           )
         ]
@@ -43,12 +53,39 @@ class StatsScreen extends ConsumerWidget {
     );
   }
 
-  AppBar _buildNavBar(BuildContext context) {
+  AppBar _buildNavBar(BuildContext context, WidgetRef ref, int currentStreakDays) {
+    final statsState = ref.watch(statsProvider);
+
+    void openExportSheet() {
+      showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        builder: (context) {
+          return ExportPreviewSheet(
+            exportContent: StatsSummaryExportView(
+              statsState: statsState,
+              currentStreakDays: currentStreakDays,
+            ),
+            shareText: context.l10n.exportDefaultShareText(AppConstants.appName),
+          );
+        },
+      );
+    }
+
     return AppBar(
       centerTitle: true,
       title: Text(context.l10n.statsBarChartTitle, style: context.theme.textTheme.titleLarge),
       backgroundColor: Colors.transparent,
       elevation: 0,
+      actions: [
+        // Botón de exportación
+        IconButton(
+          icon: const Icon(Icons.ios_share_outlined),
+          tooltip: context.l10n.exportPreviewTitle,
+          onPressed: () => openExportSheet(),
+        ),
+      ],
       leading: Builder(
         builder: (context) {
           final modalRoute = ModalRoute.of(context);

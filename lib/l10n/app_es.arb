@@ -653,6 +653,59 @@
   "@imageSavedSuccess": {
     "description": "Notificación flotante cuando la foto de perfil se actualiza correctamente"
   },
+  "exportPreviewTitle": "Exportar Resumen",
+  "@exportPreviewTitle": {
+    "description": "Título de la hoja de previsualización de exportación."
+  },
+  "exportContentToInclude": "Contenido a incluir",
+  "@exportContentToInclude": {
+    "description": "Etiqueta para la sección de selección de tarjetas a exportar."
+  },
+  "exportBackgroundStyle": "Estilo de Fondo",
+  "@exportBackgroundStyle": {
+    "description": "Etiqueta para la sección de selección de fondos."
+  },
+  "exportGenerating": "Generando...",
+  "@exportGenerating": {
+    "description": "Texto del botón mientras se procesa la captura de pantalla."
+  },
+  "exportShareButton": "Compartir Imagen",
+  "@exportShareButton": {
+    "description": "Texto del botón principal para compartir la imagen generada."
+  },
+  "exportDefaultShareText": "¡Mis estadísticas de lectura con {appName}!",
+  "@exportDefaultShareText": {
+    "description": "Texto predeterminado al compartir en redes o aplicaciones."
+  },
+  "exportPremiumTitle": "Característica Premium",
+  "@exportPremiumTitle": {
+    "description": "Título del modal que invita a adquirir la versión Premium."
+  },
+  "exportPremiumDescription": "Este fondo exclusivo es parte de {appName} Premium. Desbloquea todos los gradientes, texturas y la personalización completa para tus imágenes.",
+  "@exportPremiumDescription": {
+    "description": "Descripción de los beneficios Premium en el modal de exportación."
+  },
+  "exportUpgradeButton": "Obtener Premium",
+  "@exportUpgradeButton": {
+    "description": "Texto del botón para ir a la pantalla de compra/suscripción."
+  },
+  "exportCancelButton": "Quizás luego",
+  "@exportCancelButton": {
+    "description": "Texto del botón para cerrar el modal promocional."
+  },
+  "exportNoteTooltip": "Exportar nota como imagen",
+  "@exportNoteTooltip": {
+    "description": "Tooltip para el botón de exportar nota."
+  },
+  "exportNoteBy": "por {author}",
+  "@exportNoteBy": {
+    "description": "Indica el autor del libro en la tarjeta de exportación de notas.",
+    "placeholders": {
+      "author": {
+        "type": "String"
+      }
+    }
+  },
   "navHome": "Inicio",
   "@navHome": {
     "description": "Etiqueta para la pestaña Home en la barra de navegación principal."
@@ -763,7 +816,7 @@
   "@showLess": {
     "description": "Texto para retraer un texto largo de conclusiones"
   },
-  "statsTitle": "Estadísticas",
+  "statsTitle": "Estadísticas {date}",
   "@statsTitle": {
     "description": "Título principal para la tarjeta de estadísticas en el HomeScreen"
   },
