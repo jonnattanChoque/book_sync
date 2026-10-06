@@ -40,6 +40,7 @@ class AppConfigDatasource {
       config.alarmMinute = settings.alarmTime.minute;
       config.yearlyGoalBooks = settings.yearlyGoalBooks;
       config.weeklyGoalHours = settings.weeklyGoalHours;
+      config.isPremium = settings.isPremium ?? false;
 
       await configCollection.put(config);
     });
@@ -108,6 +109,7 @@ class AppConfigDatasource {
       ),
       yearlyGoalBooks: validYearlyBooks,
       weeklyGoalHours: validWeeklyHours,
+      isPremium: config.isPremium
     );
   }
 }

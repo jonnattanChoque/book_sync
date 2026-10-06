@@ -16,5 +16,31 @@
   "authSlideToSignOut": "Slide to sign out",
   "@authSlideToSignOut": {},
   "authSignOutSuccess": "Signed out successfully",
-  "@authSignOutSuccess": {}
+  "@authSignOutSuccess": {},
+  "annualPlanTitle": "Annual Plan",
+  "@annualPlanTitle": {},
+  "annualPlanSubtitle": "{price} / year (Best value)",
+  "@annualPlanSubtitle": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "monthlyPlanTitle": "Monthly Plan",
+  "@monthlyPlanTitle": {},
+  "monthlyPlanSubtitle": "{price} / month",
+  "@monthlyPlanSubtitle": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPremiumBadge": "PRO / Premium",
+  "@proPremiumBadge": {},
+  "freePlan": "Free Plan",
+  "@freePlan": {},
+  "upgradeToPremium": "Upgrade to Premium",
+  "@upgradeToPremium": {}
 }

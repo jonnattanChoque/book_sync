@@ -171,6 +171,32 @@
   "@authSlideToSignOut": {},
   "authSignOutSuccess": "Signed out successfully",
   "@authSignOutSuccess": {},
+  "annualPlanTitle": "Annual Plan",
+  "@annualPlanTitle": {},
+  "annualPlanSubtitle": "{price} / year (Best value)",
+  "@annualPlanSubtitle": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "monthlyPlanTitle": "Monthly Plan",
+  "@monthlyPlanTitle": {},
+  "monthlyPlanSubtitle": "{price} / month",
+  "@monthlyPlanSubtitle": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPremiumBadge": "PRO / Premium",
+  "@proPremiumBadge": {},
+  "freePlan": "Free Plan",
+  "@freePlan": {},
+  "upgradeToPremium": "Upgrade to Premium",
+  "@upgradeToPremium": {},
   "streakIncreased": "Streak Increased!",
   "@streakIncreased": {},
   "streakCurrent": "Current Streak",
@@ -716,6 +742,8 @@
   "@imageSavedSuccess": {
     "description": "Toast notification when profile image is updated successfully"
   },
+  "paywallProfileTitle": "Enjoy all advanced features, detailed statistics, and a limitless experience.",
+  "@paywallProfileTitle": {},
   "exportPreviewTitle": "Export Summary",
   "@exportPreviewTitle": {
     "description": "Title for the export preview sheet."

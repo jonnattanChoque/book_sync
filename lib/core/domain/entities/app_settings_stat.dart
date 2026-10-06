@@ -10,6 +10,7 @@ class AppSettings {
   final TimeOfDay alarmTime;
   final int yearlyGoalBooks;
   final double weeklyGoalHours;
+  final bool? isPremium;
 
   const AppSettings({
     required this.userName,
@@ -21,6 +22,7 @@ class AppSettings {
     required this.alarmTime,
     required this.yearlyGoalBooks,
     required this.weeklyGoalHours,
+    this.isPremium
   });
 
   /// Copia inmutable para mutaciones de estado
@@ -34,6 +36,7 @@ class AppSettings {
     TimeOfDay? alarmTime,
     int? yearlyGoalBooks,
     double? weeklyGoalHours,
+    bool? isPremium
   }) {
     return AppSettings(
       userName: userName ?? this.userName,
@@ -45,6 +48,7 @@ class AppSettings {
       alarmTime: alarmTime ?? this.alarmTime,
       yearlyGoalBooks: yearlyGoalBooks ?? this.yearlyGoalBooks,
       weeklyGoalHours: weeklyGoalHours ?? this.weeklyGoalHours,
+      isPremium: isPremium ?? this.isPremium,
     );
   }
 }

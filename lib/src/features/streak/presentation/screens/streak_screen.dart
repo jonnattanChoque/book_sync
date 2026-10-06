@@ -1,5 +1,6 @@
 // lib/src/features/streak/presentation/screens/streak_screen.dart
 
+import 'package:book_sync/core/constants/app_constants.dart';
 import 'package:book_sync/src/features/export/presentation/export_preview_sheet.dart';
 import 'package:book_sync/src/features/streak/presentation/widgets/streak_export_card.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class StreakScreen extends ConsumerWidget {
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (_) => ExportPreviewSheet(
-        shareText: context.l10n.exportStreakShareText('BookSync'),
+        shareText: context.l10n.exportStreakShareText(AppConstants.appName),
         exportContent: StreakExportCard(
           currentStreak: currentStreak,
           bestStreak: bestStreak,

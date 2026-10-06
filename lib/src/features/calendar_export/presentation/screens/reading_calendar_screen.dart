@@ -148,7 +148,7 @@ class ReadingCalendarScreen extends ConsumerWidget {
       calendarBuilders: CalendarBuilders(
         markerBuilder: (context, date, events) {
           final hasReading = readingDays?.any((d) => isSameDay(d, date));
-          if (!hasReading!) return null;
+          if (hasReading == null) return null;
 
           return Positioned(
             bottom: 4,

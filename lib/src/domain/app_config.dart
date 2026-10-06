@@ -16,9 +16,9 @@ class AppConfig {
   String userEmail = 'lector@example.com';
   String profileImagePath = ''; // Nueva propiedad para la ruta de la imagen de perfil
 
-  // 3.4.2 & 3.4.3 Apariencia e Idioma
   String themeMode = 'system'; // 'system', 'light', 'dark'
   String languageCode = 'es'; // 'es', 'en'
+  bool? isPremium;
 
   // 3.4.4 Alarma de lectura
   bool isAlarmEnabled = false;

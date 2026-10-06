@@ -5,6 +5,7 @@ import 'package:book_sync/core/widgets/cozy_toast.dart';
 import 'package:book_sync/core/widgets/custom_info_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 
 class UserDataSection extends ConsumerStatefulWidget {
@@ -116,6 +117,7 @@ class _UserDataSectionState extends ConsumerState<UserDataSection> {
     final String? imagePath = profileImagePath;
     final bool hasImage = imagePath != null && imagePath.isNotEmpty;
     final bool isNetworkImage = hasImage && (imagePath.startsWith('http://') || imagePath.startsWith('https://'));
+    final isPremium = settings.isPremium;
 
     // 2. Determinar el ImageProvider adecuado
     ImageProvider? getImageProvider() {
@@ -136,6 +138,61 @@ class _UserDataSectionState extends ConsumerState<UserDataSection> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (isPremium ?? false)
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: Colors.amber.shade700,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.star, size: 14, color: Colors.white),
+                      SizedBox(width: 4),
+                      Text(
+                        context.l10n.proPremiumBadge,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              else
+                GestureDetector(
+                  onTap: () {
+                    final title = context.l10n.paywallProfileTitle;
+                    context.push('/premium', extra: title);
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade700,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(Icons.star, size: 14, color: Colors.white),
+                        SizedBox(width: 4),
+                        Text(
+                          context.l10n.upgradeToPremium,
+                          style: TextStyle(color: Colors.grey, fontSize: 13),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+                
+            ],
+          ),
+          SizedBox(height: 12,),
           Row(
             children: [
               Icon(
@@ -148,7 +205,6 @@ class _UserDataSectionState extends ConsumerState<UserDataSection> {
                 context.l10n.userDataSection,
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
-                  color: colorScheme.onSurface,
                 ),
               ),
             ],
@@ -175,10 +231,12 @@ class _UserDataSectionState extends ConsumerState<UserDataSection> {
                   : null,
                 ),
                 Positioned(
+                  width: 32,
+                  height: 32,
                   bottom: 0,
                   right: 0,
                   child: IconButton.filledTonal(
-                    icon: const Icon(Icons.camera_alt, size: 18),
+                    icon: const Icon(Icons.camera_alt, size: 12),
                     onPressed: () => _showImageSourceModal(context),
                   ),
                 ),
@@ -196,7 +254,6 @@ class _UserDataSectionState extends ConsumerState<UserDataSection> {
           const SizedBox(height: 8),
           TextFormField(
             controller: _nameController,
-            //onChanged: (value) => _saveData(),
             onEditingComplete: () => _saveData(),
             onTapOutside: (_) => _saveData(),
             style: theme.textTheme.bodyMedium?.copyWith(

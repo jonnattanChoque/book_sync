@@ -127,5 +127,7 @@
   "imageSavedSuccess": "Image saved successfully!",
   "@imageSavedSuccess": {
     "description": "Toast notification when profile image is updated successfully"
-  }
+  },
+  "paywallProfileTitle": "Enjoy all advanced features, detailed statistics, and a limitless experience.",
+  "@paywallProfileTitle": {}
 }

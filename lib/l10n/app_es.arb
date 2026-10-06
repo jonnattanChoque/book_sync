@@ -178,6 +178,32 @@
   "@authSlideToSignOut": {},
   "authSignOutSuccess": "Sesión cerrada correctamente",
   "@authSignOutSuccess": {},
+  "annualPlanTitle": "Plan Anual",
+  "@annualPlanTitle": {},
+  "annualPlanSubtitle": "{price} / año (Mejor valor)",
+  "@annualPlanSubtitle": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "monthlyPlanTitle": "Plan Mensual",
+  "@monthlyPlanTitle": {},
+  "monthlyPlanSubtitle": "{price} / mes",
+  "@monthlyPlanSubtitle": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPremiumBadge": "PRO / Premium",
+  "@proPremiumBadge": {},
+  "freePlan": "Plan Gratuito",
+  "@freePlan": {},
+  "upgradeToPremium": "Actualizar a Premium",
+  "@upgradeToPremium": {},
   "streakIncreased": "¡Racha Aumentada!",
   "@streakIncreased": {},
   "streakCurrent": "Racha Actual",
@@ -725,6 +751,8 @@
   "@imageSavedSuccess": {
     "description": "Notificación flotante cuando la foto de perfil se actualiza correctamente"
   },
+  "paywallProfileTitle": "Disfruta de todas las funciones avanzadas, estadísticas detalladas y una experiencia sin límites.",
+  "@paywallProfileTitle": {},
   "exportPreviewTitle": "Exportar Resumen",
   "@exportPreviewTitle": {
     "description": "Título de la hoja de previsualización de exportación."

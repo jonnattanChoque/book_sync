@@ -16,7 +16,7 @@ class ExportBackground {
     required this.id,
     required this.name,
     required this.type,
-    this.isPremium = false,
+    required this.isPremium,
     required this.decoration,
   });
 

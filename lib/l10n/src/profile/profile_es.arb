@@ -129,5 +129,7 @@
   "imageSavedSuccess": "¡Imagen guardada con éxito!",
   "@imageSavedSuccess": {
     "description": "Notificación flotante cuando la foto de perfil se actualiza correctamente"
-  }
+  },
+  "paywallProfileTitle": "Disfruta de todas las funciones avanzadas, estadísticas detalladas y una experiencia sin límites.",
+  "@paywallProfileTitle": {}
 }

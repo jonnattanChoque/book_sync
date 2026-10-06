@@ -42,43 +42,48 @@ const AppConfigSchema = CollectionSchema(
       name: r'isAlarmEnabled',
       type: IsarType.bool,
     ),
-    r'languageCode': PropertySchema(
+    r'isPremium': PropertySchema(
       id: 5,
+      name: r'isPremium',
+      type: IsarType.bool,
+    ),
+    r'languageCode': PropertySchema(
+      id: 6,
       name: r'languageCode',
       type: IsarType.string,
     ),
     r'lastBookmarkAnimDate': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'lastBookmarkAnimDate',
       type: IsarType.string,
     ),
     r'profileImagePath': PropertySchema(
-      id: 7,
+      id: 8,
       name: r'profileImagePath',
       type: IsarType.string,
     ),
     r'themeMode': PropertySchema(
-      id: 8,
+      id: 9,
       name: r'themeMode',
       type: IsarType.string,
     ),
     r'userEmail': PropertySchema(
-      id: 9,
+      id: 10,
       name: r'userEmail',
       type: IsarType.string,
     ),
     r'userName': PropertySchema(
-      id: 10,
+      id: 11,
       name: r'userName',
       type: IsarType.string,
     ),
     r'weeklyGoalHours': PropertySchema(
-      id: 11,
+      id: 12,
       name: r'weeklyGoalHours',
       type: IsarType.double,
     ),
     r'yearlyGoalBooks': PropertySchema(
-      id: 12,
+      id: 13,
       name: r'yearlyGoalBooks',
       type: IsarType.long,
     )
@@ -140,14 +145,15 @@ void _appConfigSerialize(
   writer.writeString(offsets[2], object.dailyQuoteAuthor);
   writer.writeString(offsets[3], object.dailyQuoteText);
   writer.writeBool(offsets[4], object.isAlarmEnabled);
-  writer.writeString(offsets[5], object.languageCode);
-  writer.writeString(offsets[6], object.lastBookmarkAnimDate);
-  writer.writeString(offsets[7], object.profileImagePath);
-  writer.writeString(offsets[8], object.themeMode);
-  writer.writeString(offsets[9], object.userEmail);
-  writer.writeString(offsets[10], object.userName);
-  writer.writeDouble(offsets[11], object.weeklyGoalHours);
-  writer.writeLong(offsets[12], object.yearlyGoalBooks);
+  writer.writeBool(offsets[5], object.isPremium);
+  writer.writeString(offsets[6], object.languageCode);
+  writer.writeString(offsets[7], object.lastBookmarkAnimDate);
+  writer.writeString(offsets[8], object.profileImagePath);
+  writer.writeString(offsets[9], object.themeMode);
+  writer.writeString(offsets[10], object.userEmail);
+  writer.writeString(offsets[11], object.userName);
+  writer.writeDouble(offsets[12], object.weeklyGoalHours);
+  writer.writeLong(offsets[13], object.yearlyGoalBooks);
 }
 
 AppConfig _appConfigDeserialize(
@@ -163,14 +169,15 @@ AppConfig _appConfigDeserialize(
   object.dailyQuoteText = reader.readStringOrNull(offsets[3]);
   object.id = id;
   object.isAlarmEnabled = reader.readBool(offsets[4]);
-  object.languageCode = reader.readString(offsets[5]);
-  object.lastBookmarkAnimDate = reader.readStringOrNull(offsets[6]);
-  object.profileImagePath = reader.readString(offsets[7]);
-  object.themeMode = reader.readString(offsets[8]);
-  object.userEmail = reader.readString(offsets[9]);
-  object.userName = reader.readString(offsets[10]);
-  object.weeklyGoalHours = reader.readDouble(offsets[11]);
-  object.yearlyGoalBooks = reader.readLong(offsets[12]);
+  object.isPremium = reader.readBoolOrNull(offsets[5]);
+  object.languageCode = reader.readString(offsets[6]);
+  object.lastBookmarkAnimDate = reader.readStringOrNull(offsets[7]);
+  object.profileImagePath = reader.readString(offsets[8]);
+  object.themeMode = reader.readString(offsets[9]);
+  object.userEmail = reader.readString(offsets[10]);
+  object.userName = reader.readString(offsets[11]);
+  object.weeklyGoalHours = reader.readDouble(offsets[12]);
+  object.yearlyGoalBooks = reader.readLong(offsets[13]);
   return object;
 }
 
@@ -192,11 +199,11 @@ P _appConfigDeserializeProp<P>(
     case 4:
       return (reader.readBool(offset)) as P;
     case 5:
-      return (reader.readString(offset)) as P;
+      return (reader.readBoolOrNull(offset)) as P;
     case 6:
-      return (reader.readStringOrNull(offset)) as P;
-    case 7:
       return (reader.readString(offset)) as P;
+    case 7:
+      return (reader.readStringOrNull(offset)) as P;
     case 8:
       return (reader.readString(offset)) as P;
     case 9:
@@ -204,8 +211,10 @@ P _appConfigDeserializeProp<P>(
     case 10:
       return (reader.readString(offset)) as P;
     case 11:
-      return (reader.readDouble(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 12:
+      return (reader.readDouble(offset)) as P;
+    case 13:
       return (reader.readLong(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -777,6 +786,33 @@ extension AppConfigQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'isAlarmEnabled',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition> isPremiumIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'isPremium',
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      isPremiumIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'isPremium',
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition> isPremiumEqualTo(
+      bool? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'isPremium',
         value: value,
       ));
     });
@@ -1793,6 +1829,18 @@ extension AppConfigQuerySortBy on QueryBuilder<AppConfig, AppConfig, QSortBy> {
     });
   }
 
+  QueryBuilder<AppConfig, AppConfig, QAfterSortBy> sortByIsPremium() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isPremium', Sort.asc);
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterSortBy> sortByIsPremiumDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isPremium', Sort.desc);
+    });
+  }
+
   QueryBuilder<AppConfig, AppConfig, QAfterSortBy> sortByLanguageCode() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'languageCode', Sort.asc);
@@ -1968,6 +2016,18 @@ extension AppConfigQuerySortThenBy
     });
   }
 
+  QueryBuilder<AppConfig, AppConfig, QAfterSortBy> thenByIsPremium() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isPremium', Sort.asc);
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterSortBy> thenByIsPremiumDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isPremium', Sort.desc);
+    });
+  }
+
   QueryBuilder<AppConfig, AppConfig, QAfterSortBy> thenByLanguageCode() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'languageCode', Sort.asc);
@@ -2104,6 +2164,12 @@ extension AppConfigQueryWhereDistinct
     });
   }
 
+  QueryBuilder<AppConfig, AppConfig, QDistinct> distinctByIsPremium() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'isPremium');
+    });
+  }
+
   QueryBuilder<AppConfig, AppConfig, QDistinct> distinctByLanguageCode(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -2197,6 +2263,12 @@ extension AppConfigQueryProperty
   QueryBuilder<AppConfig, bool, QQueryOperations> isAlarmEnabledProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'isAlarmEnabled');
+    });
+  }
+
+  QueryBuilder<AppConfig, bool?, QQueryOperations> isPremiumProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'isPremium');
     });
   }
 

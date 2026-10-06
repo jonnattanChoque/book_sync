@@ -362,6 +362,48 @@ abstract class AppLocalizations {
   /// **'Sesión cerrada correctamente'**
   String get authSignOutSuccess;
 
+  /// No description provided for @annualPlanTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Plan Anual'**
+  String get annualPlanTitle;
+
+  /// No description provided for @annualPlanSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'{price} / año (Mejor valor)'**
+  String annualPlanSubtitle(String price);
+
+  /// No description provided for @monthlyPlanTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Plan Mensual'**
+  String get monthlyPlanTitle;
+
+  /// No description provided for @monthlyPlanSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'{price} / mes'**
+  String monthlyPlanSubtitle(String price);
+
+  /// No description provided for @proPremiumBadge.
+  ///
+  /// In es, this message translates to:
+  /// **'PRO / Premium'**
+  String get proPremiumBadge;
+
+  /// No description provided for @freePlan.
+  ///
+  /// In es, this message translates to:
+  /// **'Plan Gratuito'**
+  String get freePlan;
+
+  /// No description provided for @upgradeToPremium.
+  ///
+  /// In es, this message translates to:
+  /// **'Actualizar a Premium'**
+  String get upgradeToPremium;
+
   /// No description provided for @streakIncreased.
   ///
   /// In es, this message translates to:
@@ -1051,6 +1093,12 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'¡Imagen guardada con éxito!'**
   String get imageSavedSuccess;
+
+  /// No description provided for @paywallProfileTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Disfruta de todas las funciones avanzadas, estadísticas detalladas y una experiencia sin límites.'**
+  String get paywallProfileTitle;
 
   /// Título de la hoja de previsualización de exportación.
   ///

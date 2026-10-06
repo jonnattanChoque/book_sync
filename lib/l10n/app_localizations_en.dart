@@ -155,6 +155,31 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authSignOutSuccess => 'Signed out successfully';
 
   @override
+  String get annualPlanTitle => 'Annual Plan';
+
+  @override
+  String annualPlanSubtitle(String price) {
+    return '$price / year (Best value)';
+  }
+
+  @override
+  String get monthlyPlanTitle => 'Monthly Plan';
+
+  @override
+  String monthlyPlanSubtitle(String price) {
+    return '$price / month';
+  }
+
+  @override
+  String get proPremiumBadge => 'PRO / Premium';
+
+  @override
+  String get freePlan => 'Free Plan';
+
+  @override
+  String get upgradeToPremium => 'Upgrade to Premium';
+
+  @override
   String get streakIncreased => 'Streak Increased!';
 
   @override
@@ -548,6 +573,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get imageSavedSuccess => 'Image saved successfully!';
+
+  @override
+  String get paywallProfileTitle =>
+      'Enjoy all advanced features, detailed statistics, and a limitless experience.';
 
   @override
   String get exportPreviewTitle => 'Export Summary';

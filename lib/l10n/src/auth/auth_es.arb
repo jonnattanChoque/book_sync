@@ -23,5 +23,31 @@
   "authSlideToSignOut": "Desliza para cerrar sesión",
   "@authSlideToSignOut": {},
   "authSignOutSuccess": "Sesión cerrada correctamente",
-  "@authSignOutSuccess": {}
+  "@authSignOutSuccess": {},
+  "annualPlanTitle": "Plan Anual",
+  "@annualPlanTitle": {},
+  "annualPlanSubtitle": "{price} / año (Mejor valor)",
+  "@annualPlanSubtitle": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "monthlyPlanTitle": "Plan Mensual",
+  "@monthlyPlanTitle": {},
+  "monthlyPlanSubtitle": "{price} / mes",
+  "@monthlyPlanSubtitle": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPremiumBadge": "PRO / Premium",
+  "@proPremiumBadge": {},
+  "freePlan": "Plan Gratuito",
+  "@freePlan": {},
+  "upgradeToPremium": "Actualizar a Premium",
+  "@upgradeToPremium": {}
 }

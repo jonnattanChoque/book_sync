@@ -2,6 +2,7 @@
 
 import 'package:book_sync/src/features/auth/presentation/providers/auth_providers.dart';
 import 'package:book_sync/src/features/auth/presentation/screens/auth_screen.dart';
+import 'package:book_sync/src/features/auth/presentation/screens/premium_paywall_screen.dart';
 import 'package:book_sync/src/features/calendar_export/presentation/screens/reading_calendar_screen.dart';
 import 'package:book_sync/src/features/profile/presentation/screens/profile_screen.dart';
 import 'package:book_sync/src/features/reader_session/presentation/summary_screen.dart';
@@ -274,6 +275,19 @@ final routerProvider = Provider<GoRouter>((ref) {
           return CustomTransitionPage(
             key: state.pageKey,
             child: ReadingCalendarScreen(),
+            transitionsBuilder: buildPageTurnTransition,
+            transitionDuration: const Duration(milliseconds: 700),
+            reverseTransitionDuration: const Duration(milliseconds: 500),
+          );
+        },
+      ),
+      GoRoute(
+        path: '/premium',
+        pageBuilder: (context, state) {
+          final title = state.extra as String;
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: PremiumPaywallScreen(contentText: title),
             transitionsBuilder: buildPageTurnTransition,
             transitionDuration: const Duration(milliseconds: 700),
             reverseTransitionDuration: const Duration(milliseconds: 500),

@@ -1,8 +1,12 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:book_sync/core/constants/app_constants.dart';
 import 'package:book_sync/core/extensions/build_context_ext.dart';
+import 'package:book_sync/core/providers/app_settings_provider.dart';
 import 'package:book_sync/core/widgets/primary_outlined_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import '../models/export_background.dart';
 import '../services/export_service.dart';
 import '../widgets/export_canvas_wrapper.dart';
@@ -12,7 +16,6 @@ class ExportPreviewSheet extends ConsumerStatefulWidget {
   final String shareText;
   final Map<String, bool>? cardToggles;
   final ValueChanged<Map<String, bool>>? onToggleChanged;
-  final bool isUserPremium;
 
   const ExportPreviewSheet({
     super.key,
@@ -20,7 +23,6 @@ class ExportPreviewSheet extends ConsumerStatefulWidget {
     this.shareText = '',
     this.cardToggles,
     this.onToggleChanged,
-    this.isUserPremium = false,
   });
 
   @override
@@ -38,51 +40,11 @@ class _ExportPreviewSheetState extends ConsumerState<ExportPreviewSheet> {
     _selectedBackground = ExportBackground.getPresets(context).first;
   }
 
-  void _showPremiumPaywallDialog() {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: Row(
-          children: [
-            const Icon(Icons.star, color: Colors.amber),
-            const SizedBox(width: 8),
-            Expanded(
-              child: Text(
-                context.l10n.exportPremiumTitle,
-                style: context.theme.textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ],
-        ),
-        content: Text(context.l10n.exportPremiumDescription(AppConstants.appName)),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: Text(context.l10n.exportCancelButton),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              // TODO: Navegar a la pantalla de Paywall / Suscripción
-            },
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            child: Text(context.l10n.exportUpgradeButton),
-          ),
-        ],
-      ),
-    );
-  }
 
-  Future<void> _handleExport() async {
-    if (_selectedBackground.isPremium && !widget.isUserPremium) {
-      _showPremiumPaywallDialog();
+  Future<void> _handleExport(bool isUserPremium) async {
+    final String title = context.l10n.exportPremiumDescription(AppConstants.appName);
+    if (_selectedBackground.isPremium && !isUserPremium) {
+      context.push('/premium', extra: title);
       return;
     }
 
@@ -103,6 +65,8 @@ class _ExportPreviewSheetState extends ConsumerState<ExportPreviewSheet> {
   @override
   Widget build(BuildContext context) {
     final backgrounds = ExportBackground.getPresets(context);
+    final settings = ref.watch(appSettingsProvider);
+    final isPremium = settings.isPremium;
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
@@ -180,7 +144,7 @@ class _ExportPreviewSheetState extends ConsumerState<ExportPreviewSheet> {
             const SizedBox(height: 12),
             _buildBackgroudColors(backgrounds),
             const SizedBox(height: 24),
-            _buildButton(context),
+            _buildButton(context, isPremium ?? false),
           ],
         ),
       ),
@@ -231,12 +195,12 @@ class _ExportPreviewSheetState extends ConsumerState<ExportPreviewSheet> {
     );
   }
 
-  PrimaryOutlinedButton _buildButton(BuildContext context) {
+  PrimaryOutlinedButton _buildButton(BuildContext context, bool isUserPremium ) {
     return PrimaryOutlinedButton(
       label: _isExporting ? context.l10n.exportGenerating : context.l10n.exportShareButton, 
       onPressed: () {
         if (!_isExporting) {
-          _handleExport();
+          _handleExport(isUserPremium);
         }
       },
       icon: _isExporting ? null : Icons.share_outlined,

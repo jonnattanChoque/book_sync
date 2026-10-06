@@ -4,6 +4,7 @@ import 'package:book_sync/core/constants/app_constants.dart';
 import 'package:book_sync/core/constants/app_icons.dart';
 import 'package:book_sync/core/domain/entities/export_item_type.dart';
 import 'package:book_sync/core/extensions/build_context_ext.dart';
+import 'package:book_sync/core/providers/app_settings_provider.dart';
 import 'package:book_sync/core/widgets/background_paper_texture.dart';
 import 'package:book_sync/core/widgets/book_loader.dart';
 import 'package:book_sync/src/features/export/presentation/export_preview_sheet.dart';
@@ -29,6 +30,8 @@ class StatsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final statsState = ref.watch(statsProvider);
     final userStreakAsync = ref.watch(userStreakStreamProvider);
+    final settings = ref.watch(appSettingsProvider);
+    final isPremium = settings.isPremium ?? false;
 
     final currentStreakDays = userStreakAsync.when(
       data: (streak) => streak?.currentStreak ?? 0,
@@ -47,7 +50,7 @@ class StatsScreen extends ConsumerWidget {
 
           Scaffold(
             backgroundColor: Colors.transparent,
-            appBar: _buildNavBar(context, ref, currentStreakDays),
+            appBar: _buildNavBar(context, ref, currentStreakDays, isPremium),
             body: _buildStatsContent(context, statsState, ref),
           )
         ]
@@ -55,12 +58,10 @@ class StatsScreen extends ConsumerWidget {
     );
   }
 
-  AppBar _buildNavBar(BuildContext context, WidgetRef ref, int currentStreakDays) {
+  AppBar _buildNavBar(BuildContext context, WidgetRef ref, int currentStreakDays, bool isPremiumUser) {
     final statsState = ref.watch(statsProvider);
 
     void onExportPressed(BuildContext context) async {
-      // Flag temporal de usuario Premium
-      final isPremiumUser = true; // <-- Quemado temporalmente en true
 
       List<ExportItemConfig> itemsConfig = [
         ExportItemConfig(type: ExportItemType.yearlyGoal, title: context.l10n.statsYearlyGoalTitle),
@@ -76,17 +77,14 @@ class StatsScreen extends ConsumerWidget {
       List<ExportItemConfig>? selectedItems;
 
       if (isPremiumUser) {
-        // 2. Abrir selector de tarjetas
         selectedItems = await ExportConfigModal.show(
           context,
           initialItems: itemsConfig,
         );
 
-        // Si el usuario cierra el modal sin confirmar, cancelamos la exportación
         if (selectedItems == null) return;
       }
-
-      // 3. Abrir la vista previa original con los elementos seleccionados
+      
       showModalBottomSheet(
         context: context,
         isScrollControlled: true,
@@ -96,7 +94,7 @@ class StatsScreen extends ConsumerWidget {
             exportContent: StatsSummaryExportView(
               statsState: statsState,
               currentStreakDays: currentStreakDays,
-              visibleItems: selectedItems, // <-- Pasa la lista procesada al StatsSummaryGrid
+              visibleItems: selectedItems,
             ),
             shareText: context.l10n.exportDefaultShareText(AppConstants.appName),
           );
