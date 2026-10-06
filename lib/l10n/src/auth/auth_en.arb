@@ -1,0 +1,20 @@
+{
+  "@@locale": "en",
+  "authWelcomeTitle": "Welcome to BookSync!",
+  "authWelcomeSubtitle": "Sync your readings, keep your streaks, and take your stats anywhere.",
+  "authContinueWithGoogle": "Continue with Google",
+  "authContinueWithApple": "Continue with Apple",
+  "authContinueAsGuest": "Explore as Guest",
+  "authGuestDisclaimer": "You can use the app as a guest. To unlock Premium features and save your progress to the cloud, you'll need to sign in.",
+  "authLoginBenefitsTitle": "Benefits of creating an account:",
+  "authBenefitSync": "Cloud synchronization",
+  "@authBenefitSync": {},
+  "authBenefitBackup": "Automatic reading backup",
+  "@authBenefitBackup": {},
+  "authBenefitPremium": "Unlock or restore Premium access",
+  "@authBenefitPremium": {},
+  "authSlideToSignOut": "Slide to sign out",
+  "@authSlideToSignOut": {},
+  "authSignOutSuccess": "Signed out successfully",
+  "@authSignOutSuccess": {}
+}

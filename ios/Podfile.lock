@@ -1,9 +1,23 @@
 PODS:
+  - app_links (7.0.0):
+    - Flutter
+  - AppAuth (1.7.6):
+    - AppAuth/Core (= 1.7.6)
+    - AppAuth/ExternalUserAgent (= 1.7.6)
+  - AppAuth/Core (1.7.6)
+  - AppAuth/ExternalUserAgent (1.7.6):
+    - AppAuth/Core
   - Flutter (1.0.0)
   - flutter_local_notifications (0.0.1):
     - Flutter
   - flutter_timezone (0.0.1):
     - Flutter
+  - google_sign_in_ios (0.0.1):
+    - AppAuth (>= 1.7.4)
+    - Flutter
+    - FlutterMacOS
+    - GoogleSignIn (~> 7.1)
+    - GTMSessionFetcher (>= 3.4.0)
   - GoogleDataTransport (9.4.1):
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30911.0, >= 2.30908.0)
@@ -13,24 +27,69 @@ PODS:
     - MLKitBarcodeScanning (~> 5.0.0)
   - GoogleMLKit/MLKitCore (6.0.0):
     - MLKitCommon (~> 11.0.0)
+  - GoogleSignIn (7.1.0):
+    - AppAuth (< 2.0, >= 1.7.3)
+    - GTMAppAuth (< 5.0, >= 4.1.1)
+    - GTMSessionFetcher/Core (~> 3.3)
   - GoogleToolboxForMac/Defines (4.2.1)
   - GoogleToolboxForMac/Logger (4.2.1):
     - GoogleToolboxForMac/Defines (= 4.2.1)
   - "GoogleToolboxForMac/NSData+zlib (4.2.1)":
     - GoogleToolboxForMac/Defines (= 4.2.1)
+  - GoogleUtilities (7.13.3):
+    - GoogleUtilities/AppDelegateSwizzler (= 7.13.3)
+    - GoogleUtilities/Environment (= 7.13.3)
+    - GoogleUtilities/ISASwizzler (= 7.13.3)
+    - GoogleUtilities/Logger (= 7.13.3)
+    - GoogleUtilities/MethodSwizzler (= 7.13.3)
+    - GoogleUtilities/Network (= 7.13.3)
+    - "GoogleUtilities/NSData+zlib (= 7.13.3)"
+    - GoogleUtilities/Privacy (= 7.13.3)
+    - GoogleUtilities/Reachability (= 7.13.3)
+    - GoogleUtilities/SwizzlerTestHelpers (= 7.13.3)
+    - GoogleUtilities/UserDefaults (= 7.13.3)
+  - GoogleUtilities/AppDelegateSwizzler (7.13.3):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+    - GoogleUtilities/Privacy
   - GoogleUtilities/Environment (7.13.3):
     - GoogleUtilities/Privacy
     - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleUtilities/ISASwizzler (7.13.3):
+    - GoogleUtilities/Privacy
   - GoogleUtilities/Logger (7.13.3):
     - GoogleUtilities/Environment
     - GoogleUtilities/Privacy
+  - GoogleUtilities/MethodSwizzler (7.13.3):
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Privacy
+  - GoogleUtilities/Network (7.13.3):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Privacy
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (7.13.3)":
+    - GoogleUtilities/Privacy
   - GoogleUtilities/Privacy (7.13.3)
+  - GoogleUtilities/Reachability (7.13.3):
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Privacy
+  - GoogleUtilities/SwizzlerTestHelpers (7.13.3):
+    - GoogleUtilities/MethodSwizzler
   - GoogleUtilities/UserDefaults (7.13.3):
     - GoogleUtilities/Logger
     - GoogleUtilities/Privacy
   - GoogleUtilitiesComponents (1.1.0):
     - GoogleUtilities/Logger
+  - GTMAppAuth (4.1.1):
+    - AppAuth/Core (~> 1.7)
+    - GTMSessionFetcher/Core (< 4.0, >= 3.3)
+  - GTMSessionFetcher (3.5.0):
+    - GTMSessionFetcher/Full (= 3.5.0)
   - GTMSessionFetcher/Core (3.5.0)
+  - GTMSessionFetcher/Full (3.5.0):
+    - GTMSessionFetcher/Core
   - image_picker_ios (0.0.1):
     - Flutter
   - isar_flutter_libs (1.0.0):
@@ -62,31 +121,47 @@ PODS:
   - nanopb/encode (2.30910.0)
   - permission_handler_apple (9.4.8):
     - Flutter
-  - PromisesObjC (2.4.0)
+  - PromisesObjC (2.4.1)
   - share_plus (0.0.1):
+    - Flutter
+  - shared_preferences_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - sign_in_with_apple (0.0.1):
     - Flutter
   - sqflite_darwin (0.0.4):
     - Flutter
     - FlutterMacOS
+  - url_launcher_ios (0.0.1):
+    - Flutter
 
 DEPENDENCIES:
+  - app_links (from `.symlinks/plugins/app_links/ios`)
   - Flutter (from `Flutter`)
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - flutter_timezone (from `.symlinks/plugins/flutter_timezone/ios`)
+  - google_sign_in_ios (from `.symlinks/plugins/google_sign_in_ios/darwin`)
+  - GoogleUtilities (= 7.13.3)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - isar_flutter_libs (from `.symlinks/plugins/isar_flutter_libs/ios`)
   - mobile_scanner (from `.symlinks/plugins/mobile_scanner/ios`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
+  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
+  - sign_in_with_apple (from `.symlinks/plugins/sign_in_with_apple/ios`)
   - sqflite_darwin (from `.symlinks/plugins/sqflite_darwin/darwin`)
+  - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 SPEC REPOS:
   trunk:
+    - AppAuth
     - GoogleDataTransport
     - GoogleMLKit
+    - GoogleSignIn
     - GoogleToolboxForMac
     - GoogleUtilities
     - GoogleUtilitiesComponents
+    - GTMAppAuth
     - GTMSessionFetcher
     - MLImage
     - MLKitBarcodeScanning
@@ -96,12 +171,16 @@ SPEC REPOS:
     - PromisesObjC
 
 EXTERNAL SOURCES:
+  app_links:
+    :path: ".symlinks/plugins/app_links/ios"
   Flutter:
     :path: Flutter
   flutter_local_notifications:
     :path: ".symlinks/plugins/flutter_local_notifications/ios"
   flutter_timezone:
     :path: ".symlinks/plugins/flutter_timezone/ios"
+  google_sign_in_ios:
+    :path: ".symlinks/plugins/google_sign_in_ios/darwin"
   image_picker_ios:
     :path: ".symlinks/plugins/image_picker_ios/ios"
   isar_flutter_libs:
@@ -112,18 +191,29 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/permission_handler_apple/ios"
   share_plus:
     :path: ".symlinks/plugins/share_plus/ios"
+  shared_preferences_foundation:
+    :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
+  sign_in_with_apple:
+    :path: ".symlinks/plugins/sign_in_with_apple/ios"
   sqflite_darwin:
     :path: ".symlinks/plugins/sqflite_darwin/darwin"
+  url_launcher_ios:
+    :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
+  app_links: 6d01271b3907b0ee7325c5297c75d697c4226c4d
+  AppAuth: d4f13a8fe0baf391b2108511793e4b479691fb73
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
   flutter_local_notifications: 4cde75091f6327eb8517fa068a0a5950212d2086
   flutter_timezone: ac3da59ac941ff1c98a2e1f0293420e020120282
+  google_sign_in_ios: 07375bfbf2620bc93a602c0e27160d6afc6ead38
   GoogleDataTransport: 6c09b596d841063d76d4288cc2d2f42cc36e1e2a
   GoogleMLKit: 97ac7af399057e99182ee8edfa8249e3226a4065
+  GoogleSignIn: d4281ab6cf21542b1cfaff85c191f230b399d2db
   GoogleToolboxForMac: d1a2cbf009c453f4d6ded37c105e2f67a32206d8
   GoogleUtilities: ea963c370a38a8069cc5f7ba4ca849a60b6d7d15
   GoogleUtilitiesComponents: 679b2c881db3b615a2777504623df6122dd20afe
+  GTMAppAuth: f69bd07d68cd3b766125f7e072c45d7340dea0de
   GTMSessionFetcher: 5aea5ba6bd522a239e236100971f10cb71b96ab6
   image_picker_ios: 4f2f91b01abdb52842a8e277617df877e40f905b
   isar_flutter_libs: b69f437aeab9c521821c3f376198c4371fa21073
@@ -134,10 +224,13 @@ SPEC CHECKSUMS:
   mobile_scanner: 96e91f2e1fb396bb7df8da40429ba8dfad664740
   nanopb: 438bc412db1928dac798aa6fd75726007be04262
   permission_handler_apple: ee2fe0fd04551b304eb002714ff067c371c822ed
-  PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
+  PromisesObjC: 752c3227f599e3467650e47ea36f433eeb10c273
   share_plus: 796a4b55a883a34f4f1ff7bbd19436879a5055db
+  shared_preferences_foundation: 5086985c1d43c5ba4d5e69a4e8083a389e2909e6
+  sign_in_with_apple: f3bf75217ea4c2c8b91823f225d70230119b8440
   sqflite_darwin: 5a7236e3b501866c1c9befc6771dfd73ffb8702d
+  url_launcher_ios: bb13df5870e8c4234ca12609d04010a21be43dfa
 
-PODFILE CHECKSUM: 3c63482e143d1b91d2d2560aee9fb04ecc74ac7e
+PODFILE CHECKSUM: c60e48ad2832d77b6e09a2c62392f33b03acdb40
 
 COCOAPODS: 1.16.2

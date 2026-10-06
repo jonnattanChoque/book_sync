@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  app_links
   file_selector_windows
   flutter_timezone
   isar_flutter_libs

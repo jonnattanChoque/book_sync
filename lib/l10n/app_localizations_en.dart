@@ -117,6 +117,44 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get authWelcomeTitle => 'Welcome to BookSync!';
+
+  @override
+  String get authWelcomeSubtitle =>
+      'Sync your readings, keep your streaks, and take your stats anywhere.';
+
+  @override
+  String get authContinueWithGoogle => 'Continue with Google';
+
+  @override
+  String get authContinueWithApple => 'Continue with Apple';
+
+  @override
+  String get authContinueAsGuest => 'Explore as Guest';
+
+  @override
+  String get authGuestDisclaimer =>
+      'You can use the app as a guest. To unlock Premium features and save your progress to the cloud, you\'ll need to sign in.';
+
+  @override
+  String get authLoginBenefitsTitle => 'Benefits of creating an account:';
+
+  @override
+  String get authBenefitSync => 'Cloud synchronization';
+
+  @override
+  String get authBenefitBackup => 'Automatic reading backup';
+
+  @override
+  String get authBenefitPremium => 'Unlock or restore Premium access';
+
+  @override
+  String get authSlideToSignOut => 'Slide to sign out';
+
+  @override
+  String get authSignOutSuccess => 'Signed out successfully';
+
+  @override
   String get streakIncreased => 'Streak Increased!';
 
   @override

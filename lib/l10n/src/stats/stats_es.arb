@@ -2,7 +2,10 @@
   "@@locale": "en",
   "statsTitle": "Estadísticas {date}",
   "@statsTitle": {
-    "description": "Título principal para la tarjeta de estadísticas en el HomeScreen"
+    "description": "Título principal para la tarjeta de estadísticas en el HomeScreen",
+    "placeholders": {
+      "date": {}
+    }
   },
   "statsDescription": "Mira aquí tus estadísticas",
   "@statsDescription": {

@@ -22,7 +22,10 @@
   },
   "exportDefaultShareText": "¡Mis estadísticas de lectura con {appName}!",
   "@exportDefaultShareText": {
-    "description": "Texto predeterminado al compartir en redes o aplicaciones."
+    "description": "Texto predeterminado al compartir en redes o aplicaciones.",
+    "placeholders": {
+      "appName": {}
+    }
   },
   "exportPremiumTitle": "Característica Premium",
   "@exportPremiumTitle": {
@@ -30,7 +33,10 @@
   },
   "exportPremiumDescription": "Este fondo exclusivo es parte de {appName} Premium. Desbloquea todos los gradientes, texturas y la personalización completa para tus imágenes.",
   "@exportPremiumDescription": {
-    "description": "Descripción de los beneficios Premium en el modal de exportación."
+    "description": "Descripción de los beneficios Premium en el modal de exportación.",
+    "placeholders": {
+      "appName": {}
+    }
   },
   "exportUpgradeButton": "Obtener Premium",
   "@exportUpgradeButton": {

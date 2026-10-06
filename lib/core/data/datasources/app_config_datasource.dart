@@ -45,6 +45,17 @@ class AppConfigDatasource {
     });
   }
 
+  Future<void> clearAppConfig() async {
+    await isar.writeTxn(() async {
+      // Si tienes un solo objeto de configuración
+      await isar.appConfigs.clear(); 
+      
+      // O si prefieres resetearlo a valores por defecto en lugar de borrarlo:
+      // final defaultConfig = AppConfig()..isLoggedIn = false..guestMode = true;
+      // await isar.appConfigs.put(defaultConfig);
+    });
+  }
+  
   /// Mapeador privado de AppConfig (Isar) -> AppSettings (Domain)
   AppSettings _mapToEntity(AppConfig config) {
     ThemeMode mode;

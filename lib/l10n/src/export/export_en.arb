@@ -22,7 +22,10 @@
   },
   "exportDefaultShareText": "My reading statistics with {appName}!",
   "@exportDefaultShareText": {
-    "description": "Default text when sharing to apps."
+    "description": "Default text when sharing to apps.",
+    "placeholders": {
+      "appName": {}
+    }
   },
   "exportPremiumTitle": "Premium Feature",
   "@exportPremiumTitle": {
@@ -30,7 +33,10 @@
   },
   "exportPremiumDescription": "This exclusive background is part of {appName} Premium. Unlock all gradients, textures, and full customization for your shared images.",
   "@exportPremiumDescription": {
-    "description": "Description of Premium benefits in the export modal."
+    "description": "Description of Premium benefits in the export modal.",
+    "placeholders": {
+      "appName": {}
+    }
   },
   "exportUpgradeButton": "Get Premium",
   "@exportUpgradeButton": {

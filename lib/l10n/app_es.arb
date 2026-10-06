@@ -154,6 +154,30 @@
       }
     }
   },
+  "authWelcomeTitle": "¡Bienvenido a BookSync!",
+  "@authWelcomeTitle": {},
+  "authWelcomeSubtitle": "Sincroniza tus lecturas, mantén tus rachas y lleva tus estadísticas a todas partes.",
+  "@authWelcomeSubtitle": {},
+  "authContinueWithGoogle": "Continuar con Google",
+  "@authContinueWithGoogle": {},
+  "authContinueWithApple": "Continuar con Apple",
+  "@authContinueWithApple": {},
+  "authContinueAsGuest": "Explorar como invitado",
+  "@authContinueAsGuest": {},
+  "authGuestDisclaimer": "Puedes usar la app como invitado. Para desbloquear funciones Premium y guardar tu progreso en la nube, necesitarás iniciar sesión.",
+  "@authGuestDisclaimer": {},
+  "authLoginBenefitsTitle": "Beneficios de crear una cuenta:",
+  "@authLoginBenefitsTitle": {},
+  "authBenefitSync": "Sincronización en la nube",
+  "@authBenefitSync": {},
+  "authBenefitBackup": "Respaldo automático de tus lecturas",
+  "@authBenefitBackup": {},
+  "authBenefitPremium": "Desbloquear o restaurar tu acceso Premium",
+  "@authBenefitPremium": {},
+  "authSlideToSignOut": "Desliza para cerrar sesión",
+  "@authSlideToSignOut": {},
+  "authSignOutSuccess": "Sesión cerrada correctamente",
+  "@authSignOutSuccess": {},
   "streakIncreased": "¡Racha Aumentada!",
   "@streakIncreased": {},
   "streakCurrent": "Racha Actual",
@@ -723,7 +747,10 @@
   },
   "exportDefaultShareText": "¡Mis estadísticas de lectura con {appName}!",
   "@exportDefaultShareText": {
-    "description": "Texto predeterminado al compartir en redes o aplicaciones."
+    "description": "Texto predeterminado al compartir en redes o aplicaciones.",
+    "placeholders": {
+      "appName": {}
+    }
   },
   "exportPremiumTitle": "Característica Premium",
   "@exportPremiumTitle": {
@@ -731,7 +758,10 @@
   },
   "exportPremiumDescription": "Este fondo exclusivo es parte de {appName} Premium. Desbloquea todos los gradientes, texturas y la personalización completa para tus imágenes.",
   "@exportPremiumDescription": {
-    "description": "Descripción de los beneficios Premium en el modal de exportación."
+    "description": "Descripción de los beneficios Premium en el modal de exportación.",
+    "placeholders": {
+      "appName": {}
+    }
   },
   "exportUpgradeButton": "Obtener Premium",
   "@exportUpgradeButton": {
@@ -902,7 +932,10 @@
   },
   "statsTitle": "Estadísticas {date}",
   "@statsTitle": {
-    "description": "Título principal para la tarjeta de estadísticas en el HomeScreen"
+    "description": "Título principal para la tarjeta de estadísticas en el HomeScreen",
+    "placeholders": {
+      "date": {}
+    }
   },
   "statsDescription": "Mira aquí tus estadísticas",
   "@statsDescription": {

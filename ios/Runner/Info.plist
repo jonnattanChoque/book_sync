@@ -34,6 +34,29 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>GIDClientID</key>
+    <string>111556282144-uq5usua4o64912m5pfas52v5ke0of8oc.apps.googleusercontent.com</string>
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLName</key>
+            <string>io.supabase.booksync</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>io.supabase.booksync</string>
+            </array>
+        </dict>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>com.googleusercontent.apps.111556282144-uq5usua4o64912m5pfas52v5ke0of8oc</string>
+            </array>
+        </dict>
+    </array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

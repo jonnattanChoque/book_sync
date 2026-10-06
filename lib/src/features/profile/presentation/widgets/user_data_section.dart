@@ -113,6 +113,18 @@ class _UserDataSectionState extends ConsumerState<UserDataSection> {
     final settings = ref.watch(appSettingsProvider);
     final profileImagePath = settings.profileImagePath;
     final hasCustomImage = profileImagePath != null && profileImagePath.isNotEmpty && File(profileImagePath).existsSync();
+    final String? imagePath = profileImagePath;
+    final bool hasImage = imagePath != null && imagePath.isNotEmpty;
+    final bool isNetworkImage = hasImage && (imagePath.startsWith('http://') || imagePath.startsWith('https://'));
+
+    // 2. Determinar el ImageProvider adecuado
+    ImageProvider? getImageProvider() {
+      if (!hasImage) return null;
+      if (isNetworkImage) {
+        return NetworkImage(imagePath);
+      }
+      return FileImage(File(imagePath));
+    }
 
     ref.listen(appSettingsProvider, (previous, next) {
       if (previous?.userName != next.userName && _nameController.text != next.userName) {
@@ -148,12 +160,12 @@ class _UserDataSectionState extends ConsumerState<UserDataSection> {
                 CircleAvatar(
                   radius: 40,
                   backgroundColor: cozy.bookmarkColor?.withValues(alpha: 0.2),
-                  backgroundImage: hasCustomImage ? FileImage(File(profileImagePath)) : null,
+                  backgroundImage: getImageProvider(),
                   child: !hasCustomImage
                   ? Text(
                       _nameController.text.isNotEmpty
-                          ? _nameController.text[0].toUpperCase()
-                          : 'U',
+                      ? _nameController.text[0].toUpperCase()
+                      : 'U',
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,

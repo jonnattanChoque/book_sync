@@ -2,7 +2,10 @@
   "@@locale": "en",
   "statsTitle": "Statistics {date}",
   "@statsTitle": {
-    "description": "Main title for the statistics card on the HomeScreen"
+    "description": "Main title for the statistics card on the HomeScreen",
+    "placeholders": {
+      "date": {}
+    }
   },
   "statsDescription": "Check your statistics here",
   "@statsDescription": {

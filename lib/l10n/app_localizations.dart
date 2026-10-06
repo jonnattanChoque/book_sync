@@ -290,6 +290,78 @@ abstract class AppLocalizations {
   /// **'Total del día: {pages} • {duration}'**
   String dayTotalSummary(String pages, String duration);
 
+  /// No description provided for @authWelcomeTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Bienvenido a BookSync!'**
+  String get authWelcomeTitle;
+
+  /// No description provided for @authWelcomeSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Sincroniza tus lecturas, mantén tus rachas y lleva tus estadísticas a todas partes.'**
+  String get authWelcomeSubtitle;
+
+  /// No description provided for @authContinueWithGoogle.
+  ///
+  /// In es, this message translates to:
+  /// **'Continuar con Google'**
+  String get authContinueWithGoogle;
+
+  /// No description provided for @authContinueWithApple.
+  ///
+  /// In es, this message translates to:
+  /// **'Continuar con Apple'**
+  String get authContinueWithApple;
+
+  /// No description provided for @authContinueAsGuest.
+  ///
+  /// In es, this message translates to:
+  /// **'Explorar como invitado'**
+  String get authContinueAsGuest;
+
+  /// No description provided for @authGuestDisclaimer.
+  ///
+  /// In es, this message translates to:
+  /// **'Puedes usar la app como invitado. Para desbloquear funciones Premium y guardar tu progreso en la nube, necesitarás iniciar sesión.'**
+  String get authGuestDisclaimer;
+
+  /// No description provided for @authLoginBenefitsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Beneficios de crear una cuenta:'**
+  String get authLoginBenefitsTitle;
+
+  /// No description provided for @authBenefitSync.
+  ///
+  /// In es, this message translates to:
+  /// **'Sincronización en la nube'**
+  String get authBenefitSync;
+
+  /// No description provided for @authBenefitBackup.
+  ///
+  /// In es, this message translates to:
+  /// **'Respaldo automático de tus lecturas'**
+  String get authBenefitBackup;
+
+  /// No description provided for @authBenefitPremium.
+  ///
+  /// In es, this message translates to:
+  /// **'Desbloquear o restaurar tu acceso Premium'**
+  String get authBenefitPremium;
+
+  /// No description provided for @authSlideToSignOut.
+  ///
+  /// In es, this message translates to:
+  /// **'Desliza para cerrar sesión'**
+  String get authSlideToSignOut;
+
+  /// No description provided for @authSignOutSuccess.
+  ///
+  /// In es, this message translates to:
+  /// **'Sesión cerrada correctamente'**
+  String get authSignOutSuccess;
+
   /// No description provided for @streakIncreased.
   ///
   /// In es, this message translates to:

@@ -25,7 +25,7 @@ class AppSettingsNotifier extends StateNotifier<AppSettings> {
 
   AppSettingsNotifier(super.initialState, this._datasource);
 
-  /// Actualiza los datos del perfil (3.4.1)
+  /// Actualiza los datos del perfil
   Future<void> updateUserData({
     required String name,
     String? profileImagePath,
@@ -90,5 +90,9 @@ class AppSettingsNotifier extends StateNotifier<AppSettings> {
     } else {
       await NotificationService.cancelReadingReminder();
     }
+  }
+
+  Future<void> logout() async {
+    await _datasource.clearAppConfig();
   }
 }
