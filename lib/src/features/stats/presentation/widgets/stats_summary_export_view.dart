@@ -1,3 +1,4 @@
+import 'package:book_sync/core/domain/entities/export_item_type.dart';
 import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/src/features/stats/domain/models/stats_stat.dart';
 import 'package:flutter/material.dart';
@@ -6,11 +7,13 @@ import 'stats_summary_grid.dart';
 class StatsSummaryExportView extends StatelessWidget {
   final StatsState statsState;
   final int currentStreakDays;
+  final List<ExportItemConfig>? visibleItems;
 
   const StatsSummaryExportView({
     super.key,
     required this.statsState,
     required this.currentStreakDays,
+    this.visibleItems
   });
 
   @override
@@ -45,6 +48,7 @@ class StatsSummaryExportView extends StatelessWidget {
           categoryChartData: statsState.categoryChartData,
           currentStreakDays: currentStreakDays,
           bestRecord: statsState.bestDayHours,
+          visibleItems: visibleItems,
         )
       ],
     );

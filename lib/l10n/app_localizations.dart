@@ -1070,6 +1070,24 @@ abstract class AppLocalizations {
   /// **'¡Mi racha de días leyéndome sin parar en {appName}! 🔥📖'**
   String exportStreakShareText(String appName);
 
+  /// No description provided for @exportCustomizeTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Personalizar Exportación'**
+  String get exportCustomizeTitle;
+
+  /// No description provided for @exportCustomizeSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Arrastra para reordenar y marca las tarjetas que deseas incluir.'**
+  String get exportCustomizeSubtitle;
+
+  /// No description provided for @exportGeneratePreview.
+  ///
+  /// In es, this message translates to:
+  /// **'Generar Vista Previa'**
+  String get exportGeneratePreview;
+
   /// Etiqueta para la pestaña Home en la barra de navegación principal.
   ///
   /// In es, this message translates to:

@@ -1,7 +1,6 @@
 import 'package:book_sync/core/constants/app_constants.dart';
 import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/widgets/background_paper_texture.dart';
-import 'package:book_sync/core/widgets/book_cover_image.dart';
 import 'package:book_sync/l10n/app_localizations.dart';
 import 'package:book_sync/src/features/calendar_export/presentation/providers/calendar_providers.dart';
 import 'package:book_sync/src/features/calendar_export/presentation/widgets/calendar_reading_modal.dart';
@@ -12,7 +11,6 @@ import 'package:book_sync/src/features/reader_session/domain/models/book_reading
 import 'package:book_sync/src/features/streak/presentation/providers/streak_providers.dart' hide selectedCalendarDateProvider, selectedDateReadingsProvider;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 

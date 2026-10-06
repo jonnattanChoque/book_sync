@@ -569,6 +569,16 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get exportCustomizeTitle => 'Customize Export';
+
+  @override
+  String get exportCustomizeSubtitle =>
+      'Drag to reorder and check the cards you want to include.';
+
+  @override
+  String get exportGeneratePreview => 'Generate Preview';
+
+  @override
   String get navHome => 'Home';
 
   @override

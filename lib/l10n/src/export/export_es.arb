@@ -82,5 +82,11 @@
         "example": "BookSync"
       }
     }
-  }
+  },
+  "exportCustomizeTitle": "Personalizar Exportación",
+  "@exportCustomizeTitle": {},
+  "exportCustomizeSubtitle": "Arrastra para reordenar y marca las tarjetas que deseas incluir.",
+  "@exportCustomizeSubtitle": {},
+  "exportGeneratePreview": "Generar Vista Previa",
+  "@exportGeneratePreview": {}
 }

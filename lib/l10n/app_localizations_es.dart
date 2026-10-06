@@ -569,6 +569,16 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get exportCustomizeTitle => 'Personalizar Exportación';
+
+  @override
+  String get exportCustomizeSubtitle =>
+      'Arrastra para reordenar y marca las tarjetas que deseas incluir.';
+
+  @override
+  String get exportGeneratePreview => 'Generar Vista Previa';
+
+  @override
   String get navHome => 'Inicio';
 
   @override

@@ -82,5 +82,11 @@
         "example": "BookSync"
       }
     }
-  }
+  },
+  "exportCustomizeTitle": "Customize Export",
+  "@exportCustomizeTitle": {},
+  "exportCustomizeSubtitle": "Drag to reorder and check the cards you want to include.",
+  "@exportCustomizeSubtitle": {},
+  "exportGeneratePreview": "Generate Preview",
+  "@exportGeneratePreview": {}
 }

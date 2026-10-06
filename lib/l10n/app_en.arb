@@ -782,6 +782,12 @@
       }
     }
   },
+  "exportCustomizeTitle": "Customize Export",
+  "@exportCustomizeTitle": {},
+  "exportCustomizeSubtitle": "Drag to reorder and check the cards you want to include.",
+  "@exportCustomizeSubtitle": {},
+  "exportGeneratePreview": "Generate Preview",
+  "@exportGeneratePreview": {},
   "navHome": "Home",
   "@navHome": {
     "description": "Label for the Home tab in the main bottom navigation bar."

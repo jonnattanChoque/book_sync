@@ -2,12 +2,14 @@
 
 import 'package:book_sync/core/constants/app_constants.dart';
 import 'package:book_sync/core/constants/app_icons.dart';
+import 'package:book_sync/core/domain/entities/export_item_type.dart';
 import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/widgets/background_paper_texture.dart';
 import 'package:book_sync/core/widgets/book_loader.dart';
 import 'package:book_sync/src/features/export/presentation/export_preview_sheet.dart';
 import 'package:book_sync/src/features/stats/domain/models/stats_stat.dart';
 import 'package:book_sync/src/features/stats/presentation/widgets/category_pie_chart.dart';
+import 'package:book_sync/src/features/stats/presentation/widgets/export_config_modal.dart';
 import 'package:book_sync/src/features/stats/presentation/widgets/monthly_books_bar_chart.dart';
 import 'package:book_sync/src/features/stats/presentation/widgets/monthly_reading_time_bar_chart.dart';
 import 'package:book_sync/src/features/stats/presentation/widgets/star_rating_pie_chart.dart';
@@ -56,7 +58,35 @@ class StatsScreen extends ConsumerWidget {
   AppBar _buildNavBar(BuildContext context, WidgetRef ref, int currentStreakDays) {
     final statsState = ref.watch(statsProvider);
 
-    void openExportSheet() {
+    void onExportPressed(BuildContext context) async {
+      // Flag temporal de usuario Premium
+      final isPremiumUser = true; // <-- Quemado temporalmente en true
+
+      List<ExportItemConfig> itemsConfig = [
+        ExportItemConfig(type: ExportItemType.yearlyGoal, title: context.l10n.statsYearlyGoalTitle),
+        ExportItemConfig(type: ExportItemType.weeklyHoursGoal, title: context.l10n.statsWeeklyHoursGoalTitle),
+        ExportItemConfig(type: ExportItemType.monthlyBooksAvg, title: context.l10n.statsMonthlyBooksAvg),
+        ExportItemConfig(type: ExportItemType.readingSpeed, title: context.l10n.statsReadingSpeed),
+        ExportItemConfig(type: ExportItemType.streak, title: context.l10n.statsTopGenresTitle),
+        ExportItemConfig(type: ExportItemType.topGenres, title: context.l10n.statsCurrentStreakTitle),
+        ExportItemConfig(type: ExportItemType.record, title: context.l10n.statsReadingRecordTitle),
+        ExportItemConfig(type: ExportItemType.totalYearly, title: context.l10n.statsTotalYearlySummary),
+      ];
+
+      List<ExportItemConfig>? selectedItems;
+
+      if (isPremiumUser) {
+        // 2. Abrir selector de tarjetas
+        selectedItems = await ExportConfigModal.show(
+          context,
+          initialItems: itemsConfig,
+        );
+
+        // Si el usuario cierra el modal sin confirmar, cancelamos la exportación
+        if (selectedItems == null) return;
+      }
+
+      // 3. Abrir la vista previa original con los elementos seleccionados
       showModalBottomSheet(
         context: context,
         isScrollControlled: true,
@@ -66,6 +96,7 @@ class StatsScreen extends ConsumerWidget {
             exportContent: StatsSummaryExportView(
               statsState: statsState,
               currentStreakDays: currentStreakDays,
+              visibleItems: selectedItems, // <-- Pasa la lista procesada al StatsSummaryGrid
             ),
             shareText: context.l10n.exportDefaultShareText(AppConstants.appName),
           );
@@ -83,7 +114,7 @@ class StatsScreen extends ConsumerWidget {
         IconButton(
           icon: const Icon(Icons.ios_share_outlined),
           tooltip: context.l10n.exportPreviewTitle,
-          onPressed: () => openExportSheet(),
+          onPressed: () => onExportPressed(context),
         ),
       ],
       leading: Builder(
