@@ -113,7 +113,6 @@ class _UserDataSectionState extends ConsumerState<UserDataSection> {
     final cozy = context.cozy;
     final settings = ref.watch(appSettingsProvider);
     final profileImagePath = settings.profileImagePath;
-    final hasCustomImage = profileImagePath != null && profileImagePath.isNotEmpty && File(profileImagePath).existsSync();
     final String? imagePath = profileImagePath;
     final bool hasImage = imagePath != null && imagePath.isNotEmpty;
     final bool isNetworkImage = hasImage && (imagePath.startsWith('http://') || imagePath.startsWith('https://'));
@@ -217,7 +216,7 @@ class _UserDataSectionState extends ConsumerState<UserDataSection> {
                   radius: 40,
                   backgroundColor: cozy.bookmarkColor?.withValues(alpha: 0.2),
                   backgroundImage: getImageProvider(),
-                  child: !hasCustomImage
+                  child: !hasImage
                   ? Text(
                       _nameController.text.isNotEmpty
                       ? _nameController.text[0].toUpperCase()

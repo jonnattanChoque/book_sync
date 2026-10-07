@@ -99,7 +99,7 @@ class ReadingCalendarScreen extends ConsumerWidget {
     return TableCalendar(
       locale: currentLanguage,
       firstDay: DateTime.utc(2020, 1, 1),
-      lastDay: DateTime.utc(2030, 12, 31),
+      lastDay: DateTime.now(),
       focusedDay: focusedMonth,
       selectedDayPredicate: (day) => isSameDay(selectedDate, day),
       calendarFormat: CalendarFormat.month,

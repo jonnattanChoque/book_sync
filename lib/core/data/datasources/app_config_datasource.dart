@@ -9,12 +9,18 @@ class AppConfigDatasource {
   AppConfigDatasource(this.isar);
 
   /// Obtiene o inicializa la configuración única en Isar DB
-  Future<AppSettings> getOrInitSettings() async {
+  Future<AppSettings> getOrInitSettings(String? userId) async {
     final configCollection = isar.collection<AppConfig>();
-    AppConfig? config = await configCollection.where().findFirst();
+    
+    // Buscamos el AppConfig que corresponda exactamente al userId actual
+    AppConfig? config = await configCollection
+        .filter()
+        .userIdEqualTo(userId)
+        .findFirst();
 
+    // Si no existe una configuración para este usuario, creamos una nueva asociada a él
     if (config == null) {
-      config = AppConfig();
+      config = AppConfig()..userId = userId;
       await isar.writeTxn(() async {
         await configCollection.put(config!);
       });
@@ -22,7 +28,13 @@ class AppConfigDatasource {
 
     return _mapToEntity(config);
   }
-
+  
+  Future<void> udpateLoginInfo(AppConfig appConfig) async {
+    await isar.writeTxn(() async {
+      await isar.appConfigs.put(appConfig);
+    });
+  }
+  
   /// Guarda los cambios actualizando el único registro de AppConfig
   Future<void> saveSettings(AppSettings settings) async {
     final configCollection = isar.collection<AppConfig>();
@@ -30,6 +42,7 @@ class AppConfigDatasource {
     await isar.writeTxn(() async {
       AppConfig config = await configCollection.where().findFirst() ?? AppConfig();
 
+      config.userId = settings.userId;
       config.userName = settings.userName;
       config.userEmail = settings.userEmail;
       config.profileImagePath = settings.profileImagePath ?? '';
@@ -48,12 +61,7 @@ class AppConfigDatasource {
 
   Future<void> clearAppConfig() async {
     await isar.writeTxn(() async {
-      // Si tienes un solo objeto de configuración
       await isar.appConfigs.clear(); 
-      
-      // O si prefieres resetearlo a valores por defecto en lugar de borrarlo:
-      // final defaultConfig = AppConfig()..isLoggedIn = false..guestMode = true;
-      // await isar.appConfigs.put(defaultConfig);
     });
   }
   
@@ -97,6 +105,7 @@ class AppConfigDatasource {
         : 'es';
 
     return AppSettings(
+      userId: config.userId ?? '01',
       userName: config.userName,
       userEmail: config.userEmail,
       profileImagePath: config.profileImagePath.isNotEmpty ? config.profileImagePath : null,

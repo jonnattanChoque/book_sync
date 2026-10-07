@@ -3,6 +3,7 @@
 import 'dart:io';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter/foundation.dart';
 
 class SubscriptionService {
   // Clave pública de RevenueCat para iOS (la obtenida en Project Settings -> API Keys)
@@ -81,7 +82,7 @@ class SubscriptionService {
     try {
       await Purchases.logIn(userId);
     } catch (e) {
-      print('Error al iniciar sesión en RevenueCat: $e');
+      debugPrint('Error al iniciar sesión en RevenueCat: $e');
     }
   }
 
@@ -89,7 +90,7 @@ class SubscriptionService {
     try {
       await Purchases.logOut();
     } catch (e) {
-      print('Error al cerrar sesión en RevenueCat: $e');
+      debugPrint('Error al cerrar sesión en RevenueCat: $e');
     }
   }
 }

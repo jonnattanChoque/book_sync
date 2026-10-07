@@ -10,10 +10,13 @@ class SupabaseAuthRepository implements AuthRepository {
   final SupabaseClient _client;
   final Isar _isar;
   final PreferencesService _preferencesService;
+  final Future<void> Function(User user)? onUserAuthenticated;
 
   SupabaseAuthRepository(
-    this._client, this._isar,
-    this._preferencesService
+    this._client, 
+    this._isar,
+    this._preferencesService,
+    {this.onUserAuthenticated}
   ) {
     // Escuchamos los cambios del Stream dentro del repositorio
     _client.auth.onAuthStateChange.listen((data) async {
@@ -22,6 +25,9 @@ class SupabaseAuthRepository implements AuthRepository {
 
       if ((event == AuthChangeEvent.signedIn || event == AuthChangeEvent.tokenRefreshed) && session != null) {
         await syncSupabaseUserToIsar(_isar, session.user);
+        if (onUserAuthenticated != null) {
+          await onUserAuthenticated!(session.user);
+        }
       }
     });
   }
@@ -89,10 +95,6 @@ class SupabaseAuthRepository implements AuthRepository {
 
     // 3. Sincronizar datos de usuario
     if (response.user != null) {
-      final session = _client.auth.currentSession;
-      if (session != null) {
-        await syncSupabaseUserToIsar(_isar, session.user);
-      }
       await _preferencesService.setGuestMode(false);
     }
   } catch (e) {
@@ -109,7 +111,4 @@ class SupabaseAuthRepository implements AuthRepository {
   Future<void> signOut() async {
     await _client.auth.signOut();
   }
-}
-
-class IsarRepository {
 }

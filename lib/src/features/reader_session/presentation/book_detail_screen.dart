@@ -30,7 +30,7 @@ class BookDetailScreen extends ConsumerStatefulWidget {
 
 class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
   bool _isNotesExpanded = false;
-  bool _isHistoryExpanded = false;
+  bool _isHistoryExpanded = true;
   bool _isConclusionsExpanded = false;
   late bool _isFavorite = widget.book.isFavorite ?? false;
 
@@ -231,8 +231,26 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                   if (_isHistoryExpanded) ...[
                     const SizedBox(height: 12),
                     book.sessions.isEmpty
-                      ? Text(context.l10n.noSessionsRegistered)
-                      : _buildTimelineHistory(book.sessions.toList()),
+                    ? Column(
+                      children: [
+                        Text(context.l10n.noSessionsRegistered),
+                        PrimaryOutlinedButton(
+                        icon: Icons.add_task_rounded,
+                        label: context.l10n.registerReadingTitle,
+                        onPressed: () async {
+                          final result = await FinishReadingModal.show(
+                            context,
+                            book: widget.book,
+                          );
+
+                          if (result != null && context.mounted) {
+                            context.push('/summary', extra: result);
+                          }
+                        },
+                      ),
+                      ],
+                    )
+                    : _buildTimelineHistory(book.sessions.toList()),
                   ],
                   const SizedBox(height: 80),
                 ],
@@ -610,7 +628,7 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
 
   Column _buildTimelineHistory(List<ReadingSession> sessions) {
     final sortedSessions = sessions.toList()
-  ..sort((a, b) => b.endPage.compareTo(a.endPage));
+      ..sort((a, b) => b.endPage.compareTo(a.endPage));
 
     return Column(
       children: [

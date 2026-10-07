@@ -1,4 +1,5 @@
 import 'package:book_sync/core/persistence/isar_provider.dart';
+import 'package:book_sync/core/providers/app_settings_provider.dart';
 import 'package:book_sync/src/data/book_repository.dart';
 import 'package:book_sync/src/domain/book.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,7 +8,9 @@ import 'package:isar/isar.dart';
 // Proveedor del repositorio
 final bookRepositoryProvider = Provider<BookRepository>((ref) {
   final isar = ref.watch(isarProvider);
-  return BookRepository(isar);
+  final settings = ref.watch(appSettingsProvider);
+  final currentUserId = settings.userId;
+  return BookRepository(isar, currentUserId: currentUserId);
 });
 
 // Proveedor que emite la lista dinámica de libros en curso

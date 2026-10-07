@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppSettings {
+  final String userId;
   final String userName;
   final String userEmail;
   final String? profileImagePath;
@@ -13,6 +14,7 @@ class AppSettings {
   final bool? isPremium;
 
   const AppSettings({
+    required this.userId,
     required this.userName,
     required this.userEmail,
     this.profileImagePath,
@@ -27,6 +29,7 @@ class AppSettings {
 
   /// Copia inmutable para mutaciones de estado
   AppSettings copyWith({
+    String? userId,
     String? userName,
     String? userEmail,
     String? profileImagePath,
@@ -39,6 +42,7 @@ class AppSettings {
     bool? isPremium
   }) {
     return AppSettings(
+      userId: userId ?? this.userId,
       userName: userName ?? this.userName,
       userEmail: userEmail ?? this.userEmail,
       profileImagePath: profileImagePath ?? this.profileImagePath,

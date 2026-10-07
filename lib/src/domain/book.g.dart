@@ -107,6 +107,11 @@ const BookSchema = CollectionSchema(
       id: 17,
       name: r'totalPages',
       type: IsarType.long,
+    ),
+    r'userId': PropertySchema(
+      id: 18,
+      name: r'userId',
+      type: IsarType.string,
     )
   },
   estimateSize: _bookEstimateSize,
@@ -192,6 +197,7 @@ int _bookEstimateSize(
     }
   }
   bytesCount += 3 + object.title.length * 3;
+  bytesCount += 3 + object.userId.length * 3;
   return bytesCount;
 }
 
@@ -219,6 +225,7 @@ void _bookSerialize(
   writer.writeByte(offsets[15], object.status.index);
   writer.writeString(offsets[16], object.title);
   writer.writeLong(offsets[17], object.totalPages);
+  writer.writeString(offsets[18], object.userId);
 }
 
 Book _bookDeserialize(
@@ -247,6 +254,7 @@ Book _bookDeserialize(
         BookStatus.toRead,
     title: reader.readStringOrNull(offsets[16]) ?? '',
     totalPages: reader.readLongOrNull(offsets[17]),
+    userId: reader.readString(offsets[18]),
   );
   object.id = id;
   return object;
@@ -296,6 +304,8 @@ P _bookDeserializeProp<P>(
       return (reader.readStringOrNull(offset) ?? '') as P;
     case 17:
       return (reader.readLongOrNull(offset)) as P;
+    case 18:
+      return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -2440,6 +2450,134 @@ extension BookQueryFilter on QueryBuilder<Book, Book, QFilterCondition> {
       ));
     });
   }
+
+  QueryBuilder<Book, Book, QAfterFilterCondition> userIdEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'userId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterFilterCondition> userIdGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'userId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterFilterCondition> userIdLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'userId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterFilterCondition> userIdBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'userId',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterFilterCondition> userIdStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'userId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterFilterCondition> userIdEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'userId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterFilterCondition> userIdContains(String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'userId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterFilterCondition> userIdMatches(String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'userId',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterFilterCondition> userIdIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'userId',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterFilterCondition> userIdIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'userId',
+        value: '',
+      ));
+    });
+  }
 }
 
 extension BookQueryObject on QueryBuilder<Book, Book, QFilterCondition> {}
@@ -2706,6 +2844,18 @@ extension BookQuerySortBy on QueryBuilder<Book, Book, QSortBy> {
       return query.addSortBy(r'totalPages', Sort.desc);
     });
   }
+
+  QueryBuilder<Book, Book, QAfterSortBy> sortByUserId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'userId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterSortBy> sortByUserIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'userId', Sort.desc);
+    });
+  }
 }
 
 extension BookQuerySortThenBy on QueryBuilder<Book, Book, QSortThenBy> {
@@ -2924,6 +3074,18 @@ extension BookQuerySortThenBy on QueryBuilder<Book, Book, QSortThenBy> {
       return query.addSortBy(r'totalPages', Sort.desc);
     });
   }
+
+  QueryBuilder<Book, Book, QAfterSortBy> thenByUserId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'userId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Book, Book, QAfterSortBy> thenByUserIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'userId', Sort.desc);
+    });
+  }
 }
 
 extension BookQueryWhereDistinct on QueryBuilder<Book, Book, QDistinct> {
@@ -3044,6 +3206,13 @@ extension BookQueryWhereDistinct on QueryBuilder<Book, Book, QDistinct> {
       return query.addDistinctBy(r'totalPages');
     });
   }
+
+  QueryBuilder<Book, Book, QDistinct> distinctByUserId(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'userId', caseSensitive: caseSensitive);
+    });
+  }
 }
 
 extension BookQueryProperty on QueryBuilder<Book, Book, QQueryProperty> {
@@ -3158,6 +3327,12 @@ extension BookQueryProperty on QueryBuilder<Book, Book, QQueryProperty> {
   QueryBuilder<Book, int?, QQueryOperations> totalPagesProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'totalPages');
+    });
+  }
+
+  QueryBuilder<Book, String, QQueryOperations> userIdProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'userId');
     });
   }
 }

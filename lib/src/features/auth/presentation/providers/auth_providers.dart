@@ -1,6 +1,9 @@
 import 'package:book_sync/core/persistence/isar_provider.dart';
+import 'package:book_sync/core/providers/app_settings_provider.dart';
 import 'package:book_sync/core/providers/preferences_provider.dart';
+import 'package:book_sync/src/domain/app_config.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:isar/isar.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:book_sync/src/features/auth/domain/repositories/auth_repository.dart';
 import 'package:book_sync/src/features/auth/data/repositories/supabase_auth_repository.dart';
@@ -16,7 +19,21 @@ final authRepositoryProvider = Provider<AuthRepository>((ref) {
   final isar = ref.watch(isarProvider);
   final preferencesService = ref.watch(preferencesServiceProvider);
   
-  return SupabaseAuthRepository(client, isar, preferencesService);
+  return SupabaseAuthRepository(
+    client, 
+    isar, 
+    preferencesService,
+    onUserAuthenticated: (user) async {
+      final appConfig = await isar.appConfigs
+          .filter()
+          .userIdEqualTo(user.id)
+          .findFirst();
+
+      if (appConfig != null) {
+        await ref.read(appSettingsProvider.notifier).loadUserFromSupabase(appConfig);
+      }
+    },
+  );
 });
 
 // 3. StreamProvider para escuchar cambios de sesión en tiempo real

@@ -180,14 +180,25 @@ class _ExportPreviewSheetState extends ConsumerState<ExportPreviewSheet> {
                 ),
               ),
               child: bg.isPremium
-              ? const Align(
-                  alignment: Alignment.topRight,
-                  child: Padding(
-                    padding: EdgeInsets.all(4.0),
-                    child: Icon(Icons.star, size: 12, color: Colors.amber),
-                  ),
-                )
-              : null,
+    ? Align(
+        alignment: Alignment.topRight,
+        child: Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Container(
+            padding: const EdgeInsets.all(2.0),
+            decoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.5), // Fondo oscuro semitransparente
+              shape: BoxShape.circle,
+            ),
+            child: const Icon(
+              Icons.star,
+              size: 12,
+              color: Colors.amber,
+            ),
+          ),
+        ),
+      )
+    : null,
             ),
           );
         },

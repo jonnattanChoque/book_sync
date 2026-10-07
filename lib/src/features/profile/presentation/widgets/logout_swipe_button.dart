@@ -36,13 +36,14 @@ class LogoutSwipeButton extends ConsumerWidget {
           ),
         ),
         onSwipe: () async {
-          // Ejecutar el cierre de sesión
-          await ref.read(authControllerProvider.notifier).signOut();
-          await ref.read(appSettingsProvider.notifier).logout();
+          final authNotifier = ref.read(authControllerProvider.notifier);
+          final settingsNotifier = ref.read(appSettingsProvider.notifier);
           
-          if (context.mounted) {
-            CozyToast.showSuccess(context, title: context.l10n.authSignOutSuccess);
-          }
+          await authNotifier.signOut();
+          await settingsNotifier.logout();
+          
+          if (!context.mounted) return;
+          CozyToast.showSuccess(context, title: context.l10n.authSignOutSuccess);
         },
       ),
     );

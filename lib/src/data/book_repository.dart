@@ -4,18 +4,23 @@ import 'package:isar/isar.dart';
 
 class BookRepository {
   final Isar isar;
+  final String currentUserId;
 
-  BookRepository(this.isar);
+  BookRepository(this.isar, {required this.currentUserId});
 
   Stream<List<Book>> watchBooksReading() {
     return isar.books
         .filter()
+        .userIdEqualTo(currentUserId)
         .statusEqualTo(BookStatus.reading)
         .watch(fireImmediately: true);
   }
 
   Stream<List<Book>> watchAllBooks() {
-    return isar.books.where().watch(fireImmediately: true);
+    return isar.books
+        .filter()
+        .userIdEqualTo(currentUserId) // <-- Filtro por usuario
+        .watch(fireImmediately: true);
   }
 
   Future<Id> saveBookFromForm({
@@ -33,6 +38,7 @@ class BookRepository {
     List<String>? categories,
   }) async {
     final book = Book(
+      userId: currentUserId,
       title: title,
       author: author,
       coverPath: coverPath,

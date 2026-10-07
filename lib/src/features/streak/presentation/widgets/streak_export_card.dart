@@ -78,7 +78,7 @@ class StreakExportCard extends StatelessWidget {
           child: TableCalendar(
             locale: currentLanguage,
             firstDay: DateTime.utc(2020, 1, 1),
-            lastDay: DateTime.utc(2030, 12, 31),
+            lastDay: DateTime.now(),
             focusedDay: selectedDate,
             currentDay: DateTime.now(),
             selectedDayPredicate: (day) => isSameDay(selectedDate, day),

@@ -3,6 +3,7 @@ import 'package:book_sync/core/domain/entities/app_settings_stat.dart';
 import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/persistence/isar_provider.dart';
 import 'package:book_sync/core/services/notification_service.dart';
+import 'package:book_sync/src/domain/app_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -37,9 +38,20 @@ class AppSettingsNotifier extends StateNotifier<AppSettings> {
     await _datasource.saveSettings(state);
   }
 
+  Future<void> loadUserFromSupabase(AppConfig appConfig) async {
+    await _datasource.udpateLoginInfo(appConfig);
+    final updatedSettings = await _datasource.getOrInitSettings(appConfig.userId);
+    state = updatedSettings;
+  }
+
   /// Cambia el modo de tema en caliente (3.4.2)
   Future<void> updateThemeMode(ThemeMode themeMode) async {
     state = state.copyWith(themeMode: themeMode);
+    await _datasource.saveSettings(state);
+  }
+
+  Future<void> updatePremium(bool isPremium) async {
+    state = state.copyWith(isPremium: isPremium);
     await _datasource.saveSettings(state);
   }
 
@@ -93,6 +105,6 @@ class AppSettingsNotifier extends StateNotifier<AppSettings> {
   }
 
   Future<void> logout() async {
-    await _datasource.clearAppConfig();
+    //await _datasource.clearAppConfig();
   }
 }

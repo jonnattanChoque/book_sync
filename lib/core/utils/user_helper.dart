@@ -4,7 +4,11 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<void> syncSupabaseUserToIsar(Isar isar, User user) async {
   // 1. Obtener el registro de AppConfig (o crear uno si no existe)
-  final appConfig = await isar.appConfigs.where().findFirst() ?? AppConfig();
+  final appConfig = await isar.appConfigs
+      .filter()
+      .userIdEqualTo(user.id)
+      .findFirst() ?? 
+  AppConfig()..userId = user.id;
 
   // 2. Si es usuario anónimo (Invitado), asignamos los datos por defecto
   if (user.isAnonymous) {

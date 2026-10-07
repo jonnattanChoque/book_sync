@@ -5,7 +5,7 @@ part 'book.g.dart';
 @collection
 class Book {
   Id id = Isar.autoIncrement;
-
+  late String userId;
   late String title;
   late String author;
   String? coverPath;
@@ -32,6 +32,7 @@ class Book {
   final sessions = IsarLinks<ReadingSession>();
 
   Book({
+    required this.userId,
     this.title = '',
     this.author = '',
     this.progress = 0.0,

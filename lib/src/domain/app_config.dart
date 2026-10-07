@@ -6,6 +6,9 @@ part 'app_config.g.dart';
 class AppConfig {
   Id id = Isar.autoIncrement;
 
+  @Index()
+  String? userId;
+
   // Campos existentes de citas y frases
   String? lastBookmarkAnimDate;
   String? dailyQuoteText;

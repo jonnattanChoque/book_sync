@@ -1,19 +1,23 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:book_sync/core/extensions/build_context_ext.dart';
+import 'package:book_sync/core/providers/app_settings_provider.dart';
 import 'package:book_sync/core/services/subscription_service.dart';
 import 'package:book_sync/core/widgets/background_paper_texture.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
-class PremiumPaywallScreen extends StatefulWidget {
+class PremiumPaywallScreen extends ConsumerStatefulWidget {
   final String contentText;
   
   const PremiumPaywallScreen({super.key, required this.contentText});
 
   @override
-  State<PremiumPaywallScreen> createState() => _PremiumPaywallScreenState();
+  ConsumerState<PremiumPaywallScreen> createState() => _PremiumPaywallScreenState();
 }
 
-class _PremiumPaywallScreenState extends State<PremiumPaywallScreen> {
+class _PremiumPaywallScreenState extends ConsumerState<PremiumPaywallScreen> {
   bool isPurchasing = false;
   PackageType selectedPackageType = PackageType.annual;
 
@@ -118,12 +122,12 @@ class _PremiumPaywallScreenState extends State<PremiumPaywallScreen> {
                         ),
                       ),
                       onChanged: isPurchasing
-                          ? null
-                          : (value) {
-                              if (value != null) {
-                                setState(() => selectedPackageType = value);
-                              }
-                            },
+                      ? null
+                      : (value) {
+                          if (value != null) {
+                            setState(() => selectedPackageType = value);
+                          }
+                        },
                     ),
                 ],
 
@@ -132,34 +136,35 @@ class _PremiumPaywallScreenState extends State<PremiumPaywallScreen> {
                 // Botón de Compra
                 ElevatedButton(
                   onPressed: (isPurchasing || packages.isEmpty)
-                      ? null
-                      : () async {
+                  ? null
+                  : () async {
+                      setState(() {
+                        isPurchasing = true;
+                      });
+
+                      try {
+                        final packageToPurchase = packages.firstWhere(
+                          (p) => p.packageType == selectedPackageType,
+                          orElse: () => packages.first,
+                        );
+
+                        final result = await Purchases.purchasePackage(packageToPurchase);
+                        final isPremium = result.customerInfo.entitlements.all['premium']?.isActive ?? false;
+                        ref.read(appSettingsProvider.notifier).updatePremium(isPremium);
+                        
+                        if (isPremium && mounted) {
+                          Navigator.of(context).pop();
+                        }
+                      } catch (e) {
+                        // Manejo de cancelación o error
+                      } finally {
+                        if (mounted) {
                           setState(() {
-                            isPurchasing = true;
+                            isPurchasing = false;
                           });
-
-                          try {
-                            final packageToPurchase = packages.firstWhere(
-                              (p) => p.packageType == selectedPackageType,
-                              orElse: () => packages.first,
-                            );
-
-                            final result = await Purchases.purchasePackage(packageToPurchase);
-                            final isPremium = result.customerInfo.entitlements.all['premium']?.isActive ?? false;
-
-                            if (isPremium && mounted) {
-                              Navigator.of(context).pop();
-                            }
-                          } catch (e) {
-                            // Manejo de cancelación o error
-                          } finally {
-                            if (mounted) {
-                              setState(() {
-                                isPurchasing = false;
-                              });
-                            }
-                          }
-                        },
+                        }
+                      }
+                    },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.amber,
                     foregroundColor: Colors.black,
@@ -169,15 +174,15 @@ class _PremiumPaywallScreenState extends State<PremiumPaywallScreen> {
                     ),
                   ),
                   child: isPurchasing
-                      ? const SizedBox(
-                          width: 20,
-                          height: 20,
-                          child: CircularProgressIndicator(strokeWidth: 2),
-                        )
-                      : Text(
-                          context.l10n.exportUpgradeButton,
-                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                        ),
+                  ? const SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  : Text(
+                      context.l10n.exportUpgradeButton,
+                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
                 ),
               ],
             ),
