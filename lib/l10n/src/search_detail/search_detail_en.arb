@@ -99,5 +99,17 @@
   "validationTotalPagesInvalid": "Enter a valid number of pages greater than 0",
   "@validationTotalPagesInvalid": {
     "description": "Error message when total pages is less than or equal to zero"
+  },
+  "validationAuthorRequired": "El autor o autora es requerido",
+  "@validationAuthorRequired": {
+    "description": "Mensaje de error mostrado cuando el campo de autor está vacío."
+  },
+  "validationIsbnRequired": "El isbn es requerido",
+  "@validationIsbnRequired": {
+    "description": "Mensaje de error mostrado cuando el campo ISBN está vacío."
+  },
+  "validationCategoryRequired": "La categoria o genero es requerida",
+  "@validationCategoryRequired": {
+    "description": "Mensaje de error mostrado cuando el campo de categoría o género está vacío."
   }
 }

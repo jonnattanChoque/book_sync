@@ -3,6 +3,9 @@
 import 'package:book_sync/core/constants/app_icons.dart';
 import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/widgets/background_paper_texture.dart';
+import 'package:book_sync/src/features/profile/presentation/widgets/cloud_back_up_section.dart';
+import 'package:book_sync/src/features/profile/presentation/widgets/cloud_import_section.dart';
+import 'package:book_sync/src/features/profile/presentation/widgets/legal_section.dart';
 import 'package:book_sync/src/features/profile/presentation/widgets/logout_swipe_button.dart';
 import 'package:book_sync/src/features/profile/presentation/widgets/reading_alarm_section.dart';
 import 'package:book_sync/src/features/profile/presentation/widgets/reading_goals_section.dart';
@@ -41,6 +44,12 @@ class ProfileScreen extends StatelessWidget {
                   const ReadingAlarmSection(),
                   const SizedBox(height: 16),
                   const ReadingGoalsSection(),
+                  const SizedBox(height: 16),
+                  const LegalSection(),
+                  const SizedBox(height: 16),
+                  const CloudBackupTile(),
+                  const SizedBox(height: 16),
+                  const CloudImportTile(),
                   const SizedBox(height: 16),
                   LogoutSwipeButton(),
                 ],

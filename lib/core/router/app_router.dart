@@ -284,10 +284,14 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/premium',
         pageBuilder: (context, state) {
-          final title = state.extra as String;
+          final extraData = state.extra as Map<String, dynamic>?;
+        final title = (extraData?['title'] as String?)?.isNotEmpty == true 
+            ? extraData!['title'] as String 
+            : 'Tu suscripción ha expirado';
+        final isExpired = extraData?['isExpired'] as bool? ?? false;
           return CustomTransitionPage(
             key: state.pageKey,
-            child: PremiumPaywallScreen(contentText: title),
+            child: PremiumPaywallScreen(contentText: title, isExpired: isExpired),
             transitionsBuilder: buildPageTurnTransition,
             transitionDuration: const Duration(milliseconds: 700),
             reverseTransitionDuration: const Duration(milliseconds: 500),

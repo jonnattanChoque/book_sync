@@ -197,6 +197,18 @@
   "@freePlan": {},
   "upgradeToPremium": "Upgrade to Premium",
   "@upgradeToPremium": {},
+  "paywallExpiredTitle": "Your subscription has expired",
+  "@paywallExpiredTitle": {
+    "description": "Title displayed on the paywall when the user's subscription has expired"
+  },
+  "paywallExpiredSubtitle": "Renew your plan to restore uninterrupted access to all premium features and keep your data synchronized.",
+  "@paywallExpiredSubtitle": {
+    "description": "Explanatory subtitle when the subscription has expired"
+  },
+  "paywallExpiredButton": "Renew Subscription",
+  "@paywallExpiredButton": {
+    "description": "Button text to renew an expired subscription"
+  },
   "streakIncreased": "Streak Increased!",
   "@streakIncreased": {},
   "streakCurrent": "Current Streak",
@@ -744,6 +756,84 @@
   },
   "paywallProfileTitle": "Enjoy all advanced features, detailed statistics, and a limitless experience.",
   "@paywallProfileTitle": {},
+  "legalSection": "Legal & Information",
+  "@legalSection": {
+    "description": "Header for terms and policies section in profile."
+  },
+  "privacyPolicyTitle": "Privacy Policy",
+  "@privacyPolicyTitle": {
+    "description": "Title for option to open privacy policy."
+  },
+  "termsOfServiceTitle": "Terms of Service (EULA)",
+  "@termsOfServiceTitle": {
+    "description": "Title for option to open terms of service."
+  },
+  "cloudBackupSection": "Cloud Backup",
+  "@cloudBackupSection": {
+    "description": "Header for cloud backup section."
+  },
+  "exportToCloudTitle": "Export data to cloud",
+  "@exportToCloudTitle": {
+    "description": "Title for option to upload cloud backup."
+  },
+  "exportToCloudSubtitle": "Sync your books, reading sessions, and streaks to your account",
+  "@exportToCloudSubtitle": {
+    "description": "Subtitle explaining cloud synchronization."
+  },
+  "backupSuccessMessage": "Backup completed successfully!",
+  "@backupSuccessMessage": {
+    "description": "Success message after backup completes."
+  },
+  "backupErrorMessage": "Error performing backup: {error}",
+  "@backupErrorMessage": {
+    "description": "Error message when upload fails.",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "importFromCloudTitle": "Restore cloud data",
+  "@importFromCloudTitle": {
+    "description": "Title for option to download cloud backup."
+  },
+  "importFromCloudSubtitle": "Bring your saved books, readings, and streaks",
+  "@importFromCloudSubtitle": {
+    "description": "Subtitle explaining cloud restoration."
+  },
+  "importSuccessMessage": "Data restored successfully!",
+  "@importSuccessMessage": {
+    "description": "Success message after restoration completes."
+  },
+  "importErrorMessage": "Error restoring data: {error}",
+  "@importErrorMessage": {
+    "description": "Error message when download fails.",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "cloudBackupFoundTitle": "Backup Found",
+  "@cloudBackupFoundTitle": {
+    "description": "Title for the modal shown when cloud backup is detected."
+  },
+  "cloudBackupFoundMessage": "We detected saved information in your cloud account. Do you want to download your books, notes, and progress to this device?",
+  "@cloudBackupFoundMessage": {
+    "description": "Explanation message for cloud restoration modal."
+  },
+  "startFromScratchButton": "Start from scratch",
+  "@startFromScratchButton": {
+    "description": "Button to skip cloud restoration."
+  },
+  "restoreDataButton": "Restore data",
+  "@restoreDataButton": {
+    "description": "Button to confirm cloud restoration."
+  },
+  "restoreSuccessMessage": "Your data has been restored successfully!",
+  "@restoreSuccessMessage": {
+    "description": "Success notification upon restoration."
+  },
   "exportPreviewTitle": "Export Summary",
   "@exportPreviewTitle": {
     "description": "Title for the export preview sheet."
@@ -1263,6 +1353,18 @@
   "validationTotalPagesInvalid": "Enter a valid number of pages greater than 0",
   "@validationTotalPagesInvalid": {
     "description": "Error message when total pages is less than or equal to zero"
+  },
+  "validationAuthorRequired": "El autor o autora es requerido",
+  "@validationAuthorRequired": {
+    "description": "Mensaje de error mostrado cuando el campo de autor está vacío."
+  },
+  "validationIsbnRequired": "El isbn es requerido",
+  "@validationIsbnRequired": {
+    "description": "Mensaje de error mostrado cuando el campo ISBN está vacío."
+  },
+  "validationCategoryRequired": "La categoria o genero es requerida",
+  "@validationCategoryRequired": {
+    "description": "Mensaje de error mostrado cuando el campo de categoría o género está vacío."
   },
   "newSession": "Read",
   "@newSession": {

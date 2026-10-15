@@ -1,4 +1,4 @@
-package com.twon.book_sync
+package com.twon.booksync
 
 import io.flutter.embedding.android.FlutterActivity
 

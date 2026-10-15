@@ -5,31 +5,42 @@ import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter/foundation.dart';
 
+class SubscriptionResult {
+  final bool isPremium;
+  final bool showExpirationBanner;
+  final bool isExpired;
+
+  SubscriptionResult({
+    required this.isPremium,
+    required this.showExpirationBanner,
+    required this.isExpired,
+  });
+}
+
 class SubscriptionService {
   // Clave pública de RevenueCat para iOS (la obtenida en Project Settings -> API Keys)
   static const _apiKeyApple = 'appl_HjFhvsiVlGDTXeLDvYOBczxgsJy';
+  static const _apiKeyGoogle = 'goog_YTbSSzPEEevNznWZqPAmNEKZkDO';
 
   static Future<void> initStore() async {
-    // 1. Configurar nivel de logs para desarrollo (opcional)
     await Purchases.setLogLevel(LogLevel.debug);
 
-    // 2. Obtener el usuario actual de Supabase
     final supabaseUser = Supabase.instance.client.auth.currentUser;
 
     late PurchasesConfiguration configuration;
 
     if (Platform.isIOS) {
       configuration = PurchasesConfiguration(_apiKeyApple);
+    } else if (Platform.isAndroid) {
+      configuration = PurchasesConfiguration(_apiKeyGoogle);
     } else {
-      return; // En caso de que ejecutes en otra plataforma por ahora
+      return; // Otras plataformas no soportadas
     }
 
-    // 3. Vincular con el ID de Supabase si el usuario está autenticado
     if (supabaseUser != null) {
       configuration.appUserID = supabaseUser.id;
     }
 
-    // 4. Configurar el SDK
     await Purchases.configure(configuration);
   }
 
@@ -68,13 +79,30 @@ class SubscriptionService {
   }
   
   /// Método para verificar si el usuario tiene la suscripción activa
-  static Future<bool> isPremium() async {
+  static Future<SubscriptionResult> isPremium() async {
     try {
       final customerInfo = await Purchases.getCustomerInfo();
-      // 'premium' es el identificador del Entitlement que configuramos en RevenueCat
-      return customerInfo.entitlements.all['premium']?.isActive ?? false;
+      final entitlement = customerInfo.entitlements.all['premium'];
+      
+      final isActive = entitlement?.isActive ?? false;
+      final expirationDate = entitlement?.expirationDate;
+      final showBanner = isActive && isExpiringSoon(expirationDate);
+
+      // Determinamos si expiró: 
+      // El entitlement existe pero ya no está activo (es decir, tuvo una suscripción previa que venció)
+      final hasExpired = entitlement != null && !isActive;
+
+      return SubscriptionResult(
+        isPremium: isActive,
+        showExpirationBanner: showBanner,
+        isExpired: hasExpired,
+      );
     } catch (e) {
-      return false;
+      return SubscriptionResult(
+        isPremium: false, 
+        showExpirationBanner: false,
+        isExpired: false,
+      );
     }
   }
 
@@ -92,5 +120,14 @@ class SubscriptionService {
     } catch (e) {
       debugPrint('Error al cerrar sesión en RevenueCat: $e');
     }
+  }
+
+  static  bool isExpiringSoon(String? expirationDateStr) {
+    if (expirationDateStr == null) return false;
+    
+    final expirationDate = DateTime.parse(expirationDateStr);
+    final now = DateTime.now();
+    final difference = expirationDate.difference(now);
+    return difference.inHours <= 3 && !difference.isNegative;
   }
 }

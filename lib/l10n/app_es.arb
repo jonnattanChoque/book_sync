@@ -204,6 +204,18 @@
   "@freePlan": {},
   "upgradeToPremium": "Actualizar a Premium",
   "@upgradeToPremium": {},
+  "paywallExpiredTitle": "Tu suscripción ha expirado",
+  "@paywallExpiredTitle": {
+    "description": "Título mostrado en el paywall cuando la suscripción del usuario ha vencido"
+  },
+  "paywallExpiredSubtitle": "Renueva tu plan para recuperar el acceso ininterrumpido a todas las funciones premium y mantener tus datos sincronizados.",
+  "@paywallExpiredSubtitle": {
+    "description": "Subtítulo explicativo cuando la suscripción ha expirado"
+  },
+  "paywallExpiredButton": "Renovar suscripción",
+  "@paywallExpiredButton": {
+    "description": "Texto del botón de compra para renovar una suscripción vencida"
+  },
   "streakIncreased": "¡Racha Aumentada!",
   "@streakIncreased": {},
   "streakCurrent": "Racha Actual",
@@ -753,6 +765,84 @@
   },
   "paywallProfileTitle": "Disfruta de todas las funciones avanzadas, estadísticas detalladas y una experiencia sin límites.",
   "@paywallProfileTitle": {},
+  "legalSection": "Legal e Información",
+  "@legalSection": {
+    "description": "Encabezado de la sección de términos y políticas en el perfil."
+  },
+  "privacyPolicyTitle": "Política de Privacidad",
+  "@privacyPolicyTitle": {
+    "description": "Título de la opción para abrir la política de privacidad."
+  },
+  "termsOfServiceTitle": "Términos de Servicio (EULA)",
+  "@termsOfServiceTitle": {
+    "description": "Título de la opción para abrir los términos de servicio."
+  },
+  "cloudBackupSection": "Copia de Seguridad en la Nube",
+  "@cloudBackupSection": {
+    "description": "Encabezado de la sección de respaldo en la nube."
+  },
+  "exportToCloudTitle": "Exportar datos a la nube",
+  "@exportToCloudTitle": {
+    "description": "Título de la opción para subir la copia de seguridad."
+  },
+  "exportToCloudSubtitle": "Sincroniza tus libros, lecturas y rachas en tu cuenta",
+  "@exportToCloudSubtitle": {
+    "description": "Subtítulo explicando la sincronización en la nube."
+  },
+  "backupSuccessMessage": "¡Copia de seguridad realizada con éxito!",
+  "@backupSuccessMessage": {
+    "description": "Mensaje tras completar el respaldo."
+  },
+  "backupErrorMessage": "Error al realizar la copia de seguridad: {error}",
+  "@backupErrorMessage": {
+    "description": "Mensaje de error si falla la subida.",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "importFromCloudTitle": "Restaurar datos de la nube",
+  "@importFromCloudTitle": {
+    "description": "Título de la opción para descargar y restaurar la copia de seguridad."
+  },
+  "importFromCloudSubtitle": "Trae tus libros, lecturas y rachas guardadas",
+  "@importFromCloudSubtitle": {
+    "description": "Subtítulo explicando la importación desde la nube."
+  },
+  "importSuccessMessage": "¡Datos restaurados con éxito!",
+  "@importSuccessMessage": {
+    "description": "Mensaje tras completar la restauración."
+  },
+  "importErrorMessage": "Error al restaurar los datos: {error}",
+  "@importErrorMessage": {
+    "description": "Mensaje de error si falla la descarga.",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "cloudBackupFoundTitle": "Copia de seguridad encontrada",
+  "@cloudBackupFoundTitle": {
+    "description": "Título del modal que se muestra al detectar datos en la nube."
+  },
+  "cloudBackupFoundMessage": "Hemos detectado información guardada en tu cuenta de la nube. ¿Deseas descargar tus libros, notas y progreso actual en este dispositivo?",
+  "@cloudBackupFoundMessage": {
+    "description": "Mensaje explicativo del modal de restauración."
+  },
+  "startFromScratchButton": "Empezar de cero",
+  "@startFromScratchButton": {
+    "description": "Botón para omitir la restauración de la nube."
+  },
+  "restoreDataButton": "Restaurar datos",
+  "@restoreDataButton": {
+    "description": "Botón para confirmar la restauración desde la nube."
+  },
+  "restoreSuccessMessage": "¡Tus datos han sido restaurados con éxito!",
+  "@restoreSuccessMessage": {
+    "description": "Notificación de éxito al restaurar."
+  },
   "exportPreviewTitle": "Exportar Resumen",
   "@exportPreviewTitle": {
     "description": "Título de la hoja de previsualización de exportación."
@@ -1265,13 +1355,25 @@
   "@confirmChangeCoverMessage": {
     "description": "Mensaje principal del cuadro de diálogo de confirmación."
   },
-  "validationTotalPagesRequired": "El número total de páginas es obligatorio",
+  "validationTotalPagesRequired": "El número total de páginas es requerida",
   "@validationTotalPagesRequired": {
     "description": "Mensaje de error cuando el usuario no ingresa el total de páginas al crear/editar un libro"
   },
   "validationTotalPagesInvalid": "Ingresa un número de páginas válido mayor a 0",
   "@validationTotalPagesInvalid": {
     "description": "Mensaje de error cuando el total de páginas es menor o igual a cero"
+  },
+  "validationAuthorRequired": "El autor o autora es requerido",
+  "@validationAuthorRequired": {
+    "description": "Mensaje de error mostrado cuando el campo de autor está vacío."
+  },
+  "validationIsbnRequired": "El isbn es requerido",
+  "@validationIsbnRequired": {
+    "description": "Mensaje de error mostrado cuando el campo ISBN está vacío."
+  },
+  "validationCategoryRequired": "La categoria o genero es requerida",
+  "@validationCategoryRequired": {
+    "description": "Mensaje de error mostrado cuando el campo de categoría o género está vacío."
   },
   "newSession": "Leer",
   "@newSession": {

@@ -95,7 +95,7 @@ class _FinishReadingModalState extends ConsumerState<FinishReadingModal> {
       context: context,
       initialDate: _selectedDate,
       firstDate: DateTime(2020),
-      lastDate: DateTime.now(), // No permitir fechas futuras
+      lastDate: DateTime.now(),
     );
 
     if (picked != null) {
@@ -111,15 +111,15 @@ class _FinishReadingModalState extends ConsumerState<FinishReadingModal> {
       final endPage = int.parse(_endPageController.text.trim());
       final repository = ref.read(bookRepositoryProvider);
       final sessionTime = widget.elapsedDuration == null
-        ? DateTime(
-            _selectedDate.year,
-            _selectedDate.month,
-            _selectedDate.day,
-            now.hour,
-            now.minute,
-            now.second,
-          )
-        : now;
+      ? DateTime(
+          _selectedDate.year,
+          _selectedDate.month,
+          _selectedDate.day,
+          now.hour,
+          now.minute,
+          now.second,
+        )
+      : now;
 
       final result = await repository.saveReadingSession(
         bookId: widget.book.id,
@@ -131,7 +131,7 @@ class _FinishReadingModalState extends ConsumerState<FinishReadingModal> {
 
       if (result != null && mounted) {
         final registerStreak = ref.read(registerReadingDayProvider);
-        await registerStreak();
+        await registerStreak(sessionTime);
 
         ref.invalidate(userStreakStreamProvider);
         ref.invalidate(selectedDateReadingsProvider);

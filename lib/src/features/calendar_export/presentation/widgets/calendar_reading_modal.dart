@@ -8,6 +8,7 @@ import 'package:book_sync/src/features/streak/presentation/providers/streak_prov
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class CalendarReadingModal extends ConsumerStatefulWidget {
   final DateTime selectedDate;
@@ -94,7 +95,10 @@ class _CalendarReadingModalState extends ConsumerState<CalendarReadingModal> {
 
         ref.invalidate(userStreakStreamProvider); 
         ref.invalidate(selectedDateReadingsProvider);
-        Navigator.of(context).pop(true);
+        
+        ref.invalidate(userStreakStreamProvider);
+        ref.invalidate(selectedDateReadingsProvider);
+        context.pushReplacement('/summary', extra: {'book': result.book, 'session': result.session});
       }
     }
   }

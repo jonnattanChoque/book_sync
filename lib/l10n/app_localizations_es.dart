@@ -181,6 +181,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get upgradeToPremium => 'Actualizar a Premium';
 
   @override
+  String get paywallExpiredTitle => 'Tu suscripción ha expirado';
+
+  @override
+  String get paywallExpiredSubtitle =>
+      'Renueva tu plan para recuperar el acceso ininterrumpido a todas las funciones premium y mantener tus datos sincronizados.';
+
+  @override
+  String get paywallExpiredButton => 'Renovar suscripción';
+
+  @override
   String get streakIncreased => '¡Racha Aumentada!';
 
   @override
@@ -579,6 +589,65 @@ class AppLocalizationsEs extends AppLocalizations {
       'Disfruta de todas las funciones avanzadas, estadísticas detalladas y una experiencia sin límites.';
 
   @override
+  String get legalSection => 'Legal e Información';
+
+  @override
+  String get privacyPolicyTitle => 'Política de Privacidad';
+
+  @override
+  String get termsOfServiceTitle => 'Términos de Servicio (EULA)';
+
+  @override
+  String get cloudBackupSection => 'Copia de Seguridad en la Nube';
+
+  @override
+  String get exportToCloudTitle => 'Exportar datos a la nube';
+
+  @override
+  String get exportToCloudSubtitle =>
+      'Sincroniza tus libros, lecturas y rachas en tu cuenta';
+
+  @override
+  String get backupSuccessMessage => '¡Copia de seguridad realizada con éxito!';
+
+  @override
+  String backupErrorMessage(String error) {
+    return 'Error al realizar la copia de seguridad: $error';
+  }
+
+  @override
+  String get importFromCloudTitle => 'Restaurar datos de la nube';
+
+  @override
+  String get importFromCloudSubtitle =>
+      'Trae tus libros, lecturas y rachas guardadas';
+
+  @override
+  String get importSuccessMessage => '¡Datos restaurados con éxito!';
+
+  @override
+  String importErrorMessage(String error) {
+    return 'Error al restaurar los datos: $error';
+  }
+
+  @override
+  String get cloudBackupFoundTitle => 'Copia de seguridad encontrada';
+
+  @override
+  String get cloudBackupFoundMessage =>
+      'Hemos detectado información guardada en tu cuenta de la nube. ¿Deseas descargar tus libros, notas y progreso actual en este dispositivo?';
+
+  @override
+  String get startFromScratchButton => 'Empezar de cero';
+
+  @override
+  String get restoreDataButton => 'Restaurar datos';
+
+  @override
+  String get restoreSuccessMessage =>
+      '¡Tus datos han sido restaurados con éxito!';
+
+  @override
   String get exportPreviewTitle => 'Exportar Resumen';
 
   @override
@@ -948,11 +1017,20 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get validationTotalPagesRequired =>
-      'El número total de páginas es obligatorio';
+      'El número total de páginas es requerida';
 
   @override
   String get validationTotalPagesInvalid =>
       'Ingresa un número de páginas válido mayor a 0';
+
+  @override
+  String get validationAuthorRequired => 'El autor o autora es requerido';
+
+  @override
+  String get validationIsbnRequired => 'El isbn es requerido';
+
+  @override
+  String get validationCategoryRequired => 'La categoria o genero es requerida';
 
   @override
   String get newSession => 'Leer';

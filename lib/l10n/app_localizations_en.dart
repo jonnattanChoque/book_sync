@@ -180,6 +180,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get upgradeToPremium => 'Upgrade to Premium';
 
   @override
+  String get paywallExpiredTitle => 'Your subscription has expired';
+
+  @override
+  String get paywallExpiredSubtitle =>
+      'Renew your plan to restore uninterrupted access to all premium features and keep your data synchronized.';
+
+  @override
+  String get paywallExpiredButton => 'Renew Subscription';
+
+  @override
   String get streakIncreased => 'Streak Increased!';
 
   @override
@@ -579,6 +589,65 @@ class AppLocalizationsEn extends AppLocalizations {
       'Enjoy all advanced features, detailed statistics, and a limitless experience.';
 
   @override
+  String get legalSection => 'Legal & Information';
+
+  @override
+  String get privacyPolicyTitle => 'Privacy Policy';
+
+  @override
+  String get termsOfServiceTitle => 'Terms of Service (EULA)';
+
+  @override
+  String get cloudBackupSection => 'Cloud Backup';
+
+  @override
+  String get exportToCloudTitle => 'Export data to cloud';
+
+  @override
+  String get exportToCloudSubtitle =>
+      'Sync your books, reading sessions, and streaks to your account';
+
+  @override
+  String get backupSuccessMessage => 'Backup completed successfully!';
+
+  @override
+  String backupErrorMessage(String error) {
+    return 'Error performing backup: $error';
+  }
+
+  @override
+  String get importFromCloudTitle => 'Restore cloud data';
+
+  @override
+  String get importFromCloudSubtitle =>
+      'Bring your saved books, readings, and streaks';
+
+  @override
+  String get importSuccessMessage => 'Data restored successfully!';
+
+  @override
+  String importErrorMessage(String error) {
+    return 'Error restoring data: $error';
+  }
+
+  @override
+  String get cloudBackupFoundTitle => 'Backup Found';
+
+  @override
+  String get cloudBackupFoundMessage =>
+      'We detected saved information in your cloud account. Do you want to download your books, notes, and progress to this device?';
+
+  @override
+  String get startFromScratchButton => 'Start from scratch';
+
+  @override
+  String get restoreDataButton => 'Restore data';
+
+  @override
+  String get restoreSuccessMessage =>
+      'Your data has been restored successfully!';
+
+  @override
   String get exportPreviewTitle => 'Export Summary';
 
   @override
@@ -951,6 +1020,15 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get validationTotalPagesInvalid =>
       'Enter a valid number of pages greater than 0';
+
+  @override
+  String get validationAuthorRequired => 'El autor o autora es requerido';
+
+  @override
+  String get validationIsbnRequired => 'El isbn es requerido';
+
+  @override
+  String get validationCategoryRequired => 'La categoria o genero es requerida';
 
   @override
   String get newSession => 'Read';

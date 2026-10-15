@@ -404,6 +404,24 @@ abstract class AppLocalizations {
   /// **'Actualizar a Premium'**
   String get upgradeToPremium;
 
+  /// Título mostrado en el paywall cuando la suscripción del usuario ha vencido
+  ///
+  /// In es, this message translates to:
+  /// **'Tu suscripción ha expirado'**
+  String get paywallExpiredTitle;
+
+  /// Subtítulo explicativo cuando la suscripción ha expirado
+  ///
+  /// In es, this message translates to:
+  /// **'Renueva tu plan para recuperar el acceso ininterrumpido a todas las funciones premium y mantener tus datos sincronizados.'**
+  String get paywallExpiredSubtitle;
+
+  /// Texto del botón de compra para renovar una suscripción vencida
+  ///
+  /// In es, this message translates to:
+  /// **'Renovar suscripción'**
+  String get paywallExpiredButton;
+
   /// No description provided for @streakIncreased.
   ///
   /// In es, this message translates to:
@@ -1100,6 +1118,108 @@ abstract class AppLocalizations {
   /// **'Disfruta de todas las funciones avanzadas, estadísticas detalladas y una experiencia sin límites.'**
   String get paywallProfileTitle;
 
+  /// Encabezado de la sección de términos y políticas en el perfil.
+  ///
+  /// In es, this message translates to:
+  /// **'Legal e Información'**
+  String get legalSection;
+
+  /// Título de la opción para abrir la política de privacidad.
+  ///
+  /// In es, this message translates to:
+  /// **'Política de Privacidad'**
+  String get privacyPolicyTitle;
+
+  /// Título de la opción para abrir los términos de servicio.
+  ///
+  /// In es, this message translates to:
+  /// **'Términos de Servicio (EULA)'**
+  String get termsOfServiceTitle;
+
+  /// Encabezado de la sección de respaldo en la nube.
+  ///
+  /// In es, this message translates to:
+  /// **'Copia de Seguridad en la Nube'**
+  String get cloudBackupSection;
+
+  /// Título de la opción para subir la copia de seguridad.
+  ///
+  /// In es, this message translates to:
+  /// **'Exportar datos a la nube'**
+  String get exportToCloudTitle;
+
+  /// Subtítulo explicando la sincronización en la nube.
+  ///
+  /// In es, this message translates to:
+  /// **'Sincroniza tus libros, lecturas y rachas en tu cuenta'**
+  String get exportToCloudSubtitle;
+
+  /// Mensaje tras completar el respaldo.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Copia de seguridad realizada con éxito!'**
+  String get backupSuccessMessage;
+
+  /// Mensaje de error si falla la subida.
+  ///
+  /// In es, this message translates to:
+  /// **'Error al realizar la copia de seguridad: {error}'**
+  String backupErrorMessage(String error);
+
+  /// Título de la opción para descargar y restaurar la copia de seguridad.
+  ///
+  /// In es, this message translates to:
+  /// **'Restaurar datos de la nube'**
+  String get importFromCloudTitle;
+
+  /// Subtítulo explicando la importación desde la nube.
+  ///
+  /// In es, this message translates to:
+  /// **'Trae tus libros, lecturas y rachas guardadas'**
+  String get importFromCloudSubtitle;
+
+  /// Mensaje tras completar la restauración.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Datos restaurados con éxito!'**
+  String get importSuccessMessage;
+
+  /// Mensaje de error si falla la descarga.
+  ///
+  /// In es, this message translates to:
+  /// **'Error al restaurar los datos: {error}'**
+  String importErrorMessage(String error);
+
+  /// Título del modal que se muestra al detectar datos en la nube.
+  ///
+  /// In es, this message translates to:
+  /// **'Copia de seguridad encontrada'**
+  String get cloudBackupFoundTitle;
+
+  /// Mensaje explicativo del modal de restauración.
+  ///
+  /// In es, this message translates to:
+  /// **'Hemos detectado información guardada en tu cuenta de la nube. ¿Deseas descargar tus libros, notas y progreso actual en este dispositivo?'**
+  String get cloudBackupFoundMessage;
+
+  /// Botón para omitir la restauración de la nube.
+  ///
+  /// In es, this message translates to:
+  /// **'Empezar de cero'**
+  String get startFromScratchButton;
+
+  /// Botón para confirmar la restauración desde la nube.
+  ///
+  /// In es, this message translates to:
+  /// **'Restaurar datos'**
+  String get restoreDataButton;
+
+  /// Notificación de éxito al restaurar.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Tus datos han sido restaurados con éxito!'**
+  String get restoreSuccessMessage;
+
   /// Título de la hoja de previsualización de exportación.
   ///
   /// In es, this message translates to:
@@ -1727,7 +1847,7 @@ abstract class AppLocalizations {
   /// Mensaje de error cuando el usuario no ingresa el total de páginas al crear/editar un libro
   ///
   /// In es, this message translates to:
-  /// **'El número total de páginas es obligatorio'**
+  /// **'El número total de páginas es requerida'**
   String get validationTotalPagesRequired;
 
   /// Mensaje de error cuando el total de páginas es menor o igual a cero
@@ -1735,6 +1855,24 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Ingresa un número de páginas válido mayor a 0'**
   String get validationTotalPagesInvalid;
+
+  /// Mensaje de error mostrado cuando el campo de autor está vacío.
+  ///
+  /// In es, this message translates to:
+  /// **'El autor o autora es requerido'**
+  String get validationAuthorRequired;
+
+  /// Mensaje de error mostrado cuando el campo ISBN está vacío.
+  ///
+  /// In es, this message translates to:
+  /// **'El isbn es requerido'**
+  String get validationIsbnRequired;
+
+  /// Mensaje de error mostrado cuando el campo de categoría o género está vacío.
+  ///
+  /// In es, this message translates to:
+  /// **'La categoria o genero es requerida'**
+  String get validationCategoryRequired;
 
   /// Texto del botón para iniciar una nueva sesión de lectura
   ///
