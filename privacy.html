@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy / Política de Privacidad - Book Sync</title>
+    <style>
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+      }
+      .container {
+        background: #fff;
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .lang-selector {
+        text-align: right;
+        margin-bottom: 20px;
+      }
+      .lang-selector button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 8px 14px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        margin-left: 5px;
+      }
+      .lang-selector button:hover {
+        background-color: #0056b3;
+      }
+      h1,
+      h2 {
+        color: #2c3e50;
+      }
+      h1 {
+        border-bottom: 2px solid #eaeaea;
+        padding-bottom: 10px;
+      }
+      p,
+      li {
+        color: #555;
+      }
+      .footer {
+        margin-top: 40px;
+        font-size: 0.9em;
+        color: #777;
+        text-align: center;
+        border-top: 1px solid #eaeaea;
+        padding-top: 20px;
+      }
+    </style>
+    <script>
+      function switchLanguage(lang) {
+        document.querySelectorAll("[data-lang]").forEach((el) => {
+          el.style.display =
+            el.getAttribute("data-lang") === lang ? "block" : "none";
+        });
+      }
+      document.addEventListener("DOMContentLoaded", () => {
+        const userLang = navigator.language || navigator.userLanguage;
+        const defaultLang = userLang.startsWith("es") ? "es" : "en";
+        switchLanguage(defaultLang);
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Selector de Idioma -->
+      <div class="lang-selector">
+        <button onclick="switchLanguage('es')">Español</button>
+        <button onclick="switchLanguage('en')">English</button>
+      </div>
+
+      <!-- CONTENIDO EN ESPAÑOL -->
+      <div data-lang="es">
+        <h1>Política de Privacidad de Book Sync</h1>
+        <p><strong>Última actualización:</strong> 14 de octubre de 2026</p>
+
+        <p>
+          En <strong>Book Sync</strong> (en adelante, "la Aplicación"),
+          valoramos y respetamos tu privacidad. Esta Política de Privacidad
+          explica cómo recopilamos, usamos y protegemos tu información cuando
+          utilizas nuestra aplicación móvil.
+        </p>
+
+        <h2>1. Información que Recopilamos</h2>
+        <p>
+          Book Sync está diseñada para almacenar tus datos principalmente de
+          forma local en tu dispositivo mediante una base de datos segura
+          (Isar). Dependiendo de tu uso y si utilizas funciones en la nube (como
+          usuario Premium), recopilamos:
+        </p>
+        <ul>
+          <li>
+            <strong>Datos de Cuenta:</strong> Información básica de perfil (como
+            nombre de usuario y correo electrónico) cuando inicias sesión para
+            sincronizar tus datos.
+          </li>
+          <li>
+            <strong>Datos de Lectura:</strong> Libros registrados, notas,
+            progreso de lectura, sesiones de lectura y rachas guardadas.
+          </li>
+          <li>
+            <strong>Información de Suscripción:</strong> Estado de suscripción
+            Premium gestionada a través de las tiendas oficiales (App Store o
+            Google Play Store).
+          </li>
+        </ul>
+
+        <h2>2. Uso de la Información</h2>
+        <p>La información recopilada se utiliza exclusivamente para:</p>
+        <ul>
+          <li>
+            Proporcionar, operar y mantener las funciones principales de la
+            aplicación de seguimiento de lectura.
+          </li>
+          <li>
+            Sincronizar tus datos de lectura entre tus dispositivos de manera
+            segura a través de nuestros servidores en la nube (Supabase).
+          </li>
+          <li>Gestionar tu estado de suscripción y accesos Premium.</li>
+        </ul>
+
+        <h2>3. Almacenamiento y Seguridad de los Datos</h2>
+        <p>
+          Tus datos locales se almacenan de forma segura en tu dispositivo. Si
+          eres usuario Premium y habilitas la sincronización en la nube, tus
+          datos se transmiten mediante protocolos seguros (HTTPS) y se almacenan
+          cifrados en servidores seguros provistos por Supabase. No compartimos,
+          vendemos ni comercializamos tus datos personales con terceros.
+        </p>
+
+        <h2>4. Derechos del Usuario</h2>
+        <p>
+          Puedes en cualquier momento eliminar tus datos locales desinstalando
+          la aplicación. Si deseas eliminar por completo tus datos almacenados
+          en la nube, puedes solicitarlo o eliminar tu cuenta directamente desde
+          la configuración de la aplicación.
+        </p>
+
+        <h2>5. Cambios a esta Política de Privacidad</h2>
+        <p>
+          Podemos actualizar nuestra Política de Privacidad ocasionalmente. Te
+          recomendamos revisar esta página periódicamente para cualquier cambio.
+        </p>
+
+        <h2>6. Contacto</h2>
+        <p>
+          Si tienes preguntas o sugerencias sobre nuestra Política de
+          Privacidad, contáctanos en: <strong>soporte@booksync.app</strong>
+        </p>
+      </div>
+
+      <!-- CONTENIDO EN INGLÉS -->
+      <div data-lang="en" style="display: none">
+        <h1>Book Sync Privacy Policy</h1>
+        <p><strong>Last updated:</strong> October 14, 2026</p>
+
+        <p>
+          At <strong>Book Sync</strong> (hereinafter, "the Application"), we
+          value and respect your privacy. This Privacy Policy explains how we
+          collect, use, and protect your information when you use our mobile
+          application.
+        </p>
+
+        <h2>1. Information We Collect</h2>
+        <p>
+          Book Sync is designed to store your data primarily locally on your
+          device using a secure database (Isar). Depending on your usage and
+          cloud features (as a Premium user), we collect:
+        </p>
+        <ul>
+          <li>
+            <strong>Account Data:</strong> Basic profile information (such as
+            username and email) when you sign in to sync your data.
+          </li>
+          <li>
+            <strong>Reading Data:</strong> Registered books, notes, reading
+            progress, reading sessions, and saved streaks.
+          </li>
+          <li>
+            <strong>Subscription Information:</strong> Premium subscription
+            status managed through official stores (App Store or Google Play
+            Store).
+          </li>
+        </ul>
+
+        <h2>2. Use of Information</h2>
+        <p>The collected information is used exclusively to:</p>
+        <ul>
+          <li>
+            Provide, operate, and maintain the core features of the reading
+            tracker application.
+          </li>
+          <li>
+            Securely synchronize your reading data across your devices via our
+            cloud servers (Supabase).
+          </li>
+          <li>Manage your subscription status and Premium access.</li>
+        </ul>
+
+        <h2>3. Data Storage and Security</h2>
+        <p>
+          Your local data is securely stored on your device. If you are a
+          Premium user and enable cloud synchronization, your data is
+          transmitted via secure protocols (HTTPS) and stored encrypted on
+          secure servers provided by Supabase. We do not share, sell, or trade
+          your personal data with third parties.
+        </p>
+
+        <h2>4. User Rights</h2>
+        <p>
+          You can delete your local data at any time by uninstalling the
+          application. If you wish to completely delete your data stored in the
+          cloud, you can request it or delete your account directly from the app
+          settings.
+        </p>
+
+        <h2>5. Changes to This Privacy Policy</h2>
+        <p>
+          We may update our Privacy Policy from time to time. We encourage you
+          to review this page periodically for any changes.
+        </p>
+
+        <h2>6. Contact</h2>
+        <p>
+          If you have any questions or suggestions about our Privacy Policy,
+          contact us at: <strong>soporte@booksync.app</strong>
+        </p>
+      </div>
+
+      <div class="footer">
+        <p>
+          &copy; 2026 Book Sync. Todos los derechos reservados / All rights
+          reserved.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
