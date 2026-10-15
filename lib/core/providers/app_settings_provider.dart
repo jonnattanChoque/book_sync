@@ -55,6 +55,14 @@ class AppSettingsNotifier extends StateNotifier<AppSettings> {
     await _datasource.saveSettings(state);
   }
 
+  void updateExpirationBanner(bool showBanner) {
+    state = state.copyWith(showExpirationBanner: showBanner);
+  }
+
+  void updateExpirationModal(bool showModal) {
+    state = state.copyWith(showExpirationModal: showModal);
+  }
+
   /// Cambia el idioma dinámicamente (3.4.3)
   Future<void> updateLocale(Locale locale) async {
     state = state.copyWith(locale: locale);

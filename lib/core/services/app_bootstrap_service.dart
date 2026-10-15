@@ -33,11 +33,6 @@ class AppBootstrapService {
       await SubscriptionService.logOut();
     }
 
-    
-    final isPremiumUser = await SubscriptionService.isPremium();
-    await _container.read(appSettingsProvider.notifier).updatePremium(isPremiumUser);
-
-    // 2. EL LISTENER DE SUPABASE PARA FUTUROS LOGINS/LOGOUTS
     Supabase.instance.client.auth.onAuthStateChange.listen((data) async {
       final session = data.session;
       final newUserId = session?.user.id;
@@ -48,8 +43,12 @@ class AppBootstrapService {
         await SubscriptionService.logOut();
       }
 
-      final isPremium = await SubscriptionService.isPremium();
-       await _container.read(appSettingsProvider.notifier).updatePremium(isPremium);
+      final result = await SubscriptionService.isPremium();
+      await _container.read(appSettingsProvider.notifier).updatePremium(result.isPremium);
+      _container.read(appSettingsProvider.notifier).updateExpirationBanner(result.showExpirationBanner);
+      if(result.isExpired) {
+        _container.read(appSettingsProvider.notifier).updateExpirationModal(result.isExpired);
+      }
     });
 
     final sharedPreferences = await SharedPreferences.getInstance();

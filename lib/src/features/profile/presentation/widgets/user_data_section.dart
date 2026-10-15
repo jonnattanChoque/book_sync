@@ -167,7 +167,7 @@ class _UserDataSectionState extends ConsumerState<UserDataSection> {
                 GestureDetector(
                   onTap: () {
                     final title = context.l10n.paywallProfileTitle;
-                    context.push('/premium', extra: title);
+                    context.push('/premium', extra: {'title': title});
                   },
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),

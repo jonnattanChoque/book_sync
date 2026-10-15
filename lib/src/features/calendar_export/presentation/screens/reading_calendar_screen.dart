@@ -147,8 +147,19 @@ class ReadingCalendarScreen extends ConsumerWidget {
       },
       calendarBuilders: CalendarBuilders(
         markerBuilder: (context, date, events) {
-          final hasReading = readingDays?.any((d) => isSameDay(d, date));
-          if (hasReading == null) return null;
+          if (readingDays == null || readingDays.isEmpty) return null;
+
+          // Normalizamos la fecha del calendario del bucle actual a medianoche
+          final normalizedDate = DateTime(date.year, date.month, date.day);
+
+          // Comparamos normalizando también las fechas guardadas en el streak
+          final hasReading = readingDays.any((d) => 
+            d.year == normalizedDate.year && 
+            d.month == normalizedDate.month && 
+            d.day == normalizedDate.day
+          );
+
+          if (!hasReading) return null;
 
           return Positioned(
             bottom: 4,

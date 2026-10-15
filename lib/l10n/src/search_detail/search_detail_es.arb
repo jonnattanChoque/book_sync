@@ -92,12 +92,24 @@
   "@confirmChangeCoverMessage": {
     "description": "Mensaje principal del cuadro de diálogo de confirmación."
   },
-  "validationTotalPagesRequired": "El número total de páginas es obligatorio",
+  "validationTotalPagesRequired": "El número total de páginas es requerida",
   "@validationTotalPagesRequired": {
     "description": "Mensaje de error cuando el usuario no ingresa el total de páginas al crear/editar un libro"
   },
   "validationTotalPagesInvalid": "Ingresa un número de páginas válido mayor a 0",
   "@validationTotalPagesInvalid": {
     "description": "Mensaje de error cuando el total de páginas es menor o igual a cero"
+  },
+  "validationAuthorRequired": "El autor o autora es requerido",
+  "@validationAuthorRequired": {
+    "description": "Mensaje de error mostrado cuando el campo de autor está vacío."
+  },
+  "validationIsbnRequired": "El isbn es requerido",
+  "@validationIsbnRequired": {
+    "description": "Mensaje de error mostrado cuando el campo ISBN está vacío."
+  },
+  "validationCategoryRequired": "La categoria o genero es requerida",
+  "@validationCategoryRequired": {
+    "description": "Mensaje de error mostrado cuando el campo de categoría o género está vacío."
   }
 }

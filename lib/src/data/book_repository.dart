@@ -18,9 +18,9 @@ class BookRepository {
 
   Stream<List<Book>> watchAllBooks() {
     return isar.books
-        .filter()
-        .userIdEqualTo(currentUserId) // <-- Filtro por usuario
-        .watch(fireImmediately: true);
+      .filter()
+      .userIdEqualTo(currentUserId)
+      .watch(fireImmediately: true);
   }
 
   Future<Id> saveBookFromForm({
@@ -127,7 +127,6 @@ class BookRepository {
       .findAll();
   } 
 
-  // En tu repositorio o servicio de Isar (e.g., ReadingRepository):
   Future<({Book book, ReadingSession session})?> saveReadingSession({
     required int bookId,
     required int startPage,

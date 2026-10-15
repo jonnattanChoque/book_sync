@@ -10,8 +10,9 @@ import 'package:purchases_flutter/purchases_flutter.dart';
 
 class PremiumPaywallScreen extends ConsumerStatefulWidget {
   final String contentText;
+  final bool? isExpired;
   
-  const PremiumPaywallScreen({super.key, required this.contentText});
+  const PremiumPaywallScreen({super.key, required this.contentText, this.isExpired});
 
   @override
   ConsumerState<PremiumPaywallScreen> createState() => _PremiumPaywallScreenState();
@@ -40,7 +41,10 @@ class _PremiumPaywallScreenState extends ConsumerState<PremiumPaywallScreen> {
   AppBar _buiildNav(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.transparent,
-      title: Text(context.l10n.exportPremiumTitle, style: context.theme.textTheme.titleLarge),
+      title: Text(
+        widget.isExpired ?? false ? context.l10n.paywallExpiredTitle : context.l10n.exportPremiumTitle, 
+        style: widget.isExpired ?? false ? context.theme.textTheme.titleMedium : context.theme.textTheme.titleLarge
+      ),
       leading: IconButton(
         icon: const Icon(Icons.close),
         onPressed: () => Navigator.of(context).pop(),
@@ -74,7 +78,7 @@ class _PremiumPaywallScreenState extends ConsumerState<PremiumPaywallScreen> {
                 const Icon(Icons.workspace_premium, size: 56, color: Colors.amber),
                 const SizedBox(height: 12),
                 Text(
-                  widget.contentText,
+                  widget.isExpired ?? false ? context.l10n.paywallExpiredSubtitle : widget.contentText,
                   style: const TextStyle(fontSize: 14, color: Colors.grey),
                   textAlign: TextAlign.center,
                 ),
@@ -104,12 +108,12 @@ class _PremiumPaywallScreenState extends ConsumerState<PremiumPaywallScreen> {
                         ),
                       ),
                       onChanged: isPurchasing
-                          ? null
-                          : (value) {
-                              if (value != null) {
-                                setState(() => selectedPackageType = value);
-                              }
-                            },
+                      ? null
+                      : (value) {
+                          if (value != null) {
+                            setState(() => selectedPackageType = value);
+                          }
+                        },
                     ),
                   if (monthlyPackage != null)
                     RadioListTile<PackageType>(
@@ -134,61 +138,65 @@ class _PremiumPaywallScreenState extends ConsumerState<PremiumPaywallScreen> {
                 const SizedBox(height: 32),
 
                 // Botón de Compra
-                ElevatedButton(
-                  onPressed: (isPurchasing || packages.isEmpty)
-                  ? null
-                  : () async {
-                      setState(() {
-                        isPurchasing = true;
-                      });
-
-                      try {
-                        final packageToPurchase = packages.firstWhere(
-                          (p) => p.packageType == selectedPackageType,
-                          orElse: () => packages.first,
-                        );
-
-                        final result = await Purchases.purchasePackage(packageToPurchase);
-                        final isPremium = result.customerInfo.entitlements.all['premium']?.isActive ?? false;
-                        ref.read(appSettingsProvider.notifier).updatePremium(isPremium);
-                        
-                        if (isPremium && mounted) {
-                          Navigator.of(context).pop();
-                        }
-                      } catch (e) {
-                        // Manejo de cancelación o error
-                      } finally {
-                        if (mounted) {
-                          setState(() {
-                            isPurchasing = false;
-                          });
-                        }
-                      }
-                    },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.amber,
-                    foregroundColor: Colors.black,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: isPurchasing
-                  ? const SizedBox(
-                      width: 20,
-                      height: 20,
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    )
-                  : Text(
-                      context.l10n.exportUpgradeButton,
-                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                    ),
-                ),
+                _buiildButtonBuy(packages, context),
               ],
             ),
           ),
         );
       },
+    );
+  }
+
+  ElevatedButton _buiildButtonBuy(List<Package> packages, BuildContext context) {
+    return ElevatedButton(
+      onPressed: (isPurchasing || packages.isEmpty)
+      ? null
+      : () async {
+          setState(() {
+            isPurchasing = true;
+          });
+
+          try {
+            final packageToPurchase = packages.firstWhere(
+              (p) => p.packageType == selectedPackageType,
+              orElse: () => packages.first,
+            );
+
+            final result = await Purchases.purchasePackage(packageToPurchase);
+            final isPremium = result.customerInfo.entitlements.all['premium']?.isActive ?? false;
+            ref.read(appSettingsProvider.notifier).updatePremium(isPremium);
+            
+            if (isPremium && mounted) {
+              Navigator.of(context).pop();
+            }
+          } catch (e) {
+            // Manejo de cancelación o error
+          } finally {
+            if (mounted) {
+              setState(() {
+                isPurchasing = false;
+              });
+            }
+          }
+        },
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.amber,
+        foregroundColor: Colors.black,
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+      child: isPurchasing
+      ? const SizedBox(
+          width: 20,
+          height: 20,
+          child: CircularProgressIndicator(strokeWidth: 2),
+        )
+      : Text(
+          widget.isExpired ?? false ? context.l10n.paywallExpiredButton : context.l10n.exportUpgradeButton,
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        ),
     );
   }
 

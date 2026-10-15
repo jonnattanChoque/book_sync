@@ -66,6 +66,7 @@ class SupabaseAuthRepository implements AuthRepository {
         await _preferencesService.setGuestMode(false);
       }
     } catch (e) {
+      print(e);
       rethrow;
     }
   }
@@ -110,5 +111,8 @@ class SupabaseAuthRepository implements AuthRepository {
   @override
   Future<void> signOut() async {
     await _client.auth.signOut();
+    final googleSignIn = GoogleSignIn();
+    await googleSignIn.disconnect();
+    await googleSignIn.signOut();
   }
 }

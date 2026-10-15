@@ -44,7 +44,7 @@ class _ExportPreviewSheetState extends ConsumerState<ExportPreviewSheet> {
   Future<void> _handleExport(bool isUserPremium) async {
     final String title = context.l10n.exportPremiumDescription(AppConstants.appName);
     if (_selectedBackground.isPremium && !isUserPremium) {
-      context.push('/premium', extra: title);
+      context.push('/premium', extra: {'title': title});
       return;
     }
 

@@ -1,8 +1,11 @@
 // ignore_for_file: camel_case_types
 
 import 'package:book_sync/core/extensions/build_context_ext.dart';
+import 'package:book_sync/core/providers/app_settings_provider.dart';
+import 'package:book_sync/core/providers/premium_provider.dart';
 import 'package:book_sync/core/theme/cozy_colors.dart';
 import 'package:book_sync/core/utils/date_formatter.dart';
+import 'package:book_sync/src/features/profile/presentation/widgets/cloud_restore_modal.dart';
 import 'package:book_sync/src/features/streak/presentation/providers/streak_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,11 +26,50 @@ class _HomeHeaderState extends ConsumerState<HomeHeader> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(checkStreakInactivityProvider)();
+      
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    final settings = ref.watch(appSettingsProvider);
+    final isPremium = settings.isPremium ?? false;
+    if (isPremium) {
+      ref.listen<AsyncValue<bool>>(cloudRestoreCheckProvider, (previous, next) {
+        next.whenData((shouldShowModal) async {
+          if (shouldShowModal && context.mounted) {
+            final restored = await showDialog<bool>(
+              context: context,
+              barrierDismissible: false,
+              builder: (_) => const CloudRestoreModal(),
+            );
+
+            if (restored == true && context.mounted) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(context.l10n.restoreSuccessMessage)),
+              );
+            }
+          }
+        });
+      });
+    }
+    
+    ref.listen(appSettingsProvider, (previous, next) {
+      if (next.showExpirationBanner ?? false) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Tu suscripción Premium se renueva hoy.'),
+            backgroundColor: Colors.amber,
+            duration: Duration(seconds: 4),
+          ),
+        );
+      }
+
+      if (next.showExpirationModal ?? false) {
+        context.push('/premium', extra: {'title': '', 'isExpired': true});
+      }
+    });
+    
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
       child: Row(

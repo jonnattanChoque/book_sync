@@ -42,5 +42,17 @@
   "freePlan": "Free Plan",
   "@freePlan": {},
   "upgradeToPremium": "Upgrade to Premium",
-  "@upgradeToPremium": {}
+  "@upgradeToPremium": {},
+  "paywallExpiredTitle": "Your subscription has expired",
+  "@paywallExpiredTitle": {
+    "description": "Title displayed on the paywall when the user's subscription has expired"
+  },
+  "paywallExpiredSubtitle": "Renew your plan to restore uninterrupted access to all premium features and keep your data synchronized.",
+  "@paywallExpiredSubtitle": {
+    "description": "Explanatory subtitle when the subscription has expired"
+  },
+  "paywallExpiredButton": "Renew Subscription",
+  "@paywallExpiredButton": {
+    "description": "Button text to renew an expired subscription"
+  }
 }

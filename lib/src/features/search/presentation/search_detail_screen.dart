@@ -2,6 +2,7 @@ import 'package:book_sync/core/constants/app_icons.dart';
 import 'package:book_sync/core/extensions/build_context_ext.dart';
 import 'package:book_sync/core/widgets/background_paper_texture.dart';
 import 'package:book_sync/core/widgets/primary_outlined_button.dart';
+import 'package:book_sync/src/data/services/cloud_sync_controller.dart';
 import 'package:book_sync/src/domain/book.dart';
 import 'package:book_sync/src/features/reading_slider/presentation/providers/books_provider.dart';
 import 'package:book_sync/src/features/search/domain/book_search_dto.dart';
@@ -106,6 +107,7 @@ class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen>
     );
 
     ref.read(selectedBookIdProvider.notifier).state = newBookId;
+    ref.read(autoSyncProvider).triggerSilentSync();
 
     if (mounted) {
       Navigator.of(context).popUntil((route) => route.isFirst);
@@ -218,11 +220,23 @@ class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen>
               _buildEditableRow(
                 label: context.l10n.fieldAuthors,
                 controller: _authorsController,
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return context.l10n.validationAuthorRequired;
+                  }
+                  return null;
+                },
               ),
               _buildDivider(),
               _buildEditableRow(
                 label: context.l10n.fieldIsbn,
                 controller: _isbnController,
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return context.l10n.validationIsbnRequired;
+                  }
+                  return null;
+                },
               ),
               _buildDivider(),
               _buildEditableRow(
@@ -306,6 +320,12 @@ class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen>
               _buildEditableRow(
                 label: context.l10n.fieldCategories,
                 controller: _categoriesController,
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return context.l10n.validationCategoryRequired;
+                  }
+                  return null;
+                },
               ),
             ],
           ),

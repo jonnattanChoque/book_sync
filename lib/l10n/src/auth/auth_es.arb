@@ -49,5 +49,17 @@
   "freePlan": "Plan Gratuito",
   "@freePlan": {},
   "upgradeToPremium": "Actualizar a Premium",
-  "@upgradeToPremium": {}
+  "@upgradeToPremium": {},
+  "paywallExpiredTitle": "Tu suscripción ha expirado",
+  "@paywallExpiredTitle": {
+    "description": "Título mostrado en el paywall cuando la suscripción del usuario ha vencido"
+  },
+  "paywallExpiredSubtitle": "Renueva tu plan para recuperar el acceso ininterrumpido a todas las funciones premium y mantener tus datos sincronizados.",
+  "@paywallExpiredSubtitle": {
+    "description": "Subtítulo explicativo cuando la suscripción ha expirado"
+  },
+  "paywallExpiredButton": "Renovar suscripción",
+  "@paywallExpiredButton": {
+    "description": "Texto del botón de compra para renovar una suscripción vencida"
+  }
 }
