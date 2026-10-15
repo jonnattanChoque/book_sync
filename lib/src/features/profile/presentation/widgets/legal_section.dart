@@ -5,8 +5,8 @@ import 'package:url_launcher/url_launcher.dart';
 class LegalSection extends StatelessWidget {
   const LegalSection({super.key});
 
-  static const String _privacyPolicyUrl = 'https://tusitio.com/privacy';
-  static const String _termsUrl = 'https://tusitio.com/terms';
+  static const String _privacyPolicyUrl = 'https://jonnattanchoque.github.io/book_sync/privacy.html';
+  static const String _termsUrl = 'https://jonnattanchoque.github.io/book_sync/terms.html';
 
   Future<void> _launchUrl(String url) async {
     final uri = Uri.parse(url);
