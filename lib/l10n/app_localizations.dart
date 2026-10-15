@@ -914,6 +914,12 @@ abstract class AppLocalizations {
   /// **'No hay notas guardadas para este libro'**
   String get emptyNotesMessage;
 
+  /// No description provided for @editYourProfile.
+  ///
+  /// In es, this message translates to:
+  /// **'Edita tu pefil'**
+  String get editYourProfile;
+
   /// Título principal de la pantalla de perfil de usuario.
   ///
   /// In es, this message translates to:
@@ -1873,6 +1879,18 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'La categoria o genero es requerida'**
   String get validationCategoryRequired;
+
+  /// Etiqueta para el selector de la fecha en que se comenzó a leer el libro.
+  ///
+  /// In es, this message translates to:
+  /// **'Fecha de inicio'**
+  String get startDateLabel;
+
+  /// Mensaje de error cuando se intenta registrar una sesión en una fecha anterior a la fecha de inicio configurada en el libro.
+  ///
+  /// In es, this message translates to:
+  /// **'No puedes registrar lecturas en fechas anteriores al inicio del libro.'**
+  String get validationDateBeforeStartDate;
 
   /// Texto del botón para iniciar una nueva sesión de lectura
   ///

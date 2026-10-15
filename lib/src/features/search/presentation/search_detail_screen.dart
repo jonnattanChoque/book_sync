@@ -24,6 +24,7 @@ class BookSearchDetailScreen extends ConsumerStatefulWidget {
 
 class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen> {
   final _formKey = GlobalKey<FormState>();
+  DateTime _selectedStartDate = DateTime.now();
 
   // Controladores para los campos editables
   late final TextEditingController _titleController;
@@ -44,7 +45,6 @@ class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen>
     super.initState();
     final book = widget.book;
 
-    // Prellenado de datos si provienen de la búsqueda
     _coverUrl = book?.coverUrl;
     _titleController = TextEditingController(text: book?.title ?? '');
     _authorsController = TextEditingController(
@@ -92,7 +92,7 @@ class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen>
       author: _authorsController.text.trim(),
       status: _selectedStatus,
       coverPath: _coverUrl,
-      startedAt: _selectedStatus == BookStatus.reading ? DateTime.now() : null,
+      startedAt: _selectedStatus == BookStatus.reading ? _selectedStartDate : null,
       totalPages: int.tryParse(_pagesController.text.trim()),
       isbn: _isbnController.text.trim().isEmpty ? null : _isbnController.text.trim(),
       language: _languageController.text.trim().isEmpty ? null : _languageController.text.trim(),
@@ -142,6 +142,20 @@ class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen>
         },
       );
           return;
+    }
+  }
+
+  Future<void> _selectStartDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: _selectedStartDate,
+      firstDate: DateTime(2000),
+      lastDate: DateTime.now(), // Impide seleccionar fechas futuras
+    );
+    if (picked != null && picked != _selectedStartDate) {
+      setState(() {
+        _selectedStartDate = picked;
+      });
     }
   }
 
@@ -265,6 +279,50 @@ class _BookSearchDetailScreenState extends ConsumerState<BookSearchDetailScreen>
           
           _buildSectionHeader(context.l10n.sectionSelected),
           _buildDetailCard(false, children: [_buildStatusSelector()]),
+          if (_selectedStatus == BookStatus.reading) ...[
+            const SizedBox(height: 16),
+            Text(
+              context.l10n.startDateLabel,
+              style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8),
+            InkWell(
+              onTap: () => _selectStartDate(context),
+              borderRadius: BorderRadius.circular(12),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).cardColor,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: context.cozy.inkColor?.withValues(alpha: 0.2) ?? Colors.grey.shade300,
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.calendar_today_rounded,
+                          size: 20,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                        const SizedBox(width: 12),
+                        Text(
+                          '${_selectedStartDate.day}/${_selectedStartDate.month}/${_selectedStartDate.year}',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      ],
+                    ),
+                    const Icon(Icons.arrow_drop_down),
+                  ],
+                ),
+              ),
+            ),
+          ],
           const SizedBox(height: 20),
 
           // 3. Sección Descripción

@@ -1,5 +1,7 @@
 {
   "@@locale": "en",
+  "editYourProfile": "Edit your profile",
+  "@editYourProfile": {},
   "profileTitle": "Profile",
   "@profileTitle": {
     "description": "Main title of the user profile screen."

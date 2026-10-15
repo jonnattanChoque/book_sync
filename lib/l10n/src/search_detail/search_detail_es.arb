@@ -111,5 +111,13 @@
   "validationCategoryRequired": "La categoria o genero es requerida",
   "@validationCategoryRequired": {
     "description": "Mensaje de error mostrado cuando el campo de categoría o género está vacío."
+  },
+  "startDateLabel": "Fecha de inicio",
+  "@startDateLabel": {
+    "description": "Etiqueta para el selector de la fecha en que se comenzó a leer el libro."
+  },
+  "validationDateBeforeStartDate": "No puedes registrar lecturas en fechas anteriores al inicio del libro.",
+  "@validationDateBeforeStartDate": {
+    "description": "Mensaje de error cuando se intenta registrar una sesión en una fecha anterior a la fecha de inicio configurada en el libro."
   }
 }

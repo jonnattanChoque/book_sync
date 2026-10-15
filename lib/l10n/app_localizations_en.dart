@@ -481,6 +481,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get emptyNotesMessage => 'No notes saved for this book';
 
   @override
+  String get editYourProfile => 'Edit your profile';
+
+  @override
   String get profileTitle => 'Profile';
 
   @override
@@ -1029,6 +1032,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get validationCategoryRequired => 'La categoria o genero es requerida';
+
+  @override
+  String get startDateLabel => 'Start date';
+
+  @override
+  String get validationDateBeforeStartDate =>
+      'You cannot log readings on dates prior to the book\'s start date.';
 
   @override
   String get newSession => 'Read';

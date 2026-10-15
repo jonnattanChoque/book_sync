@@ -196,6 +196,8 @@ class ReadingCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // TODO: Sino viene la fecha, agregar la de la primera lectura
+        // BUG: la app no deberia poder girarse
         Text(
           context.l10n.startDateWith(book.startDateText),
           style: context.theme.textTheme.bodyLarge?.copyWith(

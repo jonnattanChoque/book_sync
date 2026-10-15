@@ -94,7 +94,7 @@ class _FinishReadingModalState extends ConsumerState<FinishReadingModal> {
     final picked = await showDatePicker(
       context: context,
       initialDate: _selectedDate,
-      firstDate: DateTime(2020),
+      firstDate: widget.book.startedAt ?? DateTime(2020),
       lastDate: DateTime.now(),
     );
 

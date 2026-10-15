@@ -1,6 +1,7 @@
 // lib/src/features/home/presentation/widgets/profile_card.dart
 
 import 'package:book_sync/core/extensions/build_context_ext.dart';
+import 'package:book_sync/core/providers/app_settings_provider.dart';
 import 'package:book_sync/src/features/home/presentation/widgets/home_base_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,9 +12,10 @@ class HomeProfileCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // Cuando se implemente la feature de Perfil, aquí se consumirá su Provider.
-    final userName = "";//context.l10n.defaultUserName;
-    final readerLevel = "";//context.l10n.readerLevelDefault;
+    final settings = ref.read(appSettingsProvider);
+    
+    final userName = settings.userEmail;
+    final readerLevel = context.l10n.editYourProfile;
 
     return HomeBaseCard(
       onTap: () => context.push('/profile'),

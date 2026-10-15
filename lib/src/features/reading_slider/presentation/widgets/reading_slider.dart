@@ -37,6 +37,8 @@ class _ReadingSliderState extends ConsumerState<ReadingSlider> {
     ref.listen<Id?>(selectedBookIdProvider, (previous, nextBookId) {
       if (nextBookId != null) {
         final books = ref.read(currentlyReadingProvider).value ?? [];
+        print(books[0].startedAt);
+        print(books[1].startedAt);
         final targetIndex = books.indexWhere((book) => book.id == nextBookId);
 
         if (targetIndex != -1 && _pageController.hasClients) {

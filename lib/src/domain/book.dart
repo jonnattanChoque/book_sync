@@ -83,14 +83,13 @@ class Book {
 
   /// Helper privado para resolver la fecha real
   DateTime? get _effectiveStartDate {
-    if (startedAt != null) return startedAt;
     
     if (sessions.isNotEmpty) {
       final sorted = sessions.toList()
         ..sort((a, b) => a.startTime.compareTo(b.startTime));
       return sorted.first.startTime;
     }
-    
+    if (startedAt != null) return startedAt;
     return null;
   }
 

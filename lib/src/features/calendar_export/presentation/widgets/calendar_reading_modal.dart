@@ -187,7 +187,28 @@ class _CalendarReadingModalState extends ConsumerState<CalendarReadingModal> {
   Widget _buildBookSelector(AsyncValue<List<Book>> readingBooksAsync) {
     return readingBooksAsync.when(
       data: (books) {
-        if (books.isEmpty) {
+        // 1. Filtrar los libros si la fecha seleccionada en el calendario es anterior a su startDate
+        final filteredBooks = books.where((book) {
+          if (book.startedAt != null) {
+            final normalizedSelected = DateTime(
+              widget.selectedDate.year,
+              widget.selectedDate.month,
+              widget.selectedDate.day,
+            );
+            final normalizedStart = DateTime(
+              book.startedAt!.year,
+              book.startedAt!.month,
+              book.startedAt!.day,
+            );
+            // Si la fecha seleccionada es anterior a la fecha de inicio del libro, lo ocultamos
+            if (normalizedSelected.isBefore(normalizedStart)) {
+              return false;
+            }
+          }
+          return true;
+        }).toList();
+
+        if (filteredBooks.isEmpty) {
           return Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
@@ -200,11 +221,20 @@ class _CalendarReadingModalState extends ConsumerState<CalendarReadingModal> {
           );
         }
 
-        if (_selectedBook == null && books.isNotEmpty) {
+        if (_selectedBook == null && filteredBooks.isNotEmpty) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             if (mounted) {
               setState(() {
-                _selectedBook = books.first;
+                _selectedBook = filteredBooks.first;
+              });
+            }
+          });
+        } else if (_selectedBook != null && !filteredBooks.any((b) => b.id == _selectedBook!.id)) {
+          // Si el libro seleccionado actualmente ya no cumple con el filtro, lo actualizamos al primero disponible
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (mounted) {
+              setState(() {
+                _selectedBook = filteredBooks.first;
               });
             }
           });
@@ -214,10 +244,10 @@ class _CalendarReadingModalState extends ConsumerState<CalendarReadingModal> {
           height: 110,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
-            itemCount: books.length,
+            itemCount: filteredBooks.length,
             separatorBuilder: (_, _) => const SizedBox(width: 12),
             itemBuilder: (context, index) {
-              final book = books[index];
+              final book = filteredBooks[index];
               final isSelected = _selectedBook?.id == book.id;
 
               return GestureDetector(

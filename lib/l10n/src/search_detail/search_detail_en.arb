@@ -111,5 +111,13 @@
   "validationCategoryRequired": "La categoria o genero es requerida",
   "@validationCategoryRequired": {
     "description": "Mensaje de error mostrado cuando el campo de categoría o género está vacío."
+  },
+  "startDateLabel": "Start date",
+  "@startDateLabel": {
+    "description": "Label for the picker selecting when reading of the book began."
+  },
+  "validationDateBeforeStartDate": "You cannot log readings on dates prior to the book's start date.",
+  "@validationDateBeforeStartDate": {
+    "description": "Error message when trying to log a session on a date prior to the book's configured start date."
   }
 }

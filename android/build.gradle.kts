@@ -31,3 +31,19 @@ tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }
 
+subprojects {
+    afterEvaluate {
+        val extension = extensions.findByName("android")
+        if (extension != null) {
+            when (extension) {
+                is com.android.build.gradle.LibraryExtension -> {
+                    // Forzamos el SDK de manera segura sin llamadas directas a operadores anulables
+                    extension.compileSdk = 36
+                }
+                is com.android.build.gradle.AppExtension -> {
+                    extension.compileSdkVersion(36)
+                }
+            }
+        }
+    }
+}
