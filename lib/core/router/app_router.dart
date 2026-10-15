@@ -1,5 +1,7 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
+import 'package:book_sync/core/providers/app_settings_provider.dart';
+import 'package:book_sync/src/features/onboarding/presentation/screens/onboarding_screen.dart';
 import 'package:book_sync/src/features/auth/presentation/providers/auth_providers.dart';
 import 'package:book_sync/src/features/auth/presentation/screens/auth_screen.dart';
 import 'package:book_sync/src/features/auth/presentation/screens/premium_paywall_screen.dart';
@@ -31,7 +33,7 @@ class RouterNotifier extends ChangeNotifier {
   RouterNotifier(this._ref) {
     _ref.listen<AsyncValue<AuthState>>(
       authStateChangesProvider,
-      (_, _) => notifyListeners(), // Notifica a GoRouter para ejecutar redirect
+      (_, _) => notifyListeners(),
     );
   }
 }
@@ -51,13 +53,18 @@ final routerProvider = Provider<GoRouter>((ref) {
     redirect: (context, state) {
       final session = Supabase.instance.client.auth.currentSession;
       final loggingIn = state.matchedLocation == '/auth';
+      final isOnboarding = state.matchedLocation == '/onboarding';
+      final appSettings = ref.read(appSettingsProvider);
+      final hasSeenOnboarding = appSettings.hasSeenOnboarding ?? false;
 
-      // Si el usuario tiene sesión activa y está en /login, redirigir a /home
+      if (!hasSeenOnboarding && !isOnboarding) {
+        return '/onboarding';
+      }
+
       if (session != null && loggingIn) {
         return '/';
       }
 
-      // Si el usuario no tiene sesión y no está en /login, enviarlo a /login
       if (session == null && !loggingIn) {
         return '/auth';
       }
@@ -65,7 +72,6 @@ final routerProvider = Provider<GoRouter>((ref) {
       return null;
     },
     routes: [
-      // Shell persistente con mantenimiento de estado para el BottomNavBar
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
           return MainWrapper(navigationShell: navigationShell);
@@ -144,8 +150,19 @@ final routerProvider = Provider<GoRouter>((ref) {
           ),
         ],
       ),
-
-      // --- RUTAS MODALES / PANTALLAS COMPLETAS (Fuera del Shell o navegables por encima) ---
+      GoRoute(
+        path: '/onboarding',
+        parentNavigatorKey: _rootNavigatorKey,
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: OnboardingScreen(),
+            transitionsBuilder: buildPageTurnTransition,
+            transitionDuration: const Duration(milliseconds: 900),
+            reverseTransitionDuration: const Duration(milliseconds: 700),
+          );
+        },
+      ),
       GoRoute(
         path: '/auth',
         parentNavigatorKey: _rootNavigatorKey,

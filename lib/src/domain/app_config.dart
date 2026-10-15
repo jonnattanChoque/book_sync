@@ -22,6 +22,7 @@ class AppConfig {
   String themeMode = 'system'; // 'system', 'light', 'dark'
   String languageCode = 'es'; // 'es', 'en'
   bool? isPremium;
+  bool? hasSeenOnboarding;
 
   // 3.4.4 Alarma de lectura
   bool isAlarmEnabled = false;

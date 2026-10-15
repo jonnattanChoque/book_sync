@@ -37,58 +37,63 @@ const AppConfigSchema = CollectionSchema(
       name: r'dailyQuoteText',
       type: IsarType.string,
     ),
-    r'isAlarmEnabled': PropertySchema(
+    r'hasSeenOnboarding': PropertySchema(
       id: 4,
+      name: r'hasSeenOnboarding',
+      type: IsarType.bool,
+    ),
+    r'isAlarmEnabled': PropertySchema(
+      id: 5,
       name: r'isAlarmEnabled',
       type: IsarType.bool,
     ),
     r'isPremium': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'isPremium',
       type: IsarType.bool,
     ),
     r'languageCode': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'languageCode',
       type: IsarType.string,
     ),
     r'lastBookmarkAnimDate': PropertySchema(
-      id: 7,
+      id: 8,
       name: r'lastBookmarkAnimDate',
       type: IsarType.string,
     ),
     r'profileImagePath': PropertySchema(
-      id: 8,
+      id: 9,
       name: r'profileImagePath',
       type: IsarType.string,
     ),
     r'themeMode': PropertySchema(
-      id: 9,
+      id: 10,
       name: r'themeMode',
       type: IsarType.string,
     ),
     r'userEmail': PropertySchema(
-      id: 10,
+      id: 11,
       name: r'userEmail',
       type: IsarType.string,
     ),
     r'userId': PropertySchema(
-      id: 11,
+      id: 12,
       name: r'userId',
       type: IsarType.string,
     ),
     r'userName': PropertySchema(
-      id: 12,
+      id: 13,
       name: r'userName',
       type: IsarType.string,
     ),
     r'weeklyGoalHours': PropertySchema(
-      id: 13,
+      id: 14,
       name: r'weeklyGoalHours',
       type: IsarType.double,
     ),
     r'yearlyGoalBooks': PropertySchema(
-      id: 14,
+      id: 15,
       name: r'yearlyGoalBooks',
       type: IsarType.long,
     )
@@ -169,17 +174,18 @@ void _appConfigSerialize(
   writer.writeLong(offsets[1], object.alarmMinute);
   writer.writeString(offsets[2], object.dailyQuoteAuthor);
   writer.writeString(offsets[3], object.dailyQuoteText);
-  writer.writeBool(offsets[4], object.isAlarmEnabled);
-  writer.writeBool(offsets[5], object.isPremium);
-  writer.writeString(offsets[6], object.languageCode);
-  writer.writeString(offsets[7], object.lastBookmarkAnimDate);
-  writer.writeString(offsets[8], object.profileImagePath);
-  writer.writeString(offsets[9], object.themeMode);
-  writer.writeString(offsets[10], object.userEmail);
-  writer.writeString(offsets[11], object.userId);
-  writer.writeString(offsets[12], object.userName);
-  writer.writeDouble(offsets[13], object.weeklyGoalHours);
-  writer.writeLong(offsets[14], object.yearlyGoalBooks);
+  writer.writeBool(offsets[4], object.hasSeenOnboarding);
+  writer.writeBool(offsets[5], object.isAlarmEnabled);
+  writer.writeBool(offsets[6], object.isPremium);
+  writer.writeString(offsets[7], object.languageCode);
+  writer.writeString(offsets[8], object.lastBookmarkAnimDate);
+  writer.writeString(offsets[9], object.profileImagePath);
+  writer.writeString(offsets[10], object.themeMode);
+  writer.writeString(offsets[11], object.userEmail);
+  writer.writeString(offsets[12], object.userId);
+  writer.writeString(offsets[13], object.userName);
+  writer.writeDouble(offsets[14], object.weeklyGoalHours);
+  writer.writeLong(offsets[15], object.yearlyGoalBooks);
 }
 
 AppConfig _appConfigDeserialize(
@@ -193,18 +199,19 @@ AppConfig _appConfigDeserialize(
   object.alarmMinute = reader.readLong(offsets[1]);
   object.dailyQuoteAuthor = reader.readStringOrNull(offsets[2]);
   object.dailyQuoteText = reader.readStringOrNull(offsets[3]);
+  object.hasSeenOnboarding = reader.readBoolOrNull(offsets[4]);
   object.id = id;
-  object.isAlarmEnabled = reader.readBool(offsets[4]);
-  object.isPremium = reader.readBoolOrNull(offsets[5]);
-  object.languageCode = reader.readString(offsets[6]);
-  object.lastBookmarkAnimDate = reader.readStringOrNull(offsets[7]);
-  object.profileImagePath = reader.readString(offsets[8]);
-  object.themeMode = reader.readString(offsets[9]);
-  object.userEmail = reader.readString(offsets[10]);
-  object.userId = reader.readStringOrNull(offsets[11]);
-  object.userName = reader.readString(offsets[12]);
-  object.weeklyGoalHours = reader.readDouble(offsets[13]);
-  object.yearlyGoalBooks = reader.readLong(offsets[14]);
+  object.isAlarmEnabled = reader.readBool(offsets[5]);
+  object.isPremium = reader.readBoolOrNull(offsets[6]);
+  object.languageCode = reader.readString(offsets[7]);
+  object.lastBookmarkAnimDate = reader.readStringOrNull(offsets[8]);
+  object.profileImagePath = reader.readString(offsets[9]);
+  object.themeMode = reader.readString(offsets[10]);
+  object.userEmail = reader.readString(offsets[11]);
+  object.userId = reader.readStringOrNull(offsets[12]);
+  object.userName = reader.readString(offsets[13]);
+  object.weeklyGoalHours = reader.readDouble(offsets[14]);
+  object.yearlyGoalBooks = reader.readLong(offsets[15]);
   return object;
 }
 
@@ -224,26 +231,28 @@ P _appConfigDeserializeProp<P>(
     case 3:
       return (reader.readStringOrNull(offset)) as P;
     case 4:
-      return (reader.readBool(offset)) as P;
-    case 5:
       return (reader.readBoolOrNull(offset)) as P;
+    case 5:
+      return (reader.readBool(offset)) as P;
     case 6:
-      return (reader.readString(offset)) as P;
+      return (reader.readBoolOrNull(offset)) as P;
     case 7:
-      return (reader.readStringOrNull(offset)) as P;
-    case 8:
       return (reader.readString(offset)) as P;
+    case 8:
+      return (reader.readStringOrNull(offset)) as P;
     case 9:
       return (reader.readString(offset)) as P;
     case 10:
       return (reader.readString(offset)) as P;
     case 11:
-      return (reader.readStringOrNull(offset)) as P;
-    case 12:
       return (reader.readString(offset)) as P;
+    case 12:
+      return (reader.readStringOrNull(offset)) as P;
     case 13:
-      return (reader.readDouble(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 14:
+      return (reader.readDouble(offset)) as P;
+    case 15:
       return (reader.readLong(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -818,6 +827,34 @@ extension AppConfigQueryFilter
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'dailyQuoteText',
         value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      hasSeenOnboardingIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'hasSeenOnboarding',
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      hasSeenOnboardingIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'hasSeenOnboarding',
+      ));
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterFilterCondition>
+      hasSeenOnboardingEqualTo(bool? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'hasSeenOnboarding',
+        value: value,
       ));
     });
   }
@@ -2057,6 +2094,19 @@ extension AppConfigQuerySortBy on QueryBuilder<AppConfig, AppConfig, QSortBy> {
     });
   }
 
+  QueryBuilder<AppConfig, AppConfig, QAfterSortBy> sortByHasSeenOnboarding() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'hasSeenOnboarding', Sort.asc);
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterSortBy>
+      sortByHasSeenOnboardingDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'hasSeenOnboarding', Sort.desc);
+    });
+  }
+
   QueryBuilder<AppConfig, AppConfig, QAfterSortBy> sortByIsAlarmEnabled() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isAlarmEnabled', Sort.asc);
@@ -2244,6 +2294,19 @@ extension AppConfigQuerySortThenBy
     });
   }
 
+  QueryBuilder<AppConfig, AppConfig, QAfterSortBy> thenByHasSeenOnboarding() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'hasSeenOnboarding', Sort.asc);
+    });
+  }
+
+  QueryBuilder<AppConfig, AppConfig, QAfterSortBy>
+      thenByHasSeenOnboardingDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'hasSeenOnboarding', Sort.desc);
+    });
+  }
+
   QueryBuilder<AppConfig, AppConfig, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
@@ -2422,6 +2485,12 @@ extension AppConfigQueryWhereDistinct
     });
   }
 
+  QueryBuilder<AppConfig, AppConfig, QDistinct> distinctByHasSeenOnboarding() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'hasSeenOnboarding');
+    });
+  }
+
   QueryBuilder<AppConfig, AppConfig, QDistinct> distinctByIsAlarmEnabled() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'isAlarmEnabled');
@@ -2528,6 +2597,12 @@ extension AppConfigQueryProperty
   QueryBuilder<AppConfig, String?, QQueryOperations> dailyQuoteTextProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'dailyQuoteText');
+    });
+  }
+
+  QueryBuilder<AppConfig, bool?, QQueryOperations> hasSeenOnboardingProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'hasSeenOnboarding');
     });
   }
 

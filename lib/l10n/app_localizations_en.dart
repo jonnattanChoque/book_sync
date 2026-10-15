@@ -190,6 +190,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get paywallExpiredButton => 'Renew Subscription';
 
   @override
+  String get subscriptionRenewsToday =>
+      'Your Premium subscription renews today.';
+
+  @override
   String get streakIncreased => 'Streak Increased!';
 
   @override
@@ -951,6 +955,85 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get onboardingStep1Title => 'Reading slider';
+
+  @override
+  String get onboardingStep1Subtitle =>
+      'Here you will find all the books you are currently reading, with quick access to the reading timer, adding notes, and viewing your progress at any time, as well as the days elapsed since you started reading.';
+
+  @override
+  String get onboardingStep2Title => 'Add books';
+
+  @override
+  String get onboardingStep2Subtitle =>
+      'You can search by name or authors, scan the ISBN barcode with your camera, or enter it manually.';
+
+  @override
+  String get onboardingStep3Title => 'Streak calendar';
+
+  @override
+  String get onboardingStep3Subtitle =>
+      'Quickly see the days you read and add retrospective readings in case you couldn\'t log them that day.';
+
+  @override
+  String get onboardingStep4Title => 'Export';
+
+  @override
+  String get onboardingStep4Subtitle =>
+      'With the export button, you can create an image with various font styles and share it with friends or upload it to your social media.';
+
+  @override
+  String get onboardingStep5Title => 'Detail and progress';
+
+  @override
+  String get onboardingStep5Subtitle =>
+      'You have relevant information about your book, your progress, and how much is left to finish. You can also add it to favorites or delete it if you no longer want to read it.';
+
+  @override
+  String get onboardingStep6Title => 'Book interaction';
+
+  @override
+  String get onboardingStep6Subtitle =>
+      'Here you can view, create, or export your notes in one place. You will also see your reading timeline by dates and quickly add a reading session.';
+
+  @override
+  String get onboardingStep7Title => 'Library';
+
+  @override
+  String get onboardingStep7Subtitle =>
+      'Filter your books by status or check your favorites.';
+
+  @override
+  String get onboardingStep8Title => 'Summary';
+
+  @override
+  String get onboardingStep8Subtitle =>
+      'Analyze your global reading habits and export your achievements as an image. Review annual charts that precisely change when selecting the year.';
+
+  @override
+  String get onboardingStep9Title => 'Profile';
+
+  @override
+  String get onboardingStep9Subtitle =>
+      'Customize your photo and name. Set reading goals, change your language or app theme, and add a reading reminder.';
+
+  @override
+  String get onboardingStep10Title => 'Other features';
+
+  @override
+  String get onboardingStep10Subtitle =>
+      'Review our policies, and with your premium profile, you can export or import your data so it won\'t be lost if you change your phone.';
+
+  @override
+  String get onboardingSkip => 'Skip';
+
+  @override
+  String get onboardingNext => 'Next';
+
+  @override
+  String get onboardingStart => 'Get started';
+
+  @override
   String get addManualBook => 'Add book manually';
 
   @override
@@ -1158,20 +1241,20 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get registerReadingTitle => 'Registrar Lectura';
+  String get registerReadingTitle => 'Log Reading';
 
   @override
-  String get selectBookLabel => 'Selecciona el libro';
+  String get selectBookLabel => 'Select the book';
 
   @override
-  String get readingTimeLabel => 'Tiempo de lectura';
+  String get readingTimeLabel => 'Reading time';
 
   @override
   String get noBooksCurrentlyReading =>
-      'No tienes libros en curso actualmente.';
+      'You don\'t have any books currently in progress.';
 
   @override
-  String get selectBookWarning => 'Por favor selecciona un libro';
+  String get selectBookWarning => 'Please select a book';
 
   @override
   String get selectDateLabel => 'Reading date';
