@@ -12,6 +12,7 @@ class AppSettings {
   final int yearlyGoalBooks;
   final double weeklyGoalHours;
   final bool? isPremium;
+  final bool? hasSeenOnboarding;
   final bool? showExpirationBanner;
   final bool? showExpirationModal;
 
@@ -27,6 +28,7 @@ class AppSettings {
     required this.yearlyGoalBooks,
     required this.weeklyGoalHours,
     this.isPremium,
+    this.hasSeenOnboarding,
     this.showExpirationBanner,
     this.showExpirationModal
   });
@@ -44,6 +46,7 @@ class AppSettings {
     int? yearlyGoalBooks,
     double? weeklyGoalHours,
     bool? isPremium,
+    bool? hasSeenOnboarding,
     bool? showExpirationBanner,
     bool? showExpirationModal
   }) {
@@ -59,6 +62,7 @@ class AppSettings {
       yearlyGoalBooks: yearlyGoalBooks ?? this.yearlyGoalBooks,
       weeklyGoalHours: weeklyGoalHours ?? this.weeklyGoalHours,
       isPremium: isPremium ?? this.isPremium,
+      hasSeenOnboarding: hasSeenOnboarding ?? this.hasSeenOnboarding,
       showExpirationBanner: showExpirationBanner ?? this.showExpirationBanner,
       showExpirationModal: showExpirationModal ?? this.showExpirationModal,
     );

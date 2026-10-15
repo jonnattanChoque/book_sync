@@ -50,7 +50,6 @@ void main() async {
   final datasource = AppConfigDatasource(isar);
   final userSettings = await datasource.getOrInitSettings(activeUserId);
 
-  // 2. Creamos el contenedor ya con el override del appSettingsProvider listo
   final container = ProviderContainer(
     overrides: [
       isarProvider.overrideWithValue(isar),
@@ -58,12 +57,11 @@ void main() async {
         (ref) => AppSettingsNotifier(userSettings, datasource),
       ),
       preferencesServiceProvider.overrideWith(
-        (ref) => PreferencesService(sharedPreferences), // O la implementación real que uses para preferencias
+        (ref) => PreferencesService(sharedPreferences), 
       ),
     ],
   );
 
-  // 3. Instanciamos el bootstrap service pasándole el contenedor y ejecutamos su init()
   final bootstrapService = AppBootstrapService(container, currentSession: currentSession, activeUserId: activeUserId, userSettings: userSettings, isar: isar, datasource: datasource);
   await bootstrapService.init();
 

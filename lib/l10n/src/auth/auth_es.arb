@@ -61,5 +61,9 @@
   "paywallExpiredButton": "Renovar suscripción",
   "@paywallExpiredButton": {
     "description": "Texto del botón de compra para renovar una suscripción vencida"
+  },
+  "subscriptionRenewsToday": "Tu suscripción Premium se renueva hoy.",
+  "@subscriptionRenewsToday": {
+    "description": "Message shown when the premium subscription renews on the current day."
   }
 }

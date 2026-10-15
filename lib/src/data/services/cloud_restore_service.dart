@@ -36,6 +36,7 @@ class CloudRestoreService {
         existingConfig.userEmail = configResponse['user_email'] ?? existingConfig.userEmail;
         existingConfig.profileImagePath = configResponse['profile_image_path'] ?? existingConfig.profileImagePath;
         existingConfig.themeMode = configResponse['theme_mode'] ?? existingConfig.themeMode;
+        existingConfig.hasSeenOnboarding = configResponse['has_seen_onboarding'] ?? existingConfig.hasSeenOnboarding;
         existingConfig.languageCode = configResponse['language_code'] ?? existingConfig.languageCode;
         existingConfig.isPremium = configResponse['is_premium'] ?? existingConfig.isPremium;
         existingConfig.isAlarmEnabled = configResponse['is_alarm_enabled'] ?? existingConfig.isAlarmEnabled;

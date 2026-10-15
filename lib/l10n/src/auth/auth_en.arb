@@ -54,5 +54,9 @@
   "paywallExpiredButton": "Renew Subscription",
   "@paywallExpiredButton": {
     "description": "Button text to renew an expired subscription"
+  },
+  "subscriptionRenewsToday": "Your Premium subscription renews today.",
+  "@subscriptionRenewsToday": {
+    "description": "Message shown when the premium subscription renews on the current day."
   }
 }

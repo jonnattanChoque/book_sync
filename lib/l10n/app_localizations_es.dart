@@ -191,6 +191,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get paywallExpiredButton => 'Renovar suscripción';
 
   @override
+  String get subscriptionRenewsToday =>
+      'Tu suscripción Premium se renueva hoy.';
+
+  @override
   String get streakIncreased => '¡Racha Aumentada!';
 
   @override
@@ -950,6 +954,85 @@ class AppLocalizationsEs extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get onboardingStep1Title => 'Slider de lectura';
+
+  @override
+  String get onboardingStep1Subtitle =>
+      'Acá aparecen todos los libros que estes leyendo, con acceso rápido al cronometro de lectura, aagregar notas y ver tu progreso en cada momento, asi como los días que han transcurrido desde que empezaste a leer';
+
+  @override
+  String get onboardingStep2Title => 'Agrega libros';
+
+  @override
+  String get onboardingStep2Subtitle =>
+      'Puedes buscar por nombre o autores, escaneando el código isbn con tu cámara o ingresandolo de forma manual.';
+
+  @override
+  String get onboardingStep3Title => 'Calendario de rachas';
+
+  @override
+  String get onboardingStep3Subtitle =>
+      'Veras de manera rápida los días en que leiste y agregar lecturas retroactivas por sino pudiste registrarla ese día.';
+
+  @override
+  String get onboardingStep4Title => 'Exportar';
+
+  @override
+  String get onboardingStep4Subtitle =>
+      'Con el botón exportar puedes crear una imagen con varios tipos de fontos y compartirlos con tus amigos o subirlos a tus redes.';
+
+  @override
+  String get onboardingStep5Title => 'Detalle y progreso';
+
+  @override
+  String get onboardingStep5Subtitle =>
+      'Tienes información relevante de tu libro, tu avance y cuanto falta por terminarlo. Puedes también agregarlo a favoritos o eliminarlo si ya no quieres leerlo.';
+
+  @override
+  String get onboardingStep6Title => 'Interacción de tu libro';
+
+  @override
+  String get onboardingStep6Subtitle =>
+      'Acá puedes ver, crear o exportar tus notas en un solo lugar. También veras la linea de tiempo de tus lecturas por fechas y agregar una lectura de forma rápida.';
+
+  @override
+  String get onboardingStep7Title => 'Biblioteca';
+
+  @override
+  String get onboardingStep7Subtitle =>
+      'Filtra tus libros por estatus o revisa tus favoritos.';
+
+  @override
+  String get onboardingStep8Title => 'Resumen';
+
+  @override
+  String get onboardingStep8Subtitle =>
+      'Analisa tus habitos de lectura gloables y exporta tus logros como imagen. Revisa los graficos anuales que cambian de manera precisa al seleccionar el año.';
+
+  @override
+  String get onboardingStep9Title => 'Perfil';
+
+  @override
+  String get onboardingStep9Subtitle =>
+      'Personaliza tu foto y nombre. Ponte unos objetivos de lectura, cambia tu idioma o tema de la aplicación y añade un recordatorio para leer.';
+
+  @override
+  String get onboardingStep10Title => 'Otras funcionalidades';
+
+  @override
+  String get onboardingStep10Subtitle =>
+      'Revisa nuestas politicas y con tu perfil premium puedes exportar o importar tu información para que no se pierda si cambias de celular.';
+
+  @override
+  String get onboardingSkip => 'Saltar';
+
+  @override
+  String get onboardingNext => 'Siguiente';
+
+  @override
+  String get onboardingStart => 'Comenzar';
 
   @override
   String get addManualBook => 'Agregar libro';

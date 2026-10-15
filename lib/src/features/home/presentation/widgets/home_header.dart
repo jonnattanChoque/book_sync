@@ -57,8 +57,8 @@ class _HomeHeaderState extends ConsumerState<HomeHeader> {
     ref.listen(appSettingsProvider, (previous, next) {
       if (next.showExpirationBanner ?? false) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Tu suscripción Premium se renueva hoy.'),
+          SnackBar(
+            content: Text(context.l10n.subscriptionRenewsToday),
             backgroundColor: Colors.amber,
             duration: Duration(seconds: 4),
           ),

@@ -19,23 +19,27 @@ class CloudSyncService {
     }
 
     // 1. Sincronizar AppConfig (Configuración del usuario)
-    final appConfig = await isar.appConfigs.filter().userIdEqualTo(userId).findFirst() 
-                      ?? await isar.appConfigs.get(1);
+    final appConfig = (userId.isNotEmpty)
+        ? await isar.appConfigs.filter().userIdEqualTo(userId).findFirst()
+        : null;
+
+    final currentConfig = appConfig ?? await isar.appConfigs.where().findFirst();
                       
-    if (appConfig != null) {
+    if (currentConfig != null) {
       await _supabase.from('app_configs').upsert({
         'user_id': userId,
-        'user_name': appConfig.userName,
-        'user_email': appConfig.userEmail,
-        'profile_image_path': appConfig.profileImagePath,
-        'theme_mode': appConfig.themeMode,
-        'language_code': appConfig.languageCode,
-        'is_premium': appConfig.isPremium,
-        'is_alarm_enabled': appConfig.isAlarmEnabled,
-        'alarm_hour': appConfig.alarmHour,
-        'alarm_minute': appConfig.alarmMinute,
-        'yearly_goal_books': appConfig.yearlyGoalBooks,
-        'weekly_goal_hours': appConfig.weeklyGoalHours,
+        'user_name': currentConfig.userName,
+        'user_email': currentConfig.userEmail,
+        'profile_image_path': currentConfig.profileImagePath,
+        'theme_mode': currentConfig.themeMode,
+        'has_seen_onboarding': currentConfig.hasSeenOnboarding,
+        'language_code': currentConfig.languageCode,
+        'is_premium': currentConfig.isPremium,
+        'is_alarm_enabled': currentConfig.isAlarmEnabled,
+        'alarm_hour': currentConfig.alarmHour,
+        'alarm_minute': currentConfig.alarmMinute,
+        'yearly_goal_books': currentConfig.yearlyGoalBooks,
+        'weekly_goal_hours': currentConfig.weeklyGoalHours,
       }, onConflict: 'user_id');
     }
 

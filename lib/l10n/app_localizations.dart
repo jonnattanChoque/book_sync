@@ -422,6 +422,12 @@ abstract class AppLocalizations {
   /// **'Renovar suscripción'**
   String get paywallExpiredButton;
 
+  /// Message shown when the premium subscription renews on the current day.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu suscripción Premium se renueva hoy.'**
+  String get subscriptionRenewsToday;
+
   /// No description provided for @streakIncreased.
   ///
   /// In es, this message translates to:
@@ -1717,6 +1723,144 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'{count, plural, =1{1 página} other{{count} páginas}}'**
   String statsPagesReadCount(int count);
+
+  /// Título del paso 1 del onboarding sobre el slider de lectura.
+  ///
+  /// In es, this message translates to:
+  /// **'Slider de lectura'**
+  String get onboardingStep1Title;
+
+  /// Descripción del paso 1 del onboarding.
+  ///
+  /// In es, this message translates to:
+  /// **'Acá aparecen todos los libros que estes leyendo, con acceso rápido al cronometro de lectura, aagregar notas y ver tu progreso en cada momento, asi como los días que han transcurrido desde que empezaste a leer'**
+  String get onboardingStep1Subtitle;
+
+  /// Título del paso 2 del onboarding sobre agregar libros.
+  ///
+  /// In es, this message translates to:
+  /// **'Agrega libros'**
+  String get onboardingStep2Title;
+
+  /// Descripción del paso 2 del onboarding.
+  ///
+  /// In es, this message translates to:
+  /// **'Puedes buscar por nombre o autores, escaneando el código isbn con tu cámara o ingresandolo de forma manual.'**
+  String get onboardingStep2Subtitle;
+
+  /// Título del paso 3 del onboarding sobre el calendario de rachas.
+  ///
+  /// In es, this message translates to:
+  /// **'Calendario de rachas'**
+  String get onboardingStep3Title;
+
+  /// Descripción del paso 3 del onboarding.
+  ///
+  /// In es, this message translates to:
+  /// **'Veras de manera rápida los días en que leiste y agregar lecturas retroactivas por sino pudiste registrarla ese día.'**
+  String get onboardingStep3Subtitle;
+
+  /// Título del paso 4 del onboarding sobre exportar.
+  ///
+  /// In es, this message translates to:
+  /// **'Exportar'**
+  String get onboardingStep4Title;
+
+  /// Descripción del paso 4 del onboarding.
+  ///
+  /// In es, this message translates to:
+  /// **'Con el botón exportar puedes crear una imagen con varios tipos de fontos y compartirlos con tus amigos o subirlos a tus redes.'**
+  String get onboardingStep4Subtitle;
+
+  /// Título del paso 5 del onboarding sobre el detalle y progreso.
+  ///
+  /// In es, this message translates to:
+  /// **'Detalle y progreso'**
+  String get onboardingStep5Title;
+
+  /// Descripción del paso 5 del onboarding.
+  ///
+  /// In es, this message translates to:
+  /// **'Tienes información relevante de tu libro, tu avance y cuanto falta por terminarlo. Puedes también agregarlo a favoritos o eliminarlo si ya no quieres leerlo.'**
+  String get onboardingStep5Subtitle;
+
+  /// Título del paso 6 del onboarding sobre la interacción con el libro.
+  ///
+  /// In es, this message translates to:
+  /// **'Interacción de tu libro'**
+  String get onboardingStep6Title;
+
+  /// Descripción del paso 6 del onboarding.
+  ///
+  /// In es, this message translates to:
+  /// **'Acá puedes ver, crear o exportar tus notas en un solo lugar. También veras la linea de tiempo de tus lecturas por fechas y agregar una lectura de forma rápida.'**
+  String get onboardingStep6Subtitle;
+
+  /// Título del paso 7 del onboarding sobre la biblioteca.
+  ///
+  /// In es, this message translates to:
+  /// **'Biblioteca'**
+  String get onboardingStep7Title;
+
+  /// Descripción del paso 7 del onboarding.
+  ///
+  /// In es, this message translates to:
+  /// **'Filtra tus libros por estatus o revisa tus favoritos.'**
+  String get onboardingStep7Subtitle;
+
+  /// Título del paso 8 del onboarding sobre el resumen.
+  ///
+  /// In es, this message translates to:
+  /// **'Resumen'**
+  String get onboardingStep8Title;
+
+  /// Descripción del paso 8 del onboarding.
+  ///
+  /// In es, this message translates to:
+  /// **'Analisa tus habitos de lectura gloables y exporta tus logros como imagen. Revisa los graficos anuales que cambian de manera precisa al seleccionar el año.'**
+  String get onboardingStep8Subtitle;
+
+  /// Título del paso 9 del onboarding sobre el perfil.
+  ///
+  /// In es, this message translates to:
+  /// **'Perfil'**
+  String get onboardingStep9Title;
+
+  /// Descripción del paso 9 del onboarding.
+  ///
+  /// In es, this message translates to:
+  /// **'Personaliza tu foto y nombre. Ponte unos objetivos de lectura, cambia tu idioma o tema de la aplicación y añade un recordatorio para leer.'**
+  String get onboardingStep9Subtitle;
+
+  /// Título del paso 10 del onboarding sobre otras funcionalidades.
+  ///
+  /// In es, this message translates to:
+  /// **'Otras funcionalidades'**
+  String get onboardingStep10Title;
+
+  /// Descripción del paso 10 del onboarding.
+  ///
+  /// In es, this message translates to:
+  /// **'Revisa nuestas politicas y con tu perfil premium puedes exportar o importar tu información para que no se pierda si cambias de celular.'**
+  String get onboardingStep10Subtitle;
+
+  /// Texto del botón para omitir el onboarding.
+  ///
+  /// In es, this message translates to:
+  /// **'Saltar'**
+  String get onboardingSkip;
+
+  /// Texto del botón para avanzar al siguiente paso.
+  ///
+  /// In es, this message translates to:
+  /// **'Siguiente'**
+  String get onboardingNext;
+
+  /// Texto del botón final para iniciar la app.
+  ///
+  /// In es, this message translates to:
+  /// **'Comenzar'**
+  String get onboardingStart;
 
   /// Título para el flujo de adición manual
   ///

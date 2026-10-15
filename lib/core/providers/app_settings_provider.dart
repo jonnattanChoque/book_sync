@@ -55,6 +55,11 @@ class AppSettingsNotifier extends StateNotifier<AppSettings> {
     await _datasource.saveSettings(state);
   }
 
+  Future<void> updateOnboarding(bool isSeenOnboarding) async {
+    state = state.copyWith(hasSeenOnboarding: isSeenOnboarding);
+    await _datasource.saveSettings(state);
+  }
+
   void updateExpirationBanner(bool showBanner) {
     state = state.copyWith(showExpirationBanner: showBanner);
   }

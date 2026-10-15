@@ -216,6 +216,10 @@
   "@paywallExpiredButton": {
     "description": "Texto del botón de compra para renovar una suscripción vencida"
   },
+  "subscriptionRenewsToday": "Tu suscripción Premium se renueva hoy.",
+  "@subscriptionRenewsToday": {
+    "description": "Message shown when the premium subscription renews on the current day."
+  },
   "streakIncreased": "¡Racha Aumentada!",
   "@streakIncreased": {},
   "streakCurrent": "Racha Actual",
@@ -1268,6 +1272,98 @@
         "example": "120"
       }
     }
+  },
+  "onboardingStep1Title": "Slider de lectura",
+  "@onboardingStep1Title": {
+    "description": "Título del paso 1 del onboarding sobre el slider de lectura."
+  },
+  "onboardingStep1Subtitle": "Acá aparecen todos los libros que estes leyendo, con acceso rápido al cronometro de lectura, aagregar notas y ver tu progreso en cada momento, asi como los días que han transcurrido desde que empezaste a leer",
+  "@onboardingStep1Subtitle": {
+    "description": "Descripción del paso 1 del onboarding."
+  },
+  "onboardingStep2Title": "Agrega libros",
+  "@onboardingStep2Title": {
+    "description": "Título del paso 2 del onboarding sobre agregar libros."
+  },
+  "onboardingStep2Subtitle": "Puedes buscar por nombre o autores, escaneando el código isbn con tu cámara o ingresandolo de forma manual.",
+  "@onboardingStep2Subtitle": {
+    "description": "Descripción del paso 2 del onboarding."
+  },
+  "onboardingStep3Title": "Calendario de rachas",
+  "@onboardingStep3Title": {
+    "description": "Título del paso 3 del onboarding sobre el calendario de rachas."
+  },
+  "onboardingStep3Subtitle": "Veras de manera rápida los días en que leiste y agregar lecturas retroactivas por sino pudiste registrarla ese día.",
+  "@onboardingStep3Subtitle": {
+    "description": "Descripción del paso 3 del onboarding."
+  },
+  "onboardingStep4Title": "Exportar",
+  "@onboardingStep4Title": {
+    "description": "Título del paso 4 del onboarding sobre exportar."
+  },
+  "onboardingStep4Subtitle": "Con el botón exportar puedes crear una imagen con varios tipos de fontos y compartirlos con tus amigos o subirlos a tus redes.",
+  "@onboardingStep4Subtitle": {
+    "description": "Descripción del paso 4 del onboarding."
+  },
+  "onboardingStep5Title": "Detalle y progreso",
+  "@onboardingStep5Title": {
+    "description": "Título del paso 5 del onboarding sobre el detalle y progreso."
+  },
+  "onboardingStep5Subtitle": "Tienes información relevante de tu libro, tu avance y cuanto falta por terminarlo. Puedes también agregarlo a favoritos o eliminarlo si ya no quieres leerlo.",
+  "@onboardingStep5Subtitle": {
+    "description": "Descripción del paso 5 del onboarding."
+  },
+  "onboardingStep6Title": "Interacción de tu libro",
+  "@onboardingStep6Title": {
+    "description": "Título del paso 6 del onboarding sobre la interacción con el libro."
+  },
+  "onboardingStep6Subtitle": "Acá puedes ver, crear o exportar tus notas en un solo lugar. También veras la linea de tiempo de tus lecturas por fechas y agregar una lectura de forma rápida.",
+  "@onboardingStep6Subtitle": {
+    "description": "Descripción del paso 6 del onboarding."
+  },
+  "onboardingStep7Title": "Biblioteca",
+  "@onboardingStep7Title": {
+    "description": "Título del paso 7 del onboarding sobre la biblioteca."
+  },
+  "onboardingStep7Subtitle": "Filtra tus libros por estatus o revisa tus favoritos.",
+  "@onboardingStep7Subtitle": {
+    "description": "Descripción del paso 7 del onboarding."
+  },
+  "onboardingStep8Title": "Resumen",
+  "@onboardingStep8Title": {
+    "description": "Título del paso 8 del onboarding sobre el resumen."
+  },
+  "onboardingStep8Subtitle": "Analisa tus habitos de lectura gloables y exporta tus logros como imagen. Revisa los graficos anuales que cambian de manera precisa al seleccionar el año.",
+  "@onboardingStep8Subtitle": {
+    "description": "Descripción del paso 8 del onboarding."
+  },
+  "onboardingStep9Title": "Perfil",
+  "@onboardingStep9Title": {
+    "description": "Título del paso 9 del onboarding sobre el perfil."
+  },
+  "onboardingStep9Subtitle": "Personaliza tu foto y nombre. Ponte unos objetivos de lectura, cambia tu idioma o tema de la aplicación y añade un recordatorio para leer.",
+  "@onboardingStep9Subtitle": {
+    "description": "Descripción del paso 9 del onboarding."
+  },
+  "onboardingStep10Title": "Otras funcionalidades",
+  "@onboardingStep10Title": {
+    "description": "Título del paso 10 del onboarding sobre otras funcionalidades."
+  },
+  "onboardingStep10Subtitle": "Revisa nuestas politicas y con tu perfil premium puedes exportar o importar tu información para que no se pierda si cambias de celular.",
+  "@onboardingStep10Subtitle": {
+    "description": "Descripción del paso 10 del onboarding."
+  },
+  "onboardingSkip": "Saltar",
+  "@onboardingSkip": {
+    "description": "Texto del botón para omitir el onboarding."
+  },
+  "onboardingNext": "Siguiente",
+  "@onboardingNext": {
+    "description": "Texto del botón para avanzar al siguiente paso."
+  },
+  "onboardingStart": "Comenzar",
+  "@onboardingStart": {
+    "description": "Texto del botón final para iniciar la app."
   },
   "addManualBook": "Agregar libro",
   "@addManualBook": {

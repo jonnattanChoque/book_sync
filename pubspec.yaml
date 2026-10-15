@@ -120,4 +120,5 @@ flutter:
     - assets/textures/paper_grain_dark.png
     - assets/data/quotes.json
     - assets/animations/
+    - assets/onboarding/
     - assets/images/app_logo.png

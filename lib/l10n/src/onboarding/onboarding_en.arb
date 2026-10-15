@@ -1,0 +1,95 @@
+{
+  "@@locale": "en",
+  "onboardingStep1Title": "Reading slider",
+  "@onboardingStep1Title": {
+    "description": "Title of onboarding step 1 about the reading slider."
+  },
+  "onboardingStep1Subtitle": "Here you will find all the books you are currently reading, with quick access to the reading timer, adding notes, and viewing your progress at any time, as well as the days elapsed since you started reading.",
+  "@onboardingStep1Subtitle": {
+    "description": "Description of onboarding step 1."
+  },
+  "onboardingStep2Title": "Add books",
+  "@onboardingStep2Title": {
+    "description": "Title of onboarding step 2 about adding books."
+  },
+  "onboardingStep2Subtitle": "You can search by name or authors, scan the ISBN barcode with your camera, or enter it manually.",
+  "@onboardingStep2Subtitle": {
+    "description": "Description of onboarding step 2."
+  },
+  "onboardingStep3Title": "Streak calendar",
+  "@onboardingStep3Title": {
+    "description": "Title of onboarding step 3 about the streak calendar."
+  },
+  "onboardingStep3Subtitle": "Quickly see the days you read and add retrospective readings in case you couldn't log them that day.",
+  "@onboardingStep3Subtitle": {
+    "description": "Description of onboarding step 3."
+  },
+  "onboardingStep4Title": "Export",
+  "@onboardingStep4Title": {
+    "description": "Title of onboarding step 4 about exporting."
+  },
+  "onboardingStep4Subtitle": "With the export button, you can create an image with various font styles and share it with friends or upload it to your social media.",
+  "@onboardingStep4Subtitle": {
+    "description": "Description of onboarding step 4."
+  },
+  "onboardingStep5Title": "Detail and progress",
+  "@onboardingStep5Title": {
+    "description": "Title of onboarding step 5 about detail and progress."
+  },
+  "onboardingStep5Subtitle": "You have relevant information about your book, your progress, and how much is left to finish. You can also add it to favorites or delete it if you no longer want to read it.",
+  "@onboardingStep5Subtitle": {
+    "description": "Description of onboarding step 5."
+  },
+  "onboardingStep6Title": "Book interaction",
+  "@onboardingStep6Title": {
+    "description": "Title of onboarding step 6 about book interaction."
+  },
+  "onboardingStep6Subtitle": "Here you can view, create, or export your notes in one place. You will also see your reading timeline by dates and quickly add a reading session.",
+  "@onboardingStep6Subtitle": {
+    "description": "Description of onboarding step 6."
+  },
+  "onboardingStep7Title": "Library",
+  "@onboardingStep7Title": {
+    "description": "Title of onboarding step 7 about the library."
+  },
+  "onboardingStep7Subtitle": "Filter your books by status or check your favorites.",
+  "@onboardingStep7Subtitle": {
+    "description": "Description of onboarding step 7."
+  },
+  "onboardingStep8Title": "Summary",
+  "@onboardingStep8Title": {
+    "description": "Title of onboarding step 8 about summary."
+  },
+  "onboardingStep8Subtitle": "Analyze your global reading habits and export your achievements as an image. Review annual charts that precisely change when selecting the year.",
+  "@onboardingStep8Subtitle": {
+    "description": "Description of onboarding step 8."
+  },
+  "onboardingStep9Title": "Profile",
+  "@onboardingStep9Title": {
+    "description": "Title of onboarding step 9 about profile."
+  },
+  "onboardingStep9Subtitle": "Customize your photo and name. Set reading goals, change your language or app theme, and add a reading reminder.",
+  "@onboardingStep9Subtitle": {
+    "description": "Description of onboarding step 9."
+  },
+  "onboardingStep10Title": "Other features",
+  "@onboardingStep10Title": {
+    "description": "Title of onboarding step 10 about other features."
+  },
+  "onboardingStep10Subtitle": "Review our policies, and with your premium profile, you can export or import your data so it won't be lost if you change your phone.",
+  "@onboardingStep10Subtitle": {
+    "description": "Description of onboarding step 10."
+  },
+  "onboardingSkip": "Skip",
+  "@onboardingSkip": {
+    "description": "Button text to skip onboarding."
+  },
+  "onboardingNext": "Next",
+  "@onboardingNext": {
+    "description": "Button text to advance to the next step."
+  },
+  "onboardingStart": "Get started",
+  "@onboardingStart": {
+    "description": "Final button text to start the app."
+  }
+}

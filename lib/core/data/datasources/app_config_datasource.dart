@@ -40,7 +40,16 @@ class AppConfigDatasource {
     final configCollection = isar.collection<AppConfig>();
 
     await isar.writeTxn(() async {
-      AppConfig config = await configCollection.where().findFirst() ?? AppConfig();
+      AppConfig? config;
+
+      if (settings.userId.isNotEmpty) {
+        config = await configCollection
+          .filter()
+          .userIdEqualTo(settings.userId)
+          .findFirst();
+      }
+
+      config ??= await configCollection.where().findFirst() ?? AppConfig();
 
       config.userId = settings.userId;
       config.userName = settings.userName;
@@ -54,6 +63,7 @@ class AppConfigDatasource {
       config.yearlyGoalBooks = settings.yearlyGoalBooks;
       config.weeklyGoalHours = settings.weeklyGoalHours;
       config.isPremium = settings.isPremium ?? false;
+      config.hasSeenOnboarding = settings.hasSeenOnboarding ?? false;
 
       await configCollection.put(config);
     });
@@ -118,7 +128,8 @@ class AppConfigDatasource {
       ),
       yearlyGoalBooks: validYearlyBooks,
       weeklyGoalHours: validWeeklyHours,
-      isPremium: config.isPremium
+      isPremium: config.isPremium,
+      hasSeenOnboarding: config.hasSeenOnboarding
     );
   }
 }
