@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms of Service / Términos y Condiciones - Book Sync</title>
+    <style>
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+      }
+      .container {
+        background: #fff;
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .lang-selector {
+        text-align: right;
+        margin-bottom: 20px;
+      }
+      .lang-selector button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 8px 14px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        margin-left: 5px;
+      }
+      .lang-selector button:hover {
+        background-color: #0056b3;
+      }
+      h1,
+      h2 {
+        color: #2c3e50;
+      }
+      h1 {
+        border-bottom: 2px solid #eaeaea;
+        padding-bottom: 10px;
+      }
+      p,
+      li {
+        color: #555;
+      }
+      .footer {
+        margin-top: 40px;
+        font-size: 0.9em;
+        color: #777;
+        text-align: center;
+        border-top: 1px solid #eaeaea;
+        padding-top: 20px;
+      }
+    </style>
+    <script>
+      function switchLanguage(lang) {
+        document.querySelectorAll("[data-lang]").forEach((el) => {
+          el.style.display =
+            el.getAttribute("data-lang") === lang ? "block" : "none";
+        });
+      }
+      document.addEventListener("DOMContentLoaded", () => {
+        const userLang = navigator.language || navigator.userLanguage;
+        const defaultLang = userLang.startsWith("es") ? "es" : "en";
+        switchLanguage(defaultLang);
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Selector de Idioma -->
+      <div class="lang-selector">
+        <button onclick="switchLanguage('es')">Español</button>
+        <button onclick="switchLanguage('en')">English</button>
+      </div>
+
+      <!-- CONTENIDO EN ESPAÑOL -->
+      <div data-lang="es">
+        <h1>Términos y Condiciones de Uso</h1>
+        <p><strong>Última actualización:</strong> 14 de octubre de 2026</p>
+
+        <p>
+          Bienvenido a <strong>Book Sync</strong>. Al descargar, instalar o
+          utilizar nuestra aplicación móvil, aceptas cumplir y quedar sujeto a
+          los siguientes términos y condiciones. Por favor, léelos
+          detenidamente.
+        </p>
+
+        <h2>1. Aceptación de los Términos</h2>
+        <p>
+          Al utilizar Book Sync, confirmas que eres mayor de edad y que aceptas
+          estos Términos y Condiciones en su totalidad. Si no estás de acuerdo,
+          no debes utilizar la aplicación.
+        </p>
+
+        <h2>2. Descripción del Servicio</h2>
+        <p>
+          Book Sync es una aplicación de seguimiento de lectura, notas y rachas
+          personales. Ofrece funciones locales gratuitas y características
+          avanzadas opcionales bajo suscripción ("Premium"), las cuales incluyen
+          la sincronización y respaldo automático de datos en la nube.
+        </p>
+
+        <h2>3. Cuentas de Usuario y Seguridad</h2>
+        <p>
+          Eres responsable de mantener la confidencialidad de tus credenciales
+          de inicio de sesión y de todas las actividades que ocurran bajo tu
+          cuenta.
+        </p>
+
+        <h2>4. Compras y Suscripciones (Funciones Premium)</h2>
+        <ul>
+          <li>
+            Las funciones Premium se adquieren mediante renovación automática a
+            través de las plataformas oficiales de App Store (Apple) o Google
+            Play Store (Google).
+          </li>
+          <li>
+            Las suscripciones se renovarán automáticamente a menos que se
+            cancelen al menos 24 horas antes del final del periodo de
+            facturación actual.
+          </li>
+          <li>
+            Puedes gestionar o cancelar tus suscripciones directamente desde la
+            configuración de tu cuenta en la tienda correspondiente.
+          </li>
+        </ul>
+
+        <h2>5. Propiedad Intelectual</h2>
+        <p>
+          Todo el diseño de la aplicación, el código fuente, los gráficos e
+          interfaces son propiedad exclusiva de los creadores de Book Sync y
+          están protegidos por las leyes de propiedad intelectual.
+        </p>
+
+        <h2>6. Limitación de Responsabilidad</h2>
+        <p>
+          Book Sync se proporciona "tal cual" y "según disponibilidad". No nos
+          hacemos responsables por la pérdida de datos derivada de un mal uso
+          del dispositivo o fallas en redes externas.
+        </p>
+
+        <h2>7. Contacto</h2>
+        <p>
+          Para cualquier consulta sobre estos Términos, contáctanos en:
+          <strong>soporte@booksync.app</strong>
+        </p>
+      </div>
+
+      <!-- CONTENIDO EN INGLÉS -->
+      <div data-lang="en" style="display: none">
+        <h1>Terms of Service</h1>
+        <p><strong>Last updated:</strong> October 14, 2026</p>
+
+        <p>
+          Welcome to <strong>Book Sync</strong>. By downloading, installing, or
+          using our mobile application, you agree to comply with and be bound by
+          the following terms and conditions. Please read them carefully.
+        </p>
+
+        <h2>1. Acceptance of Terms</h2>
+        <p>
+          By using Book Sync, you confirm that you are of legal age and accept
+          these Terms and Conditions in full. If you disagree, you must not use
+          the application.
+        </p>
+
+        <h2>2. Description of Service</h2>
+        <p>
+          Book Sync is a reading tracker, notes, and personal streaks
+          application. It offers free local features and optional advanced
+          subscription features ("Premium"), which include automatic cloud data
+          synchronization and backup.
+        </p>
+
+        <h2>3. User Accounts and Security</h2>
+        <p>
+          You are responsible for maintaining the confidentiality of your login
+          credentials and for all activities that occur under your account.
+        </p>
+
+        <h2>4. Purchases and Subscriptions (Premium Features)</h2>
+        <ul>
+          <li>
+            Premium features are acquired through auto-renewing subscriptions
+            via official platforms: Apple App Store or Google Play Store.
+          </li>
+          <li>
+            Subscriptions will automatically renew unless canceled at least 24
+            hours before the end of the current billing period.
+          </li>
+          <li>
+            You can manage or cancel your subscriptions directly from your store
+            account settings.
+          </li>
+        </ul>
+
+        <h2>5. Intellectual Property</h2>
+        <p>
+          All application design, source code, graphics, and interfaces are the
+          exclusive property of Book Sync creators and are protected by
+          applicable intellectual property laws.
+        </p>
+
+        <h2>6. Limitation of Liability</h2>
+        <p>
+          Book Sync is provided "as is" and "as available". We are not liable
+          for any data loss resulting from device misuse or external network
+          failures.
+        </p>
+
+        <h2>7. Contact</h2>
+        <p>
+          For any questions regarding these Terms, contact us at:
+          <strong>soporte@booksync.app</strong>
+        </p>
+      </div>
+
+      <div class="footer">
+        <p>
+          &copy; 2026 Book Sync. Todos los derechos reservados / All rights
+          reserved.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
